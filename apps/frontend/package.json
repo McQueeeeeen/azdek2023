@@ -1,0 +1,23 @@
+{
+  "name": "@azdek/frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "next": "14.2.16",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "20.14.10",
+    "@types/react": "18.3.3",
+    "typescript": "5.5.4"
+  }
+}

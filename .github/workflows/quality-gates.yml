@@ -1,0 +1,149 @@
+name: quality-gates
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  backend-and-storefront-gates:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: azdek_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d azdek_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install backend deps
+        working-directory: apps/backend
+        run: npm ci
+
+      - name: Install frontend deps
+        working-directory: apps/frontend
+        run: npm ci
+
+      - name: Backend migrate deploy
+        working-directory: apps/backend
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/azdek_test?schema=public
+          REDIS_URL: redis://localhost:6379
+          NODE_ENV: test
+          BACKEND_PORT: 4000
+          LOG_LEVEL: error
+          SUPABASE_URL: https://example.supabase.co
+          SUPABASE_ANON_KEY: test-anon
+          SUPABASE_SERVICE_ROLE_KEY: test-service-role
+          SUPABASE_STORAGE_BUCKET: product-media
+          PAYMENT_WEBHOOK_SECRET_MOCK_KZ: test-webhook-secret
+          QUEUE_WORKERS_ENABLED: "false"
+          JWT_ACCESS_SECRET: test-access-secret-123456
+          JWT_ACCESS_TTL: 15m
+          JWT_REFRESH_SECRET: test-refresh-secret-123456
+          JWT_REFRESH_TTL: 30d
+          AUTH_BOOTSTRAP_KEY: test-bootstrap-key
+        run: npx prisma migrate deploy
+
+      - name: Backend seed
+        working-directory: apps/backend
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/azdek_test?schema=public
+          REDIS_URL: redis://localhost:6379
+          NODE_ENV: test
+          BACKEND_PORT: 4000
+          LOG_LEVEL: error
+          SUPABASE_URL: https://example.supabase.co
+          SUPABASE_ANON_KEY: test-anon
+          SUPABASE_SERVICE_ROLE_KEY: test-service-role
+          SUPABASE_STORAGE_BUCKET: product-media
+          PAYMENT_WEBHOOK_SECRET_MOCK_KZ: test-webhook-secret
+          QUEUE_WORKERS_ENABLED: "false"
+          JWT_ACCESS_SECRET: test-access-secret-123456
+          JWT_ACCESS_TTL: 15m
+          JWT_REFRESH_SECRET: test-refresh-secret-123456
+          JWT_REFRESH_TTL: 30d
+          AUTH_BOOTSTRAP_KEY: test-bootstrap-key
+        run: npm run seed
+
+      - name: Backend build
+        working-directory: apps/backend
+        run: npm run build
+
+      - name: Backend integration tests
+        working-directory: apps/backend
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/azdek_test?schema=public
+          REDIS_URL: redis://localhost:6379
+          NODE_ENV: test
+          BACKEND_PORT: 4000
+          LOG_LEVEL: error
+          SUPABASE_URL: https://example.supabase.co
+          SUPABASE_ANON_KEY: test-anon
+          SUPABASE_SERVICE_ROLE_KEY: test-service-role
+          SUPABASE_STORAGE_BUCKET: product-media
+          PAYMENT_WEBHOOK_SECRET_MOCK_KZ: test-webhook-secret
+          QUEUE_WORKERS_ENABLED: "false"
+          JWT_ACCESS_SECRET: test-access-secret-123456
+          JWT_ACCESS_TTL: 15m
+          JWT_REFRESH_SECRET: test-refresh-secret-123456
+          JWT_REFRESH_TTL: 30d
+          AUTH_BOOTSTRAP_KEY: test-bootstrap-key
+        run: npm run test:integration
+
+      - name: Frontend build
+        working-directory: apps/frontend
+        env:
+          NEXT_PUBLIC_API_URL: http://127.0.0.1:4000/v1
+        run: npm run build
+
+      - name: Install Playwright browser
+        working-directory: apps/frontend
+        run: npx playwright install --with-deps chromium
+
+      - name: Storefront e2e smoke
+        working-directory: apps/frontend
+        env:
+          NEXT_PUBLIC_API_URL: http://127.0.0.1:4000/v1
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/azdek_test?schema=public
+          REDIS_URL: redis://localhost:6379
+          NODE_ENV: test
+          BACKEND_PORT: 4000
+          LOG_LEVEL: error
+          SUPABASE_URL: https://example.supabase.co
+          SUPABASE_ANON_KEY: test-anon
+          SUPABASE_SERVICE_ROLE_KEY: test-service-role
+          SUPABASE_STORAGE_BUCKET: product-media
+          PAYMENT_WEBHOOK_SECRET_MOCK_KZ: test-webhook-secret
+          QUEUE_WORKERS_ENABLED: "false"
+          JWT_ACCESS_SECRET: test-access-secret-123456
+          JWT_ACCESS_TTL: 15m
+          JWT_REFRESH_SECRET: test-refresh-secret-123456
+          JWT_REFRESH_TTL: 30d
+          AUTH_BOOTSTRAP_KEY: test-bootstrap-key
+        run: npm run test:e2e

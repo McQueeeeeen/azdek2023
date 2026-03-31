@@ -1,0 +1,47 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "AZDEK" [ref=e5] [cursor=pointer]:
+        - /url: /
+      - navigation "\\u041E\\u0441\\u043D\\u043E\\u0432\\u043D\\u0430\\u044F \\u043D\\u0430\\u0432\\u0438\\u0433\\u0430\\u0446\\u0438\\u044F" [ref=e6]:
+        - link "Главная" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - link "Каталог" [ref=e8] [cursor=pointer]:
+          - /url: /catalog
+        - link "Корзина" [ref=e9] [cursor=pointer]:
+          - /url: /cart
+        - link "Оформление" [ref=e10] [cursor=pointer]:
+          - /url: /checkout
+        - link "Вход" [ref=e11] [cursor=pointer]:
+          - /url: /login
+        - link "Кабинет" [ref=e12] [cursor=pointer]:
+          - /url: /account
+      - link "Покупать" [ref=e13] [cursor=pointer]:
+        - /url: /catalog
+        - button "Покупать" [ref=e14]
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e19]:
+        - heading "Вход" [level=1] [ref=e20]
+        - paragraph [ref=e21]: Войдите в кабинет и историю заказов
+      - article [ref=e23]:
+        - textbox "Email" [ref=e24]
+        - textbox "Пароль" [ref=e25]
+        - button "Войти" [ref=e26]
+  - contentinfo [ref=e27]:
+    - generic [ref=e28]:
+      - paragraph [ref=e29]: AZDEK Бытовая химия
+      - paragraph [ref=e30]: Чистые формулы. Надежный результат.
+  - navigation "\\u041C\\u043E\\u0431\\u0438\\u043B\\u044C\\u043D\\u0430\\u044F \\u043D\\u0430\\u0432\\u0438\\u0433\\u0430\\u0446\\u0438\\u044F" [ref=e31]:
+    - link "Главная" [ref=e32] [cursor=pointer]:
+      - /url: /
+    - link "Каталог" [ref=e33] [cursor=pointer]:
+      - /url: /catalog
+    - link "Корзина" [ref=e34] [cursor=pointer]:
+      - /url: /cart
+    - link "Кабинет" [ref=e35] [cursor=pointer]:
+      - /url: /account
+```

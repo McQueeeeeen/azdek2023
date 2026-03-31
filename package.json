@@ -1,0 +1,23 @@
+{
+  "name": "azdek2023",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.0.0",
+  "scripts": {
+    "dev:backend": "npm --prefix apps/backend run start:dev",
+    "dev:frontend": "npm --prefix apps/frontend run dev",
+    "dev:up": "node -e \"const {spawnSync}=require('child_process'); const args=['compose','-f','infrastructure/docker/docker-compose.yml','up','-d','redis']; const res=spawnSync('docker',args,{stdio:'inherit',shell:process.platform==='win32'}); if(res.error||res.status!==0){console.log('[dev:up] Docker not available, skipping Redis compose.'); console.log('[dev:up] Continue if REDIS_URL is already reachable.');}\"",
+    "dev:init": "npm run dev:up && npm run prisma:deploy && npm run seed",
+    "build:backend": "npm --prefix apps/backend run build",
+    "build:frontend": "npm --prefix apps/frontend run build",
+    "test:integration": "npm --prefix apps/backend run test:integration",
+    "test:e2e": "npm --prefix apps/frontend run test:e2e",
+    "prisma:deploy": "npm --prefix apps/backend run prisma:deploy",
+    "seed": "npm --prefix apps/backend run seed",
+    "start:dev": "npm --prefix apps/backend run start:dev",
+    "dev": "npm run dev:up && concurrently -k -n backend,frontend -c cyan,magenta \"npm run dev:backend\" \"npm run dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
