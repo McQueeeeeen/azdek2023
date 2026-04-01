@@ -1,12 +1,16 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
+﻿const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 
 function buildNetworkErrorMessage(path: string, reason: string): string {
-  return [
-    "Сервис каталога сейчас недоступен.",
-    `Проверьте NEXT_PUBLIC_API_URL: ${API_BASE}`,
-    `Запрос: ${path}`,
-    `Причина: ${reason}`,
-  ].join(" ");
+  if (process.env.NODE_ENV !== "production") {
+    return [
+      "Сервис каталога сейчас недоступен.",
+      `Проверьте NEXT_PUBLIC_API_URL: ${API_BASE}`,
+      `Запрос: ${path}`,
+      `Причина: ${reason}`,
+    ].join(" ");
+  }
+
+  return "Сервис временно недоступен. Обновите страницу чуть позже.";
 }
 
 export interface CatalogVariant {
