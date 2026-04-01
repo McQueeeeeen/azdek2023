@@ -5,8 +5,7 @@ import { ReactNode, useEffect, useMemo, useState } from "react";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
 import Card from "@/components/ui/card";
-
-const ADMIN_ROLES = new Set(["owner", "manager", "support", "content_editor", "warehouse"]);
+import { canAccessAdmin } from "@/lib/roles";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<string | null>(null);
@@ -23,7 +22,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const hasAccess = useMemo(() => (role ? ADMIN_ROLES.has(role) : false), [role]);
+  const hasAccess = useMemo(() => canAccessAdmin(role), [role]);
 
   if (checking) {
     return null;

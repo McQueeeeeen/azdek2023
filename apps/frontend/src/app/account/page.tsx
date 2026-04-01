@@ -18,12 +18,19 @@ interface MeResponse {
 }
 
 const ROLE_LABELS: Record<string, string> = {
+  admin: "Администратор",
+  administrator: "Администратор",
   owner: "Владелец",
+  operator: "Оператор",
   manager: "Менеджер",
   support: "Поддержка",
   content_editor: "Контент-редактор",
   warehouse: "Склад",
+  user: "Пользователь",
   customer: "Покупатель",
+  vip_client: "ВИП-клиент",
+  vip: "ВИП-клиент",
+  wholesaler: "Оптовик",
   b2b: "B2B",
   b2b_customer: "B2B клиент",
 };

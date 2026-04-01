@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { canAccessAdmin } from "@/lib/roles";
 import Container from "../ui/container";
 import Button from "../ui/button";
 
@@ -26,10 +27,7 @@ export default function SiteHeader() {
     }
   }, []);
 
-  const canSeeAdmin = useMemo(
-    () => role === "owner" || role === "manager" || role === "support" || role === "content_editor" || role === "warehouse",
-    [role],
-  );
+  const canSeeAdmin = useMemo(() => canAccessAdmin(role), [role]);
 
   const navItems = canSeeAdmin ? [...NAV_ITEMS, { href: "/admin", label: "Admin" }] : NAV_ITEMS;
 

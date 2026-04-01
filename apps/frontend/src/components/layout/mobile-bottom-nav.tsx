@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import { canAccessAdmin } from "@/lib/roles";
 
 export default function MobileBottomNav() {
   const pathname = usePathname();
@@ -17,10 +18,7 @@ export default function MobileBottomNav() {
     }
   }, []);
 
-  const canSeeAdmin = useMemo(
-    () => role === "owner" || role === "manager" || role === "support" || role === "content_editor" || role === "warehouse",
-    [role],
-  );
+  const canSeeAdmin = useMemo(() => canAccessAdmin(role), [role]);
 
   const items = [
     { href: "/", label: "Overview" },
