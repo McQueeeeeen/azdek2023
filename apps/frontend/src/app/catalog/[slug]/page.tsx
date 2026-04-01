@@ -11,10 +11,19 @@ import Divider from "@/components/ui/divider";
 import ErrorState from "@/components/ui/error-state";
 import Button from "@/components/ui/button";
 import ProductGallery from "@/components/commerce/product-gallery";
+import { getProductCommercialContent } from "@/lib/product-commercial-content";
+
+function renderStars(rating: number): string {
+  const filled = "★".repeat(Math.max(0, Math.min(5, rating)));
+  const empty = "☆".repeat(Math.max(0, 5 - rating));
+  return `${filled}${empty}`;
+}
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   try {
     const product = await apiGet<CatalogProduct>(`/catalog/products/${params.slug}`);
+    const commercial = getProductCommercialContent(product.slug);
+
     let recommendations: CatalogProduct[] = [];
     try {
       recommendations = await apiGet<CatalogProduct[]>(`/catalog/products/${params.slug}/recommendations?limit=3`);
@@ -36,9 +45,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <p className="text-secondary">{product.description}</p>
               <Divider />
               <div className="product-highlights">
-                <p>Оптимальная концентрация для ежедневного использования.</p>
-                <p>Стабильная формула для дома, розницы и малого опта.</p>
-                <p>Подходит для повторных заказов и регулярных поставок.</p>
+                {commercial.highlights.map((item) => (
+                  <p key={item}>{item}</p>
+                ))}
               </div>
               <Divider />
               <div className="grid">
@@ -54,6 +63,35 @@ export default async function ProductPage({ params }: { params: { slug: string }
                       <AddToCartButton variantId={variant.id} />
                     </div>
                   </Card>
+                ))}
+              </div>
+            </Card>
+          </div>
+
+          <div className="product-content-grid">
+            <Card>
+              <h2 className="h3">Отзывы покупателей</h2>
+              <div className="reviews-list">
+                {commercial.reviews.map((review) => (
+                  <article key={`${review.author}:${review.text}`} className="review-item">
+                    <p className="review-stars" aria-label={`Оценка ${review.rating} из 5`}>
+                      {renderStars(review.rating)}
+                    </p>
+                    <p>{review.text}</p>
+                    <p className="small">{review.author}</p>
+                  </article>
+                ))}
+              </div>
+            </Card>
+
+            <Card>
+              <h2 className="h3">FAQ по товару</h2>
+              <div className="faq-list">
+                {commercial.faq.map((item) => (
+                  <details key={item.question} className="faq-item">
+                    <summary>{item.question}</summary>
+                    <p className="text-secondary">{item.answer}</p>
+                  </details>
                 ))}
               </div>
             </Card>

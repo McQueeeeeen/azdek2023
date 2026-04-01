@@ -507,6 +507,12 @@ p {
   gap: var(--space-2);
 }
 
+.product-pitch {
+  font-size: 14px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
 .product-description {
   min-height: 44px;
 }
@@ -613,6 +619,48 @@ p {
 .recommend-list {
   display: grid;
   gap: var(--space-2);
+}
+
+.product-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.reviews-list,
+.faq-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.review-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  display: grid;
+  gap: var(--space-2);
+  background: var(--surface);
+}
+
+.review-stars {
+  letter-spacing: 0.08em;
+  color: #111;
+}
+
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--surface);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.faq-item p {
+  margin-top: var(--space-2);
 }
 
 .recommend-item {
@@ -748,6 +796,10 @@ p {
   .cart-layout,
   .home-grid,
   .home-grid-ready {
+    grid-template-columns: 1fr;
+  }
+
+  .product-content-grid {
     grid-template-columns: 1fr;
   }
 
