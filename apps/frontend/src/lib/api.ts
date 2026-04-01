@@ -72,9 +72,12 @@ async function tryRefreshAccessToken(): Promise<string | null> {
     });
 
     if (!response.ok) {
-      localStorage.removeItem("azdek_access_token");
-      localStorage.removeItem("azdek_refresh_token");
-      localStorage.removeItem("azdek_user_role");
+      // Only clear session on explicit auth rejection.
+      if (response.status === 401 || response.status === 403) {
+        localStorage.removeItem("azdek_access_token");
+        localStorage.removeItem("azdek_refresh_token");
+        localStorage.removeItem("azdek_user_role");
+      }
       return null;
     }
 

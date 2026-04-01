@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useMemo, useState } from "react";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
 import Card from "@/components/ui/card";
-import { canAccessAdmin } from "@/lib/roles";
+import { canAccessAdmin, getClientRole } from "@/lib/roles";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<string | null>(null);
@@ -13,8 +13,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      const savedRole = localStorage.getItem("azdek_user_role");
-      setRole(savedRole);
+      setRole(getClientRole());
     } catch {
       setRole(null);
     } finally {

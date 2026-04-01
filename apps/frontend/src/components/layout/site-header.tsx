@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { canAccessAdmin } from "@/lib/roles";
+import { canAccessAdmin, getClientRole } from "@/lib/roles";
 import Container from "../ui/container";
 import Button from "../ui/button";
 
@@ -20,8 +20,7 @@ export default function SiteHeader() {
 
   useEffect(() => {
     try {
-      const explicitRole = localStorage.getItem("azdek_user_role");
-      setRole(explicitRole);
+      setRole(getClientRole());
     } catch {
       setRole(null);
     }
