@@ -23,7 +23,7 @@ export default async function OrderPage({ params }: { params: { orderNumber: str
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Order Confirmed" subtitle="Your transaction has been recorded successfully" />
+        <PageHeader title="Спасибо за заказ" subtitle="Мы уже начали его обработку" />
         <Card className="grid">
           <p className="small">Order number</p>
           <p className="h3">{order.orderNumber}</p>

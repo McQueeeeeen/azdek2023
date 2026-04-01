@@ -105,7 +105,7 @@ export default function CartPage() {
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Корзина" subtitle="Проверьте товары перед оформлением" />
+        <PageHeader title="Корзина" subtitle="Проверьте заказ перед оформлением" />
         {cart ? (
           <div className="cart-layout">
             <div className="grid">

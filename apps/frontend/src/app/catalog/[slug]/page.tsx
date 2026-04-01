@@ -19,6 +19,10 @@ function renderStars(rating: number): string {
   return `${filled}${empty}`;
 }
 
+function formatMoney(amount: number, currency: string): string {
+  return `${Math.round(amount)} ${currency}`;
+}
+
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   try {
     const product = await apiGet<CatalogProduct>(`/catalog/products/${params.slug}`);
@@ -42,13 +46,39 @@ export default async function ProductPage({ params }: { params: { slug: string }
             <Card className="product-info">
               <p className="small">{product.category.name}</p>
               <h1 className="h2">{product.name}</h1>
-              <p className="text-secondary">{product.description}</p>
+              <p className="text-secondary">{commercial.shortDescription}</p>
               <Divider />
               <div className="product-highlights">
                 {commercial.highlights.map((item) => (
                   <p key={item}>{item}</p>
                 ))}
               </div>
+              <Divider />
+              <div className="grid">
+                <h2 className="h3">Как использовать</h2>
+                <p className="text-secondary">{commercial.usage}</p>
+              </div>
+              <Divider />
+              <div className="grid">
+                <h2 className="h3">Состав</h2>
+                <p className="text-secondary">{commercial.composition}</p>
+              </div>
+              <Divider />
+              <div className="grid">
+                <h2 className="h3">Меры предосторожности</h2>
+                <p className="text-secondary">{commercial.precautions}</p>
+              </div>
+              <Divider />
+              <Card>
+                <h2 className="h3">Экономика</h2>
+                <p className="text-secondary">1 упаковка = до {commercial.washCount} стирок</p>
+                {product.variants[0] ? (
+                  <p className="text-secondary">
+                    Стоимость одной стирки — от{" "}
+                    {formatMoney(product.variants[0].price / Math.max(1, commercial.washCount), product.variants[0].currency)}
+                  </p>
+                ) : null}
+              </Card>
               <Divider />
               <div className="grid">
                 {product.variants.map((variant) => (
@@ -85,7 +115,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             </Card>
 
             <Card>
-              <h2 className="h3">FAQ по товару</h2>
+              <h2 className="h3">Вопросы по использованию</h2>
               <div className="faq-list">
                 {commercial.faq.map((item) => (
                   <details key={item.question} className="faq-item">

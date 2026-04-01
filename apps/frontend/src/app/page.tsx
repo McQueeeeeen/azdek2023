@@ -5,15 +5,15 @@ import Button from "@/components/ui/button";
 import Card from "@/components/ui/card";
 
 const PROMO_OFFERS = [
-  "START10: welcome discount for your first order",
-  "Free delivery across Kazakhstan from 20 000 KZT",
-  "Secure checkout for B2C and B2B flows",
+  "Экономия до 60 стирок на одной канистре",
+  "Подходит для всех типов тканей",
+  "Разработано химиком, а не маркетологами",
 ];
 
 const ADVANTAGES = [
-  { title: "Clean Formulas", text: "Эффективные и аккуратные формулы для ежедневного использования дома." },
-  { title: "Fast Delivery", text: "Быстрая отгрузка по городу и в регионы с понятными сроками." },
-  { title: "Transparent Labels", text: "Состав, инструкция и меры предосторожности в каждой карточке." },
+  { title: "Концентрированная формула", text: "Меньше расход — больше стирок." },
+  { title: "Без лишних наполнителей", text: "Вы платите за результат, а не за маркетинг." },
+  { title: "Разработано специалистом", text: "Не массовое производство, а продуманная формула." },
 ];
 
 const HITS = [
@@ -45,26 +45,28 @@ export default function HomePage() {
         </Card>
 
         <Card className="hero-card hero-card-premium">
-              <p className="small">Казахстан · Бытовая химия AZDEK</p>
-              <h1 className="h1">Commerce infrastructure, simplified for household essentials.</h1>
-              <p className="text-secondary hero-copy">
-            Премиальный storefront в эстетике Elemental: прозрачный каталог, чистый checkout и предсказуемая доставка.
-              </p>
-              <div className="hero-actions">
-                <Link href="/catalog">
-                  <Button>Browse catalog</Button>
-                </Link>
-                <Link href="/checkout">
-                  <Button variant="secondary">Start checkout</Button>
-                </Link>
-              </div>
-            </Card>
+          <p className="small">Казахстан · Бытовая химия AZDEK</p>
+          <h1 className="h1">Концентрированные средства для стирки, разработанные химиком</h1>
+          <p className="text-secondary hero-copy">Чистота с первого раза без переплаты за воду и рекламу</p>
+          <div className="hero-actions">
+            <Link href="/catalog">
+              <Button>Смотреть продукцию</Button>
+            </Link>
+            <Link href="/checkout">
+              <Button variant="secondary">Перейти к оформлению</Button>
+            </Link>
+          </div>
+        </Card>
 
         <Card className="hero-visual-card">
           <img className="hero-product-image" src="/media/laundry-gel.svg" alt="AZDEK Laundry Gel" />
         </Card>
 
         <div className="advantages-grid">
+          <Card className="home-feature-card">
+            <h2 className="h3">Почему это лучше обычных средств</h2>
+            <p className="text-secondary">Сравнение не в рекламе, а в результате и себестоимости одной стирки.</p>
+          </Card>
           {ADVANTAGES.map((item) => (
             <Card key={item.title} className="home-feature-card">
               <h2 className="h3">{item.title}</h2>
@@ -92,11 +94,11 @@ export default function HomePage() {
 
         <Card className="hits-section">
           <div className="page-header">
-                <h2 className="h2">Популярные товары</h2>
-                <Link href="/catalog">
-                  <Button variant="ghost">View all</Button>
-                </Link>
-              </div>
+            <h2 className="h2">Наша продукция</h2>
+            <Link href="/catalog">
+              <Button variant="ghost">Смотреть всё</Button>
+            </Link>
+          </div>
           <div className="hits-grid">
             {HITS.map((item) => (
               <article key={item.name} className="hit-item">
@@ -105,13 +107,46 @@ export default function HomePage() {
                 </div>
                 <p className="small">{item.tag}</p>
                 <h3 className="h3">{item.name}</h3>
-                  <Link href="/catalog">
-                    <Button variant="secondary" className="full-width">
-                    View item
-                    </Button>
-                  </Link>
+                <Link href="/catalog">
+                  <Button variant="secondary" className="full-width">
+                    Смотреть товар
+                  </Button>
+                </Link>
               </article>
             ))}
+          </div>
+        </Card>
+
+        <Card className="trust-band">
+          <div className="page-header">
+            <h2 className="h2">Как использовать</h2>
+          </div>
+          <div className="trust-grid">
+            <article className="trust-item">
+              <h3 className="h3">1. Добавьте дозировку</h3>
+              <p className="text-secondary">Добавьте нужный объём средства согласно инструкции на упаковке.</p>
+            </article>
+            <article className="trust-item">
+              <h3 className="h3">2. Запустите стирку</h3>
+              <p className="text-secondary">Выберите привычный режим и температуру для вашего типа ткани.</p>
+            </article>
+            <article className="trust-item">
+              <h3 className="h3">3. Получите результат</h3>
+              <p className="text-secondary">Чистое бельё без лишнего расхода и резкого запаха.</p>
+            </article>
+            <article className="trust-item">
+              <h3 className="h3">Простая схема</h3>
+              <p className="text-secondary">Понятная инструкция на каждой карточке и упаковке.</p>
+            </article>
+          </div>
+        </Card>
+
+        <Card className="promo-strip">
+          <p className="small promo-strip-label">Попробуйте и сравните результат уже после первой стирки</p>
+          <div className="hero-actions">
+            <Link href="/catalog">
+              <Button>Перейти в каталог</Button>
+            </Link>
           </div>
         </Card>
       </Container>

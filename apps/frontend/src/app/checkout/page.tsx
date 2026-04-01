@@ -68,30 +68,32 @@ export default function CheckoutPage() {
   return (
     <Section>
       <Container className="grid checkout-layout">
-        <PageHeader title="Checkout Terminal" subtitle="Shipping details and secure card payment in one flow" />
+        <PageHeader title="Оформление заказа" subtitle="Контакты, доставка и оплата в 3 шага" />
         <form className="grid" onSubmit={submit}>
           <Card className="checkout-card grid">
-            <h2 className="h3">Contact</h2>
-            <Input name="customerName" placeholder="Full name" required />
+            <h2 className="h3">Шаг 1 — Контакты</h2>
+            <Input name="customerName" placeholder="Имя" required />
+            <Input name="customerPhone" placeholder="Телефон" required />
             <Input name="customerEmail" type="email" placeholder="Email" required />
-            <Input name="customerPhone" placeholder="Phone" required />
           </Card>
           <Card className="checkout-card grid">
-            <h2 className="h3">Shipping</h2>
-            <Input name="deliveryCity" placeholder="City" defaultValue="Алматы" required />
-            <Textarea name="deliveryAddress" placeholder="Address" required />
+            <h2 className="h3">Шаг 2 — Доставка</h2>
+            <Input name="deliveryCity" placeholder="Город" defaultValue="Алматы" required />
+            <Textarea name="deliveryAddress" placeholder="Адрес" required />
           </Card>
           <Card className="checkout-card grid">
-            <h2 className="h3">Payment</h2>
-            <p className="text-secondary">Card payment opens in a separate secure window after order creation.</p>
+            <h2 className="h3">Шаг 3 — Оплата</h2>
+            <p className="text-secondary">Мы используем безопасную оплату. Ваши данные защищены.</p>
             <div className="order-status-grid">
-              <p className="small">Encrypted flow</p>
+              <p className="small">Доступные методы</p>
+              <p>Карты / Kaspi / другие провайдеры</p>
+              <p className="small">Безопасность</p>
               <p>SSL / 3-D Secure</p>
-              <p className="small">Order updates</p>
-              <p>Email and account timeline</p>
+              <p className="small">Подтверждение</p>
+              <p>Email и статус заказа в кабинете</p>
             </div>
             <Button type="submit" disabled={loading}>
-              {loading ? "Creating order..." : "Process transaction"}
+              {loading ? "Создаём заказ..." : "Оформить заказ"}
             </Button>
           </Card>
           {error ? <ErrorState title="Ошибка оформления" message={error} /> : null}
