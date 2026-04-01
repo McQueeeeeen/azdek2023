@@ -19,6 +19,7 @@ const GOOGLE_AUTH_URL = process.env.NEXT_PUBLIC_GOOGLE_AUTH_URL;
 function persistTokens(tokens: AuthTokens): void {
   localStorage.setItem("azdek_access_token", tokens.accessToken);
   localStorage.setItem("azdek_refresh_token", tokens.refreshToken);
+  localStorage.setItem("azdek_user_role", tokens.user.role);
 }
 
 export default function LoginPage() {

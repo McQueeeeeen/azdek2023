@@ -74,12 +74,14 @@ async function tryRefreshAccessToken(): Promise<string | null> {
     if (!response.ok) {
       localStorage.removeItem("azdek_access_token");
       localStorage.removeItem("azdek_refresh_token");
+      localStorage.removeItem("azdek_user_role");
       return null;
     }
 
     const payload = (await response.json()) as AuthTokens;
     localStorage.setItem("azdek_access_token", payload.accessToken);
     localStorage.setItem("azdek_refresh_token", payload.refreshToken);
+    localStorage.setItem("azdek_user_role", payload.user.role);
     return payload.accessToken;
   } catch {
     return null;
