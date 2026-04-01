@@ -27,6 +27,7 @@ export async function createApp(): Promise<{ app: INestApplication; port: number
   );
   app.useGlobalFilters(new DomainExceptionFilter());
 
-  const port = config.get<number>("BACKEND_PORT", 4000);
+  const runtimePort = process.env.PORT ? Number(process.env.PORT) : undefined;
+  const port = runtimePort && Number.isFinite(runtimePort) ? runtimePort : config.get<number>("BACKEND_PORT", 4000);
   return { app, port };
 }
