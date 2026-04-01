@@ -68,30 +68,30 @@ export default function CheckoutPage() {
   return (
     <Section>
       <Container className="grid checkout-layout">
-        <PageHeader title="Оформление заказа" subtitle="Доставка и безопасная онлайн-оплата" />
+        <PageHeader title="Checkout Terminal" subtitle="Shipping details and secure card payment in one flow" />
         <form className="grid" onSubmit={submit}>
           <Card className="checkout-card grid">
-            <h2 className="h3">Контактные данные</h2>
-            <Input name="customerName" placeholder="ФИО" required />
+            <h2 className="h3">Contact</h2>
+            <Input name="customerName" placeholder="Full name" required />
             <Input name="customerEmail" type="email" placeholder="Email" required />
-            <Input name="customerPhone" placeholder="Телефон" required />
+            <Input name="customerPhone" placeholder="Phone" required />
           </Card>
           <Card className="checkout-card grid">
-            <h2 className="h3">Доставка</h2>
-            <Input name="deliveryCity" placeholder="Город" defaultValue="Алматы" required />
-            <Textarea name="deliveryAddress" placeholder="Адрес" required />
+            <h2 className="h3">Shipping</h2>
+            <Input name="deliveryCity" placeholder="City" defaultValue="Алматы" required />
+            <Textarea name="deliveryAddress" placeholder="Address" required />
           </Card>
           <Card className="checkout-card grid">
-            <h2 className="h3">Оплата</h2>
-            <p className="text-secondary">Оплата картой откроется в отдельном окне после создания заказа.</p>
+            <h2 className="h3">Payment</h2>
+            <p className="text-secondary">Card payment opens in a separate secure window after order creation.</p>
             <div className="order-status-grid">
-              <p className="small">Защищенная оплата</p>
+              <p className="small">Encrypted flow</p>
               <p>SSL / 3-D Secure</p>
-              <p className="small">Подтверждение заказа</p>
-              <p>Email и статус в кабинете</p>
+              <p className="small">Order updates</p>
+              <p>Email and account timeline</p>
             </div>
             <Button type="submit" disabled={loading}>
-              {loading ? "Создаем заказ..." : "Создать заказ"}
+              {loading ? "Creating order..." : "Process transaction"}
             </Button>
           </Card>
           {error ? <ErrorState title="Ошибка оформления" message={error} /> : null}

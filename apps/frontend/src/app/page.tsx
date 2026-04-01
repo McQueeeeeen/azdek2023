@@ -5,15 +5,15 @@ import Button from "@/components/ui/button";
 import Card from "@/components/ui/card";
 
 const PROMO_OFFERS = [
-  "Скидка 10% на первый заказ по промокоду START10",
-  "Бесплатная доставка по Казахстану от 20 000 KZT",
-  "Оплата картой, по ссылке или при подтверждении B2B-заказа",
+  "START10: welcome discount for your first order",
+  "Free delivery across Kazakhstan from 20 000 KZT",
+  "Secure checkout for B2C and B2B flows",
 ];
 
 const ADVANTAGES = [
-  { title: "Бережные формулы", text: "Эффективно очищают и подходят для регулярного использования дома." },
-  { title: "Доставка по Казахстану", text: "Отправляем заказы по городу и по регионам с понятными сроками." },
-  { title: "Понятные составы", text: "В карточке товара: состав, применение, меры предосторожности и хранение." },
+  { title: "Clean Formulas", text: "Эффективные и аккуратные формулы для ежедневного использования дома." },
+  { title: "Fast Delivery", text: "Быстрая отгрузка по городу и в регионы с понятными сроками." },
+  { title: "Transparent Labels", text: "Состав, инструкция и меры предосторожности в каждой карточке." },
 ];
 
 const HITS = [
@@ -23,10 +23,10 @@ const HITS = [
 ];
 
 const TRUST_POINTS = [
-  { title: "4.9/5 по отзывам", text: "Реальные оценки покупателей по ключевым SKU." },
-  { title: "Отправка в день заказа", text: "Для заказов до 16:00 в рабочие дни." },
-  { title: "Контроль качества", text: "Стабильные формулы и проверка партий перед отгрузкой." },
-  { title: "Поддержка B2B", text: "Оптовые условия, счета и персональные коммерческие предложения." },
+  { title: "4.9/5 reviews", text: "Проверенные оценки покупателей по ключевым SKU." },
+  { title: "Same-day dispatch", text: "Для заказов, созданных до 16:00 в рабочие дни." },
+  { title: "Quality control", text: "Контроль партий и стабильные формулы перед отгрузкой." },
+  { title: "B2B support", text: "Коммерческие предложения, счета и персональные условия." },
 ];
 
 export default function HomePage() {
@@ -45,21 +45,20 @@ export default function HomePage() {
         </Card>
 
         <Card className="hero-card hero-card-premium">
-          <p className="small">Казахстан · Бытовая химия AZDEK</p>
-          <h1 className="h1">Чистота без компромиссов. Заказывайте онлайн уже сегодня.</h1>
-          <p className="text-secondary hero-copy">
-            Премиальный интернет-магазин бытовой химии: понятный каталог, быстрый заказ, безопасная оплата и
-            прозрачная доставка.
-          </p>
-          <div className="hero-actions">
-            <Link href="/catalog">
-              <Button>Перейти в каталог</Button>
-            </Link>
-            <Link href="/checkout">
-              <Button variant="secondary">Оформить заказ</Button>
-            </Link>
-          </div>
-        </Card>
+              <p className="small">Казахстан · Бытовая химия AZDEK</p>
+              <h1 className="h1">Commerce infrastructure, simplified for household essentials.</h1>
+              <p className="text-secondary hero-copy">
+            Премиальный storefront в эстетике Elemental: прозрачный каталог, чистый checkout и предсказуемая доставка.
+              </p>
+              <div className="hero-actions">
+                <Link href="/catalog">
+                  <Button>Browse catalog</Button>
+                </Link>
+                <Link href="/checkout">
+                  <Button variant="secondary">Start checkout</Button>
+                </Link>
+              </div>
+            </Card>
 
         <Card className="hero-visual-card">
           <img className="hero-product-image" src="/media/laundry-gel.svg" alt="AZDEK Laundry Gel" />
@@ -76,11 +75,11 @@ export default function HomePage() {
 
         <Card className="trust-band">
           <div className="page-header">
-            <h2 className="h2">Почему нам доверяют</h2>
-            <Link href="/catalog">
-              <Button variant="secondary">Собрать заказ</Button>
-            </Link>
-          </div>
+                <h2 className="h2">Почему нам доверяют</h2>
+                <Link href="/catalog">
+                  <Button variant="secondary">Start shopping</Button>
+                </Link>
+              </div>
           <div className="trust-grid">
             {TRUST_POINTS.map((item) => (
               <article key={item.title} className="trust-item">
@@ -93,11 +92,11 @@ export default function HomePage() {
 
         <Card className="hits-section">
           <div className="page-header">
-            <h2 className="h2">Популярные товары</h2>
-            <Link href="/catalog">
-              <Button variant="ghost">Смотреть все</Button>
-            </Link>
-          </div>
+                <h2 className="h2">Популярные товары</h2>
+                <Link href="/catalog">
+                  <Button variant="ghost">View all</Button>
+                </Link>
+              </div>
           <div className="hits-grid">
             {HITS.map((item) => (
               <article key={item.name} className="hit-item">
@@ -106,11 +105,11 @@ export default function HomePage() {
                 </div>
                 <p className="small">{item.tag}</p>
                 <h3 className="h3">{item.name}</h3>
-                <Link href="/catalog">
-                  <Button variant="secondary" className="full-width">
-                    Выбрать
-                  </Button>
-                </Link>
+                  <Link href="/catalog">
+                    <Button variant="secondary" className="full-width">
+                    View item
+                    </Button>
+                  </Link>
               </article>
             ))}
           </div>

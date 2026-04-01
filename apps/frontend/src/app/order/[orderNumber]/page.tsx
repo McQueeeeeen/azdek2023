@@ -23,17 +23,17 @@ export default async function OrderPage({ params }: { params: { orderNumber: str
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Заказ оформлен" subtitle="Покупка успешно зафиксирована" />
+        <PageHeader title="Order Confirmed" subtitle="Your transaction has been recorded successfully" />
         <Card className="grid">
-          <p className="small">Номер заказа</p>
+          <p className="small">Order number</p>
           <p className="h3">{order.orderNumber}</p>
           <Divider />
           <div className="order-status-grid">
-            <p className="small">Статус заказа</p>
+            <p className="small">Order status</p>
             <OrderStatusBadge status={order.status} />
-            <p className="small">Оплата</p>
+            <p className="small">Payment</p>
             <OrderStatusBadge status={order.paymentStatus} />
-            <p className="small">Доставка</p>
+            <p className="small">Shipment</p>
             <OrderStatusBadge status={order.shipmentStatus} />
           </div>
           <Divider />

@@ -60,7 +60,7 @@ export default function AccountPage() {
     return (
       <Section>
         <Container className="grid">
-          <PageHeader title="Кабинет" subtitle="Загружаем профиль" />
+          <PageHeader title="Admin Profile" subtitle="Loading identity and account context" />
           <Card className="grid">
             <Skeleton className="h-24" />
             <Skeleton className="h-56" />
@@ -74,7 +74,7 @@ export default function AccountPage() {
     return (
       <Section>
         <Container className="grid">
-          <PageHeader title="Кабинет" />
+          <PageHeader title="Admin Profile" />
           <ErrorState title="Кабинет временно недоступен" message={error} />
         </Container>
       </Section>
@@ -84,7 +84,7 @@ export default function AccountPage() {
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Кабинет" subtitle="Профиль и данные по заказам" />
+        <PageHeader title="Admin Profile" subtitle="Identity, role and customer metadata" />
         <Card className="grid">
           {me ? (
             <>

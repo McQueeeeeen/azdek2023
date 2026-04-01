@@ -12,11 +12,10 @@ export default function PageHeader({
   return (
     <div className="page-header">
       <div>
-        <h1 className="h2">{title}</h1>
+        <h1 className="h1">{title}</h1>
         {subtitle ? <p className="text-secondary">{subtitle}</p> : null}
       </div>
       {action ? <div>{action}</div> : null}
     </div>
   );
 }
-
