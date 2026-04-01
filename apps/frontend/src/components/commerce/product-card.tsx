@@ -3,13 +3,18 @@ import { CatalogProduct } from "@/lib/api";
 import Card from "../ui/card";
 import Button from "../ui/button";
 import PriceBlock from "./price-block";
+import { getProductMedia } from "@/lib/product-media";
 
 export default function ProductCard({ product }: { product: CatalogProduct }) {
   const firstVariant = product.variants[0];
+  const media = getProductMedia(product.slug);
 
   return (
     <Card className="product-card">
-      <div className="product-image-placeholder" aria-hidden />
+      <div className="product-image-frame">
+        <img className="product-image" src={media.cover} alt={product.name} loading="lazy" />
+        {media.tag ? <span className="product-image-tag">{media.tag}</span> : null}
+      </div>
       <div className="product-card-body">
         <p className="small">{product.category.name}</p>
         <h3 className="h3">{product.name}</h3>

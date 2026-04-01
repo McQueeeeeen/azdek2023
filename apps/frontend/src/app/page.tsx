@@ -11,9 +11,9 @@ const ADVANTAGES = [
 ];
 
 const HITS = [
-  { name: "Гель для стирки Color", tag: "Хит продаж" },
-  { name: "Концентрат Universal", tag: "Для дома" },
-  { name: "Пятновыводитель Active", tag: "Новинка" },
+  { name: "Гель для стирки Color", tag: "Хит продаж", image: "/media/laundry-gel.svg" },
+  { name: "Кондиционер Fresh", tag: "Популярно", image: "/media/softener-fresh.svg" },
+  { name: "Dish Liquid Citrus", tag: "Для кухни", image: "/media/dish-liquid-citrus.svg" },
 ];
 
 export default function HomePage() {
@@ -38,11 +38,7 @@ export default function HomePage() {
         </Card>
 
         <Card className="hero-visual-card">
-          <div className="hero-product-mock" aria-hidden>
-            <div className="mock-bottle" />
-            <div className="mock-bottle small" />
-            <div className="mock-badge">Доставка от 24 часов</div>
-          </div>
+          <img className="hero-product-image" src="/media/laundry-gel.svg" alt="AZDEK Laundry Gel" />
         </Card>
 
         <div className="advantages-grid">
@@ -64,7 +60,9 @@ export default function HomePage() {
           <div className="hits-grid">
             {HITS.map((item) => (
               <article key={item.name} className="hit-item">
-                <div className="hit-image" aria-hidden />
+                <div className="hit-image-wrap">
+                  <img className="hit-image" src={item.image} alt={item.name} loading="lazy" />
+                </div>
                 <p className="small">{item.tag}</p>
                 <h3 className="h3">{item.name}</h3>
                 <Link href="/catalog">

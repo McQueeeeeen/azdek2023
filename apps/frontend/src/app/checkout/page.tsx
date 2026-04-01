@@ -84,6 +84,12 @@ export default function CheckoutPage() {
           <Card className="checkout-card grid">
             <h2 className="h3">Оплата</h2>
             <p className="text-secondary">Оплата картой откроется в отдельном окне после создания заказа.</p>
+            <div className="order-status-grid">
+              <p className="small">Защищенная оплата</p>
+              <p>SSL / 3-D Secure</p>
+              <p className="small">Подтверждение заказа</p>
+              <p>Email и статус в кабинете</p>
+            </div>
             <Button type="submit" disabled={loading}>
               {loading ? "Создаем заказ..." : "Создать заказ"}
             </Button>

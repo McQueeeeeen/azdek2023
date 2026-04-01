@@ -1,0 +1,27 @@
+﻿<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="200" y1="100" x2="1400" y2="1100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F9FC"/>
+      <stop offset="1" stop-color="#E8EEF5"/>
+    </linearGradient>
+    <linearGradient id="bottle" x1="760" y1="300" x2="920" y2="930" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1F26"/>
+      <stop offset="1" stop-color="#0F1318"/>
+    </linearGradient>
+    <linearGradient id="label" x1="770" y1="520" x2="910" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE49D"/>
+      <stop offset="1" stop-color="#FFD064"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <circle cx="380" cy="280" r="110" fill="#DEE7F1"/>
+  <circle cx="1260" cy="220" r="90" fill="#E6EDF6"/>
+  <ellipse cx="820" cy="980" rx="240" ry="56" fill="#CDD8E6"/>
+  <rect x="720" y="300" width="240" height="640" rx="72" fill="url(#bottle)"/>
+  <rect x="780" y="240" width="120" height="100" rx="26" fill="#11161C"/>
+  <rect x="770" y="520" width="140" height="300" rx="20" fill="url(#label)"/>
+  <rect x="805" y="566" width="72" height="8" rx="4" fill="#111" fill-opacity="0.34"/>
+  <rect x="805" y="590" width="72" height="8" rx="4" fill="#111" fill-opacity="0.34"/>
+  <rect x="805" y="614" width="72" height="8" rx="4" fill="#111" fill-opacity="0.34"/>
+  <text x="180" y="1040" fill="#0F1720" font-family="Inter, Arial" font-size="48" font-weight="700">AZDEK Dish Liquid Citrus</text>
+</svg>
