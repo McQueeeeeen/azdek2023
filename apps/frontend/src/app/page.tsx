@@ -4,6 +4,12 @@ import Section from "@/components/ui/section";
 import Button from "@/components/ui/button";
 import Card from "@/components/ui/card";
 
+const PROMO_OFFERS = [
+  "Скидка 10% на первый заказ по промокоду START10",
+  "Бесплатная доставка по Казахстану от 20 000 KZT",
+  "Оплата картой, по ссылке или при подтверждении B2B-заказа",
+];
+
 const ADVANTAGES = [
   { title: "Бережные формулы", text: "Эффективно очищают и подходят для регулярного использования дома." },
   { title: "Доставка по Казахстану", text: "Отправляем заказы по городу и по регионам с понятными сроками." },
@@ -16,10 +22,28 @@ const HITS = [
   { name: "Dish Liquid Citrus", tag: "Для кухни", image: "/media/dish-liquid-citrus.svg" },
 ];
 
+const TRUST_POINTS = [
+  { title: "4.9/5 по отзывам", text: "Реальные оценки покупателей по ключевым SKU." },
+  { title: "Отправка в день заказа", text: "Для заказов до 16:00 в рабочие дни." },
+  { title: "Контроль качества", text: "Стабильные формулы и проверка партий перед отгрузкой." },
+  { title: "Поддержка B2B", text: "Оптовые условия, счета и персональные коммерческие предложения." },
+];
+
 export default function HomePage() {
   return (
     <Section>
       <Container className="grid home-grid-ready">
+        <Card className="promo-strip">
+          <p className="small promo-strip-label">Акции и условия</p>
+          <div className="promo-strip-list">
+            {PROMO_OFFERS.map((offer) => (
+              <span key={offer} className="promo-chip">
+                {offer}
+              </span>
+            ))}
+          </div>
+        </Card>
+
         <Card className="hero-card hero-card-premium">
           <p className="small">Казахстан · Бытовая химия AZDEK</p>
           <h1 className="h1">Чистота без компромиссов. Заказывайте онлайн уже сегодня.</h1>
@@ -50,6 +74,23 @@ export default function HomePage() {
           ))}
         </div>
 
+        <Card className="trust-band">
+          <div className="page-header">
+            <h2 className="h2">Почему нам доверяют</h2>
+            <Link href="/catalog">
+              <Button variant="secondary">Собрать заказ</Button>
+            </Link>
+          </div>
+          <div className="trust-grid">
+            {TRUST_POINTS.map((item) => (
+              <article key={item.title} className="trust-item">
+                <h3 className="h3">{item.title}</h3>
+                <p className="text-secondary">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </Card>
+
         <Card className="hits-section">
           <div className="page-header">
             <h2 className="h2">Популярные товары</h2>
@@ -66,7 +107,9 @@ export default function HomePage() {
                 <p className="small">{item.tag}</p>
                 <h3 className="h3">{item.name}</h3>
                 <Link href="/catalog">
-                  <Button variant="secondary" className="full-width">Выбрать</Button>
+                  <Button variant="secondary" className="full-width">
+                    Выбрать
+                  </Button>
                 </Link>
               </article>
             ))}

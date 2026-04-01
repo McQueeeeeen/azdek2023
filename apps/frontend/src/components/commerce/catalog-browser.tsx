@@ -63,6 +63,12 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
 
   return (
     <div className="grid">
+      <div className="catalog-commerce-strip">
+        <span>В каталоге: {products.length} товаров</span>
+        <span>Доставка по Казахстану</span>
+        <span>Безопасная онлайн-оплата</span>
+      </div>
+
       <div className="catalog-filters">
         <div className="catalog-filter-row">
           <Input
