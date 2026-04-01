@@ -12,10 +12,15 @@ export async function createApp(): Promise<{ app: INestApplication; port: number
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
+  const isProduction = config.get<string>("NODE_ENV", "development") === "production";
+  const onlyLocalhostConfigured =
+    allowedOrigins.length > 0 &&
+    allowedOrigins.every((origin) => origin.includes("localhost") || origin.includes("127.0.0.1"));
 
   app.setGlobalPrefix("v1");
   app.enableCors({
-    origin: allowedOrigins.length > 0 ? allowedOrigins : true,
+    // Production safety net: if only localhost is configured, do not block real frontend domains.
+    origin: isProduction && onlyLocalhostConfigured ? true : allowedOrigins.length > 0 ? allowedOrigins : true,
     credentials: true,
   });
   app.useGlobalPipes(

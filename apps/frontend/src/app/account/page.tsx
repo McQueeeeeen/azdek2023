@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { apiGet } from "@/lib/api";
 import Container from "@/components/ui/container";
@@ -17,10 +18,14 @@ interface MeResponse {
 }
 
 const ROLE_LABELS: Record<string, string> = {
+  owner: "Владелец",
+  manager: "Менеджер",
+  support: "Поддержка",
+  content_editor: "Контент-редактор",
+  warehouse: "Склад",
   customer: "Покупатель",
+  b2b: "B2B",
   b2b_customer: "B2B клиент",
-  staff: "Сотрудник",
-  admin: "Администратор",
 };
 
 export default function AccountPage() {
@@ -76,6 +81,9 @@ export default function AccountPage() {
         <Container className="grid">
           <PageHeader title="Admin Profile" />
           <ErrorState title="Кабинет временно недоступен" message={error} />
+          <Link href="/login">
+            <button className="ui-button ui-button-primary">Войти в аккаунт</button>
+          </Link>
         </Container>
       </Section>
     );
@@ -88,14 +96,25 @@ export default function AccountPage() {
         <Card className="grid">
           {me ? (
             <>
-              <p><strong>Email:</strong> {me.email}</p>
-              <p><strong>Роль:</strong> {ROLE_LABELS[me.role] ?? me.role}</p>
-              <p><strong>ID клиента:</strong> {me.customerId ?? "-"}</p>
+              <p>
+                <strong>Email:</strong> {me.email}
+              </p>
+              <p>
+                <strong>Роль:</strong> {ROLE_LABELS[me.role] ?? me.role}
+              </p>
+              <p>
+                <strong>ID клиента:</strong> {me.customerId ?? "-"}
+              </p>
             </>
           ) : null}
         </Card>
-        {customer ? <Card className="code-block"><pre>{JSON.stringify(customer, null, 2)}</pre></Card> : null}
+        {customer ? (
+          <Card className="code-block">
+            <pre>{JSON.stringify(customer, null, 2)}</pre>
+          </Card>
+        ) : null}
       </Container>
     </Section>
   );
 }
+
