@@ -20,6 +20,7 @@ function persistTokens(tokens: AuthTokens): void {
   localStorage.setItem("azdek_access_token", tokens.accessToken);
   localStorage.setItem("azdek_refresh_token", tokens.refreshToken);
   localStorage.setItem("azdek_user_role", tokens.user.role);
+  document.cookie = `azdek_access_token=${encodeURIComponent(tokens.accessToken)}; Path=/; Max-Age=2592000; SameSite=Lax`;
 }
 
 export default function LoginPage() {
@@ -75,7 +76,9 @@ export default function LoginPage() {
 
       persistTokens(tokens);
       setOk(`Вы вошли как ${tokens.user.email} (${tokens.user.role}).`);
-      router.push("/account");
+      const redirectTo =
+        typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("redirect") : null;
+      router.push(redirectTo && redirectTo.startsWith("/") ? redirectTo : "/account");
     } catch (e) {
       setError((e as Error).message);
     } finally {

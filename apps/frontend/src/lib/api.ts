@@ -49,6 +49,20 @@ export interface AuthTokens {
   };
 }
 
+function setAccessTokenCookie(accessToken: string): void {
+  if (typeof document === "undefined") {
+    return;
+  }
+  document.cookie = `azdek_access_token=${encodeURIComponent(accessToken)}; Path=/; Max-Age=2592000; SameSite=Lax`;
+}
+
+function clearAccessTokenCookie(): void {
+  if (typeof document === "undefined") {
+    return;
+  }
+  document.cookie = "azdek_access_token=; Path=/; Max-Age=0; SameSite=Lax";
+}
+
 function getAuthHeaders(token?: string): HeadersInit | undefined {
   return token ? { Authorization: `Bearer ${token}` } : undefined;
 }
@@ -77,6 +91,7 @@ async function tryRefreshAccessToken(): Promise<string | null> {
         localStorage.removeItem("azdek_access_token");
         localStorage.removeItem("azdek_refresh_token");
         localStorage.removeItem("azdek_user_role");
+        clearAccessTokenCookie();
       }
       return null;
     }
@@ -85,6 +100,7 @@ async function tryRefreshAccessToken(): Promise<string | null> {
     localStorage.setItem("azdek_access_token", payload.accessToken);
     localStorage.setItem("azdek_refresh_token", payload.refreshToken);
     localStorage.setItem("azdek_user_role", payload.user.role);
+    setAccessTokenCookie(payload.accessToken);
     return payload.accessToken;
   } catch {
     return null;
