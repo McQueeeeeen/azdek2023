@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { apiGet, CatalogProduct } from "@/lib/api";
 import AddToCartButton from "@/components/add-to-cart-button";
 import ProductViewTracker from "@/components/product-view-tracker";
@@ -36,9 +36,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <p className="text-secondary">{product.description}</p>
               <Divider />
               <div className="product-highlights">
-                <p>Концентрация: оптимальная для ежедневного использования</p>
-                <p>Стабильная формула для быта и розницы</p>
-                <p>Подходит для регулярных повторных заказов</p>
+                <p>Оптимальная концентрация для ежедневного использования.</p>
+                <p>Стабильная формула для дома, розницы и малого опта.</p>
+                <p>Подходит для повторных заказов и регулярных поставок.</p>
               </div>
               <Divider />
               <div className="grid">
@@ -92,4 +92,3 @@ export default async function ProductPage({ params }: { params: { slug: string }
     );
   }
 }
-

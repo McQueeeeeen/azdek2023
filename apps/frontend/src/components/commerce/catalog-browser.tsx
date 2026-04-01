@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { CatalogProduct } from "@/lib/api";
@@ -52,7 +52,7 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
         result.sort((a, b) => getMinPrice(b) - getMinPrice(a));
         break;
       case "name_asc":
-        result.sort((a, b) => a.name.localeCompare(b.name));
+        result.sort((a, b) => a.name.localeCompare(b.name, "ru"));
         break;
       default:
         break;
@@ -120,4 +120,3 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
     </div>
   );
 }
-

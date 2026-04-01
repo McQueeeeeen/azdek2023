@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -68,10 +68,10 @@ export default function CheckoutPage() {
   return (
     <Section>
       <Container className="grid checkout-layout">
-        <PageHeader title="Оформление заказа" subtitle="Доставка и безопасная оплата" />
+        <PageHeader title="Оформление заказа" subtitle="Доставка и безопасная онлайн-оплата" />
         <form className="grid" onSubmit={submit}>
           <Card className="checkout-card grid">
-            <h2 className="h3">Контакты</h2>
+            <h2 className="h3">Контактные данные</h2>
             <Input name="customerName" placeholder="ФИО" required />
             <Input name="customerEmail" type="email" placeholder="Email" required />
             <Input name="customerPhone" placeholder="Телефон" required />
@@ -83,7 +83,7 @@ export default function CheckoutPage() {
           </Card>
           <Card className="checkout-card grid">
             <h2 className="h3">Оплата</h2>
-            <p className="text-secondary">Онлайн-оплата картой после создания заказа.</p>
+            <p className="text-secondary">Оплата картой откроется в отдельном окне после создания заказа.</p>
             <Button type="submit" disabled={loading}>
               {loading ? "Создаем заказ..." : "Создать заказ"}
             </Button>

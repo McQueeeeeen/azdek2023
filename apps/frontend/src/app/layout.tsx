@@ -1,4 +1,4 @@
-import "./globals.css";
+﻿import "./globals.css";
 import "@fontsource/inter/index.css";
 import { ReactNode } from "react";
 import GlobalAnalyticsTracker from "@/components/global-analytics-tracker";

@@ -357,6 +357,18 @@ p {
   align-content: center;
 }
 
+.hero-card-premium {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 300px at 110% -10%, rgba(17, 17, 17, 0.08), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+}
+
+.hero-copy {
+  max-width: 58ch;
+}
+
 .hero-actions {
   display: flex;
   gap: var(--space-3);
@@ -570,6 +582,61 @@ p {
   padding: var(--space-5);
 }
 
+.auth-mode-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.auth-form {
+  gap: var(--space-3);
+}
+
+.auth-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.auth-customer-type {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.auth-divider {
+  position: relative;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+  margin: var(--space-1) 0;
+}
+
+.auth-divider::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1px solid var(--border);
+  z-index: 0;
+}
+
+.auth-divider span {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--space-2);
+  background: var(--background);
+}
+
+.auth-social-link {
+  display: block;
+}
+
+.auth-google-btn {
+  font-weight: 500;
+}
+
 .code-block pre {
   margin: 0;
   white-space: pre-wrap;
@@ -630,6 +697,11 @@ p {
 
   .product-image-placeholder {
     height: 220px;
+  }
+
+  .auth-grid-2,
+  .auth-customer-type {
+    grid-template-columns: 1fr;
   }
 
   .product-gallery,

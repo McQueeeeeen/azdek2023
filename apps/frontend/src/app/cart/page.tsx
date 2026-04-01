@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Container from "@/components/ui/container";
@@ -117,8 +117,8 @@ export default function CartPage() {
           </div>
         ) : (
           <EmptyState
-            title="Ваша корзина пуста."
-            description="Добавьте товары из каталога, чтобы перейти к оформлению."
+            title="Ваша корзина пуста"
+            description="Добавьте товары из каталога, чтобы перейти к оформлению заказа."
             actionHref="/catalog"
             actionText="Перейти в каталог"
           />

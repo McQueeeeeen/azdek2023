@@ -1,4 +1,4 @@
-import Card from "../ui/card";
+﻿import Card from "../ui/card";
 
 interface CartItemView {
   id: string;

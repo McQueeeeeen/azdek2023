@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { CatalogProduct } from "@/lib/api";
 import Card from "../ui/card";
 import Button from "../ui/button";

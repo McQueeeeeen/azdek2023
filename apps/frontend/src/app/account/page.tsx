@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { apiGet } from "@/lib/api";
@@ -33,7 +33,7 @@ export default function AccountPage() {
     const run = async () => {
       const token = localStorage.getItem("azdek_access_token") ?? "";
       if (!token) {
-        setError("Пользователь не авторизован");
+        setError("Вы не авторизованы. Выполните вход в аккаунт.");
         setLoading(false);
         return;
       }
