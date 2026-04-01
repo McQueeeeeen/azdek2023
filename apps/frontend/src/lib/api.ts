@@ -1,5 +1,14 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 
+function buildNetworkErrorMessage(path: string, reason: string): string {
+  return [
+    "Сервис каталога сейчас недоступен.",
+    `Проверьте NEXT_PUBLIC_API_URL: ${API_BASE}`,
+    `Запрос: ${path}`,
+    `Причина: ${reason}`,
+  ].join(" ");
+}
+
 export interface CatalogVariant {
   id: string;
   sku: string;
@@ -37,10 +46,16 @@ export interface AuthTokens {
 }
 
 export async function apiGet<T>(path: string, token?: string): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
-    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-    cache: "no-store",
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE}${path}`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+      cache: "no-store",
+    });
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : "network_error";
+    throw new Error(buildNetworkErrorMessage(path, reason));
+  }
 
   if (!response.ok) {
     throw new Error(`GET ${path} failed with ${response.status}`);
@@ -50,15 +65,21 @@ export async function apiGet<T>(path: string, token?: string): Promise<T> {
 }
 
 export async function apiPost<T>(path: string, body: unknown, token?: string): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    body: JSON.stringify(body),
-    cache: "no-store",
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE}${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify(body),
+      cache: "no-store",
+    });
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : "network_error";
+    throw new Error(buildNetworkErrorMessage(path, reason));
+  }
 
   if (!response.ok) {
     const text = await response.text();
@@ -69,15 +90,21 @@ export async function apiPost<T>(path: string, body: unknown, token?: string): P
 }
 
 export async function apiPatch<T>(path: string, body: unknown, token?: string): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-    },
-    body: JSON.stringify(body),
-    cache: "no-store",
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE}${path}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify(body),
+      cache: "no-store",
+    });
+  } catch (error) {
+    const reason = error instanceof Error ? error.message : "network_error";
+    throw new Error(buildNetworkErrorMessage(path, reason));
+  }
 
   if (!response.ok) {
     const text = await response.text();

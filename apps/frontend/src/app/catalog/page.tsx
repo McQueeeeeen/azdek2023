@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { apiGet, CatalogProduct } from "@/lib/api";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
@@ -47,4 +47,3 @@ export default async function CatalogPage() {
     );
   }
 }
-
