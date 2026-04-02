@@ -1,10 +1,11 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
 import Card from "@/components/ui/card";
+import Button from "@/components/ui/button";
 import { canAccessAdmin, getClientRole } from "@/lib/roles";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -23,26 +24,18 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
   const hasAccess = useMemo(() => canAccessAdmin(role), [role]);
 
-  if (checking) {
-    return null;
-  }
+  if (checking) return null;
 
   if (!hasAccess) {
     return (
       <Section>
         <Container className="grid">
-          <Card className="account-hero-card">
-            <span className="status-pill warn">Ограниченный доступ</span>
-            <h1 className="h2">Админ-панель недоступна для текущей роли</h1>
-            <p className="text-secondary">
-              Панель управления доступна только владельцу, администратору и оператору.
-              Войдите под аккаунтом с разрешенными правами доступа.
-            </p>
-            <div>
-              <Link href="/login">
-                <button className="ui-button ui-button-primary">Войти под админ-аккаунтом</button>
-              </Link>
-            </div>
+          <Card className="grid">
+            <h1>Нет доступа к админ-панели</h1>
+            <p className="text-secondary">Войдите под ролью с правами администратора.</p>
+            <Link href="/login">
+              <Button>Войти</Button>
+            </Link>
           </Card>
         </Container>
       </Section>

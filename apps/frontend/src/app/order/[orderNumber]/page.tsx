@@ -1,10 +1,8 @@
-﻿import { apiGet } from "@/lib/api";
+import { apiGet } from "@/lib/api";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
 import Card from "@/components/ui/card";
-import PageHeader from "@/components/ui/page-header";
 import OrderStatusBadge from "@/components/commerce/order-status-badge";
-import Divider from "@/components/ui/divider";
 import Link from "next/link";
 import Button from "@/components/ui/button";
 
@@ -25,29 +23,28 @@ export default async function OrderPage({ params }: { params: { orderNumber: str
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Заказ принят" subtitle="Мы уже начали обработку. Скоро с вами свяжутся." />
         <Card className="grid">
-          <p className="small">Номер заказа</p>
-          <p className="h3">{order.orderNumber}</p>
-          <Divider />
-          <div className="order-status-grid">
-            <p className="small">Статус заказа</p>
-            <OrderStatusBadge status={order.status} />
-            <p className="small">Оплата</p>
-            <OrderStatusBadge status={order.paymentStatus} />
-            <p className="small">Доставка</p>
-            <OrderStatusBadge status={order.shipmentStatus} />
-          </div>
-          <Divider />
-          <p className="h2">
-            {order.pricing.totalAmount} {order.pricing.currency}
+          <h1>Заказ принят</h1>
+          <p className="small">Номер заказа: {order.orderNumber}</p>
+          <p>
+            Сумма: <strong>{order.pricing.totalAmount} {order.pricing.currency}</strong>
           </p>
-        </Card>
-        <Card className="grid">
-          <h2 className="h3">Пока ждете заказ, закройте уборку полностью</h2>
-          <p className="text-secondary">Дополните набор: средство для ванной, пола или универсальное решение.</p>
+          <div className="grid">
+            <div>
+              <span className="small">Статус заказа: </span>
+              <OrderStatusBadge status={order.status} />
+            </div>
+            <div>
+              <span className="small">Оплата: </span>
+              <OrderStatusBadge status={order.paymentStatus} />
+            </div>
+            <div>
+              <span className="small">Доставка: </span>
+              <OrderStatusBadge status={order.shipmentStatus} />
+            </div>
+          </div>
           <Link href="/catalog">
-            <Button variant="secondary">Смотреть решения</Button>
+            <Button variant="secondary">Вернуться в каталог</Button>
           </Link>
         </Card>
       </Container>

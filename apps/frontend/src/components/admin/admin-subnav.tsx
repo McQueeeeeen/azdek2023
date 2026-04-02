@@ -1,8 +1,7 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/cn";
 
 const LINKS = [
   { href: "/admin", label: "Обзор" },
@@ -15,12 +14,20 @@ export default function AdminSubnav() {
   const pathname = usePathname();
 
   return (
-    <div className="admin-subnav" role="tablist" aria-label="Навигация админки">
+    <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
       {LINKS.map((link) => (
         <Link
           key={link.href}
           href={link.href}
-          className={cn("admin-subnav-link", pathname === link.href && "is-active")}
+          style={{
+            border: "1px solid #d1d5db",
+            borderRadius: 8,
+            padding: "8px 10px",
+            fontSize: 14,
+            fontWeight: pathname === link.href ? 700 : 500,
+            background: pathname === link.href ? "#111827" : "#fff",
+            color: pathname === link.href ? "#fff" : "#111827",
+          }}
         >
           {link.label}
         </Link>

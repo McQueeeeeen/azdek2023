@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -6,7 +6,6 @@ import { getCurrentAttribution, getSessionIdForCheckout } from "@/lib/analytics"
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
 import Card from "@/components/ui/card";
-import PageHeader from "@/components/ui/page-header";
 import Button from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import ErrorState from "@/components/ui/error-state";
@@ -27,14 +26,12 @@ export default function CheckoutPage() {
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (state === "pending") {
-      return;
-    }
+    if (state === "pending") return;
 
     setState("pending");
     setError(null);
-    setFieldErrors({});
     setSuccess(null);
+    setFieldErrors({});
 
     const formData = new FormData(event.currentTarget);
     const cartId = localStorage.getItem("azdek_cart_id");
@@ -52,18 +49,9 @@ export default function CheckoutPage() {
       setState("failed");
       return;
     }
-
-    if (!customerName || customerName.length < 2) {
-      nextFieldErrors.customerName = "Введите имя (минимум 2 символа).";
-    }
-
-    if (!/^[+0-9 ()-]{8,}$/.test(customerPhone)) {
-      nextFieldErrors.customerPhone = "Введите корректный номер телефона.";
-    }
-
-    if (!deliveryAddress || deliveryAddress.length < 6) {
-      nextFieldErrors.deliveryAddress = "Укажите полный адрес доставки.";
-    }
+    if (!customerName || customerName.length < 2) nextFieldErrors.customerName = "Введите имя.";
+    if (!/^[+0-9 ()-]{8,}$/.test(customerPhone)) nextFieldErrors.customerPhone = "Введите корректный номер телефона.";
+    if (!deliveryAddress || deliveryAddress.length < 6) nextFieldErrors.deliveryAddress = "Укажите адрес доставки.";
 
     if (Object.keys(nextFieldErrors).length > 0) {
       setFieldErrors(nextFieldErrors);
@@ -92,89 +80,54 @@ export default function CheckoutPage() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(await response.text());
-      }
+      if (!response.ok) throw new Error(await response.text());
 
       const payload = await response.json();
       setState("done");
-      setSuccess("Заказ принят. Мы уже начали обработку. Сейчас откроем подтверждение.");
-      toast({ title: "Заказ оформлен", description: "Открываем подтверждение", tone: "success" });
-      if (payload.paymentUrl) {
-        window.open(payload.paymentUrl, "_blank", "noopener,noreferrer");
-      }
-      window.setTimeout(() => {
-        router.push(`/order/${payload.orderNumber}`);
-      }, 240);
+      setSuccess("Заказ принят. Открываем подтверждение.");
+      toast({ title: "Заказ оформлен", tone: "success" });
+      if (payload.paymentUrl) window.open(payload.paymentUrl, "_blank", "noopener,noreferrer");
+      window.setTimeout(() => router.push(`/order/${payload.orderNumber}`), 200);
     } catch (e) {
       setState("failed");
-      const message = (e as Error).message?.trim();
-      setError(
-        message && message.length > 3
-          ? `Не удалось оформить заказ. ${message}`
-          : "Не удалось оформить заказ. Проверьте номер телефона или попробуйте снова.",
-      );
+      setError((e as Error).message || "Не удалось оформить заказ.");
       toast({ title: "Ошибка оформления", tone: "error" });
     }
   };
 
   return (
     <Section>
-      <Container className="grid checkout-layout">
-        <PageHeader title="Оформление заказа" subtitle="Займет меньше минуты" />
+      <Container className="grid">
+        <Card className="grid">
+          <h1>Оформление заказа</h1>
+          <p className="text-secondary">Минимум полей. Проверка сразу.</p>
+        </Card>
+
         {success ? (
           <Card>
-            <p className="small">{success}</p>
+            <p>{success}</p>
           </Card>
         ) : null}
+
         <form className="grid" onSubmit={submit}>
-          <Card className="checkout-card grid">
-            <h2 className="h3">Контакты</h2>
+          <Card className="grid">
+            <Input name="customerName" placeholder="Имя" required aria-invalid={Boolean(fieldErrors.customerName)} />
+            {fieldErrors.customerName ? <p className="small">{fieldErrors.customerName}</p> : null}
 
-            <div className="grid">
-              <Input name="customerName" placeholder="Имя" required aria-invalid={Boolean(fieldErrors.customerName)} />
-              {fieldErrors.customerName ? <p className="small" role="alert">{fieldErrors.customerName}</p> : null}
-            </div>
+            <Input name="customerPhone" placeholder="Телефон" required aria-invalid={Boolean(fieldErrors.customerPhone)} />
+            {fieldErrors.customerPhone ? <p className="small">{fieldErrors.customerPhone}</p> : null}
 
-            <div className="grid">
-              <Input name="customerPhone" placeholder="Телефон" required aria-invalid={Boolean(fieldErrors.customerPhone)} />
-              {fieldErrors.customerPhone ? <p className="small" role="alert">{fieldErrors.customerPhone}</p> : null}
-            </div>
+            <Textarea name="deliveryAddress" placeholder="Адрес" required aria-invalid={Boolean(fieldErrors.deliveryAddress)} />
+            {fieldErrors.deliveryAddress ? <p className="small">{fieldErrors.deliveryAddress}</p> : null}
 
-            <div className="grid">
-              <Textarea
-                name="deliveryAddress"
-                placeholder="Адрес"
-                required
-                aria-invalid={Boolean(fieldErrors.deliveryAddress)}
-              />
-              {fieldErrors.deliveryAddress ? <p className="small" role="alert">{fieldErrors.deliveryAddress}</p> : null}
-            </div>
-
-            <p className="text-secondary">Безопасная оплата. Ваши данные защищены.</p>
-            <div className="order-status-grid">
-              <p className="small">Доступные методы</p>
-              <p>Карты / Kaspi / другие провайдеры</p>
-              <p className="small">Безопасность</p>
-              <p>SSL / 3-D Secure</p>
-              <p className="small">Доставка</p>
-              <p>Доставим в удобное время. Без задержек и лишних звонков.</p>
-            </div>
-            <Button
-              type="submit"
-              disabled={state === "pending"}
-              actionState={state}
-              pendingLabel="Оформляем..."
-              doneLabel="Готово"
-              failedLabel="Проверить и повторить"
-            >
-              Оформить за 1 минуту
+            <Button type="submit" disabled={state === "pending"} actionState={state} pendingLabel="Оформляем..." doneLabel="Готово" failedLabel="Повторить">
+              Завершить заказ
             </Button>
           </Card>
-          {error ? <ErrorState title="Ошибка оформления" message={error} /> : null}
         </form>
+
+        {error ? <ErrorState title="Ошибка" message={error} /> : null}
       </Container>
     </Section>
   );
 }
-
