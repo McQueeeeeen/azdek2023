@@ -16,11 +16,11 @@ export default async function CatalogPage() {
       <Section>
         <Container className="grid">
           <PageHeader
-            title="The Catalog"
+            title="Каталог"
             subtitle="Минималистичный ассортимент с быстрым поиском, фильтрами и прозрачной ценой"
             action={
               <Link href="/cart">
-                <Button variant="secondary">Open Cart</Button>
+                <Button variant="secondary">Открыть корзину</Button>
               </Link>
             }
           />

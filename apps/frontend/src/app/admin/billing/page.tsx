@@ -5,46 +5,46 @@ import PageHeader from "@/components/ui/page-header";
 import AdminSubnav from "@/components/admin/admin-subnav";
 
 const INVOICES = [
-  { id: "INV-2023-09", date: "Sep 30, 2023", amount: "$1,240.50", status: "Paid" },
-  { id: "INV-2023-08", date: "Aug 31, 2023", amount: "$1,192.00", status: "Paid" },
-  { id: "INV-2023-07", date: "Jul 31, 2023", amount: "$1,405.20", status: "Disputed" },
+  { id: "INV-2023-09", date: "30 сен 2023", amount: "$1,240.50", status: "Оплачен" },
+  { id: "INV-2023-08", date: "31 авг 2023", amount: "$1,192.00", status: "Оплачен" },
+  { id: "INV-2023-07", date: "31 июл 2023", amount: "$1,405.20", status: "Спорный" },
 ];
 
 export default function AdminBillingPage() {
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Billing & Usage" subtitle="Real-time usage monitoring and invoice operations." />
+        <PageHeader title="Биллинг и использование" subtitle="Мониторинг использования и работа со счетами в реальном времени." />
         <AdminSubnav />
 
         <div className="admin-kpi-grid">
           <Card className="admin-kpi-card">
-            <p className="small">API Requests</p>
+            <p className="small">API-запросы</p>
             <p className="h2">1.2M / 2M</p>
-            <p className="text-secondary">60% monthly quota reached</p>
+            <p className="text-secondary">Использовано 60% месячной квоты</p>
           </Card>
           <Card className="admin-kpi-card">
-            <p className="small">Storage</p>
+            <p className="small">Хранилище</p>
             <p className="h2">84.2 GB</p>
-            <p className="text-secondary">Approaching 100 GB capacity</p>
+            <p className="text-secondary">Подходим к лимиту 100 GB</p>
           </Card>
           <Card className="admin-kpi-card admin-kpi-accent">
-            <p className="small">Next Invoice</p>
+            <p className="small">Следующий счет</p>
             <p className="h2">$1,452.80</p>
-            <p className="text-secondary">Cycle ends Oct 31, 2023</p>
+            <p className="text-secondary">Период заканчивается 31 окт 2023</p>
           </Card>
         </div>
 
         <Card>
-          <h2 className="h3">Recent Invoices</h2>
+          <h2 className="h3">Последние счета</h2>
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>Invoice</th>
-                  <th>Date</th>
-                  <th>Amount</th>
-                  <th>Status</th>
+                  <th>Счет</th>
+                  <th>Дата</th>
+                  <th>Сумма</th>
+                  <th>Статус</th>
                 </tr>
               </thead>
               <tbody>

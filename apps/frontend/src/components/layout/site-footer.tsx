@@ -1,4 +1,4 @@
-import Container from "../ui/container";
+﻿import Container from "../ui/container";
 import Link from "next/link";
 
 export default function SiteFooter() {
@@ -7,9 +7,9 @@ export default function SiteFooter() {
       <Container className="site-footer-inner">
         <p>Azdek Elemental</p>
         <div className="footer-links">
-          <Link href="/catalog">Catalog</Link>
-          <Link href="/checkout">Checkout</Link>
-          <Link href="/account">Support</Link>
+          <Link href="/catalog">Каталог</Link>
+          <Link href="/checkout">Оформление</Link>
+          <Link href="/account">Поддержка</Link>
         </div>
       </Container>
     </footer>

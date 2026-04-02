@@ -25,15 +25,15 @@ export default async function OrderPage({ params }: { params: { orderNumber: str
       <Container className="grid">
         <PageHeader title="Спасибо за заказ" subtitle="Мы уже начали его обработку" />
         <Card className="grid">
-          <p className="small">Order number</p>
+          <p className="small">Номер заказа</p>
           <p className="h3">{order.orderNumber}</p>
           <Divider />
           <div className="order-status-grid">
-            <p className="small">Order status</p>
+            <p className="small">Статус заказа</p>
             <OrderStatusBadge status={order.status} />
-            <p className="small">Payment</p>
+            <p className="small">Оплата</p>
             <OrderStatusBadge status={order.paymentStatus} />
-            <p className="small">Shipment</p>
+            <p className="small">Доставка</p>
             <OrderStatusBadge status={order.shipmentStatus} />
           </div>
           <Divider />

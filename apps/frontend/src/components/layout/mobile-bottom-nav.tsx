@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,11 +20,11 @@ export default function MobileBottomNav() {
   const canSeeAdmin = useMemo(() => canAccessAdmin(role), [role]);
 
   const items = [
-    { href: "/", label: "Overview" },
-    { href: "/catalog", label: "Catalog" },
-    { href: "/cart", label: "Cart" },
+    { href: "/", label: "Главная" },
+    { href: "/catalog", label: "Каталог" },
+    { href: "/cart", label: "Корзина" },
   ];
-  const navItems = canSeeAdmin ? [...items, { href: "/admin", label: "Admin" }] : items;
+  const navItems = canSeeAdmin ? [...items, { href: "/admin", label: "Админ" }] : items;
 
   return (
     <nav className="mobile-bottom-nav" aria-label="Мобильная навигация">

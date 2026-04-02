@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,10 +8,10 @@ import Container from "../ui/container";
 import Button from "../ui/button";
 
 const NAV_ITEMS = [
-  { href: "/", label: "Overview" },
-  { href: "/catalog", label: "Catalog" },
-  { href: "/cart", label: "Cart" },
-  { href: "/checkout", label: "Checkout" },
+  { href: "/", label: "Главная" },
+  { href: "/catalog", label: "Каталог" },
+  { href: "/cart", label: "Корзина" },
+  { href: "/checkout", label: "Оформление" },
 ];
 
 export default function SiteHeader() {
@@ -28,7 +28,7 @@ export default function SiteHeader() {
 
   const canSeeAdmin = useMemo(() => canAccessAdmin(role), [role]);
 
-  const navItems = canSeeAdmin ? [...NAV_ITEMS, { href: "/admin", label: "Admin" }] : NAV_ITEMS;
+  const navItems = canSeeAdmin ? [...NAV_ITEMS, { href: "/admin", label: "Админ" }] : NAV_ITEMS;
 
   return (
     <header className="site-header">
@@ -46,10 +46,10 @@ export default function SiteHeader() {
           ))}
         </nav>
         <div className="header-tools">
-          <input className="header-search" placeholder="Search..." aria-label="Поиск по магазину" />
+          <input className="header-search" placeholder="Поиск..." aria-label="Поиск по магазину" />
           <Link href="/login">
             <Button className="header-cta" variant="secondary">
-              Login
+              Войти
             </Button>
           </Link>
         </div>

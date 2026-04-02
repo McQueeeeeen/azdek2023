@@ -19,14 +19,14 @@ const ADVANTAGES = [
 const HITS = [
   { name: "Гель для стирки Color", tag: "Хит продаж", image: "/media/laundry-gel.svg" },
   { name: "Кондиционер Fresh", tag: "Популярно", image: "/media/softener-fresh.svg" },
-  { name: "Dish Liquid Citrus", tag: "Для кухни", image: "/media/dish-liquid-citrus.svg" },
+  { name: "Средство для посуды Citrus", tag: "Для кухни", image: "/media/dish-liquid-citrus.svg" },
 ];
 
 const TRUST_POINTS = [
-  { title: "4.9/5 reviews", text: "Проверенные оценки покупателей по ключевым SKU." },
-  { title: "Same-day dispatch", text: "Для заказов, созданных до 16:00 в рабочие дни." },
-  { title: "Quality control", text: "Контроль партий и стабильные формулы перед отгрузкой." },
-  { title: "B2B support", text: "Коммерческие предложения, счета и персональные условия." },
+  { title: "4.9/5 в отзывах", text: "Проверенные оценки покупателей по ключевым SKU." },
+  { title: "Отгрузка в день заказа", text: "Для заказов, созданных до 16:00 в рабочие дни." },
+  { title: "Контроль качества", text: "Контроль партий и стабильные формулы перед отгрузкой." },
+  { title: "Поддержка B2B", text: "Коммерческие предложения, счета и персональные условия." },
 ];
 
 export default function HomePage() {
@@ -79,7 +79,7 @@ export default function HomePage() {
           <div className="page-header">
                 <h2 className="h2">Почему нам доверяют</h2>
                 <Link href="/catalog">
-                  <Button variant="secondary">Start shopping</Button>
+                  <Button variant="secondary">Перейти в каталог</Button>
                 </Link>
               </div>
           <div className="trust-grid">

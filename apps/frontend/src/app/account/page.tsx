@@ -72,7 +72,7 @@ export default function AccountPage() {
     return (
       <Section>
         <Container className="grid">
-          <PageHeader title="Admin Profile" subtitle="Loading identity and account context" />
+          <PageHeader title="Личный кабинет" subtitle="Загружаем данные профиля и аккаунта" />
           <Card className="grid">
             <Skeleton className="h-24" />
             <Skeleton className="h-56" />
@@ -86,7 +86,7 @@ export default function AccountPage() {
     return (
       <Section>
         <Container className="grid">
-          <PageHeader title="Admin Profile" />
+          <PageHeader title="Личный кабинет" />
           <ErrorState title="Кабинет временно недоступен" message={error} />
           <Link href="/login">
             <button className="ui-button ui-button-primary">Войти в аккаунт</button>
@@ -99,7 +99,7 @@ export default function AccountPage() {
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Admin Profile" subtitle="Identity, role and customer metadata" />
+        <PageHeader title="Личный кабинет" subtitle="Профиль, роль и данные клиента" />
         <Card className="grid">
           {me ? (
             <>

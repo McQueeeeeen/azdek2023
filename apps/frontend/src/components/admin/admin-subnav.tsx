@@ -1,21 +1,21 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/cn";
 
 const LINKS = [
-  { href: "/admin", label: "Control" },
-  { href: "/admin/billing", label: "Billing" },
-  { href: "/admin/health", label: "Health" },
-  { href: "/admin/nodes", label: "Nodes" },
+  { href: "/admin", label: "Обзор" },
+  { href: "/admin/billing", label: "Биллинг" },
+  { href: "/admin/health", label: "Состояние" },
+  { href: "/admin/nodes", label: "Ноды" },
 ];
 
 export default function AdminSubnav() {
   const pathname = usePathname();
 
   return (
-    <div className="admin-subnav" role="tablist" aria-label="Admin navigation">
+    <div className="admin-subnav" role="tablist" aria-label="Навигация админки">
       {LINKS.map((link) => (
         <Link
           key={link.href}

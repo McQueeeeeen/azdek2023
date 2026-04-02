@@ -5,47 +5,47 @@ import PageHeader from "@/components/ui/page-header";
 import AdminSubnav from "@/components/admin/admin-subnav";
 
 const EVENTS = [
-  { time: "14:02:21", source: "AuthSvc-Node4", severity: "Warning", detail: "High memory utilization detected." },
-  { time: "13:58:12", source: "CDN-Edge-12", severity: "Info", detail: "Cache purge successful for assets-v2." },
-  { time: "13:45:00", source: "Scheduler", severity: "Info", detail: "Routine health check complete." },
-  { time: "13:12:44", source: "Inventory-DB", severity: "Alert", detail: "Temporary replication connection drop." },
+  { time: "14:02:21", source: "AuthSvc-Node4", severity: "Предупреждение", detail: "Обнаружена высокая загрузка памяти." },
+  { time: "13:58:12", source: "CDN-Edge-12", severity: "Инфо", detail: "Очистка кэша для assets-v2 выполнена." },
+  { time: "13:45:00", source: "Scheduler", severity: "Инфо", detail: "Плановая проверка состояния завершена." },
+  { time: "13:12:44", source: "Inventory-DB", severity: "Тревога", detail: "Временный обрыв репликации." },
 ];
 
 export default function AdminHealthPage() {
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Infrastructure Health" subtitle="Live telemetry across core services and edge regions." />
+        <PageHeader title="Состояние инфраструктуры" subtitle="Живая телеметрия по ключевым сервисам и edge-регионам." />
         <AdminSubnav />
 
         <div className="admin-kpi-grid">
           <Card className="admin-kpi-card">
-            <p className="small">API Gateway</p>
+            <p className="small">API-шлюз</p>
             <p className="h2">98.4%</p>
-            <p className="text-secondary">Stable</p>
+            <p className="text-secondary">Стабильно</p>
           </Card>
           <Card className="admin-kpi-card">
-            <p className="small">Database</p>
+            <p className="small">База данных</p>
             <p className="h2">100%</p>
-            <p className="text-secondary">Optimal</p>
+            <p className="text-secondary">Оптимально</p>
           </Card>
           <Card className="admin-kpi-card">
             <p className="small">Redis Cache</p>
             <p className="h2">99.1%</p>
-            <p className="text-secondary">Active</p>
+            <p className="text-secondary">Активен</p>
           </Card>
         </div>
 
         <Card>
-          <h2 className="h3">System Events & Logs</h2>
+          <h2 className="h3">Системные события и логи</h2>
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
-                  <th>Time</th>
-                  <th>Source</th>
-                  <th>Severity</th>
-                  <th>Description</th>
+                  <th>Время</th>
+                  <th>Источник</th>
+                  <th>Критичность</th>
+                  <th>Описание</th>
                 </tr>
               </thead>
               <tbody>

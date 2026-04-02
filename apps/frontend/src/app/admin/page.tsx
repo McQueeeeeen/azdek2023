@@ -1,4 +1,4 @@
-import Section from "@/components/ui/section";
+﻿import Section from "@/components/ui/section";
 import Container from "@/components/ui/container";
 import Card from "@/components/ui/card";
 import PageHeader from "@/components/ui/page-header";
@@ -6,13 +6,37 @@ import Button from "@/components/ui/button";
 import AdminSubnav from "@/components/admin/admin-subnav";
 
 const ORDER_ROWS = [
-  { id: "ORD-2091", customer_name: "Elena Sorvino", phone: "+7 701 555 11 22", total: "1 240.00", status: "delivered", payment_status: "paid", created_at: "2026-04-02 10:22" },
-  { id: "ORD-2088", customer_name: "Julian Marc", phone: "+7 777 112 55 44", total: "850.00", status: "processing", payment_status: "pending", created_at: "2026-04-02 09:50" },
+  {
+    id: "ORD-2091",
+    customer_name: "Елена Сорвино",
+    phone: "+7 701 555 11 22",
+    total: "1 240.00",
+    status: "доставлен",
+    payment_status: "оплачен",
+    created_at: "2026-04-02 10:22",
+  },
+  {
+    id: "ORD-2088",
+    customer_name: "Джулиан Марк",
+    phone: "+7 777 112 55 44",
+    total: "850.00",
+    status: "в обработке",
+    payment_status: "ожидает оплату",
+    created_at: "2026-04-02 09:50",
+  },
 ];
 
 const PRODUCT_ROWS = [
-  { id: "PRD-001", name: "Azdek Laundry Gel", price: "8 990", sku: "AZD-LG-5L", stock: 90, status: "active", created_at: "2026-03-21" },
-  { id: "PRD-002", name: "Azdek Softener Fresh", price: "2 290", sku: "AZD-SF-1L", stock: 120, status: "active", created_at: "2026-03-19" },
+  { id: "PRD-001", name: "Azdek Laundry Gel", price: "8 990", sku: "AZD-LG-5L", stock: 90, status: "активен", created_at: "2026-03-21" },
+  {
+    id: "PRD-002",
+    name: "Azdek Softener Fresh",
+    price: "2 290",
+    sku: "AZD-SF-1L",
+    stock: 120,
+    status: "активен",
+    created_at: "2026-03-19",
+  },
 ];
 
 const CUSTOMER_ROWS = [
@@ -21,13 +45,13 @@ const CUSTOMER_ROWS = [
 ];
 
 const PAYMENT_ROWS = [
-  { id: "PAY-8801", order_id: "ORD-2091", amount: "1 240.00", status: "paid", provider: "kaspi", created_at: "2026-04-02 10:23" },
-  { id: "PAY-8802", order_id: "ORD-2088", amount: "850.00", status: "pending", provider: "card", created_at: "2026-04-02 09:51" },
+  { id: "PAY-8801", order_id: "ORD-2091", amount: "1 240.00", status: "оплачен", provider: "kaspi", created_at: "2026-04-02 10:23" },
+  { id: "PAY-8802", order_id: "ORD-2088", amount: "850.00", status: "ожидает", provider: "карта", created_at: "2026-04-02 09:51" },
 ];
 
 const SHIPMENT_ROWS = [
-  { id: "SHP-7001", order_id: "ORD-2091", status: "delivered", tracking_number: "KZ-TRK-200991", created_at: "2026-04-02 14:45" },
-  { id: "SHP-7002", order_id: "ORD-2088", status: "prepared", tracking_number: "KZ-TRK-200988", created_at: "2026-04-02 10:40" },
+  { id: "SHP-7001", order_id: "ORD-2091", status: "доставлен", tracking_number: "KZ-TRK-200991", created_at: "2026-04-02 14:45" },
+  { id: "SHP-7002", order_id: "ORD-2088", status: "подготовлен", tracking_number: "KZ-TRK-200988", created_at: "2026-04-02 10:40" },
 ];
 
 export default function AdminPage() {
@@ -39,26 +63,26 @@ export default function AdminPage() {
 
         <div className="admin-kpi-grid">
           <Card className="admin-kpi-card">
-            <p className="small">Volume 24h</p>
+            <p className="small">Оборот за 24 часа</p>
             <p className="h2">$42,920.00</p>
-            <p className="text-secondary">+12.4% vs yesterday</p>
+            <p className="text-secondary">+12.4% к вчерашнему дню</p>
           </Card>
           <Card className="admin-kpi-card">
-            <p className="small">Active Orders</p>
+            <p className="small">Активные заказы</p>
             <p className="h2">1,204</p>
-            <p className="text-secondary">32 pending fulfillment</p>
+            <p className="text-secondary">32 ожидают сборки</p>
           </Card>
           <Card className="admin-kpi-card admin-kpi-accent">
-            <p className="small">Catalog Health</p>
+            <p className="small">Состояние каталога</p>
             <p className="h2">98.2%</p>
-            <p className="text-secondary">4 items currently out of stock</p>
+            <p className="text-secondary">4 товара временно отсутствуют</p>
           </Card>
         </div>
 
         <div className="admin-main-grid">
           <Card>
             <div className="page-header">
-              <h2 className="h3">Orders</h2>
+              <h2 className="h3">Заказы</h2>
               <Button variant="ghost">Смотреть все</Button>
             </div>
             <div className="admin-table-wrap">
@@ -93,11 +117,11 @@ export default function AdminPage() {
 
           <div className="grid">
             <Card>
-              <h2 className="h3">Volume Trend</h2>
+              <h2 className="h3">Каналы продаж</h2>
               <div className="admin-progress-list">
                 <div>
                   <div className="admin-progress-head">
-                    <span>Direct Sales</span>
+                    <span>Прямые продажи</span>
                     <span>64%</span>
                   </div>
                   <div className="admin-progress-track">
@@ -106,7 +130,7 @@ export default function AdminPage() {
                 </div>
                 <div>
                   <div className="admin-progress-head">
-                    <span>Affiliates</span>
+                    <span>Партнёры</span>
                     <span>22%</span>
                   </div>
                   <div className="admin-progress-track">
@@ -115,7 +139,7 @@ export default function AdminPage() {
                 </div>
                 <div>
                   <div className="admin-progress-head">
-                    <span>Organic</span>
+                    <span>Органика</span>
                     <span>14%</span>
                   </div>
                   <div className="admin-progress-track">
@@ -126,19 +150,19 @@ export default function AdminPage() {
             </Card>
 
             <Card>
-              <h2 className="h3">Quick Actions</h2>
+              <h2 className="h3">Быстрые действия</h2>
               <div className="admin-actions-grid">
-                <Button variant="secondary">New SKU</Button>
-                <Button variant="secondary">Export CSV</Button>
-                <Button variant="secondary">Blast Alert</Button>
-                <Button variant="secondary">Support</Button>
+                <Button variant="secondary">Новый SKU</Button>
+                <Button variant="secondary">Экспорт CSV</Button>
+                <Button variant="secondary">Рассылка</Button>
+                <Button variant="secondary">Поддержка</Button>
               </div>
             </Card>
           </div>
         </div>
 
         <Card>
-          <h2 className="h3">Products</h2>
+          <h2 className="h3">Товары</h2>
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
@@ -170,7 +194,7 @@ export default function AdminPage() {
         </Card>
 
         <Card>
-          <h2 className="h3">Customers</h2>
+          <h2 className="h3">Клиенты</h2>
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
@@ -200,7 +224,7 @@ export default function AdminPage() {
         </Card>
 
         <Card>
-          <h2 className="h3">Payments</h2>
+          <h2 className="h3">Платежи</h2>
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
@@ -230,7 +254,7 @@ export default function AdminPage() {
         </Card>
 
         <Card>
-          <h2 className="h3">Shipments</h2>
+          <h2 className="h3">Отгрузки</h2>
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
