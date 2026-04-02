@@ -1,11 +1,11 @@
 ﻿import Link from "next/link";
-import Image from "next/image";
 import { CatalogProduct } from "@/lib/api";
 import Card from "../ui/card";
 import Button from "../ui/button";
 import PriceBlock from "./price-block";
 import { getProductMedia } from "@/lib/product-media";
 import { getProductCommercialContent } from "@/lib/product-commercial-content";
+import SmartImage from "../ui/smart-image";
 
 export default function ProductCard({ product }: { product: CatalogProduct }) {
   const firstVariant = product.variants[0];
@@ -21,9 +21,10 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
   return (
     <Card className="product-card">
       <div className="product-image-frame">
-        <Image
+        <SmartImage
           className="product-image"
           src={media.card}
+          fallbackSrc="/media/laundry-gel.svg"
           alt={product.name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -44,7 +45,7 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
           ))}
         </div>
         <div className="product-proof-row">
-          <span className="product-rating">? {rating} · {reviewCount}+ отзывов</span>
+          <span className="product-rating">★ {rating} · {reviewCount}+ отзывов</span>
           <span className={isInStock ? "product-stock ok" : "product-stock warn"}>
             {isInStock ? "В наличии" : "Под заказ"}
           </span>
@@ -59,4 +60,3 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
     </Card>
   );
 }
-

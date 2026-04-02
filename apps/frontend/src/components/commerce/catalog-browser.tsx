@@ -66,7 +66,7 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
       <div className="catalog-commerce-strip">
         <span>В каталоге: {products.length} товаров</span>
         <span>Доставка по Казахстану</span>
-        <span>Безопасная онлайн-оплата</span>
+        <span>Оплата: карты / Kaspi</span>
       </div>
 
       <div className="catalog-filters">

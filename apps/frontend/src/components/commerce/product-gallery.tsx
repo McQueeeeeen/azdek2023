@@ -1,10 +1,10 @@
 ﻿"use client";
 
-import Image from "next/image";
 import { useMemo, useState } from "react";
 import { CatalogProduct } from "@/lib/api";
 import { cn } from "@/lib/cn";
 import { getProductMedia } from "@/lib/product-media";
+import SmartImage from "../ui/smart-image";
 
 type GalleryItem = {
   id: string;
@@ -31,9 +31,10 @@ export default function ProductGallery({ product }: { product: CatalogProduct })
   return (
     <div className="product-gallery-block">
       <div className="product-image-large">
-        <Image
+        <SmartImage
           className="product-gallery-image"
           src={current.image}
+          fallbackSrc="/media/laundry-gel.svg"
           alt={current.label}
           fill
           sizes="(max-width: 1024px) 100vw, 56vw"
@@ -53,8 +54,9 @@ export default function ProductGallery({ product }: { product: CatalogProduct })
             onClick={() => setActive(index)}
             aria-label={`Изображение ${index + 1}`}
           >
-            <Image
+            <SmartImage
               src={item.image}
+              fallbackSrc="/media/laundry-gel.svg"
               alt={item.label}
               className="product-thumb-image"
               width={56}
@@ -67,4 +69,3 @@ export default function ProductGallery({ product }: { product: CatalogProduct })
     </div>
   );
 }
-

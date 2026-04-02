@@ -59,7 +59,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                   </div>
                   <p className="small">SKU: {firstVariant.sku}</p>
                   <AddToCartButton variantId={firstVariant.id} />
-                  <p className="text-secondary">Быстрое оформление и безопасная онлайн-оплата</p>
+                  <p className="text-secondary">Быстрый checkout. Безопасная оплата. Моментальное подтверждение.</p>
                 </Card>
               ) : (
                 <Card>

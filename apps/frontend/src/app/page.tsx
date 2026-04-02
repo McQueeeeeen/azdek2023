@@ -1,21 +1,21 @@
-﻿import Image from "next/image";
-import Link from "next/link";
+﻿import Link from "next/link";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
 import Button from "@/components/ui/button";
 import Card from "@/components/ui/card";
+import SmartImage from "@/components/ui/smart-image";
 import { getProductMedia } from "@/lib/product-media";
 
 const PROMO_OFFERS = [
-  "Экономия до 60 стирок на одной канистре",
-  "Подходит для всех типов тканей",
-  "Разработано химиком, а не маркетологами",
+  "До 60 стирок с одной канистры",
+  "Меньше расход, стабильный результат",
+  "Формула, созданная химиком",
 ];
 
 const ADVANTAGES = [
-  { title: "Концентрированная формула", text: "Меньше расход — больше стирок." },
-  { title: "Без лишних наполнителей", text: "Вы платите за результат, а не за маркетинг." },
-  { title: "Разработано специалистом", text: "Не массовое производство, а продуманная формула." },
+  { title: "Концентрат без воды", text: "Рабочая формула вместо лишнего объёма и переплаты." },
+  { title: "Чисто с первого цикла", text: "Удаляет повседневные загрязнения без агрессивного запаха." },
+  { title: "Предсказуемый расход", text: "Понятная дозировка и экономика каждой стирки." },
 ];
 
 const HITS = [
@@ -25,10 +25,10 @@ const HITS = [
 ];
 
 const TRUST_POINTS = [
-  { title: "4.9/5 в отзывах", text: "Проверенные оценки покупателей по ключевым SKU." },
-  { title: "Отгрузка в день заказа", text: "Для заказов, созданных до 16:00 в рабочие дни." },
-  { title: "Контроль качества", text: "Контроль партий и стабильные формулы перед отгрузкой." },
-  { title: "Поддержка B2B", text: "Коммерческие предложения, счета и персональные условия." },
+  { title: "4.9/5 в отзывах", text: "Оценка покупателей на основных SKU." },
+  { title: "Отгрузка в день заказа", text: "Для заказов, подтвержденных до 16:00." },
+  { title: "Контроль партии", text: "Стабильный состав от партии к партии." },
+  { title: "Поддержка B2B", text: "Опт, документы и персональные условия." },
 ];
 
 export default function HomePage() {
@@ -38,7 +38,7 @@ export default function HomePage() {
     <Section>
       <Container className="grid home-grid-ready">
         <Card className="promo-strip">
-          <p className="small promo-strip-label">Акции и условия</p>
+          <p className="small promo-strip-label">Премиум-линейка AZDEK</p>
           <div className="promo-strip-list">
             {PROMO_OFFERS.map((offer) => (
               <span key={offer} className="promo-chip">
@@ -49,23 +49,24 @@ export default function HomePage() {
         </Card>
 
         <Card className="hero-card hero-card-premium">
-          <p className="small">Казахстан · Бытовая химия AZDEK</p>
+          <p className="small">Казахстан · Performance Home Care</p>
           <h1 className="h1">Концентрированные средства для стирки, разработанные химиком</h1>
-          <p className="text-secondary hero-copy">Чистота с первого раза без переплаты за воду и рекламу</p>
+          <p className="text-secondary hero-copy">Максимум чистоты. Минимум лишнего. Продукт, который работает быстро и стабильно.</p>
           <div className="hero-actions">
             <Link href="/catalog">
               <Button>Смотреть продукцию</Button>
             </Link>
             <Link href="/checkout">
-              <Button variant="secondary">Перейти к оформлению</Button>
+              <Button variant="secondary">Оформить заказ</Button>
             </Link>
           </div>
         </Card>
 
         <Card className="hero-visual-card">
-          <Image
+          <SmartImage
             className="hero-product-image"
             src={heroMedia.hero}
+            fallbackSrc="/media/laundry-gel.svg"
             alt="AZDEK Laundry Gel"
             fill
             sizes="(max-width: 1024px) 100vw, 42vw"
@@ -74,10 +75,6 @@ export default function HomePage() {
         </Card>
 
         <div className="advantages-grid">
-          <Card className="home-feature-card">
-            <h2 className="h3">Почему это лучше обычных средств</h2>
-            <p className="text-secondary">Сравнение не в рекламе, а в результате и себестоимости одной стирки.</p>
-          </Card>
           {ADVANTAGES.map((item) => (
             <Card key={item.title} className="home-feature-card">
               <h2 className="h3">{item.title}</h2>
@@ -85,23 +82,6 @@ export default function HomePage() {
             </Card>
           ))}
         </div>
-
-        <Card className="trust-band">
-          <div className="page-header">
-            <h2 className="h2">Почему нам доверяют</h2>
-            <Link href="/catalog">
-              <Button variant="secondary">Перейти в каталог</Button>
-            </Link>
-          </div>
-          <div className="trust-grid">
-            {TRUST_POINTS.map((item) => (
-              <article key={item.title} className="trust-item">
-                <h3 className="h3">{item.title}</h3>
-                <p className="text-secondary">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </Card>
 
         <Card className="hits-section">
           <div className="page-header">
@@ -116,9 +96,10 @@ export default function HomePage() {
               return (
                 <article key={item.name} className="hit-item">
                   <div className="hit-image-wrap">
-                    <Image
+                    <SmartImage
                       className="hit-image"
                       src={media.card}
+                      fallbackSrc="/media/laundry-gel.svg"
                       alt={item.name}
                       width={560}
                       height={700}
@@ -141,30 +122,23 @@ export default function HomePage() {
 
         <Card className="trust-band">
           <div className="page-header">
-            <h2 className="h2">Как использовать</h2>
+            <h2 className="h2">Почему нам доверяют</h2>
+            <Link href="/catalog">
+              <Button variant="secondary">Перейти в каталог</Button>
+            </Link>
           </div>
           <div className="trust-grid">
-            <article className="trust-item">
-              <h3 className="h3">1. Добавьте дозировку</h3>
-              <p className="text-secondary">Добавьте нужный объём средства согласно инструкции на упаковке.</p>
-            </article>
-            <article className="trust-item">
-              <h3 className="h3">2. Запустите стирку</h3>
-              <p className="text-secondary">Выберите привычный режим и температуру для вашего типа ткани.</p>
-            </article>
-            <article className="trust-item">
-              <h3 className="h3">3. Получите результат</h3>
-              <p className="text-secondary">Чистое бельё без лишнего расхода и резкого запаха.</p>
-            </article>
-            <article className="trust-item">
-              <h3 className="h3">Простая схема</h3>
-              <p className="text-secondary">Понятная инструкция на каждой карточке и упаковке.</p>
-            </article>
+            {TRUST_POINTS.map((item) => (
+              <article key={item.title} className="trust-item">
+                <h3 className="h3">{item.title}</h3>
+                <p className="text-secondary">{item.text}</p>
+              </article>
+            ))}
           </div>
         </Card>
 
         <Card className="promo-strip">
-          <p className="small promo-strip-label">Попробуйте и сравните результат уже после первой стирки</p>
+          <p className="small promo-strip-label">Сравните результат после первой стирки</p>
           <div className="hero-actions">
             <Link href="/catalog">
               <Button>Перейти в каталог</Button>
@@ -175,4 +149,3 @@ export default function HomePage() {
     </Section>
   );
 }
-
