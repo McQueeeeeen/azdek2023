@@ -1,5 +1,6 @@
 ﻿"use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { CatalogProduct } from "@/lib/api";
 import { cn } from "@/lib/cn";
@@ -30,7 +31,14 @@ export default function ProductGallery({ product }: { product: CatalogProduct })
   return (
     <div className="product-gallery-block">
       <div className="product-image-large">
-        <img className="product-gallery-image" src={current.image} alt={current.label} />
+        <Image
+          className="product-gallery-image"
+          src={current.image}
+          alt={current.label}
+          fill
+          sizes="(max-width: 1024px) 100vw, 56vw"
+          priority
+        />
         <div className="product-image-overlay">
           <p className="small">AZDEK</p>
           <p className="h3">{current.label}</p>
@@ -45,10 +53,18 @@ export default function ProductGallery({ product }: { product: CatalogProduct })
             onClick={() => setActive(index)}
             aria-label={`Изображение ${index + 1}`}
           >
-            <img src={item.image} alt={item.label} className="product-thumb-image" />
+            <Image
+              src={item.image}
+              alt={item.label}
+              className="product-thumb-image"
+              width={56}
+              height={56}
+              loading="lazy"
+            />
           </button>
         ))}
       </div>
     </div>
   );
 }
+

@@ -4,32 +4,50 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Button from "./ui/button";
 import { getSessionIdForCheckout, trackEvent } from "@/lib/analytics";
+import { UiActionState } from "@/lib/ui-state";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function AddToCartButton({ variantId }: { variantId: string }) {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+  const [state, setState] = useState<UiActionState>("idle");
 
   return (
     <Button
       className="full-width"
-      disabled={loading}
+      disabled={state === "pending"}
+      actionState={state}
+      pendingLabel="Добавляем..."
+      doneLabel="Добавлено"
+      failedLabel="Попробовать снова"
       onClick={() => {
-        if (loading) {
+        if (state === "pending") {
           return;
         }
 
-        setLoading(true);
-        localStorage.setItem("azdek_variant_id", variantId);
-        void trackEvent({
-          eventType: "add_to_cart",
-          sessionId: getSessionIdForCheckout(),
-          idempotencyKey: `add_to_cart:${variantId}:${Date.now()}`,
-          metadata: { variantId },
-        });
-        router.push("/cart");
+        try {
+          setState("pending");
+          localStorage.setItem("azdek_variant_id", variantId);
+          void trackEvent({
+            eventType: "add_to_cart",
+            sessionId: getSessionIdForCheckout(),
+            idempotencyKey: `add_to_cart:${variantId}:${Date.now()}`,
+            metadata: { variantId },
+          });
+          setState("done");
+          toast({ title: "Товар добавлен", description: "Переходим в корзину", tone: "success" });
+          window.setTimeout(() => {
+            router.push("/cart");
+          }, 180);
+        } catch {
+          setState("failed");
+          toast({ title: "Не удалось добавить товар", tone: "error" });
+          window.setTimeout(() => setState("idle"), 900);
+        }
       }}
     >
-      {loading ? "Переходим в корзину..." : "Добавить в корзину"}
+      Добавить в корзину
     </Button>
   );
 }
+

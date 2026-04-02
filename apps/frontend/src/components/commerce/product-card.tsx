@@ -1,4 +1,5 @@
 ﻿import Link from "next/link";
+import Image from "next/image";
 import { CatalogProduct } from "@/lib/api";
 import Card from "../ui/card";
 import Button from "../ui/button";
@@ -20,7 +21,14 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
   return (
     <Card className="product-card">
       <div className="product-image-frame">
-        <img className="product-image" src={media.cover} alt={product.name} loading="lazy" />
+        <Image
+          className="product-image"
+          src={media.card}
+          alt={product.name}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
+        />
         {media.tag ? <span className="product-image-tag">{media.tag}</span> : null}
       </div>
       <div className="product-card-body">
@@ -36,7 +44,7 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
           ))}
         </div>
         <div className="product-proof-row">
-          <span className="product-rating">★ {rating} · {reviewCount}+ отзывов</span>
+          <span className="product-rating">? {rating} · {reviewCount}+ отзывов</span>
           <span className={isInStock ? "product-stock ok" : "product-stock warn"}>
             {isInStock ? "В наличии" : "Под заказ"}
           </span>
@@ -51,3 +59,4 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
     </Card>
   );
 }
+

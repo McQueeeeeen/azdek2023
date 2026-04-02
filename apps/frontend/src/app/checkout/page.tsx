@@ -10,24 +10,30 @@ import PageHeader from "@/components/ui/page-header";
 import Button from "@/components/ui/button";
 import { Input, Textarea } from "@/components/ui/input";
 import ErrorState from "@/components/ui/error-state";
+import { UiActionState } from "@/lib/ui-state";
+import { useToast } from "@/components/ui/use-toast";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 
+type FieldErrors = Partial<Record<"customerName" | "customerPhone" | "customerEmail" | "deliveryAddress", string>>;
+
 export default function CheckoutPage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+  const [state, setState] = useState<UiActionState>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [validationError, setValidationError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (loading) {
+    if (state === "pending") {
       return;
     }
-    setLoading(true);
+
+    setState("pending");
     setError(null);
-    setValidationError(null);
+    setFieldErrors({});
     setSuccess(null);
 
     const formData = new FormData(event.currentTarget);
@@ -39,33 +45,33 @@ export default function CheckoutPage() {
     const customerEmail = String(formData.get("customerEmail") ?? "").trim();
     const deliveryAddress = String(formData.get("deliveryAddress") ?? "").trim();
 
+    const nextFieldErrors: FieldErrors = {};
+
     if (!cartId) {
-      setValidationError("Корзина пуста. Добавьте товары перед оформлением.");
-      setLoading(false);
+      setError("Корзина пуста. Добавьте товары перед оформлением.");
+      setState("failed");
       return;
     }
 
     if (!customerName || customerName.length < 2) {
-      setValidationError("Укажите корректное имя.");
-      setLoading(false);
-      return;
+      nextFieldErrors.customerName = "Введите имя (минимум 2 символа).";
     }
 
     if (!/^[+0-9 ()-]{8,}$/.test(customerPhone)) {
-      setValidationError("Введите корректный номер телефона.");
-      setLoading(false);
-      return;
+      nextFieldErrors.customerPhone = "Введите корректный номер телефона.";
     }
 
-    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(customerEmail)) {
-      setValidationError("Введите корректный email.");
-      setLoading(false);
-      return;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
+      nextFieldErrors.customerEmail = "Введите корректный email.";
     }
 
     if (!deliveryAddress || deliveryAddress.length < 6) {
-      setValidationError("Укажите полный адрес доставки.");
-      setLoading(false);
+      nextFieldErrors.deliveryAddress = "Укажите полный адрес доставки.";
+    }
+
+    if (Object.keys(nextFieldErrors).length > 0) {
+      setFieldErrors(nextFieldErrors);
+      setState("failed");
       return;
     }
 
@@ -95,15 +101,19 @@ export default function CheckoutPage() {
       }
 
       const payload = await response.json();
+      setState("done");
       setSuccess("Заказ создан. Перенаправляем на страницу подтверждения...");
+      toast({ title: "Заказ оформлен", description: "Открываем подтверждение", tone: "success" });
       if (payload.paymentUrl) {
         window.open(payload.paymentUrl, "_blank", "noopener,noreferrer");
       }
-      router.push(`/order/${payload.orderNumber}`);
+      window.setTimeout(() => {
+        router.push(`/order/${payload.orderNumber}`);
+      }, 240);
     } catch (e) {
+      setState("failed");
       setError((e as Error).message);
-    } finally {
-      setLoading(false);
+      toast({ title: "Ошибка оформления", tone: "error" });
     }
   };
 
@@ -111,7 +121,6 @@ export default function CheckoutPage() {
     <Section>
       <Container className="grid checkout-layout">
         <PageHeader title="Оформление заказа" subtitle="Минимум полей, быстрая проверка, безопасная оплата" />
-        {validationError ? <ErrorState title="Проверьте поля формы" message={validationError} /> : null}
         {success ? (
           <Card>
             <p className="small">{success}</p>
@@ -120,10 +129,38 @@ export default function CheckoutPage() {
         <form className="grid" onSubmit={submit}>
           <Card className="checkout-card grid">
             <h2 className="h3">Контакты</h2>
-            <Input name="customerName" placeholder="Имя" required />
-            <Input name="customerPhone" placeholder="Телефон" required />
-            <Input name="customerEmail" type="email" placeholder="Email" required />
-            <Textarea name="deliveryAddress" placeholder="Адрес" required />
+
+            <div className="grid">
+              <Input name="customerName" placeholder="Имя" required aria-invalid={Boolean(fieldErrors.customerName)} />
+              {fieldErrors.customerName ? <p className="small" role="alert">{fieldErrors.customerName}</p> : null}
+            </div>
+
+            <div className="grid">
+              <Input name="customerPhone" placeholder="Телефон" required aria-invalid={Boolean(fieldErrors.customerPhone)} />
+              {fieldErrors.customerPhone ? <p className="small" role="alert">{fieldErrors.customerPhone}</p> : null}
+            </div>
+
+            <div className="grid">
+              <Input
+                name="customerEmail"
+                type="email"
+                placeholder="Email"
+                required
+                aria-invalid={Boolean(fieldErrors.customerEmail)}
+              />
+              {fieldErrors.customerEmail ? <p className="small" role="alert">{fieldErrors.customerEmail}</p> : null}
+            </div>
+
+            <div className="grid">
+              <Textarea
+                name="deliveryAddress"
+                placeholder="Адрес"
+                required
+                aria-invalid={Boolean(fieldErrors.deliveryAddress)}
+              />
+              {fieldErrors.deliveryAddress ? <p className="small" role="alert">{fieldErrors.deliveryAddress}</p> : null}
+            </div>
+
             <p className="text-secondary">Мы используем безопасную оплату. Ваши данные защищены.</p>
             <div className="order-status-grid">
               <p className="small">Доступные методы</p>
@@ -133,8 +170,15 @@ export default function CheckoutPage() {
               <p className="small">Подтверждение</p>
               <p>Email и статус заказа в кабинете</p>
             </div>
-            <Button type="submit" disabled={loading}>
-              {loading ? "Оформляем..." : "Оформить заказ"}
+            <Button
+              type="submit"
+              disabled={state === "pending"}
+              actionState={state}
+              pendingLabel="Оформляем..."
+              doneLabel="Готово"
+              failedLabel="Проверить и повторить"
+            >
+              Оформить заказ
             </Button>
           </Card>
           {error ? <ErrorState title="Ошибка оформления" message={error} /> : null}
@@ -143,3 +187,4 @@ export default function CheckoutPage() {
     </Section>
   );
 }
+

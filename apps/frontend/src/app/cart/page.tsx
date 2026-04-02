@@ -10,6 +10,8 @@ import EmptyState from "@/components/ui/empty-state";
 import ErrorState from "@/components/ui/error-state";
 import CartItem from "@/components/commerce/cart-item";
 import CartSummary from "@/components/commerce/cart-summary";
+import { UiActionState } from "@/lib/ui-state";
+import { useToast } from "@/components/ui/use-toast";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 
@@ -30,11 +32,12 @@ interface CartView {
 }
 
 export default function CartPage() {
+  const { toast } = useToast();
   const [cart, setCart] = useState<CartView | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [feedback, setFeedback] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [busyItemId, setBusyItemId] = useState<string | null>(null);
+  const [actionState, setActionState] = useState<UiActionState>("idle");
 
   const run = async () => {
     const variantId = localStorage.getItem("azdek_variant_id");
@@ -48,7 +51,7 @@ export default function CartPage() {
 
     try {
       setLoading(true);
-      setFeedback(null);
+      setActionState("pending");
       let data: CartView;
       if (existingCartId) {
         if (variantId) {
@@ -62,7 +65,8 @@ export default function CartPage() {
             localStorage.removeItem("azdek_variant_id");
             setCart(data);
             setError(null);
-            setFeedback("Товар добавлен в корзину");
+            setActionState("done");
+            toast({ title: "Товар добавлен в корзину", tone: "success" });
             return;
           }
         }
@@ -73,6 +77,7 @@ export default function CartPage() {
           localStorage.removeItem("azdek_variant_id");
           setCart(data);
           setError(null);
+          setActionState("done");
           return;
         }
       }
@@ -88,9 +93,12 @@ export default function CartPage() {
       localStorage.removeItem("azdek_variant_id");
       setCart(data);
       setError(null);
-      setFeedback("Товар добавлен в корзину");
+      setActionState("done");
+      toast({ title: "Товар добавлен в корзину", tone: "success" });
     } catch (e) {
+      setActionState("failed");
       setError((e as Error).message);
+      toast({ title: "Ошибка загрузки корзины", tone: "error" });
     } finally {
       setLoading(false);
     }
@@ -103,7 +111,7 @@ export default function CartPage() {
 
     try {
       setBusyItemId(itemId);
-      setFeedback(null);
+      setActionState("pending");
       const response = await fetch(`${API_BASE}/cart/items/${cart.id}/${itemId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -116,9 +124,12 @@ export default function CartPage() {
 
       const nextCart = (await response.json()) as CartView;
       setCart(nextCart);
-      setFeedback("Количество обновлено");
+      setActionState("done");
+      toast({ title: "Количество обновлено", tone: "success", durationMs: 1600 });
     } catch (e) {
+      setActionState("failed");
       setError((e as Error).message);
+      toast({ title: "Не удалось обновить количество", tone: "error" });
     } finally {
       setBusyItemId(null);
     }
@@ -131,7 +142,7 @@ export default function CartPage() {
 
     try {
       setBusyItemId(itemId);
-      setFeedback(null);
+      setActionState("pending");
       const response = await fetch(`${API_BASE}/cart/items/${cart.id}/${itemId}`, {
         method: "DELETE",
       });
@@ -142,9 +153,12 @@ export default function CartPage() {
 
       const nextCart = (await response.json()) as CartView;
       setCart(nextCart.items.length > 0 ? nextCart : null);
-      setFeedback("Товар удален из корзины");
+      setActionState("done");
+      toast({ title: "Товар удален", tone: "info", durationMs: 1600 });
     } catch (e) {
+      setActionState("failed");
       setError((e as Error).message);
+      toast({ title: "Не удалось удалить товар", tone: "error" });
     } finally {
       setBusyItemId(null);
     }
@@ -183,7 +197,11 @@ export default function CartPage() {
     <Section>
       <Container className="grid">
         <PageHeader title="Корзина" subtitle="Проверьте заказ перед оформлением" />
-        {feedback ? <Card><p className="small">{feedback}</p></Card> : null}
+        {actionState === "pending" ? (
+          <Card>
+            <p className="small">Обновляем корзину...</p>
+          </Card>
+        ) : null}
         {cart ? (
           <div className="cart-layout">
             <div className="grid">
@@ -212,3 +230,4 @@ export default function CartPage() {
     </Section>
   );
 }
+

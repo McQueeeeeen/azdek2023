@@ -47,7 +47,7 @@ body {
 }
 
 body {
-  font-family: "Geist", "InterVariable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-geist-sans), var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -312,6 +312,11 @@ p {
   font-size: 13px;
   cursor: pointer;
   transition: all 0.16s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  touch-action: manipulation;
 }
 
 .ui-button:disabled {
@@ -328,7 +333,34 @@ p {
 }
 
 .ui-button:active {
-  transform: translateY(1px);
+  transform: translateY(1px) scale(0.99);
+}
+
+.ui-button-pending {
+  opacity: 0.92;
+}
+
+.ui-button-done {
+  border-color: color-mix(in srgb, var(--success) 35%, white);
+}
+
+.ui-button-failed {
+  border-color: color-mix(in srgb, var(--error) 35%, white);
+}
+
+.ui-button-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: button-spin 0.65s linear infinite;
+}
+
+@keyframes button-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .ui-button-primary {
@@ -402,6 +434,10 @@ p {
   outline: none;
   border-color: #a1a1aa;
   background: var(--surface);
+}
+
+.ui-input[aria-invalid="true"] {
+  border-color: color-mix(in srgb, var(--error) 55%, white);
 }
 
 .ui-textarea {
@@ -509,7 +545,7 @@ p {
 
 .hero-copy { max-width: 58ch; }
 .hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
-.hero-visual-card { min-height: 360px; padding: 0; overflow: hidden; background: var(--surface-low); }
+.hero-visual-card { min-height: 360px; padding: 0; overflow: hidden; background: var(--surface-low); position: relative; }
 .hero-product-image { width: 100%; height: 100%; object-fit: cover; min-height: 360px; }
 
 .home-feature-card { min-height: 150px; }
@@ -680,6 +716,44 @@ p {
 .cart-remove-link:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.toast-host {
+  position: fixed;
+  top: 82px;
+  right: 16px;
+  z-index: 60;
+  display: grid;
+  gap: 10px;
+  width: min(320px, calc(100vw - 32px));
+}
+
+.toast-item {
+  border-radius: 12px;
+  border: 1px solid rgba(171, 179, 183, 0.35);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-soft);
+  padding: 12px;
+  display: grid;
+  gap: 2px;
+}
+
+.toast-title {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.toast-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.toast-success {
+  border-color: color-mix(in srgb, var(--success) 40%, white);
+}
+
+.toast-error {
+  border-color: color-mix(in srgb, var(--error) 40%, white);
 }
 .cart-summary { position: sticky; top: 92px; }
 
@@ -873,6 +947,12 @@ p {
     font-size: 12px;
     text-align: center;
     color: var(--text-secondary);
+  }
+
+  .toast-host {
+    top: 74px;
+    right: 12px;
+    width: min(320px, calc(100vw - 24px));
   }
 
   .mobile-bottom-nav a {

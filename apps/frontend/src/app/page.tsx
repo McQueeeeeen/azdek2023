@@ -1,8 +1,10 @@
-﻿import Link from "next/link";
+﻿import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
 import Button from "@/components/ui/button";
 import Card from "@/components/ui/card";
+import { getProductMedia } from "@/lib/product-media";
 
 const PROMO_OFFERS = [
   "Экономия до 60 стирок на одной канистре",
@@ -17,9 +19,9 @@ const ADVANTAGES = [
 ];
 
 const HITS = [
-  { name: "Гель для стирки Color", tag: "Хит продаж", image: "/media/laundry-gel.svg" },
-  { name: "Кондиционер Fresh", tag: "Популярно", image: "/media/softener-fresh.svg" },
-  { name: "Средство для посуды Citrus", tag: "Для кухни", image: "/media/dish-liquid-citrus.svg" },
+  { slug: "azdek-laundry-gel", name: "Гель для стирки Color", tag: "Хит продаж" },
+  { slug: "azdek-softener-fresh", name: "Кондиционер Fresh", tag: "Популярно" },
+  { slug: "azdek-dish-liquid-citrus", name: "Средство для посуды Citrus", tag: "Для кухни" },
 ];
 
 const TRUST_POINTS = [
@@ -30,6 +32,8 @@ const TRUST_POINTS = [
 ];
 
 export default function HomePage() {
+  const heroMedia = getProductMedia("azdek-laundry-gel");
+
   return (
     <Section>
       <Container className="grid home-grid-ready">
@@ -59,7 +63,14 @@ export default function HomePage() {
         </Card>
 
         <Card className="hero-visual-card">
-          <img className="hero-product-image" src="/media/laundry-gel.svg" alt="AZDEK Laundry Gel" />
+          <Image
+            className="hero-product-image"
+            src={heroMedia.hero}
+            alt="AZDEK Laundry Gel"
+            fill
+            sizes="(max-width: 1024px) 100vw, 42vw"
+            priority
+          />
         </Card>
 
         <div className="advantages-grid">
@@ -77,11 +88,11 @@ export default function HomePage() {
 
         <Card className="trust-band">
           <div className="page-header">
-                <h2 className="h2">Почему нам доверяют</h2>
-                <Link href="/catalog">
-                  <Button variant="secondary">Перейти в каталог</Button>
-                </Link>
-              </div>
+            <h2 className="h2">Почему нам доверяют</h2>
+            <Link href="/catalog">
+              <Button variant="secondary">Перейти в каталог</Button>
+            </Link>
+          </div>
           <div className="trust-grid">
             {TRUST_POINTS.map((item) => (
               <article key={item.title} className="trust-item">
@@ -100,20 +111,31 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="hits-grid">
-            {HITS.map((item) => (
-              <article key={item.name} className="hit-item">
-                <div className="hit-image-wrap">
-                  <img className="hit-image" src={item.image} alt={item.name} loading="lazy" />
-                </div>
-                <p className="small">{item.tag}</p>
-                <h3 className="h3">{item.name}</h3>
-                <Link href="/catalog">
-                  <Button variant="secondary" className="full-width">
-                    Смотреть товар
-                  </Button>
-                </Link>
-              </article>
-            ))}
+            {HITS.map((item) => {
+              const media = getProductMedia(item.slug);
+              return (
+                <article key={item.name} className="hit-item">
+                  <div className="hit-image-wrap">
+                    <Image
+                      className="hit-image"
+                      src={media.card}
+                      alt={item.name}
+                      width={560}
+                      height={700}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="small">{item.tag}</p>
+                  <h3 className="h3">{item.name}</h3>
+                  <Link href="/catalog">
+                    <Button variant="secondary" className="full-width">
+                      Смотреть товар
+                    </Button>
+                  </Link>
+                </article>
+              );
+            })}
           </div>
         </Card>
 
@@ -153,3 +175,4 @@ export default function HomePage() {
     </Section>
   );
 }
+
