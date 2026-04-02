@@ -457,18 +457,20 @@ p {
 }
 
 .motion-in {
-  animation: fade-in-up 0.28s ease both;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.js-reveal .motion-in {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.js-reveal .motion-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .ui-input {
@@ -1407,7 +1409,9 @@ p {
 
 @media (prefers-reduced-motion: reduce) {
   .motion-in {
-    animation: none;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   .ui-button,

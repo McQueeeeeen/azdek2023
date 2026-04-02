@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { Manrope, Newsreader } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import GlobalAnalyticsTracker from "@/components/global-analytics-tracker";
+import ScrollReveal from "@/components/scroll-reveal";
 import SiteHeader from "@/components/layout/site-header";
 import SiteFooter from "@/components/layout/site-footer";
 import MobileBottomNav from "@/components/layout/mobile-bottom-nav";
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="ru">
       <body className={`${GeistSans.variable} ${manrope.variable} ${newsreader.variable}`}>
         <GlobalAnalyticsTracker />
+        <ScrollReveal />
         <ToastHost />
         <div className="app-shell">
           <SiteHeader />
