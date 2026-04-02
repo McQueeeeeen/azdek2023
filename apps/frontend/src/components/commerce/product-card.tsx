@@ -25,7 +25,7 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
       </div>
       <div className="product-card-body">
         <p className="small">{product.category.name}</p>
-        <h3 className="h3">{product.name}</h3>
+        <h3 className="h3 product-title">{product.name}</h3>
         <p className="text-secondary product-description">{product.description}</p>
         <p className="product-pitch">{commercial.cardPitch}</p>
         <div className="product-benefits">
@@ -44,7 +44,7 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
         <PriceBlock amount={firstVariant?.price ?? 0} currency={firstVariant?.currency ?? "KZT"} />
       </div>
       <Link href={`/catalog/${product.slug}`}>
-        <Button variant="secondary" className="full-width">
+        <Button variant="secondary" className="full-width product-card-cta">
           Купить сейчас
         </Button>
       </Link>

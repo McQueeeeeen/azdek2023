@@ -373,6 +373,21 @@ p {
   transition: border-color 0.16s ease, box-shadow 0.16s ease;
 }
 
+.motion-in {
+  animation: fade-in-up 0.28s ease both;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .ui-input {
   width: 100%;
   border: 1px solid var(--border);
@@ -564,6 +579,13 @@ p {
 
 .product-card-body { padding: 16px; display: grid; gap: var(--space-2); }
 .product-pitch { font-size: 13px; font-weight: 500; color: #27272a; }
+.product-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.5em;
+}
 .product-benefits { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .product-benefit-chip {
   border: 1px solid var(--border);
@@ -580,6 +602,7 @@ p {
 .product-stock.ok { color: var(--success); border-color: color-mix(in srgb, var(--success) 35%, white); }
 .product-stock.warn { color: var(--warning); border-color: color-mix(in srgb, var(--warning) 35%, white); }
 .product-description { min-height: 44px; }
+.product-card-cta { border-radius: 0; border-left: 0; border-right: 0; border-bottom: 0; }
 
 .price-block { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
 
@@ -603,6 +626,10 @@ p {
   background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
   padding: 14px;
   gap: 10px;
+}
+
+.product-info {
+  gap: 14px;
 }
 
 .product-purchase-top {
@@ -877,4 +904,16 @@ p {
   .product-image-large,
   .hero-visual-card,
   .hero-product-image { min-height: 320px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-in {
+    animation: none;
+  }
+
+  .ui-button,
+  .ui-card,
+  .product-image {
+    transition: none;
+  }
 }
