@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
@@ -31,9 +31,13 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     return (
       <Section>
         <Container className="grid">
-          <Card>
-            <h1 className="h2">Доступ ограничен</h1>
-            <p className="text-secondary">Панель администратора доступна только пользователям с разрешенными ролями.</p>
+          <Card className="account-hero-card">
+            <span className="status-pill warn">Ограниченный доступ</span>
+            <h1 className="h2">Админ-панель недоступна для текущей роли</h1>
+            <p className="text-secondary">
+              Панель управления доступна только владельцу, администратору и оператору.
+              Войдите под аккаунтом с разрешенными правами доступа.
+            </p>
             <div>
               <Link href="/login">
                 <button className="ui-button ui-button-primary">Войти под админ-аккаунтом</button>

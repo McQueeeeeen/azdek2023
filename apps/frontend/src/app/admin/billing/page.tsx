@@ -1,20 +1,20 @@
-import Section from "@/components/ui/section";
+﻿import Section from "@/components/ui/section";
 import Container from "@/components/ui/container";
 import Card from "@/components/ui/card";
 import PageHeader from "@/components/ui/page-header";
 import AdminSubnav from "@/components/admin/admin-subnav";
 
 const INVOICES = [
-  { id: "INV-2023-09", date: "30 сен 2023", amount: "$1,240.50", status: "Оплачен" },
-  { id: "INV-2023-08", date: "31 авг 2023", amount: "$1,192.00", status: "Оплачен" },
-  { id: "INV-2023-07", date: "31 июл 2023", amount: "$1,405.20", status: "Спорный" },
+  { id: "INV-2026-04", date: "02 апр 2026", amount: "$1,452.80", status: "Оплачен" },
+  { id: "INV-2026-03", date: "01 мар 2026", amount: "$1,221.00", status: "Оплачен" },
+  { id: "INV-2026-02", date: "01 фев 2026", amount: "$980.40", status: "Ожидает" },
 ];
 
 export default function AdminBillingPage() {
   return (
     <Section>
-      <Container className="grid">
-        <PageHeader title="Биллинг и использование" subtitle="Мониторинг использования и работа со счетами в реальном времени." />
+      <Container className="admin-shell">
+        <PageHeader title="Биллинг и использование" subtitle="Контроль расходов, подписки и потребления ресурсов в одном месте." />
         <AdminSubnav />
 
         <div className="admin-kpi-grid">
@@ -26,18 +26,21 @@ export default function AdminBillingPage() {
           <Card className="admin-kpi-card">
             <p className="small">Хранилище</p>
             <p className="h2">84.2 GB</p>
-            <p className="text-secondary">Подходим к лимиту 100 GB</p>
+            <p className="text-secondary">Осталось 15.8 GB до лимита</p>
           </Card>
           <Card className="admin-kpi-card admin-kpi-accent">
-            <p className="small">Следующий счет</p>
+            <p className="small">Следующий платеж</p>
             <p className="h2">$1,452.80</p>
-            <p className="text-secondary">Период заканчивается 31 окт 2023</p>
+            <p className="text-secondary">Списание 30 апреля 2026</p>
           </Card>
         </div>
 
-        <Card>
-          <h2 className="h3">Последние счета</h2>
-          <div className="admin-table-wrap">
+        <Card className="admin-panel">
+          <div className="admin-panel-head">
+            <h2 className="h3">История счетов</h2>
+            <span className="status-pill ok">Платежный шлюз активен</span>
+          </div>
+          <div className="admin-panel-body admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
@@ -53,7 +56,9 @@ export default function AdminBillingPage() {
                     <td>{invoice.id}</td>
                     <td>{invoice.date}</td>
                     <td>{invoice.amount}</td>
-                    <td>{invoice.status}</td>
+                    <td>
+                      <span className={`status-pill ${invoice.status === "Оплачен" ? "ok" : "warn"}`}>{invoice.status}</span>
+                    </td>
                   </tr>
                 ))}
               </tbody>

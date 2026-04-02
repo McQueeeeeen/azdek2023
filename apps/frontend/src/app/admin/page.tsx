@@ -11,8 +11,8 @@ const ORDER_ROWS = [
     customer_name: "Елена Сорвино",
     phone: "+7 701 555 11 22",
     total: "1 240.00",
-    status: "доставлен",
-    payment_status: "оплачен",
+    status: "Доставлен",
+    payment_status: "Оплачен",
     created_at: "2026-04-02 10:22",
   },
   {
@@ -20,72 +20,64 @@ const ORDER_ROWS = [
     customer_name: "Джулиан Марк",
     phone: "+7 777 112 55 44",
     total: "850.00",
-    status: "в обработке",
-    payment_status: "ожидает оплату",
+    status: "В обработке",
+    payment_status: "Ожидает оплату",
     created_at: "2026-04-02 09:50",
   },
 ];
 
 const PRODUCT_ROWS = [
-  { id: "PRD-001", name: "Azdek Laundry Gel", price: "8 990", sku: "AZD-LG-5L", stock: 90, status: "активен", created_at: "2026-03-21" },
-  {
-    id: "PRD-002",
-    name: "Azdek Softener Fresh",
-    price: "2 290",
-    sku: "AZD-SF-1L",
-    stock: 120,
-    status: "активен",
-    created_at: "2026-03-19",
-  },
+  { id: "PRD-001", name: "AZDEK Laundry Gel", price: "8 990", sku: "AZD-LG-5L", stock: 90, status: "Активен", created_at: "2026-03-21" },
+  { id: "PRD-002", name: "AZDEK Softener Fresh", price: "2 290", sku: "AZD-SF-1L", stock: 120, status: "Активен", created_at: "2026-03-19" },
 ];
 
 const CUSTOMER_ROWS = [
-  { id: "CUS-1001", name: "Айдана С.", phone: "+7 705 123 45 67", email: "aidana@example.com", role: "пользователь", created_at: "2026-03-28" },
-  { id: "CUS-1002", name: "TOO Clean Market", phone: "+7 747 555 00 11", email: "ops@cleanmarket.kz", role: "оптовик", created_at: "2026-03-30" },
+  { id: "CUS-1001", name: "Айдана С.", phone: "+7 705 123 45 67", email: "aidana@example.com", role: "Пользователь", created_at: "2026-03-28" },
+  { id: "CUS-1002", name: "TOO Clean Market", phone: "+7 747 555 00 11", email: "ops@cleanmarket.kz", role: "Оптовик", created_at: "2026-03-30" },
 ];
 
 const PAYMENT_ROWS = [
-  { id: "PAY-8801", order_id: "ORD-2091", amount: "1 240.00", status: "оплачен", provider: "kaspi", created_at: "2026-04-02 10:23" },
-  { id: "PAY-8802", order_id: "ORD-2088", amount: "850.00", status: "ожидает", provider: "карта", created_at: "2026-04-02 09:51" },
+  { id: "PAY-8801", order_id: "ORD-2091", amount: "1 240.00", status: "Оплачен", provider: "Kaspi", created_at: "2026-04-02 10:23" },
+  { id: "PAY-8802", order_id: "ORD-2088", amount: "850.00", status: "Ожидает", provider: "Карта", created_at: "2026-04-02 09:51" },
 ];
 
 const SHIPMENT_ROWS = [
-  { id: "SHP-7001", order_id: "ORD-2091", status: "доставлен", tracking_number: "KZ-TRK-200991", created_at: "2026-04-02 14:45" },
-  { id: "SHP-7002", order_id: "ORD-2088", status: "подготовлен", tracking_number: "KZ-TRK-200988", created_at: "2026-04-02 10:40" },
+  { id: "SHP-7001", order_id: "ORD-2091", status: "Доставлен", tracking_number: "KZ-TRK-200991", created_at: "2026-04-02 14:45" },
+  { id: "SHP-7002", order_id: "ORD-2088", status: "Подготовлен", tracking_number: "KZ-TRK-200988", created_at: "2026-04-02 10:40" },
 ];
 
 export default function AdminPage() {
   return (
     <Section>
-      <Container className="grid">
-        <PageHeader title="Админ-панель" subtitle="Ключевые таблицы управления заказами, товарами и клиентами." />
+      <Container className="admin-shell">
+        <PageHeader title="Админ-панель" subtitle="Единая операционная зона: заказы, товары, клиенты, платежи и отгрузки." />
         <AdminSubnav />
 
         <div className="admin-kpi-grid">
           <Card className="admin-kpi-card">
             <p className="small">Оборот за 24 часа</p>
-            <p className="h2">$42,920.00</p>
-            <p className="text-secondary">+12.4% к вчерашнему дню</p>
+            <p className="h2">$42,920</p>
+            <p className="text-secondary">+12.4% к предыдущему дню</p>
           </Card>
           <Card className="admin-kpi-card">
             <p className="small">Активные заказы</p>
             <p className="h2">1,204</p>
-            <p className="text-secondary">32 ожидают сборки</p>
+            <p className="text-secondary">32 заказа ждут сборки</p>
           </Card>
           <Card className="admin-kpi-card admin-kpi-accent">
-            <p className="small">Состояние каталога</p>
+            <p className="small">Здоровье каталога</p>
             <p className="h2">98.2%</p>
-            <p className="text-secondary">4 товара временно отсутствуют</p>
+            <p className="text-secondary">4 позиции временно out of stock</p>
           </Card>
         </div>
 
         <div className="admin-main-grid">
-          <Card>
-            <div className="page-header">
+          <Card className="admin-panel">
+            <div className="admin-panel-head">
               <h2 className="h3">Заказы</h2>
               <Button variant="ghost">Смотреть все</Button>
             </div>
-            <div className="admin-table-wrap">
+            <div className="admin-panel-body admin-table-wrap">
               <table className="admin-table">
                 <thead>
                   <tr>
@@ -115,43 +107,33 @@ export default function AdminPage() {
             </div>
           </Card>
 
-          <div className="grid">
-            <Card>
-              <h2 className="h3">Каналы продаж</h2>
-              <div className="admin-progress-list">
+          <div className="admin-stack">
+            <Card className="admin-panel">
+              <div className="admin-panel-head">
+                <h2 className="h3">Каналы продаж</h2>
+                <span className="status-pill ok">Realtime</span>
+              </div>
+              <div className="admin-panel-body admin-progress-list">
                 <div>
-                  <div className="admin-progress-head">
-                    <span>Прямые продажи</span>
-                    <span>64%</span>
-                  </div>
-                  <div className="admin-progress-track">
-                    <span style={{ width: "64%" }} />
-                  </div>
+                  <div className="admin-progress-head"><span>Прямые продажи</span><span>64%</span></div>
+                  <div className="admin-progress-track"><span style={{ width: "64%" }} /></div>
                 </div>
                 <div>
-                  <div className="admin-progress-head">
-                    <span>Партнёры</span>
-                    <span>22%</span>
-                  </div>
-                  <div className="admin-progress-track">
-                    <span style={{ width: "22%" }} />
-                  </div>
+                  <div className="admin-progress-head"><span>Партнеры</span><span>22%</span></div>
+                  <div className="admin-progress-track"><span style={{ width: "22%" }} /></div>
                 </div>
                 <div>
-                  <div className="admin-progress-head">
-                    <span>Органика</span>
-                    <span>14%</span>
-                  </div>
-                  <div className="admin-progress-track">
-                    <span style={{ width: "14%" }} />
-                  </div>
+                  <div className="admin-progress-head"><span>Органика</span><span>14%</span></div>
+                  <div className="admin-progress-track"><span style={{ width: "14%" }} /></div>
                 </div>
               </div>
             </Card>
 
-            <Card>
-              <h2 className="h3">Быстрые действия</h2>
-              <div className="admin-actions-grid">
+            <Card className="admin-panel">
+              <div className="admin-panel-head">
+                <h2 className="h3">Быстрые действия</h2>
+              </div>
+              <div className="admin-panel-body admin-actions-grid">
                 <Button variant="secondary">Новый SKU</Button>
                 <Button variant="secondary">Экспорт CSV</Button>
                 <Button variant="secondary">Рассылка</Button>
@@ -161,9 +143,9 @@ export default function AdminPage() {
           </div>
         </div>
 
-        <Card>
-          <h2 className="h3">Товары</h2>
-          <div className="admin-table-wrap">
+        <Card className="admin-panel">
+          <div className="admin-panel-head"><h2 className="h3">Товары</h2></div>
+          <div className="admin-panel-body admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
@@ -193,9 +175,9 @@ export default function AdminPage() {
           </div>
         </Card>
 
-        <Card>
-          <h2 className="h3">Клиенты</h2>
-          <div className="admin-table-wrap">
+        <Card className="admin-panel">
+          <div className="admin-panel-head"><h2 className="h3">Клиенты</h2></div>
+          <div className="admin-panel-body admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
@@ -223,63 +205,65 @@ export default function AdminPage() {
           </div>
         </Card>
 
-        <Card>
-          <h2 className="h3">Платежи</h2>
-          <div className="admin-table-wrap">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>order_id</th>
-                  <th>amount</th>
-                  <th>status</th>
-                  <th>provider</th>
-                  <th>created_at</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PAYMENT_ROWS.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.order_id}</td>
-                    <td>{row.amount}</td>
-                    <td>{row.status}</td>
-                    <td>{row.provider}</td>
-                    <td>{row.created_at}</td>
+        <div className="admin-main-grid">
+          <Card className="admin-panel">
+            <div className="admin-panel-head"><h2 className="h3">Платежи</h2></div>
+            <div className="admin-panel-body admin-table-wrap">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>order_id</th>
+                    <th>amount</th>
+                    <th>status</th>
+                    <th>provider</th>
+                    <th>created_at</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
+                </thead>
+                <tbody>
+                  {PAYMENT_ROWS.map((row) => (
+                    <tr key={row.id}>
+                      <td>{row.id}</td>
+                      <td>{row.order_id}</td>
+                      <td>{row.amount}</td>
+                      <td>{row.status}</td>
+                      <td>{row.provider}</td>
+                      <td>{row.created_at}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
 
-        <Card>
-          <h2 className="h3">Отгрузки</h2>
-          <div className="admin-table-wrap">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>order_id</th>
-                  <th>status</th>
-                  <th>tracking_number</th>
-                  <th>created_at</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SHIPMENT_ROWS.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.id}</td>
-                    <td>{row.order_id}</td>
-                    <td>{row.status}</td>
-                    <td>{row.tracking_number}</td>
-                    <td>{row.created_at}</td>
+          <Card className="admin-panel">
+            <div className="admin-panel-head"><h2 className="h3">Отгрузки</h2></div>
+            <div className="admin-panel-body admin-table-wrap">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>order_id</th>
+                    <th>status</th>
+                    <th>tracking_number</th>
+                    <th>created_at</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
+                </thead>
+                <tbody>
+                  {SHIPMENT_ROWS.map((row) => (
+                    <tr key={row.id}>
+                      <td>{row.id}</td>
+                      <td>{row.order_id}</td>
+                      <td>{row.status}</td>
+                      <td>{row.tracking_number}</td>
+                      <td>{row.created_at}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </div>
       </Container>
     </Section>
   );

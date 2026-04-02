@@ -1,4 +1,4 @@
-import Section from "@/components/ui/section";
+﻿import Section from "@/components/ui/section";
 import Container from "@/components/ui/container";
 import Card from "@/components/ui/card";
 import PageHeader from "@/components/ui/page-header";
@@ -15,18 +15,18 @@ const NODES = [
 export default function AdminNodesPage() {
   return (
     <Section>
-      <Container className="grid">
-        <PageHeader title="Серверные ноды" subtitle="Глобальный список нод, статус здоровья и обзор загрузки." />
+      <Container className="admin-shell">
+        <PageHeader title="Серверные ноды" subtitle="Контроль регионов, нагрузки и health-статуса вычислительных узлов." />
         <AdminSubnav />
 
         <div className="admin-kpi-grid">
           <Card className="admin-kpi-card">
             <p className="small">Всего нод</p>
             <p className="h2">1,284</p>
-            <p className="text-secondary">+12% за этот месяц</p>
+            <p className="text-secondary">+12% за последние 30 дней</p>
           </Card>
           <Card className="admin-kpi-card">
-            <p className="small">Средняя нагрузка</p>
+            <p className="small">Средняя загрузка</p>
             <p className="h2">42.8%</p>
             <p className="text-secondary">По активным кластерам</p>
           </Card>
@@ -37,12 +37,12 @@ export default function AdminNodesPage() {
           </Card>
         </div>
 
-        <Card>
-          <div className="page-header">
-            <h2 className="h3">Ноды</h2>
-            <Button variant="secondary">Новая нода</Button>
+        <Card className="admin-panel">
+          <div className="admin-panel-head">
+            <h2 className="h3">Реестр нод</h2>
+            <Button variant="secondary">Добавить ноду</Button>
           </div>
-          <div className="admin-table-wrap">
+          <div className="admin-panel-body admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
@@ -62,7 +62,15 @@ export default function AdminNodesPage() {
                       <span className="small">{node.ip}</span>
                     </td>
                     <td>{node.region}</td>
-                    <td>{node.status}</td>
+                    <td>
+                      <span
+                        className={`status-pill ${
+                          node.status === "Активна" ? "ok" : node.status === "Синхронизация" ? "warn" : "error"
+                        }`}
+                      >
+                        {node.status}
+                      </span>
+                    </td>
                     <td>{node.cpu}</td>
                     <td>{node.ram}</td>
                   </tr>

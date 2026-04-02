@@ -64,9 +64,9 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
   return (
     <div className="grid">
       <div className="catalog-commerce-strip">
-        <span>В каталоге: {products.length} товаров</span>
+        <span>{products.length} товаров в наличии</span>
         <span>Доставка по Казахстану</span>
-        <span>Оплата: карты / Kaspi</span>
+        <span>Оформление за 1 минуту</span>
       </div>
 
       <div className="catalog-filters">
@@ -84,9 +84,9 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
             aria-label="Сортировка"
           >
             <option value="featured">По умолчанию</option>
+            <option value="name_asc">По названию</option>
             <option value="price_asc">Сначала дешевле</option>
             <option value="price_desc">Сначала дороже</option>
-            <option value="name_asc">По названию</option>
           </select>
         </div>
         <div className="category-tabs" role="tablist" aria-label="Категории">

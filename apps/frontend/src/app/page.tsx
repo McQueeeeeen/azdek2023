@@ -6,29 +6,22 @@ import Card from "@/components/ui/card";
 import SmartImage from "@/components/ui/smart-image";
 import { getProductMedia } from "@/lib/product-media";
 
-const PROMO_OFFERS = [
+const VALUE_POINTS = [
   "До 60 стирок с одной канистры",
-  "Меньше расход, стабильный результат",
-  "Формула, созданная химиком",
+  "Формула без лишних наполнителей",
+  "Стабильный результат с первого цикла",
 ];
 
-const ADVANTAGES = [
-  { title: "Концентрат без воды", text: "Рабочая формула вместо лишнего объёма и переплаты." },
-  { title: "Чисто с первого цикла", text: "Удаляет повседневные загрязнения без агрессивного запаха." },
-  { title: "Предсказуемый расход", text: "Понятная дозировка и экономика каждой стирки." },
+const FEATURED = [
+  { slug: "azdek-laundry-gel", name: "Гель для стирки Color", tag: "Для ежедневной стирки" },
+  { slug: "azdek-softener-fresh", name: "Кондиционер Fresh", tag: "Мягкость и свежесть" },
+  { slug: "azdek-dish-liquid-citrus", name: "Средство для посуды Citrus", tag: "Быстрое обезжиривание" },
 ];
 
-const HITS = [
-  { slug: "azdek-laundry-gel", name: "Гель для стирки Color", tag: "Хит продаж" },
-  { slug: "azdek-softener-fresh", name: "Кондиционер Fresh", tag: "Популярно" },
-  { slug: "azdek-dish-liquid-citrus", name: "Средство для посуды Citrus", tag: "Для кухни" },
-];
-
-const TRUST_POINTS = [
-  { title: "4.9/5 в отзывах", text: "Оценка покупателей на основных SKU." },
-  { title: "Отгрузка в день заказа", text: "Для заказов, подтвержденных до 16:00." },
-  { title: "Контроль партии", text: "Стабильный состав от партии к партии." },
-  { title: "Поддержка B2B", text: "Опт, документы и персональные условия." },
+const TRUST = [
+  { title: "4.9/5", text: "средняя оценка покупателей" },
+  { title: "Доставка день в день", text: "для заказов до 16:00" },
+  { title: "B2B поддержка", text: "счета, документы, персональные условия" },
 ];
 
 export default function HomePage() {
@@ -37,28 +30,24 @@ export default function HomePage() {
   return (
     <Section>
       <Container className="grid home-grid-ready">
-        <Card className="promo-strip">
-          <p className="small promo-strip-label">Премиум-линейка AZDEK</p>
-          <div className="promo-strip-list">
-            {PROMO_OFFERS.map((offer) => (
-              <span key={offer} className="promo-chip">
-                {offer}
-              </span>
-            ))}
-          </div>
-        </Card>
-
         <Card className="hero-card hero-card-premium">
-          <p className="small">Казахстан · Performance Home Care</p>
+          <p className="small">AZDEK · PERFORMANCE HOME CARE</p>
           <h1 className="h1">Концентрированные средства для стирки, разработанные химиком</h1>
-          <p className="text-secondary hero-copy">Максимум чистоты. Минимум лишнего. Продукт, который работает быстро и стабильно.</p>
+          <p className="text-secondary hero-copy">Чистота с первого цикла, предсказуемый расход и быстрый путь до оформления.</p>
           <div className="hero-actions">
             <Link href="/catalog">
               <Button>Смотреть продукцию</Button>
             </Link>
-            <Link href="/checkout">
-              <Button variant="secondary">Оформить заказ</Button>
+            <Link href="/cart">
+              <Button variant="secondary">Открыть корзину</Button>
             </Link>
+          </div>
+          <div className="promo-strip-list">
+            {VALUE_POINTS.map((item) => (
+              <span key={item} className="promo-chip">
+                {item}
+              </span>
+            ))}
           </div>
         </Card>
 
@@ -74,27 +63,18 @@ export default function HomePage() {
           />
         </Card>
 
-        <div className="advantages-grid">
-          {ADVANTAGES.map((item) => (
-            <Card key={item.title} className="home-feature-card">
-              <h2 className="h3">{item.title}</h2>
-              <p className="text-secondary">{item.text}</p>
-            </Card>
-          ))}
-        </div>
-
         <Card className="hits-section">
           <div className="page-header">
-            <h2 className="h2">Наша продукция</h2>
+            <h2 className="h2">Хиты каталога</h2>
             <Link href="/catalog">
-              <Button variant="ghost">Смотреть всё</Button>
+              <Button variant="ghost">Весь каталог</Button>
             </Link>
           </div>
           <div className="hits-grid">
-            {HITS.map((item) => {
+            {FEATURED.map((item) => {
               const media = getProductMedia(item.slug);
               return (
-                <article key={item.name} className="hit-item">
+                <article key={item.slug} className="hit-item">
                   <div className="hit-image-wrap">
                     <SmartImage
                       className="hit-image"
@@ -109,9 +89,9 @@ export default function HomePage() {
                   </div>
                   <p className="small">{item.tag}</p>
                   <h3 className="h3">{item.name}</h3>
-                  <Link href="/catalog">
+                  <Link href={`/catalog/${item.slug}`}>
                     <Button variant="secondary" className="full-width">
-                      Смотреть товар
+                      Перейти к товару
                     </Button>
                   </Link>
                 </article>
@@ -122,27 +102,18 @@ export default function HomePage() {
 
         <Card className="trust-band">
           <div className="page-header">
-            <h2 className="h2">Почему нам доверяют</h2>
-            <Link href="/catalog">
-              <Button variant="secondary">Перейти в каталог</Button>
+            <h2 className="h2">Почему выбирают AZDEK</h2>
+            <Link href="/checkout">
+              <Button>Перейти к оформлению</Button>
             </Link>
           </div>
-          <div className="trust-grid">
-            {TRUST_POINTS.map((item) => (
+          <div className="trust-grid" style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}>
+            {TRUST.map((item) => (
               <article key={item.title} className="trust-item">
                 <h3 className="h3">{item.title}</h3>
                 <p className="text-secondary">{item.text}</p>
               </article>
             ))}
-          </div>
-        </Card>
-
-        <Card className="promo-strip">
-          <p className="small promo-strip-label">Сравните результат после первой стирки</p>
-          <div className="hero-actions">
-            <Link href="/catalog">
-              <Button>Перейти в каталог</Button>
-            </Link>
           </div>
         </Card>
       </Container>

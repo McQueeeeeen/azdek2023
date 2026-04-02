@@ -1,4 +1,5 @@
 ﻿import "./globals.css";
+import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { Inter } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
@@ -14,9 +15,13 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata = {
-  title: "Azdek — Интернет-магазин",
+export const metadata: Metadata = {
+  title: "Azdek - Интернет-магазин",
   description: "Интернет-магазин бытовой химии Azdek",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

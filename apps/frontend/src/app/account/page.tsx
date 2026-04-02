@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { apiGet } from "@/lib/api";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
@@ -68,11 +68,18 @@ export default function AccountPage() {
     void run();
   }, []);
 
+  const roleLabel = useMemo(() => {
+    if (!me) {
+      return "-";
+    }
+    return ROLE_LABELS[me.role] ?? me.role;
+  }, [me]);
+
   if (loading) {
     return (
       <Section>
         <Container className="grid">
-          <PageHeader title="Личный кабинет" subtitle="Загружаем данные профиля и аккаунта" />
+          <PageHeader title="Личный кабинет" subtitle="Загружаем профиль и активность аккаунта" />
           <Card className="grid">
             <Skeleton className="h-24" />
             <Skeleton className="h-56" />
@@ -99,29 +106,50 @@ export default function AccountPage() {
   return (
     <Section>
       <Container className="grid">
-        <PageHeader title="Личный кабинет" subtitle="Профиль, роль и данные клиента" />
-        <Card className="grid">
-          {me ? (
-            <>
-              <p>
-                <strong>Email:</strong> {me.email}
-              </p>
-              <p>
-                <strong>Роль:</strong> {ROLE_LABELS[me.role] ?? me.role}
-              </p>
-              <p>
-                <strong>ID клиента:</strong> {me.customerId ?? "-"}
-              </p>
-            </>
-          ) : null}
+        <PageHeader title="Личный кабинет" subtitle="Ваш профиль, роль и статус клиентского аккаунта" />
+
+        <Card className="account-hero-card">
+          <span className="status-pill ok">Аккаунт активен</span>
+          <h2 className="h2">Добро пожаловать в AZDEK</h2>
+          <p className="text-secondary">Управляйте заказами, платежами и контактными данными в одном месте.</p>
         </Card>
+
+        <div className="account-metrics">
+          <div className="account-metric">
+            <p className="small">Роль</p>
+            <p className="h3">{roleLabel}</p>
+          </div>
+          <div className="account-metric">
+            <p className="small">ID клиента</p>
+            <p className="h3">{me?.customerId ?? "Не назначен"}</p>
+          </div>
+          <div className="account-metric">
+            <p className="small">Статус</p>
+            <p className="h3">Подключен</p>
+          </div>
+        </div>
+
+        <Card>
+          <h3 className="h3">Профиль</h3>
+          <div className="account-kv">
+            <p className="small">Email</p>
+            <p>{me?.email}</p>
+            <p className="small">Роль доступа</p>
+            <p>{roleLabel}</p>
+            <p className="small">Идентификатор</p>
+            <p>{me?.id}</p>
+          </div>
+        </Card>
+
         {customer ? (
-          <Card className="code-block">
-            <pre>{JSON.stringify(customer, null, 2)}</pre>
+          <Card>
+            <h3 className="h3">Профиль клиента</h3>
+            <div className="code-block">
+              <pre>{JSON.stringify(customer, null, 2)}</pre>
+            </div>
           </Card>
         ) : null}
       </Container>
     </Section>
   );
 }
-
