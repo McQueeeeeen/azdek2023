@@ -1,20 +1,20 @@
 :root {
   color-scheme: light;
-  --background: #f8f9fa;
+  --background: #ffffff;
   --surface: #ffffff;
-  --surface-low: #f1f4f6;
-  --surface-high: #e2e9ec;
-  --border: #dbe4e7;
-  --text-primary: #2b3437;
-  --text-secondary: #586064;
-  --text-muted: #737c7f;
-  --action-primary: #5f5e5e;
-  --action-primary-dim: #535252;
-  --action-primary-text: #faf7f6;
-  --tertiary: #005bc2;
-  --success: #0f8a4e;
+  --surface-low: #fafafa;
+  --surface-high: #f4f4f5;
+  --border: #e4e4e7;
+  --text-primary: #09090b;
+  --text-secondary: #3f3f46;
+  --text-muted: #71717a;
+  --action-primary: #111111;
+  --action-primary-dim: #27272a;
+  --action-primary-text: #fafafa;
+  --tertiary: #18181b;
+  --success: #15803d;
   --warning: #a16207;
-  --error: #9f403d;
+  --error: #b91c1c;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -26,8 +26,8 @@
   --space-8: 64px;
 
   --radius-control: 10px;
-  --radius-card: 14px;
-  --shadow-soft: 0 4px 24px -2px rgba(43, 52, 55, 0.06);
+  --radius-card: 12px;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 *,
@@ -46,8 +46,8 @@ body {
 }
 
 body {
-  font-family: "InterVariable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  line-height: 1.45;
+  font-family: "Geist", "InterVariable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -137,9 +137,9 @@ p {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(248, 249, 250, 0.84);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(171, 179, 183, 0.25);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
 }
 
 .site-header-inner {
@@ -168,7 +168,7 @@ p {
   align-items: center;
   gap: var(--space-4);
   color: var(--text-secondary);
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .desktop-nav a {
@@ -182,7 +182,7 @@ p {
 
 .desktop-nav a.is-active {
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .desktop-nav a.is-active::after {
@@ -193,7 +193,7 @@ p {
   bottom: 0;
   height: 2px;
   border-radius: 2px;
-  background: var(--text-primary);
+  background: #111111;
 }
 
 .header-tools {
@@ -304,9 +304,9 @@ p {
 .ui-button {
   border: none;
   border-radius: var(--radius-control);
-  padding: 11px 16px;
-  font-weight: 600;
-  font-size: 14px;
+  padding: 10px 14px;
+  font-weight: 500;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -319,6 +319,7 @@ p {
 .ui-button-primary {
   background: var(--action-primary);
   color: var(--action-primary-text);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .ui-button-primary:hover {
@@ -326,13 +327,13 @@ p {
 }
 
 .ui-button-secondary {
-  background: var(--surface-low);
+  background: var(--surface);
   color: var(--text-primary);
-  border: 1px solid rgba(171, 179, 183, 0.35);
+  border: 1px solid var(--border);
 }
 
 .ui-button-secondary:hover {
-  background: var(--surface-high);
+  background: var(--surface-low);
 }
 
 .ui-button-ghost {
@@ -347,10 +348,10 @@ p {
 }
 
 .ui-card {
-  border: 1px solid rgba(171, 179, 183, 0.2);
+  border: 1px solid var(--border);
   border-radius: var(--radius-card);
   background: var(--surface);
-  padding: 20px;
+  padding: 18px;
   box-shadow: var(--shadow-soft);
   display: grid;
   gap: var(--space-3);
@@ -358,17 +359,17 @@ p {
 
 .ui-input {
   width: 100%;
-  border: 1px solid transparent;
+  border: 1px solid var(--border);
   border-radius: var(--radius-control);
   padding: 11px 14px;
-  font-size: 15px;
-  background: var(--surface-low);
+  font-size: 14px;
+  background: var(--surface);
   color: var(--text-primary);
 }
 
 .ui-input:focus {
   outline: none;
-  border-color: rgba(95, 94, 94, 0.2);
+  border-color: #a1a1aa;
   background: var(--surface);
 }
 
@@ -453,9 +454,9 @@ p {
 }
 
 .promo-strip {
-  background: linear-gradient(135deg, #2b3437 0%, #3f484b 45%, #2b3437 100%);
-  color: #fff;
-  border: none;
+  background: #09090b;
+  color: #fafafa;
+  border: 1px solid #18181b;
 }
 
 .promo-strip-label { color: rgba(255, 255, 255, 0.72); }
@@ -472,7 +473,7 @@ p {
 .hero-card-premium {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(1200px 280px at 110% -10%, rgba(95, 94, 94, 0.11), transparent 60%), #ffffff;
+  background: radial-gradient(1200px 280px at 110% -10%, rgba(24, 24, 27, 0.06), transparent 60%), #ffffff;
 }
 
 .hero-copy { max-width: 58ch; }
@@ -535,7 +536,7 @@ p {
   position: absolute;
   top: 12px;
   left: 12px;
-  border: 1px solid rgba(171, 179, 183, 0.25);
+  border: 1px solid var(--border);
   border-radius: 999px;
   padding: 4px 8px;
   font-size: 12px;
@@ -547,7 +548,7 @@ p {
 .product-pitch { font-size: 14px; font-weight: 500; }
 .product-benefits { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .product-benefit-chip {
-  border: 1px solid rgba(171, 179, 183, 0.3);
+  border: 1px solid var(--border);
   border-radius: 999px;
   padding: 5px 9px;
   font-size: 12px;
@@ -676,7 +677,7 @@ p {
 }
 
 .admin-subnav-link {
-  border: 1px solid rgba(171, 179, 183, 0.3);
+  border: 1px solid var(--border);
   border-radius: 999px;
   padding: 8px 12px;
   font-size: 13px;
