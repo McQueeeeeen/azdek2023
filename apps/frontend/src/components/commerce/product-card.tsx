@@ -34,16 +34,16 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
       </div>
       <div className="product-card-body">
         <p className="small">{product.category.name}</p>
-        <h3 className="h3 product-title">{product.name}</h3>
-        <p className="text-secondary product-description">{product.description}</p>
+        <h3 className="h3 product-title">{commercial.cardTitle ?? product.name}</h3>
         <p className="product-pitch">{commercial.cardPitch}</p>
         <div className="product-benefits">
-          {commercial.highlights.slice(0, 2).map((highlight) => (
+          {commercial.highlights.slice(0, 4).map((highlight) => (
             <span key={highlight} className="product-benefit-chip">
               {highlight}
             </span>
           ))}
         </div>
+        <p className="text-secondary">{commercial.cardClosing}</p>
         <div className="product-proof-row">
           <span className="product-rating">★ {rating} · {reviewCount}+ отзывов</span>
           <span className={isInStock ? "product-stock ok" : "product-stock warn"}>
@@ -54,7 +54,7 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
       </div>
       <Link href={`/catalog/${product.slug}`}>
         <Button variant="secondary" className="full-width product-card-cta">
-          Купить сейчас
+          {commercial.cardCta}
         </Button>
       </Link>
     </Card>

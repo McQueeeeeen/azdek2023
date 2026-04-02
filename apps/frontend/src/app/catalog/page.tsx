@@ -20,7 +20,7 @@ export default async function CatalogPage() {
             subtitle="Чистый ассортимент без шума: выберите продукт, добавьте в корзину и оформите за минуту"
             action={
               <Link href="/cart">
-                <Button variant="secondary">Открыть корзину</Button>
+                <Button variant="secondary">Перейти к оформлению</Button>
               </Link>
             }
           />

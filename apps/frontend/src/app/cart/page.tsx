@@ -220,8 +220,8 @@ export default function CartPage() {
           </div>
         ) : (
           <EmptyState
-            title="Ваша корзина пуста"
-            description="Добавьте товары из каталога, чтобы перейти к оформлению заказа."
+            title="Твоя корзина пока пуста"
+            description="Добавь средство и реши задачу быстрее."
             actionHref="/catalog"
             actionText="Перейти в каталог"
           />

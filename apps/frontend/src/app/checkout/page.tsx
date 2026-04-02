@@ -102,7 +102,7 @@ export default function CheckoutPage() {
 
       const payload = await response.json();
       setState("done");
-      setSuccess("Заказ создан. Перенаправляем на страницу подтверждения...");
+      setSuccess("Заказ принят. Мы уже начали обработку. Сейчас откроем подтверждение.");
       toast({ title: "Заказ оформлен", description: "Открываем подтверждение", tone: "success" });
       if (payload.paymentUrl) {
         window.open(payload.paymentUrl, "_blank", "noopener,noreferrer");
@@ -112,7 +112,12 @@ export default function CheckoutPage() {
       }, 240);
     } catch (e) {
       setState("failed");
-      setError((e as Error).message);
+      const message = (e as Error).message?.trim();
+      setError(
+        message && message.length > 3
+          ? `Не удалось оформить заказ. ${message}`
+          : "Не удалось оформить заказ. Проверьте номер телефона или попробуйте снова.",
+      );
       toast({ title: "Ошибка оформления", tone: "error" });
     }
   };
@@ -161,14 +166,14 @@ export default function CheckoutPage() {
               {fieldErrors.deliveryAddress ? <p className="small" role="alert">{fieldErrors.deliveryAddress}</p> : null}
             </div>
 
-            <p className="text-secondary">Мы используем безопасную оплату. Ваши данные защищены.</p>
+            <p className="text-secondary">Безопасная оплата. Ваши данные защищены.</p>
             <div className="order-status-grid">
               <p className="small">Доступные методы</p>
               <p>Карты / Kaspi / другие провайдеры</p>
               <p className="small">Безопасность</p>
               <p>SSL / 3-D Secure</p>
-              <p className="small">Подтверждение</p>
-              <p>Email и статус заказа в кабинете</p>
+              <p className="small">Доставка</p>
+              <p>Доставим в удобное время. Без задержек и лишних звонков.</p>
             </div>
             <Button
               type="submit"
@@ -178,7 +183,7 @@ export default function CheckoutPage() {
               doneLabel="Готово"
               failedLabel="Проверить и повторить"
             >
-              Оформить заказ
+              Оформить за 1 минуту
             </Button>
           </Card>
           {error ? <ErrorState title="Ошибка оформления" message={error} /> : null}

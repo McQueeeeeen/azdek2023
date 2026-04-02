@@ -16,7 +16,7 @@ export default function CartSummary({
         {totalAmount} {currency}
       </p>
       <Link href="/checkout">
-        <Button className="full-width">Перейти к оформлению</Button>
+        <Button className="full-width">Оформить за 1 минуту</Button>
       </Link>
     </Card>
   );

@@ -33,16 +33,16 @@ export default function LoginPage() {
 
   const modeTitle = useMemo(() => {
     if (mode === "login") {
-      return "Вход";
+      return "Быстрый доступ к заказам";
     }
-    return "Регистрация";
+    return "Создать аккаунт";
   }, [mode]);
 
   const modeSubtitle = useMemo(() => {
     if (mode === "login") {
-      return "Войдите в аккаунт, чтобы видеть историю заказов и статус оплат.";
+      return "Без лишних данных. Только необходимое.";
     }
-    return "Создайте аккаунт за минуту и оформляйте заказы быстрее.";
+    return "Пара полей - и вы внутри.";
   }, [mode]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -169,7 +169,7 @@ export default function LoginPage() {
           </Card>
         ) : null}
 
-        {error ? <ErrorState title="Не удалось выполнить авторизацию" message={error} /> : null}
+        {error ? <ErrorState title="Не удалось войти" message={error} /> : null}
       </Container>
     </Section>
   );
