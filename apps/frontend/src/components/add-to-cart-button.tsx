@@ -6,15 +6,24 @@ import Button from "./ui/button";
 import { getSessionIdForCheckout, trackEvent } from "@/lib/analytics";
 import { UiActionState } from "@/lib/ui-state";
 import { useToast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/cn";
 
 export default function AddToCartButton({
   variantId,
   label = "Добавить в корзину",
   redirectToCart = true,
+  className,
+  pendingLabel,
+  doneLabel,
+  failedLabel,
 }: {
   variantId: string;
   label?: string;
   redirectToCart?: boolean;
+  className?: string;
+  pendingLabel?: string;
+  doneLabel?: string;
+  failedLabel?: string;
 }) {
   const router = useRouter();
   const { toast } = useToast();
@@ -22,12 +31,12 @@ export default function AddToCartButton({
 
   return (
     <Button
-      className="full-width"
+      className={cn("full-width", className)}
       disabled={state === "pending"}
       actionState={state}
-      pendingLabel="Добавляем..."
-      doneLabel="Добавлено"
-      failedLabel="Попробовать снова"
+      pendingLabel={pendingLabel ?? "Добавляем..."}
+      doneLabel={doneLabel ?? "Добавлено"}
+      failedLabel={failedLabel ?? "Попробовать снова"}
       onClick={() => {
         if (state === "pending") {
           return;
