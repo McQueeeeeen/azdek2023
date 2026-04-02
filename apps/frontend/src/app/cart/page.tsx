@@ -1,22 +1,24 @@
 ﻿"use client";
 
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import Container from "@/components/ui/container";
 import Section from "@/components/ui/section";
-import PageHeader from "@/components/ui/page-header";
-import Card from "@/components/ui/card";
 import Skeleton from "@/components/ui/skeleton";
 import EmptyState from "@/components/ui/empty-state";
 import ErrorState from "@/components/ui/error-state";
-import CartItem from "@/components/commerce/cart-item";
-import CartSummary from "@/components/commerce/cart-summary";
 import { UiActionState } from "@/lib/ui-state";
 import { useToast } from "@/components/ui/use-toast";
 import { CatalogProduct } from "@/lib/api";
-import ProductCard from "@/components/commerce/product-card";
+import Button from "@/components/ui/button";
+import AddToCartButton from "@/components/add-to-cart-button";
+import SmartImage from "@/components/ui/smart-image";
+import { getProductMedia } from "@/lib/product-media";
+import { formatMoney } from "@/lib/money";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 const PENDING_VARIANTS_KEY = "azdek_pending_variant_ids";
+const FREE_SHIPPING_THRESHOLD = 20000;
 
 interface CartView {
   id: string;
@@ -29,9 +31,17 @@ interface CartView {
     lineTotal: number;
     productVariant: {
       title: string;
-      product: { name: string };
+      product: { name: string; slug?: string };
     };
   }>;
+}
+
+function slugifyName(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9а-яё\s-]/gi, "")
+    .trim()
+    .replace(/\s+/g, "-");
 }
 
 export default function CartPage() {
@@ -72,6 +82,7 @@ export default function CartPage() {
     if (legacyVariantId && pendingVariantIds.length === 0) {
       pendingVariantIds.push(legacyVariantId);
     }
+
     const groupedPending = pendingVariantIds.reduce<Record<string, number>>((acc, variantId) => {
       acc[variantId] = (acc[variantId] ?? 0) + 1;
       return acc;
@@ -89,6 +100,7 @@ export default function CartPage() {
       setLoading(true);
       setActionState("pending");
       let data: CartView;
+
       if (existingCartId) {
         if (pendingVariantIds.length > 0) {
           for (const [variantId, quantity] of Object.entries(groupedPending)) {
@@ -125,23 +137,25 @@ export default function CartPage() {
         }
       }
 
+      const firstPending = pendingVariantIds[0];
       const create = await fetch(`${API_BASE}/cart/items`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          productVariantId: pendingVariantIds[0],
-          quantity: groupedPending[pendingVariantIds[0]] ?? 1,
+          productVariantId: firstPending,
+          quantity: groupedPending[firstPending] ?? 1,
         }),
       });
+
       if (!create.ok) {
         throw new Error(await create.text());
       }
+
       data = await create.json();
       localStorage.setItem("azdek_cart_id", data.id);
       emitCartUpdated();
-      const firstVariantId = pendingVariantIds[0];
-      delete groupedPending[firstVariantId];
 
+      delete groupedPending[firstPending];
       for (const [variantId, quantity] of Object.entries(groupedPending)) {
         const append = await fetch(`${API_BASE}/cart/items`, {
           method: "POST",
@@ -190,6 +204,7 @@ export default function CartPage() {
     try {
       setBusyItemId(itemId);
       setActionState("pending");
+
       const response = await fetch(`${API_BASE}/cart/items/${cart.id}/${itemId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -222,9 +237,7 @@ export default function CartPage() {
     try {
       setBusyItemId(itemId);
       setActionState("pending");
-      const response = await fetch(`${API_BASE}/cart/items/${cart.id}/${itemId}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(`${API_BASE}/cart/items/${cart.id}/${itemId}`, { method: "DELETE" });
 
       if (!response.ok) {
         throw new Error(await response.text());
@@ -233,12 +246,11 @@ export default function CartPage() {
       const nextCart = (await response.json()) as CartView;
       const nextValue = nextCart.items.length > 0 ? nextCart : null;
       setCart(nextValue);
+
       if (!nextValue) {
         localStorage.removeItem("azdek_cart_id");
-        emitCartUpdated();
-      } else {
-        emitCartUpdated();
       }
+      emitCartUpdated();
       setActionState("done");
       toast({ title: "Товар удален", tone: "info", durationMs: 1600 });
     } catch (e) {
@@ -255,15 +267,22 @@ export default function CartPage() {
     void loadRecommendations();
   }, []);
 
+  const subtotal = cart?.totalAmount ?? 0;
+  const freeShippingProgress = Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
+  const shippingLeft = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
+  const itemCount = cart?.items.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
+
+  const recommendationItems = useMemo(() => recommendations.slice(0, 2), [recommendations]);
+
   if (loading) {
     return (
       <Section>
         <Container className="grid">
-          <PageHeader title="Корзина" subtitle="Загружаем ваши товары" />
-          <Card className="grid">
+          <div className="grid">
+            <Skeleton className="h-24" />
             <Skeleton className="h-56" />
             <Skeleton className="h-56" />
-          </Card>
+          </div>
         </Container>
       </Section>
     );
@@ -273,8 +292,22 @@ export default function CartPage() {
     return (
       <Section>
         <Container>
-          <PageHeader title="Корзина" />
           <ErrorState title="Не удалось загрузить корзину" message={error} onRetry={() => void run()} />
+        </Container>
+      </Section>
+    );
+  }
+
+  if (!cart) {
+    return (
+      <Section>
+        <Container>
+          <EmptyState
+            title="Ваша корзина пока пуста"
+            description="Добавьте средство и решите задачу быстрее"
+            actionHref="/catalog"
+            actionText="Перейти в каталог"
+          />
         </Container>
       </Section>
     );
@@ -282,51 +315,172 @@ export default function CartPage() {
 
   return (
     <Section>
-      <Container className="grid">
-        <PageHeader title="Корзина" subtitle="Проверьте заказ перед оформлением" />
-        {actionState === "pending" ? (
-          <Card>
-            <p className="small">Обновляем корзину...</p>
-          </Card>
-        ) : null}
-        {cart ? (
-          <div className="cart-layout">
-            <div className="grid">
-              {cart.items.map((item) => (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  busy={busyItemId === item.id}
-                  onIncrease={(itemId, quantity) => void updateItemQuantity(itemId, quantity + 1)}
-                  onDecrease={(itemId, quantity) => void updateItemQuantity(itemId, Math.max(1, quantity - 1))}
-                  onRemove={(itemId) => void removeItem(itemId)}
-                />
-              ))}
-            </div>
-            <CartSummary totalAmount={cart.totalAmount} currency={cart.currency} />
-          </div>
-        ) : (
-          <EmptyState
-            title="Твоя корзина пока пуста"
-            description="Добавь средство и реши задачу быстрее."
-            actionHref="/catalog"
-            actionText="Перейти в каталог"
-          />
-        )}
+      <Container className="cart-v5-shell">
+        <header className="cart-v5-header motion-in">
+          <h1>Ваша корзина</h1>
+          <p>{itemCount} товар(ов) выбрано</p>
+        </header>
 
-        {recommendations.length > 0 ? (
-          <Card>
-            <h2 className="h3">Добавьте еще и закройте уборку полностью</h2>
-            <p className="text-secondary">Один товар - не вся задача.</p>
-            <div className="product-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
-              {recommendations.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+        {actionState === "pending" ? <p className="small">Обновляем корзину...</p> : null}
+
+        <div className="cart-v5-layout motion-in">
+          <div className="cart-v5-items-col">
+            <div className="cart-v5-shipping">
+              <div className="cart-v5-shipping-head">
+                <span>Бесплатная доставка</span>
+                <span>
+                  {shippingLeft > 0 ? `До подарочной доставки: ${formatMoney(shippingLeft, cart.currency)}` : "Бесплатная доставка активна"}
+                </span>
+              </div>
+              <div className="cart-v5-progress">
+                <div className="cart-v5-progress-bar" style={{ width: `${freeShippingProgress}%` }} />
+              </div>
             </div>
-          </Card>
-        ) : null}
+
+            <div className="cart-v5-items">
+              {cart.items.map((item) => {
+                const busy = busyItemId === item.id;
+                const guessedSlug = slugifyName(item.productVariant.product.name);
+                const media = getProductMedia(guessedSlug);
+
+                return (
+                  <article key={item.id} className="cart-v5-item">
+                    <div className="cart-v5-item-media">
+                      <SmartImage
+                        src={media.card}
+                        fallbackSrc="/media/laundry-gel.svg"
+                        alt={item.productVariant.product.name}
+                        fill
+                        className="cart-v5-item-image"
+                        sizes="(max-width: 768px) 100vw, 192px"
+                      />
+                    </div>
+
+                    <div className="cart-v5-item-content">
+                      <div className="cart-v5-item-top">
+                        <h3>{item.productVariant.product.name}</h3>
+                        <p>{formatMoney(item.lineTotal, cart.currency)}</p>
+                      </div>
+                      <p className="cart-v5-variant">{item.productVariant.title}</p>
+
+                      <div className="cart-v5-item-actions">
+                        <div className="cart-v5-qty">
+                          <button
+                            type="button"
+                            disabled={busy || item.quantity <= 1}
+                            onClick={() => void updateItemQuantity(item.id, Math.max(1, item.quantity - 1))}
+                          >
+                            <span className="material-symbols-outlined">remove</span>
+                          </button>
+                          <span>{item.quantity}</span>
+                          <button type="button" disabled={busy} onClick={() => void updateItemQuantity(item.id, item.quantity + 1)}>
+                            <span className="material-symbols-outlined">add</span>
+                          </button>
+                        </div>
+
+                        <button type="button" className="cart-v5-remove" disabled={busy} onClick={() => void removeItem(item.id)}>
+                          <span className="material-symbols-outlined">close</span>
+                          Удалить
+                        </button>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+
+            {recommendationItems.length > 0 ? (
+              <section className="cart-v5-cross-sell">
+                <h2>Дополните заказ</h2>
+                <div className="cart-v5-cross-grid">
+                  {recommendationItems.map((item) => {
+                    const variant = item.variants[0];
+                    const media = getProductMedia(item.slug);
+                    return (
+                      <article key={item.id} className="cart-v5-cross-card">
+                        <div className="cart-v5-cross-media">
+                          <SmartImage
+                            src={media.card}
+                            fallbackSrc="/media/laundry-gel.svg"
+                            alt={item.name}
+                            fill
+                            className="cart-v5-cross-image"
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="cart-v5-cross-bottom">
+                          <div>
+                            <h4>{item.name}</h4>
+                            <p>{variant ? formatMoney(variant.price, variant.currency) : "Под заказ"}</p>
+                          </div>
+                          {variant ? (
+                            <AddToCartButton
+                              variantId={variant.id}
+                              label="+"
+                              redirectToCart={false}
+                              className="cart-v5-cross-add"
+                              pendingLabel="..."
+                              doneLabel="✓"
+                              failedLabel="!"
+                            />
+                          ) : null}
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              </section>
+            ) : null}
+          </div>
+
+          <aside className="cart-v5-summary">
+            <div className="cart-v5-summary-card">
+              <h2>Итог заказа</h2>
+              <div className="cart-v5-summary-row">
+                <span>Подытог</span>
+                <strong>{formatMoney(subtotal, cart.currency)}</strong>
+              </div>
+              <div className="cart-v5-summary-row">
+                <span>Доставка</span>
+                <strong>{shippingLeft > 0 ? formatMoney(2000, cart.currency) : "Бесплатно"}</strong>
+              </div>
+              <div className="cart-v5-summary-row">
+                <span>Налог</span>
+                <strong>На оформлении</strong>
+              </div>
+
+              <div className="cart-v5-promo">
+                <label htmlFor="promo-code">Промокод</label>
+                <div>
+                  <input id="promo-code" type="text" placeholder="AZDEK10" />
+                  <button type="button">Применить</button>
+                </div>
+              </div>
+
+              <div className="cart-v5-total">
+                <span>Итого</span>
+                <p>{formatMoney(subtotal, cart.currency)}</p>
+              </div>
+
+              <Link href="/checkout" className="cart-v5-checkout-link">
+                <Button className="cart-v5-checkout-btn">Перейти к оформлению</Button>
+              </Link>
+            </div>
+
+            <div className="cart-v5-meta">
+              <p>
+                <span className="material-symbols-outlined">local_shipping</span>
+                Отправка в течение 24 часов
+              </p>
+              <p>
+                <span className="material-symbols-outlined">verified_user</span>
+                Гарантия возврата 60 дней
+              </p>
+            </div>
+          </aside>
+        </div>
       </Container>
     </Section>
   );
 }
-
