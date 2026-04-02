@@ -43,6 +43,10 @@ export default function CartPage() {
   const [actionState, setActionState] = useState<UiActionState>("idle");
   const [recommendations, setRecommendations] = useState<CatalogProduct[]>([]);
 
+  const emitCartUpdated = () => {
+    window.dispatchEvent(new Event("azdek-cart-updated"));
+  };
+
   const readPendingVariantIds = (): string[] => {
     try {
       const raw = localStorage.getItem(PENDING_VARIANTS_KEY);
@@ -59,6 +63,7 @@ export default function CartPage() {
   const clearPendingVariantIds = () => {
     localStorage.removeItem(PENDING_VARIANTS_KEY);
     localStorage.removeItem("azdek_variant_id");
+    emitCartUpdated();
   };
 
   const run = async () => {
@@ -104,6 +109,7 @@ export default function CartPage() {
         if (res.ok) {
           data = await res.json();
           setCart(data);
+          emitCartUpdated();
           setError(null);
           setActionState("done");
           return;
@@ -112,6 +118,7 @@ export default function CartPage() {
         if (pendingVariantIds.length === 0) {
           localStorage.removeItem("azdek_cart_id");
           setCart(null);
+          emitCartUpdated();
           setError(null);
           setActionState("done");
           return;
@@ -131,6 +138,7 @@ export default function CartPage() {
       }
       data = await create.json();
       localStorage.setItem("azdek_cart_id", data.id);
+      emitCartUpdated();
       const firstVariantId = pendingVariantIds[0];
       delete groupedPending[firstVariantId];
 
@@ -148,6 +156,7 @@ export default function CartPage() {
 
       clearPendingVariantIds();
       setCart(data);
+      emitCartUpdated();
       setError(null);
       setActionState("done");
       toast({ title: "Товары добавлены в корзину", tone: "success" });
@@ -193,6 +202,7 @@ export default function CartPage() {
 
       const nextCart = (await response.json()) as CartView;
       setCart(nextCart);
+      emitCartUpdated();
       setActionState("done");
       toast({ title: "Количество обновлено", tone: "success", durationMs: 1600 });
     } catch (e) {
@@ -225,6 +235,9 @@ export default function CartPage() {
       setCart(nextValue);
       if (!nextValue) {
         localStorage.removeItem("azdek_cart_id");
+        emitCartUpdated();
+      } else {
+        emitCartUpdated();
       }
       setActionState("done");
       toast({ title: "Товар удален", tone: "info", durationMs: 1600 });

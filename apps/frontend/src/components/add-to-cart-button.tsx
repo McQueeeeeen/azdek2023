@@ -27,6 +27,7 @@ function enqueueVariantId(variantId: string) {
   const current = readPendingVariantIds();
   current.push(variantId);
   localStorage.setItem(PENDING_VARIANTS_KEY, JSON.stringify(current));
+  window.dispatchEvent(new Event("azdek-cart-updated"));
 }
 
 export default function AddToCartButton({

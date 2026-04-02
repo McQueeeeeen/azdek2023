@@ -7,6 +7,9 @@ import { canAccessAdmin, getClientRole } from "@/lib/roles";
 import Container from "../ui/container";
 import Button from "../ui/button";
 
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
+const PENDING_VARIANTS_KEY = "azdek_pending_variant_ids";
+
 const NAV_ITEMS = [
   { href: "/catalog?section=laundry", label: "Стирка" },
   { href: "/catalog?section=kitchen", label: "Кухня" },
@@ -19,15 +22,72 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const [role, setRole] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
+
+  const readPendingVariantIds = () => {
+    try {
+      const raw = localStorage.getItem(PENDING_VARIANTS_KEY);
+      if (!raw) {
+        return [] as string[];
+      }
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed.filter((item) => typeof item === "string") : [];
+    } catch {
+      return [] as string[];
+    }
+  };
+
+  const loadCartCount = async () => {
+    try {
+      const pendingCount = readPendingVariantIds().length;
+      const cartId = localStorage.getItem("azdek_cart_id");
+
+      if (!cartId) {
+        setCartCount(pendingCount);
+        return;
+      }
+
+      const response = await fetch(`${API_BASE}/cart/${cartId}`, { cache: "no-store" });
+      if (!response.ok) {
+        localStorage.removeItem("azdek_cart_id");
+        setCartCount(pendingCount);
+        return;
+      }
+
+      const cart = (await response.json()) as { items?: Array<{ quantity: number }> };
+      const serverCount = (cart.items ?? []).reduce((sum, item) => sum + (item.quantity ?? 0), 0);
+      setCartCount(serverCount + pendingCount);
+    } catch {
+      setCartCount(readPendingVariantIds().length);
+    }
+  };
 
   useEffect(() => {
     try {
       setRole(getClientRole());
       setIsAuthenticated(Boolean(localStorage.getItem("azdek_access_token")));
+      void loadCartCount();
     } catch {
       setRole(null);
       setIsAuthenticated(false);
+      setCartCount(0);
     }
+
+    const onStorage = () => {
+      void loadCartCount();
+    };
+
+    const onCartUpdated = () => {
+      void loadCartCount();
+    };
+
+    window.addEventListener("storage", onStorage);
+    window.addEventListener("azdek-cart-updated", onCartUpdated);
+
+    return () => {
+      window.removeEventListener("storage", onStorage);
+      window.removeEventListener("azdek-cart-updated", onCartUpdated);
+    };
   }, []);
 
   const canSeeAdmin = canAccessAdmin(role);
@@ -39,6 +99,7 @@ export default function SiteHeader() {
     document.cookie = "azdek_access_token=; Path=/; Max-Age=0; SameSite=Lax";
     setIsAuthenticated(false);
     setRole(null);
+    setCartCount(0);
     router.push("/");
   };
 
@@ -72,6 +133,7 @@ export default function SiteHeader() {
           <Link href="/cart" aria-label="Корзина">
             <Button className="header-cart-btn" variant="secondary">
               Корзина
+              {cartCount > 0 ? <span className="header-cart-count">{cartCount}</span> : null}
             </Button>
           </Link>
 
