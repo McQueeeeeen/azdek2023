@@ -298,7 +298,14 @@ export default function CartPage() {
     );
   }
 
-  if (!cart) {
+  if (!cart || cart.items.length === 0) {
+    try {
+      localStorage.removeItem("azdek_cart_id");
+      emitCartUpdated();
+    } catch {
+      // no-op
+    }
+
     return (
       <Section>
         <Container>
