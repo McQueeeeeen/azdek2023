@@ -7,42 +7,41 @@ import Card from "@/components/ui/card";
 import SmartImage from "@/components/ui/smart-image";
 import { getProductMedia } from "@/lib/product-media";
 
-const SOLUTIONS = [
+const SOLUTION_CARDS = [
   "Убрать жир",
   "Убрать налет",
   "Убрать запах",
-  "Для пола и поверхностей",
   "Для ванной",
   "Универсальная уборка",
 ];
 
-const HOW_IT_WORKS = ["Выбираешь задачу", "Находишь средство", "Оформляешь заказ", "Получаешь результат"];
+const HOW_IT_WORKS = ["Выбираешь задачу", "Берешь средство", "Получаешь результат"];
 
 const WHY_US = [
-  { title: "Работает", text: "Результат с первого применения" },
-  { title: "Экономит время", text: "Меньше действий, больше эффекта" },
-  { title: "В наличии", text: "Быстрая обработка и отправка" },
-  { title: "Понятный выбор", text: "Каждый продукт под задачу" },
+  { title: "Работает сразу", text: "Без повторной чистки" },
+  { title: "Экономит время", text: "Сделал один раз - и все" },
+  { title: "В наличии", text: "Не ждешь. Покупаешь сразу" },
+  { title: "Понятный выбор", text: "Нашел за секунды" },
 ];
 
 const REVIEWS = [
-  { text: "Убрало жир с плиты за один проход. Без лишних повторов.", author: "Алия, Алматы" },
-  { text: "Налет в ванной ушел быстро, запах спокойный.", author: "Нурсултан, Астана" },
-  { text: "Понятный каталог: выбрал задачу и сразу нашел нужное.", author: "Айдана, Шымкент" },
+  { text: "Убрало жир с плиты за один проход.", author: "⭐ 5.0 · Алия, Алматы" },
+  { text: "Налет в ванной ушел быстро.", author: "⭐ 5.0 · Нурсултан, Астана" },
+  { text: "Выбрал за минуту и сразу оформил.", author: "⭐ 5.0 · Айдана, Шымкент" },
 ];
 
 const POPULAR = [
-  { slug: "azdek-laundry-gel", name: "Azdek Laundry Gel", hint: "Универсальная уборка" },
-  { slug: "azdek-softener-fresh", name: "Azdek Softener Fresh", hint: "Убрать налет" },
-  { slug: "azdek-dish-liquid-citrus", name: "Azdek Dish Liquid Citrus", hint: "Убрать жир" },
+  { slug: "azdek-laundry-gel", name: "Azdek Laundry Gel", hint: "Универсальная уборка", cta: "Добавить и забыть" },
+  { slug: "azdek-softener-fresh", name: "Azdek Softener Fresh", hint: "Убрать налет", cta: "Убрать налет" },
+  { slug: "azdek-dish-liquid-citrus", name: "Azdek Dish Liquid Citrus", hint: "Убрать жир", cta: "Убрать жир" },
 ];
 
 export const metadata: Metadata = {
   title: "Azdek - Чистота без лишних затрат времени",
-  description: "Бытовая химия, которая работает с первого раза. Решения по задачам: жир, налет, запах и универсальная уборка.",
+  description: "Жир, налет и грязь уходят с первого раза. Выбирайте решения, а не лишние товары.",
   openGraph: {
     title: "Azdek - Чистота без лишних затрат времени",
-    description: "Выбирайте средства, которые решают задачу сразу.",
+    description: "Выбирайте то, что реально работает.",
     type: "website",
   },
 };
@@ -56,15 +55,15 @@ export default function HomePage() {
         <Card className="hero-card hero-card-premium">
           <p className="small">AZDEK · HOME CARE</p>
           <h1 className="h1">Чистота без лишних затрат времени</h1>
-          <p className="text-secondary hero-copy">Бытовая химия, которая работает с первого раза</p>
+          <p className="text-secondary hero-copy">Жир, налет и грязь уходят с первого раза</p>
           <div className="promo-strip-list">
-            <span className="promo-chip">Для дома</span>
-            <span className="promo-chip">Для бизнеса</span>
-            <span className="promo-chip">В наличии</span>
+            <span className="promo-chip">Ты не должен мыть дважды</span>
+            <span className="promo-chip">Ты не должен тратить больше времени</span>
+            <span className="promo-chip">Ты не должен сомневаться в результате</span>
           </div>
           <div className="hero-actions">
             <Link href="/catalog">
-              <Button>Перейти в каталог</Button>
+              <Button>Выбрать решение</Button>
             </Link>
           </div>
         </Card>
@@ -81,9 +80,19 @@ export default function HomePage() {
           />
         </Card>
 
-        <Card className="hits-section">
-          <h2 className="h2">Плохая химия — это потраченное время, лишние усилия и слабый результат</h2>
-          <p className="text-secondary">Выбирайте средства, которые решают задачу сразу.</p>
+        <Card className="hits-section pain-contrast">
+          <div className="pain-side">
+            <h2 className="h3">Плохая химия — это:</h2>
+            <p>— потраченное время</p>
+            <p>— лишние усилия</p>
+            <p>— слабый результат</p>
+          </div>
+          <div className="pain-side pain-side-solution">
+            <h2 className="h3">Azdek — это:</h2>
+            <p>— быстро</p>
+            <p>— чисто</p>
+            <p>— с первого раза</p>
+          </div>
         </Card>
 
         <Card className="hits-section">
@@ -93,11 +102,12 @@ export default function HomePage() {
               <Button variant="secondary">Смотреть решения</Button>
             </Link>
           </div>
-          <div className="promo-strip-list">
-            {SOLUTIONS.map((item) => (
-              <span key={item} className="promo-chip">
-                {item}
-              </span>
+          <div className="solution-grid">
+            {SOLUTION_CARDS.map((item) => (
+              <Link key={item} href="/catalog" className="solution-card">
+                <h3 className="h3">{item}</h3>
+                <p className="small">Нажмите, чтобы выбрать средство</p>
+              </Link>
             ))}
           </div>
         </Card>
@@ -140,9 +150,7 @@ export default function HomePage() {
                   <p className="small">{item.hint}</p>
                   <h3 className="h3">{item.name}</h3>
                   <Link href={`/catalog/${item.slug}`}>
-                    <Button variant="secondary" className="full-width">
-                      Взять сейчас
-                    </Button>
+                    <Button className="full-width">{item.cta}</Button>
                   </Link>
                 </article>
               );
@@ -150,13 +158,14 @@ export default function HomePage() {
           </div>
         </Card>
 
-        <Card className="hits-section">
+        <Card className="hits-section how-grid">
           <h2 className="h2">Как это работает</h2>
-          <div className="promo-strip-list">
+          <div className="how-steps">
             {HOW_IT_WORKS.map((step, index) => (
-              <span key={step} className="promo-chip">
-                {index + 1}. {step}
-              </span>
+              <article key={step} className="how-step">
+                <span className="how-step-index">{index + 1}</span>
+                <p>{step}</p>
+              </article>
             ))}
           </div>
         </Card>
@@ -174,11 +183,11 @@ export default function HomePage() {
         </Card>
 
         <Card className="hero-card hero-card-premium">
-          <h2 className="h2">Перестаньте тратить время на слабые средства</h2>
-          <p className="text-secondary hero-copy">Выбирайте то, что реально работает</p>
+          <h2 className="h2">Перестань тратить время на слабые средства</h2>
+          <p className="text-secondary hero-copy">Реши проблему за одно применение</p>
           <div className="hero-actions">
             <Link href="/catalog">
-              <Button>Выбрать средство</Button>
+              <Button>Выбрать решение</Button>
             </Link>
           </div>
         </Card>

@@ -247,6 +247,7 @@ export default function CartPage() {
         {recommendations.length > 0 ? (
           <Card>
             <h2 className="h3">Добавьте еще и закройте уборку полностью</h2>
+            <p className="text-secondary">Один товар - не вся задача.</p>
             <div className="product-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
               {recommendations.map((product) => (
                 <ProductCard key={product.id} product={product} />

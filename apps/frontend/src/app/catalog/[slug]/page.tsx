@@ -210,6 +210,12 @@ export default async function ProductPage({ params }: { params: { slug: string }
               </Link>
             </div>
           </Card>
+
+          {firstVariant ? (
+            <div className="pdp-sticky-cta">
+              <AddToCartButton variantId={firstVariant.id} />
+            </div>
+          ) : null}
         </Container>
       </Section>
     );
