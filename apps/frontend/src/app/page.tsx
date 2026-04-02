@@ -15,12 +15,6 @@ const SOLUTION_CARDS = [
   { title: "Универсальная уборка", desc: "Быстро на каждый день" },
 ];
 
-const HERO_STATS = [
-  { label: "Результат", value: "с первого раза" },
-  { label: "Время", value: "экономия до 40%" },
-  { label: "Фокус", value: "только нужные средства" },
-];
-
 const HOW_IT_WORKS = ["Выбираешь задачу", "Берешь средство", "Получаешь результат"];
 
 const WHY_US = [
@@ -60,22 +54,12 @@ export default function HomePage() {
       <Container className="grid home-grid-ready">
         <Card className="hero-card hero-card-premium hero-card-strong">
           <p className="hero-kicker">AZDEK · HOME CARE</p>
-          <h1 className="h1 hero-title-strong">
-            Чистота <span className="hero-title-accent">без лишних</span> затрат времени
-          </h1>
+          <h1 className="h1 hero-title-strong">Чистота без лишних затрат времени</h1>
           <p className="hero-subtitle-strong">Жир, налет и грязь уходят с первого раза</p>
-          <div className="hero-proof-list">
-            <p>Ты не должен мыть дважды</p>
-            <p>Ты не должен тратить больше времени</p>
-            <p>Ты не должен сомневаться в результате</p>
-          </div>
-          <div className="hero-stats">
-            {HERO_STATS.map((item) => (
-              <article key={item.label} className="hero-stat">
-                <p className="small">{item.label}</p>
-                <p>{item.value}</p>
-              </article>
-            ))}
+          <div className="hero-meta-line">
+            <span>Для дома</span>
+            <span>Для бизнеса</span>
+            <span>В наличии</span>
           </div>
           <div className="hero-actions">
             <Link href="/catalog">
