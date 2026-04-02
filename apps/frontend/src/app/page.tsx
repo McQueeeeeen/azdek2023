@@ -58,14 +58,16 @@ export default function HomePage() {
   return (
     <Section>
       <Container className="grid home-grid-ready">
-        <Card className="hero-card hero-card-premium">
-          <p className="small">AZDEK · HOME CARE</p>
-          <h1 className="h1">Чистота без лишних затрат времени</h1>
-          <p className="text-secondary hero-copy">Жир, налет и грязь уходят с первого раза</p>
-          <div className="promo-strip-list">
-            <span className="promo-chip">Ты не должен мыть дважды</span>
-            <span className="promo-chip">Ты не должен тратить больше времени</span>
-            <span className="promo-chip">Ты не должен сомневаться в результате</span>
+        <Card className="hero-card hero-card-premium hero-card-strong">
+          <p className="hero-kicker">AZDEK · HOME CARE</p>
+          <h1 className="h1 hero-title-strong">
+            Чистота <span className="hero-title-accent">без лишних</span> затрат времени
+          </h1>
+          <p className="hero-subtitle-strong">Жир, налет и грязь уходят с первого раза</p>
+          <div className="hero-proof-list">
+            <p>Ты не должен мыть дважды</p>
+            <p>Ты не должен тратить больше времени</p>
+            <p>Ты не должен сомневаться в результате</p>
           </div>
           <div className="hero-stats">
             {HERO_STATS.map((item) => (

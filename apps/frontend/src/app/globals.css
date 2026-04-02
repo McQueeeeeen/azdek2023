@@ -127,6 +127,16 @@ p {
   font-weight: 700;
 }
 
+.hero-title-strong {
+  font-size: clamp(2.5rem, 5.8vw, 4.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+.hero-title-accent {
+  color: #34d399;
+}
+
 .h2 {
   font-size: clamp(1.7rem, 3.2vw, 2.35rem);
   line-height: 1.06;
@@ -548,6 +558,47 @@ p {
   background: radial-gradient(720px 240px at 105% -10%, rgba(30, 42, 56, 0.2), transparent 60%), #ffffff;
 }
 
+.hero-card-strong {
+  background:
+    radial-gradient(900px 300px at 100% -20%, rgba(52, 211, 153, 0.22), transparent 58%),
+    linear-gradient(145deg, #0f1720 0%, #162332 65%, #1b2b3d 100%);
+  color: #f8fbff;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.hero-card-strong .small,
+.hero-card-strong .text-secondary {
+  color: rgba(238, 246, 252, 0.82);
+}
+
+.hero-kicker {
+  font-size: 12px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(222, 234, 246, 0.85);
+  font-weight: 700;
+}
+
+.hero-subtitle-strong {
+  font-size: clamp(1.08rem, 1.8vw, 1.35rem);
+  line-height: 1.25;
+  color: rgba(242, 248, 255, 0.96);
+  max-width: 38ch;
+}
+
+.hero-proof-list {
+  display: grid;
+  gap: 8px;
+}
+
+.hero-proof-list p {
+  margin: 0;
+  border-left: 2px solid rgba(52, 211, 153, 0.55);
+  padding: 6px 0 6px 10px;
+  color: rgba(236, 245, 252, 0.95);
+  font-weight: 500;
+}
+
 .hero-copy { max-width: 58ch; }
 .hero-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
 .hero-stats {
@@ -557,9 +608,9 @@ p {
 }
 
 .hero-stat {
-  border: 1px solid rgba(171, 179, 183, 0.28);
+  border: 1px solid rgba(171, 179, 183, 0.18);
   border-radius: 12px;
-  background: linear-gradient(180deg, #ffffff 0%, #f3f6f9 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.08) 100%);
   padding: 10px 12px;
   display: grid;
   gap: 4px;
@@ -568,7 +619,18 @@ p {
 .hero-stat p:last-child {
   font-size: 13px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #f6fbff;
+}
+
+.hero-card-strong .ui-button-primary {
+  background: #34d399;
+  color: #0f1720;
+  font-weight: 700;
+  padding: 12px 18px;
+}
+
+.hero-card-strong .ui-button-primary:hover {
+  background: #22c68b;
 }
 
 .hero-visual-card {
@@ -1211,6 +1273,10 @@ p {
   .product-image-large,
   .hero-visual-card,
   .hero-product-image { min-height: 320px; }
+
+  .hero-title-strong {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
 
   .pdp-sticky-cta {
     position: fixed;
