@@ -143,7 +143,7 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
       <section className="catalog-v5-aura motion-in">
         <div className="catalog-v5-aura-head">
           <p>Профиль аромата</p>
-          <h2>Discover your aura</h2>
+          <h2>Выберите профиль</h2>
         </div>
         <div className="catalog-v5-aura-list">
           {AURA_ITEMS.map((item) => (
@@ -211,8 +211,8 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
       <section className="catalog-v5-products motion-in">
         <div className="catalog-v5-products-head">
           <div>
-            <h3>Выборка товаров</h3>
-            <p>Подходящие позиции по фильтрам и поиску.</p>
+            <h3>Товары</h3>
+            <p>Подходящие позиции по вашим фильтрам.</p>
           </div>
         </div>
 

@@ -10,25 +10,25 @@ const ESSENTIALS = [
   {
     slug: "azdek-dish-liquid-citrus",
     title: "Средство для удаления жира",
-    subtitle: "Kitchen Ritual",
+    subtitle: "Для кухни",
     price: "1490 KZT",
   },
   {
     slug: "azdek-softener-fresh",
     title: "Средство от известкового налета",
-    subtitle: "Bathroom Ritual",
+    subtitle: "Для ванной",
     price: "2290 KZT",
   },
   {
     slug: "azdek-laundry-gel",
     title: "Универсальное чистящее средство",
-    subtitle: "Daily Ritual",
+    subtitle: "На каждый день",
     price: "3990 KZT",
   },
   {
     slug: "azdek-dish-liquid-citrus",
     title: "Набор для кухни",
-    subtitle: "Curated Tools",
+    subtitle: "Базовый набор",
     price: "1890 KZT",
   },
 ];
@@ -42,7 +42,7 @@ const SCENTS = [
 ];
 
 export const metadata: Metadata = {
-  title: "Azdek - Sustainable Rituals",
+  title: "Azdek - Главная",
   description: "Современная бытовая химия для дома и бизнеса. Чисто, быстро, предсказуемо.",
 };
 
@@ -56,17 +56,17 @@ export default function HomePage() {
       <Container className="home-v3-shell">
         <section className="home-v3-hero">
           <div className="home-v3-hero-copy">
-            <p className="home-v3-kicker">New collection</p>
-            <h1 className="home-v3-title">Elevating the daily clean.</h1>
+            <p className="home-v3-kicker">Azdek Home Care</p>
+            <h1 className="home-v3-title">Чистота без лишних затрат времени</h1>
             <p className="home-v3-subtitle">
-              Экологичная бытовая химия Azdek, которая делает уборку частью понятного и спокойного ритуала.
+              Жир, налет и грязь уходят с первого раза. Выбирайте средство под задачу и получайте результат без лишних усилий.
             </p>
             <div className="home-v3-actions">
               <Link href="/catalog">
-                <Button>Купить</Button>
+                <Button>Выбрать решение</Button>
               </Link>
               <Link href="/catalog">
-                <Button variant="secondary">Смотреть каталог</Button>
+                <Button variant="secondary">Смотреть решения</Button>
               </Link>
             </div>
           </div>
@@ -85,8 +85,8 @@ export default function HomePage() {
 
         <section className="home-v3-scent-bar">
           <div className="home-v3-row-head">
-            <h2 className="home-v3-heading">Discover Your Signature</h2>
-            <p>Атмосферные профили для разных пространств</p>
+            <h2 className="home-v3-heading">Решения по задачам</h2>
+            <p>Выберите направление и переходите к нужному средству</p>
           </div>
           <div className="home-v3-scent-bubbles">
             {SCENTS.map((item) => (
@@ -111,7 +111,7 @@ export default function HomePage() {
                     loading="lazy"
                   />
                 </div>
-                <h3>{item.name}</h3>
+                <h3>{item.name === "Fresh" ? "Убрать жир" : item.name === "Soft" ? "Убрать налет" : item.name === "Neutral" ? "Убрать запах" : item.name === "Citrus" ? "Для ванной" : "Универсальная уборка"}</h3>
                 <p>{item.note}</p>
               </article>
             ))}
@@ -129,17 +129,17 @@ export default function HomePage() {
               sizes="(max-width: 1024px) 100vw, 66vw"
             />
             <div className="home-v3-bento-overlay">
-              <h3>Refilling the future</h3>
-              <p>Меньше лишнего пластика. Больше понятных и рабочих формул на каждый день.</p>
+              <h3>Плохая химия тратит ваше время</h3>
+              <p>Azdek работает сразу. Без повторной чистки. Без лишних движений.</p>
               <Link href="/catalog">
-                <Button>Купить</Button>
+                <Button>Выбрать средство</Button>
               </Link>
             </div>
           </article>
           <article className="home-v3-bento-side">
-            <p className="home-v3-kicker">Plant-derived potency</p>
+            <p className="home-v3-kicker">Почему Azdek</p>
             <h3>Быстро. Чисто. Без перегруза.</h3>
-            <p>Каталог собран как подборка решений, а не хаотичный список товаров.</p>
+            <p>Сильнее обычного масс-маркета. Экономит время. Четкий результат без «почти чисто».</p>
           </article>
         </section>
 
@@ -154,8 +154,8 @@ export default function HomePage() {
               sizes="(max-width: 1024px) 100vw, 64vw"
             />
             <div className="home-v3-story-overlay">
-              <h3>Kitchen Alchemy</h3>
-              <p>Формулы для кухни, которые работают быстро и не оставляют тяжелого запаха.</p>
+              <h3>Результат, а не процесс</h3>
+              <p>Вы убираете проблему, а не тратите полдня на уборку.</p>
               <Link href="/catalog">
                 <Button variant="secondary">Купить</Button>
               </Link>
@@ -163,9 +163,9 @@ export default function HomePage() {
           </article>
           <article className="home-v3-story-side">
             <div className="home-v3-story-tile">
-              <p className="home-v3-kicker">Our commitment</p>
-              <h4>Refill, reclaim, rejoice.</h4>
-              <p>Снижаем лишний пластик и делаем бытовую химию предсказуемой по качеству.</p>
+              <p className="home-v3-kicker">Ключевая идея</p>
+              <h4>Меньше шума. Больше покупки.</h4>
+              <p>Каждый блок ведет к действию. Каждый текст отвечает на вопрос «зачем мне это сейчас».</p>
             </div>
             <div className="home-v3-story-thumb">
               <SmartImage
@@ -183,7 +183,7 @@ export default function HomePage() {
 
         <section className="home-v3-essentials">
           <div className="home-v3-row-head">
-            <h2 className="home-v3-heading">The Essentials</h2>
+            <h2 className="home-v3-heading">Популярные товары</h2>
             <Link href="/catalog">
               <Button variant="ghost">Все товары</Button>
             </Link>
@@ -207,7 +207,7 @@ export default function HomePage() {
                   <div className="home-v3-product-copy">
                     <p className="home-v3-meta">{item.subtitle}</p>
                     <h3>{item.title}</h3>
-                    <p className="home-v3-product-note">Curated for the modern home</p>
+                    <p className="home-v3-product-note">Понятный выбор для ежедневной уборки</p>
                     <div className="home-v3-product-foot">
                       <span>{item.price}</span>
                       <Link href={`/catalog/${item.slug}`}>
@@ -222,11 +222,11 @@ export default function HomePage() {
         </section>
 
         <section className="home-v3-newsletter">
-          <p className="home-v3-kicker">Inner circle</p>
-          <h2 className="home-v3-heading">Получайте короткие подборки и новости Azdek</h2>
+          <p className="home-v3-kicker">Финальный дожим</p>
+          <h2 className="home-v3-heading">Перестаньте тратить время на слабые средства</h2>
           <div className="home-v3-news-form">
-            <input type="email" className="ui-input" placeholder="Ваш email" />
-            <Button>Подписаться</Button>
+            <input type="email" className="ui-input" placeholder="Ваш email для подтверждения заказа" />
+            <Button>Выбрать решение</Button>
           </div>
         </section>
       </Container>
