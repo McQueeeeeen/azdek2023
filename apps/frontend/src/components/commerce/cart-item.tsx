@@ -1,4 +1,5 @@
 ﻿import Card from "../ui/card";
+import { formatMoney } from "@/lib/money";
 
 interface CartItemView {
   id: string;
@@ -29,7 +30,7 @@ export default function CartItem({
       <div className="cart-item-main">
         <p className="h3">{item.productVariant.product.name}</p>
         <p className="text-secondary">{item.productVariant.title}</p>
-        <p className="small">Цена за единицу: {item.unitPrice} KZT</p>
+        <p className="small">Цена за единицу: {formatMoney(item.unitPrice, "KZT")}</p>
       </div>
       <div className="cart-item-meta">
         <div className="cart-item-actions">
@@ -39,7 +40,7 @@ export default function CartItem({
             disabled={busy || item.quantity <= 1}
             onClick={() => onDecrease(item.id, item.quantity)}
           >
-            −
+            -
           </button>
           <span>{item.quantity}</span>
           <button
@@ -52,7 +53,7 @@ export default function CartItem({
           </button>
         </div>
         <p>Кол-во: {item.quantity}</p>
-        <p>{item.lineTotal} KZT</p>
+        <p>{formatMoney(item.lineTotal, "KZT")}</p>
         <button type="button" className="cart-remove-link" disabled={busy} onClick={() => onRemove(item.id)}>
           Удалить
         </button>

@@ -16,6 +16,7 @@ import { CatalogProduct } from "@/lib/api";
 import ProductCard from "@/components/commerce/product-card";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
+const PENDING_VARIANTS_KEY = "azdek_pending_variant_ids";
 
 interface CartView {
   id: string;
@@ -42,10 +43,37 @@ export default function CartPage() {
   const [actionState, setActionState] = useState<UiActionState>("idle");
   const [recommendations, setRecommendations] = useState<CatalogProduct[]>([]);
 
+  const readPendingVariantIds = (): string[] => {
+    try {
+      const raw = localStorage.getItem(PENDING_VARIANTS_KEY);
+      if (!raw) {
+        return [];
+      }
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed.filter((item) => typeof item === "string") : [];
+    } catch {
+      return [];
+    }
+  };
+
+  const clearPendingVariantIds = () => {
+    localStorage.removeItem(PENDING_VARIANTS_KEY);
+    localStorage.removeItem("azdek_variant_id");
+  };
+
   const run = async () => {
-    const variantId = localStorage.getItem("azdek_variant_id");
+    const legacyVariantId = localStorage.getItem("azdek_variant_id");
+    const pendingVariantIds = readPendingVariantIds();
+    if (legacyVariantId && pendingVariantIds.length === 0) {
+      pendingVariantIds.push(legacyVariantId);
+    }
+    const groupedPending = pendingVariantIds.reduce<Record<string, number>>((acc, variantId) => {
+      acc[variantId] = (acc[variantId] ?? 0) + 1;
+      return acc;
+    }, {});
+
     const existingCartId = localStorage.getItem("azdek_cart_id");
-    if (!variantId && !existingCartId) {
+    if (pendingVariantIds.length === 0 && !existingCartId) {
       setCart(null);
       setError(null);
       setLoading(false);
@@ -57,28 +85,33 @@ export default function CartPage() {
       setActionState("pending");
       let data: CartView;
       if (existingCartId) {
-        if (variantId) {
-          const append = await fetch(`${API_BASE}/cart/items`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ cartId: existingCartId, productVariantId: variantId, quantity: 1 }),
-          });
-          if (append.ok) {
-            data = await append.json();
-            localStorage.removeItem("azdek_variant_id");
-            setCart(data);
-            setError(null);
-            setActionState("done");
-            toast({ title: "Товар добавлен в корзину", tone: "success" });
-            return;
+        if (pendingVariantIds.length > 0) {
+          for (const [variantId, quantity] of Object.entries(groupedPending)) {
+            const append = await fetch(`${API_BASE}/cart/items`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ cartId: existingCartId, productVariantId: variantId, quantity }),
+            });
+            if (!append.ok) {
+              throw new Error(await append.text());
+            }
           }
+          clearPendingVariantIds();
+          toast({ title: "Товары добавлены в корзину", tone: "success" });
         }
 
         const res = await fetch(`${API_BASE}/cart/${existingCartId}`, { cache: "no-store" });
         if (res.ok) {
           data = await res.json();
-          localStorage.removeItem("azdek_variant_id");
           setCart(data);
+          setError(null);
+          setActionState("done");
+          return;
+        }
+
+        if (pendingVariantIds.length === 0) {
+          localStorage.removeItem("azdek_cart_id");
+          setCart(null);
           setError(null);
           setActionState("done");
           return;
@@ -88,16 +121,36 @@ export default function CartPage() {
       const create = await fetch(`${API_BASE}/cart/items`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productVariantId: variantId, quantity: 1 }),
+        body: JSON.stringify({
+          productVariantId: pendingVariantIds[0],
+          quantity: groupedPending[pendingVariantIds[0]] ?? 1,
+        }),
       });
-
+      if (!create.ok) {
+        throw new Error(await create.text());
+      }
       data = await create.json();
       localStorage.setItem("azdek_cart_id", data.id);
-      localStorage.removeItem("azdek_variant_id");
+      const firstVariantId = pendingVariantIds[0];
+      delete groupedPending[firstVariantId];
+
+      for (const [variantId, quantity] of Object.entries(groupedPending)) {
+        const append = await fetch(`${API_BASE}/cart/items`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ cartId: data.id, productVariantId: variantId, quantity }),
+        });
+        if (!append.ok) {
+          throw new Error(await append.text());
+        }
+        data = await append.json();
+      }
+
+      clearPendingVariantIds();
       setCart(data);
       setError(null);
       setActionState("done");
-      toast({ title: "Товар добавлен в корзину", tone: "success" });
+      toast({ title: "Товары добавлены в корзину", tone: "success" });
     } catch (e) {
       setActionState("failed");
       setError((e as Error).message);
@@ -168,7 +221,11 @@ export default function CartPage() {
       }
 
       const nextCart = (await response.json()) as CartView;
-      setCart(nextCart.items.length > 0 ? nextCart : null);
+      const nextValue = nextCart.items.length > 0 ? nextCart : null;
+      setCart(nextValue);
+      if (!nextValue) {
+        localStorage.removeItem("azdek_cart_id");
+      }
       setActionState("done");
       toast({ title: "Товар удален", tone: "info", durationMs: 1600 });
     } catch (e) {

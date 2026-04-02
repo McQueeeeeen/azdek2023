@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import Card from "../ui/card";
 import Button from "../ui/button";
+import { formatMoney } from "@/lib/money";
 
 export default function CartSummary({
   totalAmount,
@@ -12,9 +13,7 @@ export default function CartSummary({
   return (
     <Card className="cart-summary">
       <p className="text-secondary">Итого к оплате</p>
-      <p className="h2">
-        {totalAmount} {currency}
-      </p>
+      <p className="h2">{formatMoney(totalAmount, currency)}</p>
       <Link href="/checkout">
         <Button className="full-width">Оформить за 1 минуту</Button>
       </Link>

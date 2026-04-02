@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { canAccessAdmin, getClientRole } from "@/lib/roles";
 import Container from "../ui/container";
 import Button from "../ui/button";
@@ -19,7 +19,6 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const [role, setRole] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -31,13 +30,7 @@ export default function SiteHeader() {
     }
   }, []);
 
-  const canSeeAdmin = useMemo(() => canAccessAdmin(role), [role]);
-  const authLabel = useMemo(() => {
-    if (!role) {
-      return "Аккаунт";
-    }
-    return role === "owner" ? "Владелец" : role === "admin" ? "Администратор" : "Аккаунт";
-  }, [role]);
+  const canSeeAdmin = canAccessAdmin(role);
 
   const logout = () => {
     localStorage.removeItem("azdek_access_token");
@@ -46,7 +39,6 @@ export default function SiteHeader() {
     document.cookie = "azdek_access_token=; Path=/; Max-Age=0; SameSite=Lax";
     setIsAuthenticated(false);
     setRole(null);
-    setMenuOpen(false);
     router.push("/");
   };
 
@@ -84,31 +76,22 @@ export default function SiteHeader() {
           </Link>
 
           {isAuthenticated ? (
-            <div className="account-menu">
-              <button
-                type="button"
-                className="account-menu-trigger"
-                aria-expanded={menuOpen}
-                aria-haspopup="menu"
-                onClick={() => setMenuOpen((prev) => !prev)}
-              >
-                {authLabel}
-              </button>
-              {menuOpen ? (
-                <div className="account-menu-dropdown" role="menu">
-                  <Link href="/account" role="menuitem" onClick={() => setMenuOpen(false)}>
-                    Личный кабинет
-                  </Link>
-                  {canSeeAdmin ? (
-                    <Link href="/admin" role="menuitem" onClick={() => setMenuOpen(false)}>
-                      Админ-панель
-                    </Link>
-                  ) : null}
-                  <button type="button" className="account-menu-logout" role="menuitem" onClick={logout}>
-                    Выйти
-                  </button>
-                </div>
+            <div className="header-auth-links">
+              <Link href="/account" aria-label="Личный кабинет">
+                <Button className="header-account-btn" variant="secondary">
+                  Личный кабинет
+                </Button>
+              </Link>
+              {canSeeAdmin ? (
+                <Link href="/admin" aria-label="Админ-панель">
+                  <Button className="header-role-btn" variant="secondary">
+                    {role === "owner" ? "Владелец" : role === "admin" ? "Администратор" : "Оператор"}
+                  </Button>
+                </Link>
               ) : null}
+              <Button className="header-logout-btn" variant="ghost" onClick={logout}>
+                Выйти
+              </Button>
             </div>
           ) : (
             <Link href="/login">

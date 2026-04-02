@@ -8,6 +8,27 @@ import { UiActionState } from "@/lib/ui-state";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/cn";
 
+const PENDING_VARIANTS_KEY = "azdek_pending_variant_ids";
+
+function readPendingVariantIds(): string[] {
+  try {
+    const raw = localStorage.getItem(PENDING_VARIANTS_KEY);
+    if (!raw) {
+      return [];
+    }
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.filter((item) => typeof item === "string") : [];
+  } catch {
+    return [];
+  }
+}
+
+function enqueueVariantId(variantId: string) {
+  const current = readPendingVariantIds();
+  current.push(variantId);
+  localStorage.setItem(PENDING_VARIANTS_KEY, JSON.stringify(current));
+}
+
 export default function AddToCartButton({
   variantId,
   label = "Добавить в корзину",
@@ -44,7 +65,9 @@ export default function AddToCartButton({
 
         try {
           setState("pending");
+          // Backward-compatible single key + queue for multi-add flow.
           localStorage.setItem("azdek_variant_id", variantId);
+          enqueueVariantId(variantId);
           void trackEvent({
             eventType: "add_to_cart",
             sessionId: getSessionIdForCheckout(),

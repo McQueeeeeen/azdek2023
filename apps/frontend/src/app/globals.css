@@ -268,6 +268,25 @@ p {
   border-radius: 14px;
 }
 
+.header-auth-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-account-btn,
+.header-role-btn {
+  border-radius: 14px;
+}
+
+.header-account-btn {
+  min-width: 146px;
+}
+
+.header-logout-btn {
+  border-radius: 12px;
+}
+
 .account-menu {
   position: relative;
 }
@@ -1324,7 +1343,19 @@ p {
   .desktop-nav,
   .site-footer,
   .header-search,
-  .header-cta { display: none; }
+  .header-cta,
+  .header-logout-btn { display: none; }
+
+  .header-auth-links {
+    gap: 6px;
+  }
+
+  .header-account-btn,
+  .header-role-btn {
+    min-width: 0;
+    padding: 9px 10px;
+    font-size: 12px;
+  }
 
   .site-header-inner { min-height: 64px; }
   .brand-mark { font-size: 18px; }
