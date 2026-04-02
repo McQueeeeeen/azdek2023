@@ -135,7 +135,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 <p className="text-secondary">1 упаковка = до {commercial.washCount} стирок</p>
                 {firstVariant ? (
                   <p className="text-secondary">
-                    Стоимость одной стирки — от {formatMoney(firstVariant.price / Math.max(1, commercial.washCount), firstVariant.currency)}
+                    Стоимость одной стирки - от {formatMoney(firstVariant.price / Math.max(1, commercial.washCount), firstVariant.currency)}
                   </p>
                 ) : null}
               </div>

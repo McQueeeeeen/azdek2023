@@ -8,11 +8,17 @@ import SmartImage from "@/components/ui/smart-image";
 import { getProductMedia } from "@/lib/product-media";
 
 const SOLUTION_CARDS = [
-  "Убрать жир",
-  "Убрать налет",
-  "Убрать запах",
-  "Для ванной",
-  "Универсальная уборка",
+  { title: "Убрать жир", desc: "Плита, вытяжка, кухня" },
+  { title: "Убрать налет", desc: "Краны, плитка, стекло" },
+  { title: "Убрать запах", desc: "Ткань и мягкие зоны" },
+  { title: "Для ванной", desc: "Налет и бактерии" },
+  { title: "Универсальная уборка", desc: "Быстро на каждый день" },
+];
+
+const HERO_STATS = [
+  { label: "Результат", value: "с первого раза" },
+  { label: "Время", value: "экономия до 40%" },
+  { label: "Фокус", value: "только нужные средства" },
 ];
 
 const HOW_IT_WORKS = ["Выбираешь задачу", "Берешь средство", "Получаешь результат"];
@@ -61,6 +67,14 @@ export default function HomePage() {
             <span className="promo-chip">Ты не должен тратить больше времени</span>
             <span className="promo-chip">Ты не должен сомневаться в результате</span>
           </div>
+          <div className="hero-stats">
+            {HERO_STATS.map((item) => (
+              <article key={item.label} className="hero-stat">
+                <p className="small">{item.label}</p>
+                <p>{item.value}</p>
+              </article>
+            ))}
+          </div>
           <div className="hero-actions">
             <Link href="/catalog">
               <Button>Выбрать решение</Button>
@@ -82,16 +96,16 @@ export default function HomePage() {
 
         <Card className="hits-section pain-contrast">
           <div className="pain-side">
-            <h2 className="h3">Плохая химия — это:</h2>
-            <p>— потраченное время</p>
-            <p>— лишние усилия</p>
-            <p>— слабый результат</p>
+            <h2 className="h3">Плохая химия - это:</h2>
+            <p>- потраченное время</p>
+            <p>- лишние усилия</p>
+            <p>- слабый результат</p>
           </div>
           <div className="pain-side pain-side-solution">
-            <h2 className="h3">Azdek — это:</h2>
-            <p>— быстро</p>
-            <p>— чисто</p>
-            <p>— с первого раза</p>
+            <h2 className="h3">Azdek - это:</h2>
+            <p>- быстро</p>
+            <p>- чисто</p>
+            <p>- с первого раза</p>
           </div>
         </Card>
 
@@ -104,9 +118,9 @@ export default function HomePage() {
           </div>
           <div className="solution-grid">
             {SOLUTION_CARDS.map((item) => (
-              <Link key={item} href="/catalog" className="solution-card">
-                <h3 className="h3">{item}</h3>
-                <p className="small">Нажмите, чтобы выбрать средство</p>
+              <Link key={item.title} href="/catalog" className="solution-card">
+                <h3 className="h3">{item.title}</h3>
+                <p className="small">{item.desc}</p>
               </Link>
             ))}
           </div>
