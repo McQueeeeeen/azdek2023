@@ -144,7 +144,7 @@ export default function SiteHeader() {
               {canSeeAdmin ? (
                 <Link href="/admin" aria-label="Админ-панель">
                   <Button className="header-role-btn" variant="secondary">
-                    {role === "owner" ? "Владелец" : role === "admin" ? "Администратор" : "Оператор"}
+                    Админ-панель
                   </Button>
                 </Link>
               ) : null}
