@@ -1,7 +1,7 @@
 ﻿import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import { Inter } from "next/font/google";
+import { Manrope, Newsreader } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import GlobalAnalyticsTracker from "@/components/global-analytics-tracker";
 import SiteHeader from "@/components/layout/site-header";
@@ -9,9 +9,17 @@ import SiteFooter from "@/components/layout/site-footer";
 import MobileBottomNav from "@/components/layout/mobile-bottom-nav";
 import ToastHost from "@/components/ui/toast-host";
 
-const inter = Inter({
+const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  weight: ["400", "600", "700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -27,7 +35,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ru">
-      <body className={`${GeistSans.variable} ${inter.variable}`}>
+      <body className={`${GeistSans.variable} ${manrope.variable} ${newsreader.variable}`}>
         <GlobalAnalyticsTracker />
         <ToastHost />
         <div className="app-shell">
