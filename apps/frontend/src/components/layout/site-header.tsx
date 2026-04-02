@@ -11,10 +11,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 const PENDING_VARIANTS_KEY = "azdek_pending_variant_ids";
 
 const NAV_ITEMS = [
-  { href: "/catalog?section=laundry", label: "Стирка" },
-  { href: "/catalog?section=kitchen", label: "Кухня" },
-  { href: "/catalog?section=refills", label: "Пополнения" },
-  { href: "/catalog?section=rituals", label: "Ритуалы" },
+  { href: "/catalog", label: "Каталог" },
 ];
 
 export default function SiteHeader() {
@@ -117,7 +114,7 @@ export default function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className={pathname === "/catalog" && item.label === "Стирка" ? "is-active" : undefined}
+              className={pathname.startsWith(item.href) ? "is-active" : undefined}
             >
               {item.label}
             </Link>

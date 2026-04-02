@@ -14,6 +14,13 @@ import PriceBlock from "./price-block";
 
 type SortMode = "featured" | "price_asc" | "price_desc" | "name_asc";
 
+const CATEGORY_LABEL_MAP: Record<string, string> = {
+  laundry: "Стирка",
+  kitchen: "Кухня",
+  refills: "Пополнения",
+  rituals: "Ритуалы",
+};
+
 function getMinPrice(product: CatalogProduct): number {
   return product.variants[0]?.price ?? 0;
 }
@@ -33,7 +40,8 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
     const seen = new Map<string, string>();
     for (const p of products) {
       if (!seen.has(p.category.slug)) {
-        seen.set(p.category.slug, p.category.name);
+        const mapped = CATEGORY_LABEL_MAP[p.category.slug] ?? p.category.name;
+        seen.set(p.category.slug, mapped);
       }
     }
     return [{ slug: "all", name: "Все" }, ...Array.from(seen.entries()).map(([slug, name]) => ({ slug, name }))];
