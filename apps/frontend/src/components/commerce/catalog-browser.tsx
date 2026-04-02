@@ -6,6 +6,7 @@ import ProductGrid from "./product-grid";
 import EmptyState from "../ui/empty-state";
 import { Input } from "../ui/input";
 import Button from "../ui/button";
+import { getProductCommercialContent } from "@/lib/product-commercial-content";
 
 type SortMode = "featured" | "price_asc" | "price_desc" | "name_asc";
 
@@ -16,7 +17,13 @@ function getMinPrice(product: CatalogProduct): number {
 export default function CatalogBrowser({ products }: { products: CatalogProduct[] }) {
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [activeSolution, setActiveSolution] = useState("all");
   const [sortMode, setSortMode] = useState<SortMode>("featured");
+
+  const solutions = useMemo(
+    () => ["all", "Убрать жир", "Убрать налет", "Убрать запах", "Универсальная уборка"] as const,
+    [],
+  );
 
   const categories = useMemo(() => {
     const seen = new Map<string, string>();
@@ -34,6 +41,9 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
 
     if (activeCategory !== "all") {
       result = result.filter((p) => p.category.slug === activeCategory);
+    }
+    if (activeSolution !== "all") {
+      result = result.filter((p) => getProductCommercialContent(p.slug).solution === activeSolution);
     }
     if (normalizedQuery) {
       result = result.filter(
@@ -59,14 +69,14 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
     }
 
     return result;
-  }, [products, activeCategory, query, sortMode]);
+  }, [products, activeCategory, activeSolution, query, sortMode]);
 
   return (
     <div className="grid">
       <div className="catalog-commerce-strip">
         <span>{products.length} товаров в наличии</span>
         <span>Доставка по Казахстану</span>
-        <span>Оформление за 1 минуту</span>
+        <span>Понятный выбор без лишнего</span>
       </div>
 
       <div className="catalog-filters">
@@ -101,6 +111,18 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
             </Button>
           ))}
         </div>
+        <div className="category-tabs" role="tablist" aria-label="Решения по задачам">
+          {solutions.map((solution) => (
+            <Button
+              key={solution}
+              variant={activeSolution === solution ? "primary" : "secondary"}
+              className="category-tab"
+              onClick={() => setActiveSolution(solution)}
+            >
+              {solution === "all" ? "Все решения" : solution}
+            </Button>
+          ))}
+        </div>
       </div>
 
       {filtered.length > 0 ? (
@@ -115,6 +137,7 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
               onClick={() => {
                 setQuery("");
                 setActiveCategory("all");
+                setActiveSolution("all");
                 setSortMode("featured");
               }}
             >

@@ -14,6 +14,9 @@ export interface ProductCommercialContent {
   cardPitch: string;
   cardClosing: string;
   cardCta: string;
+  solution: "Убрать жир" | "Убрать налет" | "Убрать запах" | "Универсальная уборка";
+  painPoints: string[];
+  resultPoints: string[];
   highlights: string[];
   shortDescription: string;
   usage: string;
@@ -29,6 +32,9 @@ const fallback: ProductCommercialContent = {
   cardPitch: "Удаляет загрязнения с первого раза.",
   cardClosing: "Меньше времени на уборку - больше результата.",
   cardCta: "Убрать проблему",
+  solution: "Универсальная уборка",
+  painPoints: ["Слабый результат", "Лишние усилия", "Повторная уборка"],
+  resultPoints: ["Чище с первого раза", "Экономия времени", "Без лишних повторов"],
   highlights: [
     "Высокая концентрация",
     "Экономичный расход",
@@ -64,6 +70,9 @@ const bySlug: Record<string, ProductCommercialContent> = {
     cardPitch: "Удаляет жир за одно нанесение.",
     cardClosing: "Меньше трения - быстрее результат.",
     cardCta: "Убрать проблему",
+    solution: "Убрать жир",
+    painPoints: ["Жир остается на поверхности", "Приходится долго тереть", "Остаются разводы"],
+    resultPoints: ["Растворяет жир быстро", "Чистит без лишних усилий", "Оставляет чистую поверхность"],
     highlights: [
       "Растворяет даже застарелый жир",
       "Не оставляет разводов",
@@ -97,6 +106,9 @@ const bySlug: Record<string, ProductCommercialContent> = {
     cardPitch: "Налет исчезает, поверхность чистая.",
     cardClosing: "Чисто без усилий.",
     cardCta: "Взять сейчас",
+    solution: "Убрать налет",
+    painPoints: ["Следы воды на сантехнике", "Известковый налет возвращается", "Резкий запах после уборки"],
+    resultPoints: ["Налет исчезает быстро", "Поверхность остается чистой", "Комфортный аромат без резкости"],
     highlights: [
       "Работает с первого применения",
       "Убирает следы воды и камня",
@@ -130,6 +142,9 @@ const bySlug: Record<string, ProductCommercialContent> = {
     cardPitch: "Один продукт - весь дом.",
     cardClosing: "Меньше средств - больше порядка.",
     cardCta: "Добавить и забыть",
+    solution: "Универсальная уборка",
+    painPoints: ["Много средств под разные задачи", "Сложно выбрать подходящее", "Лишние траты времени"],
+    resultPoints: ["Один продукт под ключевые задачи", "Понятный и быстрый выбор", "Чисто без перегруза"],
     highlights: [
       "Для кухни, пола и поверхностей",
       "Быстрое действие",

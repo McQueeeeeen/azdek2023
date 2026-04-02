@@ -5,6 +5,8 @@ import Card from "@/components/ui/card";
 import PageHeader from "@/components/ui/page-header";
 import OrderStatusBadge from "@/components/commerce/order-status-badge";
 import Divider from "@/components/ui/divider";
+import Link from "next/link";
+import Button from "@/components/ui/button";
 
 interface OrderView {
   orderNumber: string;
@@ -40,6 +42,13 @@ export default async function OrderPage({ params }: { params: { orderNumber: str
           <p className="h2">
             {order.pricing.totalAmount} {order.pricing.currency}
           </p>
+        </Card>
+        <Card className="grid">
+          <h2 className="h3">Пока ждете заказ, закройте уборку полностью</h2>
+          <p className="text-secondary">Дополните набор: средство для ванной, пола или универсальное решение.</p>
+          <Link href="/catalog">
+            <Button variant="secondary">Смотреть решения</Button>
+          </Link>
         </Card>
       </Container>
     </Section>

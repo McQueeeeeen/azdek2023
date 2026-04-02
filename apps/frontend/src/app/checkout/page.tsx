@@ -15,7 +15,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 
-type FieldErrors = Partial<Record<"customerName" | "customerPhone" | "customerEmail" | "deliveryAddress", string>>;
+type FieldErrors = Partial<Record<"customerName" | "customerPhone" | "deliveryAddress", string>>;
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -42,8 +42,8 @@ export default function CheckoutPage() {
     const sessionId = getSessionIdForCheckout();
     const customerName = String(formData.get("customerName") ?? "").trim();
     const customerPhone = String(formData.get("customerPhone") ?? "").trim();
-    const customerEmail = String(formData.get("customerEmail") ?? "").trim();
     const deliveryAddress = String(formData.get("deliveryAddress") ?? "").trim();
+    const customerEmail = `${customerPhone.replace(/\D/g, "").slice(-10) || "guest"}@azdek.local`;
 
     const nextFieldErrors: FieldErrors = {};
 
@@ -59,10 +59,6 @@ export default function CheckoutPage() {
 
     if (!/^[+0-9 ()-]{8,}$/.test(customerPhone)) {
       nextFieldErrors.customerPhone = "Введите корректный номер телефона.";
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-      nextFieldErrors.customerEmail = "Введите корректный email.";
     }
 
     if (!deliveryAddress || deliveryAddress.length < 6) {
@@ -125,7 +121,7 @@ export default function CheckoutPage() {
   return (
     <Section>
       <Container className="grid checkout-layout">
-        <PageHeader title="Оформление заказа" subtitle="Минимум полей, быстрая проверка, безопасная оплата" />
+        <PageHeader title="Оформление заказа" subtitle="Займет меньше минуты" />
         {success ? (
           <Card>
             <p className="small">{success}</p>
@@ -143,17 +139,6 @@ export default function CheckoutPage() {
             <div className="grid">
               <Input name="customerPhone" placeholder="Телефон" required aria-invalid={Boolean(fieldErrors.customerPhone)} />
               {fieldErrors.customerPhone ? <p className="small" role="alert">{fieldErrors.customerPhone}</p> : null}
-            </div>
-
-            <div className="grid">
-              <Input
-                name="customerEmail"
-                type="email"
-                placeholder="Email"
-                required
-                aria-invalid={Boolean(fieldErrors.customerEmail)}
-              />
-              {fieldErrors.customerEmail ? <p className="small" role="alert">{fieldErrors.customerEmail}</p> : null}
             </div>
 
             <div className="grid">

@@ -53,7 +53,7 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
         <PriceBlock amount={firstVariant?.price ?? 0} currency={firstVariant?.currency ?? "KZT"} />
       </div>
       <Link href={`/catalog/${product.slug}`}>
-        <Button variant="secondary" className="full-width product-card-cta">
+        <Button className="full-width product-card-cta">
           {commercial.cardCta}
         </Button>
       </Link>

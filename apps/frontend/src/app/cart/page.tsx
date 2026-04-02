@@ -12,6 +12,8 @@ import CartItem from "@/components/commerce/cart-item";
 import CartSummary from "@/components/commerce/cart-summary";
 import { UiActionState } from "@/lib/ui-state";
 import { useToast } from "@/components/ui/use-toast";
+import { CatalogProduct } from "@/lib/api";
+import ProductCard from "@/components/commerce/product-card";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 
@@ -38,6 +40,7 @@ export default function CartPage() {
   const [loading, setLoading] = useState(false);
   const [busyItemId, setBusyItemId] = useState<string | null>(null);
   const [actionState, setActionState] = useState<UiActionState>("idle");
+  const [recommendations, setRecommendations] = useState<CatalogProduct[]>([]);
 
   const run = async () => {
     const variantId = localStorage.getItem("azdek_variant_id");
@@ -104,6 +107,19 @@ export default function CartPage() {
     }
   };
 
+  const loadRecommendations = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/catalog/products`, { cache: "no-store" });
+      if (!res.ok) {
+        return;
+      }
+      const items = (await res.json()) as CatalogProduct[];
+      setRecommendations(items.slice(0, 2));
+    } catch {
+      setRecommendations([]);
+    }
+  };
+
   const updateItemQuantity = async (itemId: string, nextQuantity: number) => {
     if (!cart) {
       return;
@@ -166,6 +182,7 @@ export default function CartPage() {
 
   useEffect(() => {
     void run();
+    void loadRecommendations();
   }, []);
 
   if (loading) {
@@ -226,6 +243,17 @@ export default function CartPage() {
             actionText="Перейти в каталог"
           />
         )}
+
+        {recommendations.length > 0 ? (
+          <Card>
+            <h2 className="h3">Добавьте еще и закройте уборку полностью</h2>
+            <div className="product-grid" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+              {recommendations.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </Card>
+        ) : null}
       </Container>
     </Section>
   );

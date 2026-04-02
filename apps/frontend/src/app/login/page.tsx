@@ -40,7 +40,7 @@ export default function LoginPage() {
 
   const modeSubtitle = useMemo(() => {
     if (mode === "login") {
-      return "Без лишних данных. Только необходимое.";
+      return "Только нужные данные. Без лишних шагов.";
     }
     return "Пара полей - и вы внутри.";
   }, [mode]);
@@ -80,7 +80,12 @@ export default function LoginPage() {
         typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("redirect") : null;
       router.push(redirectTo && redirectTo.startsWith("/") ? redirectTo : "/account");
     } catch (e) {
-      setError((e as Error).message);
+      const fallback =
+        mode === "login"
+          ? "Не удалось войти. Проверьте данные."
+          : "Не удалось создать аккаунт. Проверьте поля и попробуйте снова.";
+      const message = (e as Error).message?.trim();
+      setError(message && message.length > 3 ? message : fallback);
     } finally {
       setSubmitting(false);
     }

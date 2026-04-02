@@ -46,8 +46,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
             </Card>
             <Card className="product-info">
               <p className="small">{product.category.name}</p>
-              <h1 className="h2">{product.name}</h1>
-              <p className="text-secondary">{commercial.shortDescription}</p>
+              <h1 className="h2">{commercial.cardTitle ?? product.name}</h1>
+              <p className="text-secondary">{commercial.cardPitch}</p>
+              <p className="text-secondary">{commercial.cardClosing}</p>
               {firstVariant ? (
                 <Card className="product-purchase-rail">
                   <div className="product-purchase-top">
@@ -59,7 +60,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                   </div>
                   <p className="small">SKU: {firstVariant.sku}</p>
                   <AddToCartButton variantId={firstVariant.id} />
-                  <p className="text-secondary">Быстрый checkout. Безопасная оплата. Моментальное подтверждение.</p>
+                  <p className="text-secondary">В наличии. Быстрая обработка заказа. Безопасная оплата.</p>
                 </Card>
               ) : (
                 <Card>
@@ -67,6 +68,24 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 </Card>
               )}
 
+              <Divider />
+              <div className="grid">
+                <h2 className="h3">Что мешает получить чистый результат</h2>
+                <div className="product-highlights">
+                  {commercial.painPoints.map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </div>
+              </div>
+              <Divider />
+              <div className="grid">
+                <h2 className="h3">Что вы получаете после применения</h2>
+                <div className="product-highlights">
+                  {commercial.resultPoints.map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </div>
+              </div>
               <Divider />
               <div className="grid">
                 <h2 className="h3">Преимущества</h2>
@@ -79,8 +98,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <Divider />
               <div className="grid">
                 <h2 className="h3">Описание</h2>
-                <p className="text-secondary">{product.description}</p>
                 <p className="text-secondary">{commercial.shortDescription}</p>
+                <p className="text-secondary">{product.description}</p>
               </div>
               <Divider />
               <div className="grid">
@@ -144,7 +163,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <div className="page-header">
                 <h2 className="h3">Похожие товары</h2>
                 <Link href="/catalog">
-                  <Button variant="ghost">Все товары</Button>
+                  <Button variant="ghost">Смотреть решения</Button>
                 </Link>
               </div>
               <div className="recommend-list">
@@ -159,6 +178,15 @@ export default async function ProductPage({ params }: { params: { slug: string }
               </div>
             </Card>
           ) : null}
+
+          <Card className="hero-card hero-card-premium">
+            <h2 className="h2">Можете тратить время дальше или закрыть задачу за одно применение</h2>
+            <div className="hero-actions">
+              <Link href="/cart">
+                <Button>Купить сейчас</Button>
+              </Link>
+            </div>
+          </Card>
         </Container>
       </Section>
     );
