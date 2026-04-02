@@ -162,7 +162,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-5);
+  gap: 22px;
 }
 
 .brand-wrap {
@@ -184,7 +184,7 @@ p {
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: var(--space-5);
+  gap: 28px;
   color: #6b7280;
   font-size: 14px;
   font-weight: 500;
@@ -219,23 +219,41 @@ p {
 .header-tools {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 10px;
   position: relative;
 }
 
+.header-search-wrap {
+  position: relative;
+  display: none;
+}
+
 .header-search {
-  width: 190px;
-  border: 1px solid transparent;
+  width: 250px;
+  border: 1px solid rgba(172, 179, 182, 0.2);
   border-radius: 999px;
-  background: var(--surface-low);
-  padding: 9px 14px;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 10px 40px 10px 14px;
   font-size: 13px;
+  color: #2f3f4b;
+  transition: width 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .header-search:focus {
   outline: none;
-  border-color: rgba(95, 94, 94, 0.25);
-  background: var(--surface);
+  border-color: rgba(24, 104, 123, 0.35);
+  background: #ffffff;
+  width: 300px;
+}
+
+.header-search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7b8791;
+  font-size: 14px;
+  pointer-events: none;
 }
 
 .header-cta {
@@ -243,10 +261,11 @@ p {
 }
 
 .header-cart-btn {
-  min-width: 96px;
+  min-width: 108px;
   background: #ffffff;
   border-color: rgba(172, 179, 182, 0.34);
   color: #1f2d38;
+  border-radius: 14px;
 }
 
 .account-menu {
@@ -257,7 +276,7 @@ p {
   border: 1px solid rgba(172, 179, 182, 0.34);
   background: rgba(255, 255, 255, 0.9);
   color: #243440;
-  border-radius: var(--radius-control);
+  border-radius: 14px;
   padding: 10px 12px;
   font-size: 14px;
   font-weight: 600;
@@ -300,6 +319,12 @@ p {
 .account-menu-dropdown a:hover,
 .account-menu-logout:hover {
   background: var(--surface-low);
+}
+
+@media (min-width: 1180px) {
+  .header-search-wrap {
+    display: block;
+  }
 }
 
 .site-footer {

@@ -7,7 +7,12 @@ import { canAccessAdmin, getClientRole } from "@/lib/roles";
 import Container from "../ui/container";
 import Button from "../ui/button";
 
-const NAV_ITEMS = [{ href: "/catalog", label: "Каталог" }];
+const NAV_ITEMS = [
+  { href: "/catalog?section=laundry", label: "Стирка" },
+  { href: "/catalog?section=kitchen", label: "Кухня" },
+  { href: "/catalog?section=refills", label: "Пополнения" },
+  { href: "/catalog?section=rituals", label: "Ритуалы" },
+];
 
 export default function SiteHeader() {
   const router = useRouter();
@@ -56,13 +61,22 @@ export default function SiteHeader() {
 
         <nav className="desktop-nav" aria-label="Основная навигация">
           {NAV_ITEMS.map((item) => (
-            <Link key={item.href} href={item.href} className={pathname === item.href ? "is-active" : undefined}>
+            <Link
+              key={item.href}
+              href={item.href}
+              className={pathname === "/catalog" && item.label === "Стирка" ? "is-active" : undefined}
+            >
               {item.label}
             </Link>
           ))}
         </nav>
 
         <div className="header-tools">
+          <div className="header-search-wrap">
+            <input className="header-search" placeholder="Поиск ритуалов..." type="text" />
+            <span className="header-search-icon">⌕</span>
+          </div>
+
           <Link href="/cart" aria-label="Корзина">
             <Button className="header-cart-btn" variant="secondary">
               Корзина
