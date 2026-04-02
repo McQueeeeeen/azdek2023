@@ -633,6 +633,37 @@ p {
   background: #22c68b;
 }
 
+.final-cta-card {
+  min-height: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 18px;
+}
+
+.final-cta-main {
+  display: grid;
+  gap: 10px;
+}
+
+.final-cta-points {
+  border: 1px solid rgba(126, 138, 149, 0.24);
+  border-radius: 12px;
+  background: #f5f7f9;
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.final-cta-points p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-left: 2px solid rgba(30, 42, 56, 0.35);
+  padding-left: 8px;
+}
+
 .hero-visual-card {
   min-height: 300px;
   padding: 0;
@@ -1201,6 +1232,7 @@ p {
   .solution-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .pain-contrast { grid-template-columns: 1fr; }
   .hero-stats { grid-template-columns: 1fr; }
+  .final-cta-card { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {

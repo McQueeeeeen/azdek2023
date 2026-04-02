@@ -198,13 +198,20 @@ export default function HomePage() {
           </div>
         </Card>
 
-        <Card className="hero-card hero-card-premium">
-          <h2 className="h2">Перестань тратить время на слабые средства</h2>
-          <p className="text-secondary hero-copy">Реши проблему за одно применение</p>
-          <div className="hero-actions">
-            <Link href="/catalog">
-              <Button>Выбрать решение</Button>
-            </Link>
+        <Card className="hero-card hero-card-premium final-cta-card">
+          <div className="final-cta-main">
+            <h2 className="h2">Перестань тратить время на слабые средства</h2>
+            <p className="text-secondary">Реши проблему за одно применение</p>
+            <div className="hero-actions">
+              <Link href="/catalog">
+                <Button>Выбрать решение</Button>
+              </Link>
+            </div>
+          </div>
+          <div className="final-cta-points">
+            <p>Работает с первого применения</p>
+            <p>Быстрый выбор без лишних шагов</p>
+            <p>Доставка и обработка без задержек</p>
           </div>
         </Card>
       </Container>
