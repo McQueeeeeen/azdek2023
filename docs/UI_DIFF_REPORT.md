@@ -40,3 +40,13 @@
 
 ## UX principle enforced
 - Simplicity, speed, predictability.
+
+## Spec Alignment (v4 pass)
+- Home now follows the requested 8-block conversion structure (hero, pain, solution tasks, value props, popular products, how-it-works, reviews, final CTA).
+- Catalog includes task-based solution filter, not only category filter.
+- PDP uses pain -> result -> proof progression and includes stronger close CTA.
+- Cart now includes post-add cross-sell recommendations to increase AOV.
+- Checkout reduced to minimal required fields (name, phone, address) with clear inline validation copy.
+- Success screen includes a lightweight post-purchase upsell prompt.
+- Admin includes visible role-access matrix aligned with RBAC direction.
+- Added page metadata upgrades for homepage/catalog and dynamic product metadata groundwork for better SEO consistency.

@@ -46,6 +46,13 @@ const SHIPMENT_ROWS = [
   { id: "SHP-7002", order_id: "ORD-2088", status: "Подготовлен", tracking_number: "KZ-TRK-200988", created_at: "2026-04-02 10:40" },
 ];
 
+const ROLE_ROWS = [
+  { role: "super admin", orders: "полный", products: "полный", users: "полный", content: "полный" },
+  { role: "admin", orders: "полный", products: "полный", users: "чтение", content: "полный" },
+  { role: "manager", orders: "полный", products: "редактирование", users: "нет", content: "редактирование" },
+  { role: "content manager", orders: "нет", products: "редактирование", users: "нет", content: "полный" },
+];
+
 export default function AdminPage() {
   return (
     <Section>
@@ -264,6 +271,37 @@ export default function AdminPage() {
             </div>
           </Card>
         </div>
+
+        <Card className="admin-panel">
+          <div className="admin-panel-head">
+            <h2 className="h3">Пользователи и роли</h2>
+            <span className="status-pill ok">RBAC</span>
+          </div>
+          <div className="admin-panel-body admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>role</th>
+                  <th>orders</th>
+                  <th>products</th>
+                  <th>users</th>
+                  <th>content</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ROLE_ROWS.map((row) => (
+                  <tr key={row.role}>
+                    <td>{row.role}</td>
+                    <td>{row.orders}</td>
+                    <td>{row.products}</td>
+                    <td>{row.users}</td>
+                    <td>{row.content}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
       </Container>
     </Section>
   );

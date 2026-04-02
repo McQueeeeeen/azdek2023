@@ -1,4 +1,5 @@
-﻿import Link from "next/link";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 import { apiGet, CatalogProduct } from "@/lib/api";
 import AddToCartButton from "@/components/add-to-cart-button";
 import ProductViewTracker from "@/components/product-view-tracker";
@@ -21,6 +22,28 @@ function renderStars(rating: number): string {
 
 function formatMoney(amount: number, currency: string): string {
   return `${Math.round(amount)} ${currency}`;
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  try {
+    const product = await apiGet<CatalogProduct>(`/catalog/products/${params.slug}`);
+    const commercial = getProductCommercialContent(product.slug);
+    return {
+      title: `${commercial.cardTitle ?? product.name} - Azdek`,
+      description: commercial.cardPitch,
+      openGraph: {
+        title: `${commercial.cardTitle ?? product.name} - Azdek`,
+        description: commercial.cardPitch,
+        type: "website",
+        images: [{ url: "/media/laundry-gel-final.jpg" }],
+      },
+    };
+  } catch {
+    return {
+      title: "Товар - Azdek",
+      description: "Бытовая химия, которая работает с первого раза.",
+    };
+  }
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
