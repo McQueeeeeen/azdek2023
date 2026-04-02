@@ -31,9 +31,9 @@ const REVIEWS = [
 ];
 
 const POPULAR = [
-  { slug: "azdek-laundry-gel", name: "Azdek Laundry Gel", hint: "Универсальная уборка", cta: "Добавить и забыть" },
-  { slug: "azdek-softener-fresh", name: "Azdek Softener Fresh", hint: "Убрать налет", cta: "Убрать налет" },
-  { slug: "azdek-dish-liquid-citrus", name: "Azdek Dish Liquid Citrus", hint: "Убрать жир", cta: "Убрать жир" },
+  { slug: "azdek-laundry-gel", name: "Azdek Laundry Gel", hint: "Универсальная уборка", cta: "Купить" },
+  { slug: "azdek-softener-fresh", name: "Azdek Softener Fresh", hint: "Убрать налет", cta: "Купить" },
+  { slug: "azdek-dish-liquid-citrus", name: "Azdek Dish Liquid Citrus", hint: "Убрать жир", cta: "Купить" },
 ];
 
 export const metadata: Metadata = {

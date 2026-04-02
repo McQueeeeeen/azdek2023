@@ -6,6 +6,7 @@ import PriceBlock from "./price-block";
 import { getProductMedia } from "@/lib/product-media";
 import { getProductCommercialContent } from "@/lib/product-commercial-content";
 import SmartImage from "../ui/smart-image";
+import AddToCartButton from "../add-to-cart-button";
 
 export default function ProductCard({ product }: { product: CatalogProduct }) {
   const firstVariant = product.variants[0];
@@ -43,7 +44,7 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
             </span>
           ))}
         </div>
-        <p className="text-secondary">{commercial.cardClosing}</p>
+        <p className="text-secondary product-closing">{commercial.cardClosing}</p>
         <div className="product-proof-row">
           <span className="product-rating">★ {rating} · {reviewCount}+ отзывов</span>
           <span className={isInStock ? "product-stock ok" : "product-stock warn"}>
@@ -52,11 +53,15 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
         </div>
         <PriceBlock amount={firstVariant?.price ?? 0} currency={firstVariant?.currency ?? "KZT"} />
       </div>
-      <Link href={`/catalog/${product.slug}`}>
-        <Button className="full-width product-card-cta">
-          {commercial.cardCta}
-        </Button>
-      </Link>
+      {firstVariant ? (
+        <div className="product-card-cta">
+          <AddToCartButton variantId={firstVariant.id} label="Купить" redirectToCart={false} />
+        </div>
+      ) : (
+        <Link href={`/catalog/${product.slug}`}>
+          <Button className="full-width product-card-cta">Купить</Button>
+        </Link>
+      )}
     </Card>
   );
 }

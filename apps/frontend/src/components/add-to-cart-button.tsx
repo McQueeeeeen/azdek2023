@@ -7,7 +7,15 @@ import { getSessionIdForCheckout, trackEvent } from "@/lib/analytics";
 import { UiActionState } from "@/lib/ui-state";
 import { useToast } from "@/components/ui/use-toast";
 
-export default function AddToCartButton({ variantId }: { variantId: string }) {
+export default function AddToCartButton({
+  variantId,
+  label = "Добавить в корзину",
+  redirectToCart = true,
+}: {
+  variantId: string;
+  label?: string;
+  redirectToCart?: boolean;
+}) {
   const router = useRouter();
   const { toast } = useToast();
   const [state, setState] = useState<UiActionState>("idle");
@@ -35,10 +43,18 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
             metadata: { variantId },
           });
           setState("done");
-          toast({ title: "Товар добавлен", description: "Переходим в корзину", tone: "success" });
-          window.setTimeout(() => {
-            router.push("/cart");
-          }, 180);
+          toast({
+            title: "Товар добавлен",
+            description: redirectToCart ? "Переходим в корзину" : "Продолжайте покупки",
+            tone: "success",
+          });
+          if (redirectToCart) {
+            window.setTimeout(() => {
+              router.push("/cart");
+            }, 180);
+          } else {
+            window.setTimeout(() => setState("idle"), 700);
+          }
         } catch {
           setState("failed");
           toast({ title: "Не удалось добавить товар", tone: "error" });
@@ -46,7 +62,7 @@ export default function AddToCartButton({ variantId }: { variantId: string }) {
         }
       }}
     >
-      Добавить в корзину
+      {label}
     </Button>
   );
 }
