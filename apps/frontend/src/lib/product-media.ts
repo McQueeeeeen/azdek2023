@@ -6,29 +6,45 @@
 }
 
 const fallback: ProductMedia = {
-  card: "/media/laundry-gel.jpg",
-  hero: "/media/laundry-gel.jpg",
-  gallery: ["/media/laundry-gel.jpg", "/media/softener-fresh.jpg", "/media/dish-liquid-citrus.jpg"],
+  card: "/media/laundry-gel-final.jpg",
+  hero: "/media/laundry-gel-final.jpg",
+  gallery: [
+    "/media/laundry-gel-final.jpg",
+    "/media/softener-fresh-final.jpg",
+    "/media/dish-liquid-citrus-final.jpg",
+  ],
   tag: "Хит",
 };
 
 const bySlug: Record<string, ProductMedia> = {
   "azdek-dish-liquid-citrus": {
-    card: "/media/dish-liquid-citrus.jpg",
-    hero: "/media/dish-liquid-citrus.jpg",
-    gallery: ["/media/dish-liquid-citrus.jpg", "/media/softener-fresh.jpg", "/media/laundry-gel.jpg"],
+    card: "/media/dish-liquid-citrus-final.jpg",
+    hero: "/media/dish-liquid-citrus-final.jpg",
+    gallery: [
+      "/media/dish-liquid-citrus-final.jpg",
+      "/media/softener-fresh-final.jpg",
+      "/media/laundry-gel-final.jpg",
+    ],
     tag: "Для кухни",
   },
   "azdek-softener-fresh": {
-    card: "/media/softener-fresh.jpg",
-    hero: "/media/softener-fresh.jpg",
-    gallery: ["/media/softener-fresh.jpg", "/media/laundry-gel.jpg", "/media/dish-liquid-citrus.jpg"],
+    card: "/media/softener-fresh-final.jpg",
+    hero: "/media/softener-fresh-final.jpg",
+    gallery: [
+      "/media/softener-fresh-final.jpg",
+      "/media/laundry-gel-final.jpg",
+      "/media/dish-liquid-citrus-final.jpg",
+    ],
     tag: "Свежесть",
   },
   "azdek-laundry-gel": {
-    card: "/media/laundry-gel.jpg",
-    hero: "/media/laundry-gel.jpg",
-    gallery: ["/media/laundry-gel.jpg", "/media/softener-fresh.jpg", "/media/dish-liquid-citrus.jpg"],
+    card: "/media/laundry-gel-final.jpg",
+    hero: "/media/laundry-gel-final.jpg",
+    gallery: [
+      "/media/laundry-gel-final.jpg",
+      "/media/softener-fresh-final.jpg",
+      "/media/dish-liquid-citrus-final.jpg",
+    ],
     tag: "Для стирки",
   },
 };
