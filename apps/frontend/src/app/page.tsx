@@ -25,6 +25,12 @@ const ESSENTIALS = [
     subtitle: "Daily Ritual",
     price: "3990 KZT",
   },
+  {
+    slug: "azdek-dish-liquid-citrus",
+    title: "Набор для кухни",
+    subtitle: "Curated Tools",
+    price: "1890 KZT",
+  },
 ];
 
 const SCENTS = [
@@ -32,6 +38,7 @@ const SCENTS = [
   { name: "Soft", note: "Спокойный и мягкий" },
   { name: "Neutral", note: "Без резкого запаха" },
   { name: "Citrus", note: "Яркий и свежий" },
+  { name: "Herbal", note: "Травяной и фокусный" },
 ];
 
 export const metadata: Metadata = {
@@ -42,6 +49,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const hero = getProductMedia("azdek-laundry-gel");
   const bento = getProductMedia("azdek-softener-fresh");
+  const story = getProductMedia("azdek-dish-liquid-citrus");
 
   return (
     <Section className="home-v3-section">
@@ -77,12 +85,32 @@ export default function HomePage() {
 
         <section className="home-v3-scent-bar">
           <div className="home-v3-row-head">
-            <h2 className="home-v3-heading">The Sensory Bar</h2>
-            <p>Подберите тон аромата под свое пространство</p>
+            <h2 className="home-v3-heading">Discover Your Signature</h2>
+            <p>Атмосферные профили для разных пространств</p>
           </div>
-          <div className="home-v3-scent-grid">
+          <div className="home-v3-scent-bubbles">
             {SCENTS.map((item) => (
-              <article key={item.name} className="home-v3-scent-item">
+              <article key={item.name} className="home-v3-bubble-item">
+                <div className="home-v3-bubble-media">
+                  <SmartImage
+                    src={
+                      item.name === "Fresh"
+                        ? hero.card
+                        : item.name === "Soft"
+                        ? bento.card
+                        : item.name === "Neutral"
+                        ? story.card
+                        : item.name === "Citrus"
+                        ? hero.hero
+                        : bento.hero
+                    }
+                    fallbackSrc="/media/laundry-gel.svg"
+                    alt={item.name}
+                    width={200}
+                    height={200}
+                    loading="lazy"
+                  />
+                </div>
                 <h3>{item.name}</h3>
                 <p>{item.note}</p>
               </article>
@@ -115,6 +143,44 @@ export default function HomePage() {
           </article>
         </section>
 
+        <section className="home-v3-story">
+          <article className="home-v3-story-main">
+            <SmartImage
+              className="home-v3-story-image"
+              src={story.hero}
+              fallbackSrc="/media/laundry-gel.svg"
+              alt="Kitchen Alchemy"
+              fill
+              sizes="(max-width: 1024px) 100vw, 64vw"
+            />
+            <div className="home-v3-story-overlay">
+              <h3>Kitchen Alchemy</h3>
+              <p>Формулы для кухни, которые работают быстро и не оставляют тяжелого запаха.</p>
+              <Link href="/catalog">
+                <Button variant="secondary">Купить</Button>
+              </Link>
+            </div>
+          </article>
+          <article className="home-v3-story-side">
+            <div className="home-v3-story-tile">
+              <p className="home-v3-kicker">Our commitment</p>
+              <h4>Refill, reclaim, rejoice.</h4>
+              <p>Снижаем лишний пластик и делаем бытовую химию предсказуемой по качеству.</p>
+            </div>
+            <div className="home-v3-story-thumb">
+              <SmartImage
+                className="home-v3-story-thumb-image"
+                src={bento.card}
+                fallbackSrc="/media/laundry-gel.svg"
+                alt="Azdek shelf"
+                width={700}
+                height={500}
+                loading="lazy"
+              />
+            </div>
+          </article>
+        </section>
+
         <section className="home-v3-essentials">
           <div className="home-v3-row-head">
             <h2 className="home-v3-heading">The Essentials</h2>
@@ -141,6 +207,7 @@ export default function HomePage() {
                   <div className="home-v3-product-copy">
                     <p className="home-v3-meta">{item.subtitle}</p>
                     <h3>{item.title}</h3>
+                    <p className="home-v3-product-note">Curated for the modern home</p>
                     <div className="home-v3-product-foot">
                       <span>{item.price}</span>
                       <Link href={`/catalog/${item.slug}`}>
