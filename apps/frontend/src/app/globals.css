@@ -150,14 +150,15 @@ p {
   position: sticky;
   top: 0;
   z-index: 30;
-  background: rgba(30, 42, 56, 0.92);
-  color: #eef3f6;
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  color: #2c3436;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(172, 179, 182, 0.2);
+  box-shadow: 0 20px 40px rgba(44, 52, 54, 0.04);
 }
 
 .site-header-inner {
-  min-height: 68px;
+  min-height: 74px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -171,32 +172,37 @@ p {
 }
 
 .brand-mark {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0f3b4a;
   white-space: nowrap;
 }
 
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  color: rgba(238, 243, 246, 0.72);
-  font-size: 13px;
+  gap: var(--space-5);
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .desktop-nav a {
   position: relative;
-  padding-bottom: 3px;
+  padding-bottom: 4px;
+  transition: color 0.18s ease;
 }
 
 .desktop-nav a:hover {
-  color: #ffffff;
+  color: #18687b;
 }
 
 .desktop-nav a.is-active {
-  color: #ffffff;
-  font-weight: 500;
+  color: #0f3b4a;
+  font-weight: 700;
 }
 
 .desktop-nav a.is-active::after {
@@ -207,7 +213,7 @@ p {
   bottom: 0;
   height: 2px;
   border-radius: 2px;
-  background: var(--accent);
+  background: #38bdf8;
 }
 
 .header-tools {
@@ -238,6 +244,9 @@ p {
 
 .header-cart-btn {
   min-width: 96px;
+  background: #ffffff;
+  border-color: rgba(172, 179, 182, 0.34);
+  color: #1f2d38;
 }
 
 .account-menu {
@@ -245,14 +254,20 @@ p {
 }
 
 .account-menu-trigger {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  border: 1px solid rgba(172, 179, 182, 0.34);
+  background: rgba(255, 255, 255, 0.9);
+  color: #243440;
   border-radius: var(--radius-control);
   padding: 10px 12px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  transition: border-color 0.16s ease, background-color 0.16s ease;
+}
+
+.account-menu-trigger:hover {
+  border-color: rgba(24, 104, 123, 0.35);
+  background: #ffffff;
 }
 
 .account-menu-dropdown {
