@@ -21,6 +21,8 @@ const CATEGORY_LABEL_MAP: Record<string, string> = {
   rituals: "Ритуалы",
 };
 
+const AURA_ITEMS = ["Лаванда", "Мята", "Бергамот", "Кедр"];
+
 function getMinPrice(product: CatalogProduct): number {
   return product.variants[0]?.price ?? 0;
 }
@@ -30,6 +32,7 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
   const [activeCategory, setActiveCategory] = useState("all");
   const [activeSolution, setActiveSolution] = useState("all");
   const [sortMode, setSortMode] = useState<SortMode>("featured");
+  const [activeAura, setActiveAura] = useState("Мята");
 
   const solutions = useMemo(
     () => ["all", "Убрать жир", "Убрать налет", "Убрать запах", "Универсальная уборка"] as const,
@@ -85,24 +88,88 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
     return result;
   }, [products, activeCategory, activeSolution, query, sortMode]);
 
+  const heroProduct = products[0];
+  const heroMedia = heroProduct ? getProductMedia(heroProduct.slug) : null;
+
   return (
-    <div className="catalog-v4-shell">
-      <section className="catalog-v4-header motion-in">
-        <h1 className="catalog-v4-title">Каталог решений</h1>
-        <p className="catalog-v4-subtitle">Выберите средство под задачу. Без лишнего.</p>
+    <div className="catalog-v5-shell">
+      <section className="catalog-v5-hero motion-in">
+        {heroMedia ? (
+          <SmartImage
+            src={heroMedia.hero}
+            fallbackSrc="/media/laundry-gel.svg"
+            alt="Каталог Azdek"
+            fill
+            className="catalog-v5-hero-bg"
+            priority
+            sizes="100vw"
+          />
+        ) : null}
+        <div className="catalog-v5-hero-overlay" />
+        <div className="catalog-v5-hero-copy">
+          <h1>Каталог Azdek</h1>
+          <p>Сильные средства для дома. Выбирайте по задаче, а не наугад.</p>
+        </div>
       </section>
 
-      <section className="catalog-v4-toolbar motion-in">
-        <div className="catalog-v4-search-sort">
+      <section className="catalog-v5-tiles motion-in" aria-label="Категории каталога">
+        {categories.slice(1, 5).map((category, index) => {
+          const product = products[index % Math.max(products.length, 1)];
+          const media = product ? getProductMedia(product.slug) : null;
+
+          return (
+            <button
+              key={category.slug}
+              type="button"
+              className={"catalog-v5-tile" + (activeCategory === category.slug ? " is-active" : "")}
+              onClick={() => setActiveCategory(category.slug)}
+            >
+              {media ? (
+                <SmartImage
+                  src={media.card}
+                  fallbackSrc="/media/laundry-gel.svg"
+                  alt={category.name}
+                  fill
+                  className="catalog-v5-tile-image"
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                />
+              ) : null}
+              <span>{category.name}</span>
+            </button>
+          );
+        })}
+      </section>
+
+      <section className="catalog-v5-aura motion-in">
+        <div className="catalog-v5-aura-head">
+          <p>Профиль аромата</p>
+          <h2>Discover your aura</h2>
+        </div>
+        <div className="catalog-v5-aura-list">
+          {AURA_ITEMS.map((item) => (
+            <button
+              key={item}
+              type="button"
+              className={"catalog-v5-aura-pill" + (activeAura === item ? " is-active" : "")}
+              onClick={() => setActiveAura(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section className="catalog-v5-toolbar motion-in">
+        <div className="catalog-v5-search-sort">
           <Input
-            className="catalog-v4-search"
+            className="catalog-v5-search"
             placeholder="Поиск по товарам"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             aria-label="Поиск по товарам"
           />
           <select
-            className="ui-input catalog-v4-sort"
+            className="ui-input catalog-v5-sort"
             value={sortMode}
             onChange={(event) => setSortMode(event.target.value as SortMode)}
             aria-label="Сортировка"
@@ -141,103 +208,81 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
         </div>
       </section>
 
-      {filtered.length > 0 ? (
-        <section className="catalog-v4-list" aria-label="Список товаров">
-          {filtered.map((product, index) => {
-            const variant = product.variants[0];
-            const commercial = getProductCommercialContent(product.slug);
-            const media = getProductMedia(product.slug);
-            const reviewCount = commercial.reviews.length;
-            const rating =
-              reviewCount > 0
-                ? (commercial.reviews.reduce((sum, review) => sum + review.rating, 0) / reviewCount).toFixed(1)
-                : "4.9";
-            const isInStock = (variant?.stock ?? 0) > 0;
+      <section className="catalog-v5-products motion-in">
+        <div className="catalog-v5-products-head">
+          <div>
+            <h3>Выборка товаров</h3>
+            <p>Подходящие позиции по фильтрам и поиску.</p>
+          </div>
+        </div>
 
-            return (
-              <article key={product.id} className="catalog-v4-item motion-in" style={{ animationDelay: `${index * 40}ms` }}>
-                <div className="catalog-v4-item-main">
-                  <Link href={`/catalog/${product.slug}`} className="catalog-v4-thumb" aria-label={product.name}>
+        {filtered.length > 0 ? (
+          <div className="catalog-v5-grid" aria-label="Список товаров">
+            {filtered.map((product) => {
+              const variant = product.variants[0];
+              const commercial = getProductCommercialContent(product.slug);
+              const media = getProductMedia(product.slug);
+
+              return (
+                <article key={product.id} className="catalog-v5-card">
+                  <Link href={`/catalog/${product.slug}`} className="catalog-v5-card-media" aria-label={product.name}>
                     <SmartImage
                       src={media.card}
                       fallbackSrc="/media/laundry-gel.svg"
                       alt={product.name}
-                      width={120}
-                      height={120}
-                      className="catalog-v4-thumb-image"
-                      sizes="120px"
-                      loading="lazy"
+                      fill
+                      className="catalog-v5-card-image"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     />
+                    {media.tag ? <span className="catalog-v5-card-tag">{media.tag}</span> : null}
                   </Link>
 
-                  <div className="catalog-v4-copy">
-                    <span className="catalog-v4-kicker">{commercial.solution}</span>
-                    <Link href={`/catalog/${product.slug}`} className="catalog-v4-name-link">
-                      <h3 className="catalog-v4-name">{commercial.cardTitle ?? product.name}</h3>
-                    </Link>
-                    <p className="catalog-v4-desc">{commercial.cardPitch}</p>
-                    <p className="catalog-v4-scent">{product.category.name}</p>
+                  <div className="catalog-v5-card-body">
+                    <h4>{commercial.cardTitle ?? product.name}</h4>
+                    <p>{commercial.cardPitch}</p>
+                    <div className="catalog-v5-card-foot">
+                      <PriceBlock amount={variant?.price ?? 0} currency={variant?.currency ?? "KZT"} />
+                      {variant ? (
+                        <AddToCartButton
+                          variantId={variant.id}
+                          label="Добавить в корзину"
+                          redirectToCart={false}
+                          className="catalog-v5-buy"
+                          pendingLabel="Добавляем"
+                          doneLabel="Добавлено"
+                          failedLabel="Ошибка"
+                        />
+                      ) : (
+                        <Link href={`/catalog/${product.slug}`}>
+                          <Button className="catalog-v5-buy">Купить</Button>
+                        </Link>
+                      )}
+                    </div>
                   </div>
-                </div>
-
-                <div className="catalog-v4-item-side">
-                  <div className="catalog-v4-price-wrap">
-                    <PriceBlock amount={variant?.price ?? 0} currency={variant?.currency ?? "KZT"} />
-                    <span className={isInStock ? "product-stock ok" : "product-stock warn"}>
-                      {isInStock ? "В наличии" : "Под заказ"}
-                    </span>
-                  </div>
-
-                  <div className="catalog-v4-meta">★ {rating} · {reviewCount}+ отзывов</div>
-
-                  {variant ? (
-                    <AddToCartButton
-                      variantId={variant.id}
-                      label="Добавить в корзину"
-                      redirectToCart={false}
-                      className="catalog-v4-buy-btn"
-                      pendingLabel="Добавляем"
-                      doneLabel="Добавлено"
-                      failedLabel="Ошибка"
-                    />
-                  ) : (
-                    <Link href={`/catalog/${product.slug}`}>
-                      <Button className="catalog-v4-buy-btn">Купить</Button>
-                    </Link>
-                  )}
-                </div>
-              </article>
-            );
-          })}
-        </section>
-      ) : (
-        <EmptyState
-          title="Ничего не найдено"
-          description="Измените фильтры или очистите поисковый запрос"
-          action={
-            <Button
-              variant="secondary"
-              onClick={() => {
-                setQuery("");
-                setActiveCategory("all");
-                setActiveSolution("all");
-                setSortMode("featured");
-              }}
-            >
-              Сбросить фильтры
-            </Button>
-          }
-        />
-      )}
-
-      <div className="catalog-v4-footer motion-in">
-        <Button variant="primary" className="catalog-v4-load-btn">
-          Показать еще
-        </Button>
-        <p>Показано {filtered.length} из {products.length} товаров</p>
-      </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <EmptyState
+            title="Ничего не найдено"
+            description="Измените фильтры или очистите поисковый запрос"
+            action={
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  setQuery("");
+                  setActiveCategory("all");
+                  setActiveSolution("all");
+                  setSortMode("featured");
+                }}
+              >
+                Сбросить фильтры
+              </Button>
+            }
+          />
+        )}
+      </section>
     </div>
   );
 }
-
-
