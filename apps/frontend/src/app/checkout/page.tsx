@@ -17,16 +17,57 @@ export default function CheckoutPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (loading) {
+      return;
+    }
     setLoading(true);
     setError(null);
+    setValidationError(null);
+    setSuccess(null);
 
     const formData = new FormData(event.currentTarget);
     const cartId = localStorage.getItem("azdek_cart_id");
     const attribution = getCurrentAttribution();
     const sessionId = getSessionIdForCheckout();
+    const customerName = String(formData.get("customerName") ?? "").trim();
+    const customerPhone = String(formData.get("customerPhone") ?? "").trim();
+    const customerEmail = String(formData.get("customerEmail") ?? "").trim();
+    const deliveryAddress = String(formData.get("deliveryAddress") ?? "").trim();
+
+    if (!cartId) {
+      setValidationError("Корзина пуста. Добавьте товары перед оформлением.");
+      setLoading(false);
+      return;
+    }
+
+    if (!customerName || customerName.length < 2) {
+      setValidationError("Укажите корректное имя.");
+      setLoading(false);
+      return;
+    }
+
+    if (!/^[+0-9 ()-]{8,}$/.test(customerPhone)) {
+      setValidationError("Введите корректный номер телефона.");
+      setLoading(false);
+      return;
+    }
+
+    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(customerEmail)) {
+      setValidationError("Введите корректный email.");
+      setLoading(false);
+      return;
+    }
+
+    if (!deliveryAddress || deliveryAddress.length < 6) {
+      setValidationError("Укажите полный адрес доставки.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch(`${API_BASE}/checkout/confirm`, {
@@ -34,11 +75,11 @@ export default function CheckoutPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           cartId,
-          customerName: formData.get("customerName"),
-          customerEmail: formData.get("customerEmail"),
-          customerPhone: formData.get("customerPhone"),
-          deliveryCity: formData.get("deliveryCity"),
-          deliveryAddress: formData.get("deliveryAddress"),
+          customerName,
+          customerEmail,
+          customerPhone,
+          deliveryCity: "Алматы",
+          deliveryAddress,
           deliveryMethod: "city",
           paymentMethod: "card_online",
           sessionId,
@@ -54,6 +95,7 @@ export default function CheckoutPage() {
       }
 
       const payload = await response.json();
+      setSuccess("Заказ создан. Перенаправляем на страницу подтверждения...");
       if (payload.paymentUrl) {
         window.open(payload.paymentUrl, "_blank", "noopener,noreferrer");
       }
@@ -68,21 +110,20 @@ export default function CheckoutPage() {
   return (
     <Section>
       <Container className="grid checkout-layout">
-        <PageHeader title="Оформление заказа" subtitle="Контакты, доставка и оплата в 3 шага" />
+        <PageHeader title="Оформление заказа" subtitle="Минимум полей, быстрая проверка, безопасная оплата" />
+        {validationError ? <ErrorState title="Проверьте поля формы" message={validationError} /> : null}
+        {success ? (
+          <Card>
+            <p className="small">{success}</p>
+          </Card>
+        ) : null}
         <form className="grid" onSubmit={submit}>
           <Card className="checkout-card grid">
-            <h2 className="h3">Шаг 1 — Контакты</h2>
+            <h2 className="h3">Контакты</h2>
             <Input name="customerName" placeholder="Имя" required />
             <Input name="customerPhone" placeholder="Телефон" required />
             <Input name="customerEmail" type="email" placeholder="Email" required />
-          </Card>
-          <Card className="checkout-card grid">
-            <h2 className="h3">Шаг 2 — Доставка</h2>
-            <Input name="deliveryCity" placeholder="Город" defaultValue="Алматы" required />
             <Textarea name="deliveryAddress" placeholder="Адрес" required />
-          </Card>
-          <Card className="checkout-card grid">
-            <h2 className="h3">Шаг 3 — Оплата</h2>
             <p className="text-secondary">Мы используем безопасную оплату. Ваши данные защищены.</p>
             <div className="order-status-grid">
               <p className="small">Доступные методы</p>
@@ -93,7 +134,7 @@ export default function CheckoutPage() {
               <p>Email и статус заказа в кабинете</p>
             </div>
             <Button type="submit" disabled={loading}>
-              {loading ? "Создаём заказ..." : "Оформить заказ"}
+              {loading ? "Оформляем..." : "Оформить заказ"}
             </Button>
           </Card>
           {error ? <ErrorState title="Ошибка оформления" message={error} /> : null}

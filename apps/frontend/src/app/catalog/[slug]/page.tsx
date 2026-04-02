@@ -27,6 +27,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   try {
     const product = await apiGet<CatalogProduct>(`/catalog/products/${params.slug}`);
     const commercial = getProductCommercialContent(product.slug);
+    const firstVariant = product.variants[0];
 
     let recommendations: CatalogProduct[] = [];
     try {
@@ -47,16 +48,54 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <p className="small">{product.category.name}</p>
               <h1 className="h2">{product.name}</h1>
               <p className="text-secondary">{commercial.shortDescription}</p>
+              {firstVariant ? (
+                <Card className="product-purchase-rail">
+                  <div className="product-purchase-top">
+                    <div>
+                      <p className="small">Цена</p>
+                      <PriceBlock amount={firstVariant.price} currency={firstVariant.currency} />
+                    </div>
+                    <StockBadge stock={firstVariant.stock} />
+                  </div>
+                  <p className="small">SKU: {firstVariant.sku}</p>
+                  <AddToCartButton variantId={firstVariant.id} />
+                  <p className="text-secondary">Быстрое оформление и безопасная онлайн-оплата</p>
+                </Card>
+              ) : (
+                <Card>
+                  <p className="text-secondary">Варианты товара временно недоступны.</p>
+                </Card>
+              )}
+
               <Divider />
-              <div className="product-highlights">
-                {commercial.highlights.map((item) => (
-                  <p key={item}>{item}</p>
-                ))}
+              <div className="grid">
+                <h2 className="h3">Преимущества</h2>
+                <div className="product-highlights">
+                  {commercial.highlights.map((item) => (
+                    <p key={item}>{item}</p>
+                  ))}
+                </div>
+              </div>
+              <Divider />
+              <div className="grid">
+                <h2 className="h3">Описание</h2>
+                <p className="text-secondary">{product.description}</p>
+                <p className="text-secondary">{commercial.shortDescription}</p>
               </div>
               <Divider />
               <div className="grid">
                 <h2 className="h3">Как использовать</h2>
                 <p className="text-secondary">{commercial.usage}</p>
+              </div>
+              <Divider />
+              <div className="grid">
+                <h2 className="h3">Экономика</h2>
+                <p className="text-secondary">1 упаковка = до {commercial.washCount} стирок</p>
+                {firstVariant ? (
+                  <p className="text-secondary">
+                    Стоимость одной стирки — от {formatMoney(firstVariant.price / Math.max(1, commercial.washCount), firstVariant.currency)}
+                  </p>
+                ) : null}
               </div>
               <Divider />
               <div className="grid">
@@ -67,33 +106,6 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <div className="grid">
                 <h2 className="h3">Меры предосторожности</h2>
                 <p className="text-secondary">{commercial.precautions}</p>
-              </div>
-              <Divider />
-              <Card>
-                <h2 className="h3">Экономика</h2>
-                <p className="text-secondary">1 упаковка = до {commercial.washCount} стирок</p>
-                {product.variants[0] ? (
-                  <p className="text-secondary">
-                    Стоимость одной стирки — от{" "}
-                    {formatMoney(product.variants[0].price / Math.max(1, commercial.washCount), product.variants[0].currency)}
-                  </p>
-                ) : null}
-              </Card>
-              <Divider />
-              <div className="grid">
-                {product.variants.map((variant) => (
-                  <Card key={variant.id} className="variant-row">
-                    <div className="variant-row-main">
-                      <h3 className="h3">{variant.title}</h3>
-                      <p className="small">SKU: {variant.sku}</p>
-                      <PriceBlock amount={variant.price} currency={variant.currency} />
-                    </div>
-                    <div className="variant-row-actions">
-                      <StockBadge stock={variant.stock} />
-                      <AddToCartButton variantId={variant.id} />
-                    </div>
-                  </Card>
-                ))}
               </div>
             </Card>
           </div>

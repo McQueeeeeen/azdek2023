@@ -20,6 +20,7 @@ interface CartView {
   items: Array<{
     id: string;
     quantity: number;
+    unitPrice: number;
     lineTotal: number;
     productVariant: {
       title: string;
@@ -31,7 +32,9 @@ interface CartView {
 export default function CartPage() {
   const [cart, setCart] = useState<CartView | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [busyItemId, setBusyItemId] = useState<string | null>(null);
 
   const run = async () => {
     const variantId = localStorage.getItem("azdek_variant_id");
@@ -45,11 +48,29 @@ export default function CartPage() {
 
     try {
       setLoading(true);
+      setFeedback(null);
       let data: CartView;
       if (existingCartId) {
-        const res = await fetch(`${API_BASE}/cart/${existingCartId}`);
+        if (variantId) {
+          const append = await fetch(`${API_BASE}/cart/items`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ cartId: existingCartId, productVariantId: variantId, quantity: 1 }),
+          });
+          if (append.ok) {
+            data = await append.json();
+            localStorage.removeItem("azdek_variant_id");
+            setCart(data);
+            setError(null);
+            setFeedback("Товар добавлен в корзину");
+            return;
+          }
+        }
+
+        const res = await fetch(`${API_BASE}/cart/${existingCartId}`, { cache: "no-store" });
         if (res.ok) {
           data = await res.json();
+          localStorage.removeItem("azdek_variant_id");
           setCart(data);
           setError(null);
           return;
@@ -64,12 +85,68 @@ export default function CartPage() {
 
       data = await create.json();
       localStorage.setItem("azdek_cart_id", data.id);
+      localStorage.removeItem("azdek_variant_id");
       setCart(data);
       setError(null);
+      setFeedback("Товар добавлен в корзину");
     } catch (e) {
       setError((e as Error).message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const updateItemQuantity = async (itemId: string, nextQuantity: number) => {
+    if (!cart) {
+      return;
+    }
+
+    try {
+      setBusyItemId(itemId);
+      setFeedback(null);
+      const response = await fetch(`${API_BASE}/cart/items/${cart.id}/${itemId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quantity: nextQuantity }),
+      });
+
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+
+      const nextCart = (await response.json()) as CartView;
+      setCart(nextCart);
+      setFeedback("Количество обновлено");
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusyItemId(null);
+    }
+  };
+
+  const removeItem = async (itemId: string) => {
+    if (!cart) {
+      return;
+    }
+
+    try {
+      setBusyItemId(itemId);
+      setFeedback(null);
+      const response = await fetch(`${API_BASE}/cart/items/${cart.id}/${itemId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+
+      const nextCart = (await response.json()) as CartView;
+      setCart(nextCart.items.length > 0 ? nextCart : null);
+      setFeedback("Товар удален из корзины");
+    } catch (e) {
+      setError((e as Error).message);
+    } finally {
+      setBusyItemId(null);
     }
   };
 
@@ -106,11 +183,19 @@ export default function CartPage() {
     <Section>
       <Container className="grid">
         <PageHeader title="Корзина" subtitle="Проверьте заказ перед оформлением" />
+        {feedback ? <Card><p className="small">{feedback}</p></Card> : null}
         {cart ? (
           <div className="cart-layout">
             <div className="grid">
               {cart.items.map((item) => (
-                <CartItem key={item.id} item={item} />
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  busy={busyItemId === item.id}
+                  onIncrease={(itemId, quantity) => void updateItemQuantity(itemId, quantity + 1)}
+                  onDecrease={(itemId, quantity) => void updateItemQuantity(itemId, Math.max(1, quantity - 1))}
+                  onRemove={(itemId) => void removeItem(itemId)}
+                />
               ))}
             </div>
             <CartSummary totalAmount={cart.totalAmount} currency={cart.currency} />
