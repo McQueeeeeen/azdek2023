@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Account Overview | Clinical Editorial</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-container-low": "#f0f4f5", "on-surface-variant": "#3e494b", surface: "#f6fafb", secondary: "#41646b", "surface-tint": "#006876", "error-dim": "#70030f", background: "#f6fafb", "on-primary-fixed": "#001f25", "outline-variant": "#bdc9cb", "on-secondary-container": "#45686f", "inverse-on-surface": "#edf1f3", "surface-variant": "#dfe3e4", "on-primary-container": "#f8feff", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#703800", "surface-container-highest": "#dfe3e4", error: "#ba1a1a", "surface-container-high": "#e5e9ea", "tertiary-dim": "#6b3f8e", "surface-bright": "#f6fafb", "tertiary-fixed": "#ffdcc5", "surface-container": "#eaeff0", "primary-fixed-dim": "#6ed5e8", "on-error": "#ffffff", "secondary-fixed-dim": "#a8cdd5", "secondary-fixed": "#c4e9f1", "primary-container": "#008091", outline: "#6e797c", "on-tertiary-fixed": "#301400", "surface-dim": "#d6dbdc", "on-background": "#171c1d", "on-tertiary-container": "#fffbff", "on-surface": "#171c1d", "secondary-container": "#c1e6ee", "error-container": "#ffdad6", "tertiary-container": "#aa6329", "primary-dim": "#005c68", "surface-container-lowest": "#ffffff", "on-secondary": "#ffffff", "on-tertiary": "#ffffff", "tertiary-fixed-dim": "#ffb782", "on-primary-fixed-variant": "#004e59", "inverse-surface": "#2c3132", "on-secondary-fixed": "#001f25", tertiary: "#8c4b11", "on-secondary-fixed-variant": "#284c53", "on-primary": "#ffffff", "primary-fixed": "#9fefff", primary: "#006673", "secondary-dim": "#5c4c6e", "inverse-primary": "#6ed5e8"}, fontFamily: {headline: ["Newsreader"], body: ["Manrope"], label: ["Manrope"], display: "Newsreader"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .editorial-shadow {
+            box-shadow: 0px 24px 48px rgba(26, 28, 28, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopNavBar: Shared Component -->
+<header class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-stone-900/70 backdrop-blur-md shadow-[0_24px_48px_rgba(26,28,28,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-full">
+<div class="flex items-center gap-8">
+<span class="font-serif text-2xl italic text-stone-900 dark:text-stone-50">Clinical Editorial</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-stone-500 dark:text-stone-400 font-sans uppercase tracking-widest text-xs hover:text-cyan-600 transition-colors duration-300" href="#">Shop</a>
+<a class="text-stone-500 dark:text-stone-400 font-sans uppercase tracking-widest text-xs hover:text-cyan-600 transition-colors duration-300" href="#">Philosophy</a>
+<a class="text-stone-500 dark:text-stone-400 font-sans uppercase tracking-widest text-xs hover:text-cyan-600 transition-colors duration-300" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:block relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary/20 w-64" placeholder="Search essentials..." type="text"/>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="text-cyan-700 dark:text-cyan-300 transition-colors scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 min-h-screen flex">
+<!-- SideNavBar: Shared Component -->
+<aside class="hidden md:flex flex-col py-12 px-6 h-screen w-64 bg-stone-50 dark:bg-stone-950 sticky top-24">
+<div class="mb-10 px-4">
+<p class="font-sans text-xs uppercase tracking-widest text-stone-400 mb-1">Welcome back</p>
+<h2 class="font-serif text-xl text-on-surface">Managing your sanctuary</h2>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 py-3 text-cyan-700 dark:text-cyan-300 font-bold border-l-4 border-cyan-600 pl-4 bg-stone-100 dark:bg-stone-900 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-stone-500 dark:text-stone-400 font-sans pl-4 hover:bg-stone-100 dark:hover:bg-stone-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="package_2">package_2</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-stone-500 dark:text-stone-400 font-sans pl-4 hover:bg-stone-100 dark:hover:bg-stone-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span>Favorites</span>
+</a>
+<a class="flex items-center gap-3 py-3 text-stone-500 dark:text-stone-400 font-sans pl-4 hover:bg-stone-100 dark:hover:bg-stone-800 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<section class="flex-1 px-8 md:px-16 py-12 max-w-6xl mx-auto">
+<!-- Header Section -->
+<div class="mb-16">
+<h1 class="font-headline text-5xl md:text-6xl text-on-surface mb-4 leading-tight">Welcome Back, Julian.</h1>
+<p class="font-body text-on-surface-variant max-w-xl text-lg leading-relaxed">
+                    Your environment is an extension of your clarity. Review your active orders or curate your collection of household essentials.
+                </p>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Profile Summary Card -->
+<div class="lg:col-span-1 bg-surface-container-lowest editorial-shadow rounded-xl p-8 flex flex-col justify-between border border-primary/5">
+<div>
+<div class="w-16 h-16 rounded-full bg-surface-container mb-6 overflow-hidden">
+<img alt="Julian's profile photo" class="w-full h-full object-cover" data-alt="Close-up portrait of a man with a clean minimalist aesthetic, soft natural lighting, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlVkZyJ6jJ5-Yt3Ar02Y4w0qAFSW53ah7F8YiziZ8-7Zjqg2W6nmo3TNyV-8SrC01k6J5JFwJ2hADPf741j_IkURShPsnq3_ErwSF45bAm3CuLGB0BoLPXD9LzuwBGvB2cQ_nF3u1zdpw5J-6UUo_am8UBwcWGS1z8UdXrFMtv13D6tA14pxua9KsJQS4YD3KxX8WVN4ieH3UDIDNCmCKQxFU0qyv8nUP8sop8DG1JlJcbWUMwK1adIdKhjotUbgYuXmNtXnR5z9E"/>
+</div>
+<h3 class="font-headline text-2xl mb-2">Julian Thorne</h3>
+<p class="font-body text-on-surface-variant text-sm mb-6">julian.t@editorial.com</p>
+<div class="space-y-4">
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span class="text-on-surface">London, SW1A 1AA</span>
+</div>
+<div class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">credit_card</span>
+<span class="text-on-surface">Visa ending in 4242</span>
+</div>
+</div>
+</div>
+<button class="mt-12 text-tertiary font-bold text-xs uppercase tracking-widest border-b-2 border-tertiary w-fit hover:opacity-70 transition-opacity">
+                        Edit Profile
+                    </button>
+</div>
+<!-- Recent Orders Table -->
+<div class="lg:col-span-2 bg-surface-container-lowest editorial-shadow rounded-xl p-8 border border-primary/5">
+<div class="flex justify-between items-end mb-8">
+<h3 class="font-headline text-3xl">Recent Orders</h3>
+<a class="text-primary text-sm font-semibold hover:underline" href="#">View All</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-on-surface-variant text-xs uppercase tracking-widest border-b border-surface-container">
+<th class="pb-4 font-medium">Order #</th>
+<th class="pb-4 font-medium">Date</th>
+<th class="pb-4 font-medium">Status</th>
+<th class="pb-4 font-medium text-right">Total</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-surface-container-low hover:bg-surface transition-colors">
+<td class="py-5 font-medium text-on-surface">ORD-88219</td>
+<td class="py-5 text-on-surface-variant">Oct 24, 2024</td>
+<td class="py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-container text-on-primary-container">
+                                            Shipped
+                                        </span>
+</td>
+<td class="py-5 text-right font-medium">$124.00</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface transition-colors">
+<td class="py-5 font-medium text-on-surface">ORD-87102</td>
+<td class="py-5 text-on-surface-variant">Oct 12, 2024</td>
+<td class="py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface-variant">
+                                            Delivered
+                                        </span>
+</td>
+<td class="py-5 text-right font-medium">$89.50</td>
+</tr>
+<tr class="hover:bg-surface transition-colors">
+<td class="py-5 font-medium text-on-surface">ORD-86991</td>
+<td class="py-5 text-on-surface-variant">Sept 28, 2024</td>
+<td class="py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-container-high text-on-surface-variant">
+                                            Delivered
+                                        </span>
+</td>
+<td class="py-5 text-right font-medium">$210.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- My Favorites Section -->
+<div class="lg:col-span-3 mt-12">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="font-headline text-3xl">My Favorites</h3>
+<p class="text-on-surface-variant text-sm mt-1">Curated essentials for your daily ritual.</p>
+</div>
+<div class="flex gap-4">
+<button class="p-2 rounded-full border border-outline-variant/30 hover:bg-white transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded-full border border-outline-variant/30 hover:bg-white transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Favorite Item 1 -->
+<div class="group relative bg-surface-container-lowest p-6 rounded-xl editorial-shadow transition-transform hover:scale-[1.02] border border-primary/5">
+<div class="aspect-square rounded-lg bg-surface mb-6 overflow-hidden">
+<img alt="Azure Clean Glass Cleaner" class="w-full h-full object-cover mix-blend-multiply transition-opacity group-hover:opacity-90" data-alt="Elegant glass spray bottle with clear liquid on a white marble surface, soft morning light, minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjqFF1yRqAMlvkT5O_q3P2XOGcI4gedNrAyVqANpgufztOVysIPguZG5RrQy29NcweqrboVA-yeK2zOOCxJb5COi-EFVXdt8DdDKN9K8luvotnU7ebLyY29VcZHC0K_9ZF3ehUhI7o5Eps2TZ196Ru6Cz6osC6vqy_3J8_rvkxw_JHgMIgLz8ikZl1EgeJ18XBaafYc0eUUupSllUJPadw1-6R-S9GPa58EOVVvr8Uy64DI7VFNUp7V4GaC2ujLoeU4eocrFMiF-k"/>
+</div>
+<div class="absolute top-8 right-8">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="inline-block px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold uppercase tracking-widest mb-2">Restock Soon</span>
+<h4 class="font-headline text-xl mb-1">Elemental Glass Polish</h4>
+<div class="flex justify-between items-center mt-4">
+<p class="font-body text-lg font-light text-on-surface">$24.00</p>
+<button class="bg-primary hover:bg-primary-dim text-white px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-colors">
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+<!-- Favorite Item 2 -->
+<div class="group relative bg-surface-container-lowest p-6 rounded-xl editorial-shadow transition-transform hover:scale-[1.02] border border-primary/5">
+<div class="aspect-square rounded-lg bg-surface mb-6 overflow-hidden">
+<img alt="Natural Laundry Detergent" class="w-full h-full object-cover mix-blend-multiply transition-opacity group-hover:opacity-90" data-alt="Minimalist white laundry detergent bottle with clean typography on a wooden shelf, soft focus background of folded linen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6pIm_4ZWrVVRW57sZMJHg-p0RRd-zgZmKDr9kazcZ7kq_FCixhi6e6pYimejrOgY11r9jCP1c42Cd31q7tHqeWmMfiDsfTNz8pNO3H3YNBgRA17p-_9QAXFcXCsJyZFfLFUxW8oVdXZxxSkwbYiO_vx2O0pVnjK3W-s4iMA7ziNsmEnywNRL3iQpcNHDAr1a2k187NyFOfm8JD903WS-L_jIa2Jb7Ov6dc5ArNfzcG15kwF_bIYU5bJVqsuQ14m07o1ar8vRRYmw"/>
+</div>
+<div class="absolute top-8 right-8">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="inline-block px-2 py-0.5 rounded-full bg-primary-container text-on-primary-container text-[10px] font-bold uppercase tracking-widest mb-2">Editor's Pick</span>
+<h4 class="font-headline text-xl mb-1">Linen Silk Wash</h4>
+<div class="flex justify-between items-center mt-4">
+<p class="font-body text-lg font-light text-on-surface">$38.00</p>
+<button class="bg-primary hover:bg-primary-dim text-white px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-colors">
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+<!-- Favorite Item 3 -->
+<div class="group relative bg-surface-container-lowest p-6 rounded-xl editorial-shadow transition-transform hover:scale-[1.02] border border-primary/5">
+<div class="aspect-square rounded-lg bg-surface mb-6 overflow-hidden">
+<img alt="Ceramic Kitchen Scrub" class="w-full h-full object-cover mix-blend-multiply transition-opacity group-hover:opacity-90" data-alt="Minimalist beige ceramic dish soap dispenser and a natural wood brush on a clean countertop, high key lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTYNO71h0vAMidMJyTJ1ZWigvl-QEh2eIEvXNeTBfs32jjB_E0TwZdqlBhDuyC3ZQh8TzdXc4-BMrqS25IHXmatx-3JQ4qrytInBwYjh59lbSmJa1ERGzMGN2wCGBeY1e1So4XZA6T0416X1LcJwJnjnZxTUIpcTUJVhUfbJvdfVxJFPwvr6n-JoCJNO4mp1eh4ShzXWCX5HmBNXLbeAAj9ftGJijQm_clSS0vvO_I9RYHwvR6g89cuXgc5pcpKZl3UHMvYAuiXpk"/>
+</div>
+<div class="absolute top-8 right-8">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+<span class="inline-block px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest mb-2">Sustainable</span>
+<h4 class="font-headline text-xl mb-1">Culinary Surface Mist</h4>
+<div class="flex justify-between items-center mt-4">
+<p class="font-body text-lg font-light text-on-surface">$22.00</p>
+<button class="bg-primary hover:bg-primary-dim text-white px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-colors">
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer: Shared Component -->
+<footer class="bg-stone-100 dark:bg-stone-900 w-full py-12 mt-24">
+<div class="flex flex-col items-center justify-center space-y-4 w-full">
+<span class="font-serif italic text-lg text-on-surface">The Clinical Editorial</span>
+<div class="flex gap-8">
+<a class="font-sans text-xs uppercase tracking-tighter text-stone-500 dark:text-stone-400 hover:underline decoration-cyan-500 opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="font-sans text-xs uppercase tracking-tighter text-stone-500 dark:text-stone-400 hover:underline decoration-cyan-500 opacity-80 hover:opacity-100" href="#">Terms</a>
+<a class="font-sans text-xs uppercase tracking-tighter text-stone-500 dark:text-stone-400 hover:underline decoration-cyan-500 opacity-80 hover:opacity-100" href="#">Accessibility</a>
+<a class="font-sans text-xs uppercase tracking-tighter text-stone-500 dark:text-stone-400 hover:underline decoration-cyan-500 opacity-80 hover:opacity-100" href="#">Support</a>
+</div>
+<p class="font-sans text-[10px] uppercase tracking-widest text-stone-400 mt-6">© 2024 The Clinical Editorial. Household efficiency, refined.</p>
+</div>
+</footer>
+</body></html>

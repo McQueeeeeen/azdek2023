@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Successful - Azure Clean</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Newsreader & Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-dim": "#d6dbdc", "surface-container": "#eaeff0", "on-surface": "#171c1d", "tertiary-fixed": "#ffdcc5", "surface-container-lowest": "#ffffff", "inverse-primary": "#6ed5e8", "on-tertiary-fixed-variant": "#703800", "inverse-surface": "#2c3132", "secondary-fixed": "#c4e9f1", "on-surface-variant": "#3e494b", error: "#ba1a1a", "tertiary-fixed-dim": "#ffb782", outline: "#6e797c", "primary-fixed": "#9fefff", "surface-container-low": "#f0f4f5", "on-tertiary-fixed": "#301400", "on-primary-fixed-variant": "#004e59", "surface-tint": "#006876", "primary-fixed-dim": "#6ed5e8", "on-secondary": "#ffffff", "secondary-fixed-dim": "#a8cdd5", "secondary-container": "#c1e6ee", tertiary: "#8c4b11", "tertiary-container": "#aa6329", "surface-variant": "#dfe3e4", secondary: "#41646b", "surface-container-high": "#e5e9ea", background: "#f6fafb", "surface-container-highest": "#dfe3e4", "error-container": "#ffdad6", primary: "#006673", "on-primary-fixed": "#001f25", "on-error": "#ffffff", "on-secondary-container": "#45686f", "on-background": "#171c1d", "on-primary-container": "#f8feff", surface: "#f6fafb", "on-secondary-fixed-variant": "#284c53", "on-tertiary-container": "#fffbff", "on-error-container": "#93000a", "on-secondary-fixed": "#001f25", "on-primary": "#ffffff", "surface-bright": "#f6fafb", "primary-container": "#008091", "inverse-on-surface": "#edf1f3", "outline-variant": "#bdc9cb", "on-tertiary": "#ffffff", "primary-dim": "#005c68", "error-dim": "#70030f", "tertiary-dim": "#6b3f8e", "secondary-dim": "#5c4c6e"}, fontFamily: {headline: ["Newsreader"], body: ["Manrope"], label: ["Manrope"], display: "Newsreader"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed-dim">
+<!-- Suppression of Navigation Shell for Transactional Focus -->
+<main class="min-h-screen flex flex-col items-center justify-center px-6 py-20 bg-gradient-to-tr from-surface via-surface-container-low to-primary-fixed/10">
+<!-- Success Badge Cluster -->
+<div class="relative mb-12">
+<div class="absolute -inset-8 bg-primary/5 rounded-full blur-3xl"></div>
+<div class="relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-xl shadow-primary/5 border border-primary/10">
+<span class="material-symbols-outlined text-primary text-6xl md:text-7xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Editorial Header Section -->
+<div class="text-center max-w-2xl">
+<p class="font-label text-primary font-bold tracking-[0.2em] mb-4">CONFIRMED</p>
+<h1 class="font-headline text-5xl md:text-7xl font-light italic mb-8 leading-tight">Thank you for your order</h1>
+<p class="font-body text-on-surface-variant text-lg md:text-xl leading-relaxed mb-12">
+        Your order <span class="font-bold text-on-surface">#AC-2024-9182</span> has been placed successfully. We are preparing your botanical clinical solutions for their journey to you.
+      </p>
+</div>
+<!-- Info Grid (Asymmetric Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mb-16">
+<!-- Delivery Card -->
+<div class="bg-surface-container-lowest p-8 rounded-xl flex flex-col justify-between shadow-sm border border-outline-variant/15">
+<div>
+<span class="material-symbols-outlined text-primary mb-6 block" data-icon="local_shipping">local_shipping</span>
+<h2 class="font-headline text-2xl mb-2">Estimated delivery</h2>
+<p class="font-body text-on-surface-variant">Your Azure Clean bundle is scheduled to arrive by:</p>
+</div>
+<p class="text-3xl font-headline italic mt-8 text-primary">Wednesday, October 24</p>
+</div>
+<!-- What's Next Card -->
+<div class="bg-surface-container-low p-8 rounded-xl shadow-sm">
+<h2 class="font-headline text-2xl mb-6">What's next?</h2>
+<ul class="space-y-6">
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-primary flex-shrink-0" data-icon="mail">mail</span>
+<div>
+<p class="font-bold text-on-surface">Confirmation email sent</p>
+<p class="text-sm text-on-surface-variant">Check your inbox for a detailed breakdown of your items and receipt.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<span class="material-symbols-outlined text-primary flex-shrink-0" data-icon="clinical_notes">clinical_notes</span>
+<div>
+<p class="font-bold text-on-surface">Processing in progress</p>
+<p class="text-sm text-on-surface-variant">Our clinical team is verifying and packing your sustainable concentrates.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- Decorative Image / Background Element -->
+<div class="w-full max-w-4xl h-48 md:h-64 rounded-xl overflow-hidden mb-16 relative">
+<img alt="Fresh clean interior" class="w-full h-full object-cover grayscale-[30%] opacity-80" data-alt="Minimalist modern kitchen with sunlit white marble surfaces, clear glass bottles of liquid soap, and a single green sprig in a vase." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqrj7BjSEFlZXIQWfIf8aWT0n5hloeQrBTDioLn4fjpIvy9IbLKUxr0zS2oZC-JONYB1aaQkjIRtt43ou9ERLZAJVjIDZ_sLIovUPPP08Evb3sIA4up-dLyOHWuJAUwtGH2WI2PGu57tygfftZ-Cq2TzevCuKHGS7gJ2oK2Wwr2ZXqnqbL0VZ7D2-8HkM__Y0wu5By1Lao6-fpPeWNbff4e7B-Tt188eEB326cd3DtQut7fHuCO8qxZfR580VBWzgzpCml2V15tgU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+</div>
+<!-- Primary Action -->
+<div class="flex flex-col items-center gap-6">
+<a class="inline-flex items-center justify-center px-12 py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary font-body font-bold text-lg rounded-full shadow-lg hover:shadow-primary/20 transition-all active:scale-95 group" href="#">
+        Back to Shop
+        <span class="material-symbols-outlined ml-2 transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<p class="text-sm text-on-surface-variant font-label">Need assistance? <a class="text-primary underline underline-offset-4 font-bold" href="#">Contact Editorial Support</a></p>
+</div>
+</main>
+<!-- Footer (Small variant for transactional pages) -->
+<footer class="bg-surface-container-high pt-20 pb-10 w-full">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-slate-200/50">
+<div>
+<h3 class="font-serif italic text-lg text-cyan-800 mb-4">Azure Clean</h3>
+<p class="font-body text-sm tracking-wide text-slate-600 max-w-xs">
+          © 2024 Azure Clean. The Clinical Editorial of Home Care.
+        </p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-4 items-center md:justify-end">
+<a class="font-body text-sm tracking-wide text-slate-600 hover:text-cyan-500 transition-colors" href="#">Sustainability</a>
+<a class="font-body text-sm tracking-wide text-slate-600 hover:text-cyan-500 transition-colors" href="#">Wholesale</a>
+<a class="font-body text-sm tracking-wide text-slate-600 hover:text-cyan-500 transition-colors" href="#">Contact</a>
+<a class="font-body text-sm tracking-wide text-slate-600 hover:text-cyan-500 transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>

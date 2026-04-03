@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Azure Clean - Access</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-dim": "#d6dbdc", "surface-container": "#eaeff0", "on-surface": "#171c1d", "tertiary-fixed": "#ffdcc5", "surface-container-lowest": "#ffffff", "inverse-primary": "#6ed5e8", "on-tertiary-fixed-variant": "#703800", "inverse-surface": "#2c3132", "secondary-fixed": "#c4e9f1", "on-surface-variant": "#3e494b", error: "#ba1a1a", "tertiary-fixed-dim": "#ffb782", outline: "#6e797c", "primary-fixed": "#9fefff", "surface-container-low": "#f0f4f5", "on-tertiary-fixed": "#301400", "on-primary-fixed-variant": "#004e59", "surface-tint": "#006876", "primary-fixed-dim": "#6ed5e8", "on-secondary": "#ffffff", "secondary-fixed-dim": "#a8cdd5", "secondary-container": "#c1e6ee", tertiary: "#8c4b11", "tertiary-container": "#aa6329", "surface-variant": "#dfe3e4", secondary: "#41646b", "surface-container-high": "#e5e9ea", background: "#f6fafb", "surface-container-highest": "#dfe3e4", "error-container": "#ffdad6", primary: "#006673", "on-primary-fixed": "#001f25", "on-error": "#ffffff", "on-secondary-container": "#45686f", "on-background": "#171c1d", "on-primary-container": "#f8feff", surface: "#f6fafb", "on-secondary-fixed-variant": "#284c53", "on-tertiary-container": "#fffbff", "on-error-container": "#93000a", "on-secondary-fixed": "#001f25", "on-primary": "#ffffff", "surface-bright": "#f6fafb", "primary-container": "#008091", "inverse-on-surface": "#edf1f3", "outline-variant": "#bdc9cb", "on-tertiary": "#ffffff", "primary-dim": "#005c68", "error-dim": "#70030f", "tertiary-dim": "#6b3f8e", "secondary-dim": "#5c4c6e"}, fontFamily: {headline: ["Newsreader"], body: ["Manrope"], label: ["Manrope"], display: "Newsreader"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">
+<!-- Auth Shell Suppression: No TopNavBar or SideNav per "Destination Rule" -->
+<main class="flex-grow flex items-center justify-center p-6 relative overflow-hidden">
+<!-- Ambient Background Aesthetic -->
+<div class="absolute inset-0 z-0 bg-gradient-to-br from-primary-fixed-dim/20 via-surface to-background"></div>
+<div class="absolute top-[-10%] right-[-10%] w-96 h-96 bg-primary-container/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-secondary-container/20 rounded-full blur-[120px]"></div>
+<div class="relative z-10 w-full max-w-md">
+<!-- Branding Header (Top margin for editorial balance) -->
+<div class="text-center mb-10">
+<h1 class="text-4xl font-headline italic text-primary leading-none">Azure Clean</h1>
+<p class="font-body text-sm tracking-[0.2em] uppercase text-outline mt-2">The Clinical Editorial</p>
+</div>
+<!-- Main Auth Card -->
+<section class="glass-panel rounded-[2rem] p-10 shadow-2xl shadow-primary/5">
+<!-- Toggle Selector (Bento-style Minimalist) -->
+<div class="bg-surface-container-low p-1 rounded-full flex mb-10">
+<button class="flex-1 py-3 text-sm font-label font-bold rounded-full bg-white text-primary shadow-sm transition-all duration-300">
+                        Login
+                    </button>
+<button class="flex-1 py-3 text-sm font-label font-medium text-on-surface-variant hover:text-primary transition-all duration-300">
+                        Create Account
+                    </button>
+</div>
+<form class="space-y-6">
+<!-- Input: Email -->
+<div class="space-y-2">
+<label class="block text-xs font-label font-bold text-outline ml-4 uppercase tracking-wider" for="email">Email Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-6 py-4 text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all duration-300" id="email" placeholder="name@clinical.com" type="email"/>
+</div>
+<!-- Input: Password -->
+<div class="space-y-2">
+<div class="flex justify-between items-center px-4">
+<label class="block text-xs font-label font-bold text-outline uppercase tracking-wider" for="password">Password</label>
+<a class="text-xs font-label font-bold text-tertiary underline decoration-2 underline-offset-4 hover:text-tertiary-container transition-colors" href="#">Forgot Password?</a>
+</div>
+<input class="w-full bg-surface-container-low border-none rounded-xl px-6 py-4 text-on-surface placeholder:text-outline-variant focus:ring-2 focus:ring-primary/20 focus:bg-surface-container-lowest transition-all duration-300" id="password" placeholder="••••••••" type="password"/>
+</div>
+<!-- Primary CTA -->
+<button class="w-full py-4 rounded-xl bg-gradient-to-tr from-primary to-primary-container text-white font-label font-bold text-lg shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 mt-4" type="submit">
+                        Log In
+                    </button>
+</form>
+<!-- Divider -->
+<div class="relative my-10 text-center">
+<span class="relative z-10 px-4 bg-transparent text-xs font-label font-bold text-outline-variant uppercase tracking-[0.2em]">or access via</span>
+<div class="absolute top-1/2 left-0 w-full h-[1px] bg-outline-variant opacity-20"></div>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 hover:bg-surface-container-low transition-all duration-300 group">
+<img alt="Google" class="w-5 h-5" data-alt="Google logo icon in original brand colors on a transparent background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0T_rl76JdMayXqfDBAwruHft_JrFGK8nEjJPxSxwwguivURRyS9LaqYhcrH2-_1bNrFK5Pm-M01xnVJbKg1I97VPy6cUFVhCQd3RvaXBG7LfXNHkgCS0y-sAfiKLzmna3ElqmmomXxcpXEwHqLmpCbY0Bir3Wmk2QK-sqUdXHnMSsLG4lzd5V1fOoStTVpgN4LbXeDafLWBlcCxCtt1CNM_YLEEEO7MDYFN7Y6WM2rSNV9CJCQLPgwi5e50MN_4uzo8mOi5pPsL4"/>
+<span class="text-sm font-label font-bold text-on-surface-variant group-hover:text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10 hover:bg-surface-container-low transition-all duration-300 group">
+<span class="material-symbols-outlined text-on-surface" style="font-variation-settings: 'FILL' 1;">ios</span>
+<span class="text-sm font-label font-bold text-on-surface-variant group-hover:text-on-surface">Apple</span>
+</button>
+</div>
+</section>
+<!-- Decorative Editorial Image -->
+<div class="mt-12 opacity-40 hover:opacity-100 transition-opacity duration-700">
+<img alt="Clinical cleanliness" class="w-full h-24 object-cover rounded-full mix-blend-multiply grayscale hover:grayscale-0 transition-all duration-700" data-alt="Minimalist close-up of clear water ripples in a white porcelain basin with soft morning light and cyan shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkT1i0sgyLH9KqPygMijpPkVZM1JH_jmHOVdDSZaltxguAj3Ga6cudttVBxIMgmrUlmcN1cUkj1crRekkdWYFevEfSWJL-Rckk1-m6cZeSLFfDTJcvIXxLNRhXaXHHWVsSTgYU_AuXjm93ssP7D2LTelKUEeQlJHg7IkX6mSfbxiXhiCSvCdzzeTJFgxi7bhdH9TLzD6HLlOwGOorpXtA0oHyQJ-VyjPg8GMF-unseMwWhHgSt78JeX-DHR5xBp0hTbjoR-KZLThM"/>
+</div>
+</div>
+</main>
+<!-- Footer - Simplified for focused Auth state -->
+<footer class="py-8 border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs font-body tracking-wide text-outline italic">
+                © 2024 Azure Clean. The Clinical Editorial of Home Care.
+            </p>
+<div class="flex gap-6">
+<a class="text-xs font-label font-medium text-outline hover:text-primary transition-colors" href="#">Sustainability</a>
+<a class="text-xs font-label font-medium text-outline hover:text-primary transition-colors" href="#">Contact</a>
+<a class="text-xs font-label font-medium text-outline hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>
