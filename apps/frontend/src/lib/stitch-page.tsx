@@ -75,12 +75,12 @@ ${parsed.styleBlocks.join("\n\n")}
 
   return (
     <>
-      {tailwindCdn ? <Script src={tailwindCdn} strategy="afterInteractive" /> : null}
       {parsed.tailwindConfig ? (
-        <Script id={`tailwind-config-${folder}`} strategy="afterInteractive">
+        <Script id={`tailwind-config-${folder}`} strategy="beforeInteractive">
           {parsed.tailwindConfig}
         </Script>
       ) : null}
+      {tailwindCdn ? <Script src={tailwindCdn} strategy="beforeInteractive" /> : null}
       {otherScripts.map((src) => (
         <Script key={`${folder}-${src}`} src={src} strategy="afterInteractive" />
       ))}
@@ -89,4 +89,3 @@ ${parsed.styleBlocks.join("\n\n")}
     </>
   );
 }
-
