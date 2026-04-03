@@ -32,7 +32,14 @@ function repairEncodingArtifacts(input: string): string {
     .replaceAll("вЂ™", "’")
     .replaceAll("вЂњ", "“")
     .replaceAll("вЂќ", "”")
-    .replaceAll("В©", "©");
+    .replaceAll("В©", "©")
+    .replaceAll("РІР‚Сћ", "•")
+    .replaceAll("РІР‚вЂќ", "—")
+    .replaceAll("РІР‚вЂњ", "–")
+    .replaceAll("РІР‚в„ў", "’")
+    .replaceAll("РІР‚Сљ", "“")
+    .replaceAll("РІР‚Сњ", "”")
+    .replaceAll("Р’В©", "©");
 }
 
 function parseStitchHtml(html: string): ParsedStitch {
@@ -193,7 +200,6 @@ ${parsed.styleBlocks.join("\n\n")}
             if (/(home\\b|back to home|главная)/.test(text)) return "/";
             return null;
           };
-
           const bindActions = () => {
             const elements = Array.from(document.querySelectorAll("a, button"));
             for (const element of elements) {
@@ -238,3 +244,4 @@ ${parsed.styleBlocks.join("\n\n")}
     </>
   );
 }
+
