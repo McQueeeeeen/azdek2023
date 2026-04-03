@@ -16,6 +16,14 @@ function unique(values: string[]): string[] {
   return Array.from(new Set(values.filter(Boolean)));
 }
 
+function normalizeTailwindConfig(config?: string): string | undefined {
+  if (!config) return undefined;
+  return config.replace(
+    /\btailwind\.config\s*=/,
+    "window.tailwind = window.tailwind || {}; window.tailwind.config ="
+  );
+}
+
 function repairEncodingArtifacts(input: string): string {
   return input
     .replaceAll("вЂў", "•")
@@ -66,6 +74,7 @@ export function getStitchMetadata(folder: string, fallbackDescription = "Azure C
 
 export function StitchPage({ folder }: { folder: string }) {
   const parsed = readStitch(folder);
+  const safeTailwindConfig = normalizeTailwindConfig(parsed.tailwindConfig);
   const stylesheetImports = parsed.fontStylesheets.map((href) => `@import url("${href}");`).join("\n");
   const mergedStyles = `
 ${stylesheetImports}
@@ -87,15 +96,76 @@ ${parsed.styleBlocks.join("\n\n")}
 
   return (
     <>
-      {parsed.tailwindConfig ? (
+      {safeTailwindConfig ? (
         <Script id={`tailwind-config-${folder}`} strategy="beforeInteractive">
-          {parsed.tailwindConfig}
+          {safeTailwindConfig}
         </Script>
       ) : null}
       {tailwindCdn ? <Script src={tailwindCdn} strategy="beforeInteractive" /> : null}
       {otherScripts.map((src) => (
         <Script key={`${folder}-${src}`} src={src} strategy="afterInteractive" />
       ))}
+      <Script id={`stitch-a11y-${folder}`} strategy="afterInteractive">{`
+        (() => {
+          const focusableSelector = 'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])';
+          const prevAttr = 'data-stitch-prev-tabindex';
+          const noneValue = '__none__';
+
+          const disableFocusable = (root) => {
+            root.setAttribute('inert', '');
+            const focusable = root.querySelectorAll(focusableSelector);
+            for (const el of focusable) {
+              if (el.hasAttribute(prevAttr)) continue;
+              const prev = el.getAttribute('tabindex');
+              el.setAttribute(prevAttr, prev === null ? noneValue : prev);
+              el.setAttribute('tabindex', '-1');
+            }
+          };
+
+          const restoreFocusable = (root) => {
+            root.removeAttribute('inert');
+            const touched = root.querySelectorAll('[' + prevAttr + ']');
+            for (const el of touched) {
+              const prev = el.getAttribute(prevAttr);
+              if (prev === noneValue || prev === null) {
+                el.removeAttribute('tabindex');
+              } else {
+                el.setAttribute('tabindex', prev);
+              }
+              el.removeAttribute(prevAttr);
+            }
+          };
+
+          const syncRoot = (root) => {
+            if (!(root instanceof HTMLElement)) return;
+            const hidden = root.getAttribute('aria-hidden') === 'true' && root.getAttribute('data-aria-hidden') === 'true';
+            if (hidden) {
+              disableFocusable(root);
+            } else if (root.hasAttribute('inert') || root.querySelector('[' + prevAttr + ']')) {
+              restoreFocusable(root);
+            }
+          };
+
+          const scan = () => {
+            const roots = document.querySelectorAll('[aria-hidden="true"][data-aria-hidden="true"], [data-stitch-prev-tabindex], [inert][data-aria-hidden]');
+            for (const root of roots) {
+              const host = root.matches('[aria-hidden="true"][data-aria-hidden="true"]') || root.matches('[inert][data-aria-hidden]')
+                ? root
+                : root.closest('[data-aria-hidden]');
+              if (host instanceof HTMLElement) syncRoot(host);
+            }
+          };
+
+          scan();
+          const observer = new MutationObserver(() => scan());
+          observer.observe(document.documentElement, {
+            subtree: true,
+            childList: true,
+            attributes: true,
+            attributeFilter: ['aria-hidden', 'data-aria-hidden', 'tabindex']
+          });
+        })();
+      `}</Script>
       <Script id={`stitch-actions-${folder}`} strategy="afterInteractive">{`
         (() => {
           const normalize = (value) => (value || "").toLowerCase().replace(/\\s+/g, " ").trim();
