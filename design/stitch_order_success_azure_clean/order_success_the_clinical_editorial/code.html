@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Confirmed | The Clinical Editorial</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Newsreader & Manrope -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400;1,6..72,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f3fbff",
+                    "on-primary-fixed-variant": "#004e59",
+                    "on-secondary-container": "#45686f",
+                    "surface-container-low": "#edf5f9",
+                    "surface-container-high": "#e1e9ee",
+                    "on-primary-fixed": "#001f25",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#c4e9f1",
+                    "primary-fixed": "#9fefff",
+                    "on-surface-variant": "#3e494b",
+                    "secondary": "#41646b",
+                    "surface-variant": "#dce4e8",
+                    "secondary-container": "#c1e6ee",
+                    "tertiary-container": "#aa6329",
+                    "inverse-on-surface": "#eaf2f6",
+                    "on-tertiary-fixed-variant": "#703800",
+                    "outline": "#6e797c",
+                    "on-tertiary-fixed": "#301400",
+                    "primary-fixed-dim": "#6ed5e8",
+                    "surface": "#f3fbff",
+                    "surface-bright": "#f3fbff",
+                    "surface-container-highest": "#dce4e8",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffdcc5",
+                    "on-background": "#151d20",
+                    "inverse-primary": "#6ed5e8",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#f8feff",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary-fixed": "#001f25",
+                    "surface-container": "#e7eff3",
+                    "outline-variant": "#bdc9cb",
+                    "secondary-fixed-dim": "#a8cdd5",
+                    "inverse-surface": "#2a3235",
+                    "primary": "#006673",
+                    "primary-container": "#008091",
+                    "surface-tint": "#006876",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb782",
+                    "tertiary": "#8c4b11",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#284c53",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#d3dbe0",
+                    "on-surface": "#151d20",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 10px 40px -10px rgba(21, 29, 32, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed">
+<!-- TopNavBar (Shared Component) -->
+<!-- Suppression Logic: Nav suppressed on Transactional screens, but User requested Sticky TopNavBar for branding context. Rendered without active states to keep focus. -->
+<header class="sticky top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto">
+<div class="text-2xl font-['Newsreader'] italic font-bold text-teal-900 dark:text-teal-100">The Clinical Editorial</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 dark:text-slate-400 font-['Manrope'] uppercase tracking-widest text-xs hover:text-teal-500 transition-colors duration-300" href="#">Shop</a>
+<a class="text-slate-600 dark:text-slate-400 font-['Manrope'] uppercase tracking-widest text-xs hover:text-teal-500 transition-colors duration-300" href="#">Laundry</a>
+<a class="text-slate-600 dark:text-slate-400 font-['Manrope'] uppercase tracking-widest text-xs hover:text-teal-500 transition-colors duration-300" href="#">Kitchen</a>
+<a class="text-slate-600 dark:text-slate-400 font-['Manrope'] uppercase tracking-widest text-xs hover:text-teal-500 transition-colors duration-300" href="#">Science</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="text-teal-800 dark:text-teal-400 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="text-teal-800 dark:text-teal-400 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="min-h-screen pt-20 pb-32 px-6">
+<div class="max-w-4xl mx-auto">
+<!-- Hero Success Section -->
+<section class="flex flex-col items-center text-center mb-24">
+<div class="mb-12 relative">
+<div class="w-32 h-32 rounded-full bg-surface-container-low flex items-center justify-center relative overflow-hidden">
+<!-- Glassy subtle background for the icon -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/5 to-transparent"></div>
+<span class="material-symbols-outlined text-primary text-6xl relative z-10" data-icon="check_circle" style="font-variation-settings: 'FILL' 0, 'wght' 100;">check_circle</span>
+</div>
+</div>
+<h1 class="font-headline text-5xl md:text-7xl italic text-primary leading-tight mb-6">Thank you for your order.</h1>
+<p class="font-body text-on-surface-variant max-w-xl mx-auto text-lg leading-relaxed mb-12">
+                    Your shipment is being prepared with clinical precision. A confirmation of receipt has been dispatched to your laboratory inbox.
+                </p>
+<!-- Order Quick Stats -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-outline-variant/20 w-full max-w-2xl editorial-shadow bg-surface-container-lowest overflow-hidden">
+<div class="bg-surface-container-lowest p-8 flex flex-col items-center justify-center">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Order Reference</span>
+<span class="font-headline text-2xl text-on-surface italic">CE-8829104</span>
+</div>
+<div class="bg-surface-container-lowest p-8 flex flex-col items-center justify-center">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-2">Estimated Arrival</span>
+<span class="font-headline text-2xl text-on-surface italic">October 14, 2024</span>
+</div>
+</div>
+</section>
+<!-- What's Next - Bento Grid Style -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-24">
+<div class="md:col-span-12 mb-4">
+<h2 class="font-headline text-3xl text-on-surface italic">What's Next</h2>
+</div>
+<!-- Processing Step -->
+<div class="md:col-span-7 bg-surface-container-low p-10 flex flex-col justify-between min-h-[320px]">
+<div>
+<div class="w-10 h-10 bg-primary/10 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="science">science</span>
+</div>
+<h3 class="font-headline text-2xl mb-4">Laboratory Processing</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                            Our team is currently assembling your curated selection. Each item is inspected for purity and packaging integrity before being sealed for transit.
+                        </p>
+</div>
+<div class="mt-8">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label text-[10px] uppercase tracking-widest text-primary font-bold">Currently in progress</span>
+</div>
+</div>
+</div>
+<!-- Email Notification Step -->
+<div class="md:col-span-5 bg-surface-container-high p-10 flex flex-col justify-between min-h-[320px]">
+<div>
+<div class="w-10 h-10 bg-on-surface/5 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-on-surface text-xl" data-icon="mail">mail</span>
+</div>
+<h3 class="font-headline text-2xl mb-4 text-on-surface">Digital Receipt</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                            A detailed breakdown of your order, including VAT and tracking links, has been sent to your email.
+                        </p>
+</div>
+<div class="mt-8 border-t border-outline-variant/20 pt-6">
+<a class="font-headline italic text-primary hover:text-on-primary-fixed-variant transition-colors underline decoration-primary/20" href="#">View Order PDF</a>
+</div>
+</div>
+<!-- Logistics Card -->
+<div class="md:col-span-12 flex flex-col md:flex-row items-center gap-8 bg-surface-container-lowest p-8 border border-outline-variant/10 editorial-shadow">
+<div class="w-full md:w-1/3 h-48 bg-slate-200 overflow-hidden">
+<img alt="Logistics background" class="w-full h-full object-cover grayscale opacity-80" data-alt="Minimalist top-down view of a neatly packed white box with brown paper stuffing and a single botanical sprig" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWDyuw0zaCxCzJ94iFv7uEp0gKOkRhT9snf61N-RI3E1GOWGSQ4qMZ5QmrOiWyBg9S6AcejLrwu5iHrti49GBNO-CZ4qAgdekYxZA_0EFsvlyum2-U5kamsfEHMDcVsywuzjOHDfMQypRbG5mWK_DEAnHE-N5Ipmtl4BM9ziGIZVExUsgEV-DGaFAmH0746M6MHtsJVJP4dg10a0SsX4X9cLTZEayKV5L1Dot4DLOTQLvdXHin0K46eARIBnRJpuFonEwcGeWfiD8"/>
+</div>
+<div class="flex-1">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant block mb-2">Logistics Partnership</span>
+<h3 class="font-headline text-2xl mb-3 italic">Carbon-Neutral Delivery</h3>
+<p class="text-sm text-on-surface-variant max-w-md">
+                            Your order is shipped using our ecosystem-friendly logistics partners, ensuring the lowest possible environmental footprint from our clinical warehouse to your home.
+                        </p>
+</div>
+</div>
+</section>
+<!-- CTA Actions -->
+<div class="flex flex-col md:flex-row items-center justify-center gap-6 pt-12 border-t border-outline-variant/10">
+<a class="px-12 py-4 bg-gradient-to-tr from-primary to-primary-container text-on-primary font-body font-bold text-sm tracking-wide rounded-sm scale-100 active:scale-95 transition-all editorial-shadow flex items-center gap-2" href="/">
+                    Back to Shop
+                    <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<button class="px-12 py-4 text-on-surface-variant font-headline italic text-lg hover:text-primary transition-colors">
+                    Manage My Subscription
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-16 px-12 border-t border-slate-200/20 bg-slate-50 dark:bg-slate-950">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 w-full">
+<div class="space-y-4">
+<div class="font-['Newsreader'] italic text-xl text-teal-900 dark:text-teal-100">The Clinical Editorial</div>
+<p class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">© 2024 The Clinical Editorial</p>
+</div>
+<div class="flex flex-wrap gap-x-12 gap-y-4">
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">Sustainability</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">Shipping</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">Returns</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">Privacy</a>
+<a class="font-['Manrope'] text-[10px] uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400 hover:text-teal-600 transition-colors" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2a3235",
+                    "outline": "#6e797c",
+                    "surface-dim": "#d3dbe0",
+                    "surface-container-highest": "#dce4e8",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e1e9ee",
+                    "secondary-fixed": "#c4e9f1",
+                    "on-surface-variant": "#3e494b",
+                    "on-surface": "#151d20",
+                    "background": "#f3fbff",
+                    "tertiary": "#8c4b11",
+                    "surface-bright": "#f3fbff",
+                    "secondary": "#41646b",
+                    "on-error-container": "#93000a",
+                    "primary": "#006673",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-background": "#151d20",
+                    "surface-variant": "#dce4e8",
+                    "primary-fixed": "#9fefff",
+                    "surface": "#f3fbff",
+                    "inverse-on-surface": "#eaf2f6",
+                    "tertiary-fixed-dim": "#ffb782",
+                    "on-secondary-fixed-variant": "#284c53",
+                    "tertiary-fixed": "#ffdcc5",
+                    "outline-variant": "#bdc9cb",
+                    "on-primary-fixed-variant": "#004e59",
+                    "tertiary-container": "#aa6329",
+                    "inverse-primary": "#6ed5e8",
+                    "surface-container-low": "#edf5f9",
+                    "on-primary-container": "#f8feff",
+                    "secondary-container": "#c1e6ee",
+                    "primary-fixed-dim": "#6ed5e8",
+                    "primary-container": "#008091",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#001f25",
+                    "on-tertiary-fixed": "#301400",
+                    "on-tertiary-fixed-variant": "#703800",
+                    "surface-container": "#e7eff3",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#006876",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#001f25",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#45686f",
+                    "secondary-fixed-dim": "#a8cdd5",
+                    "on-tertiary-container": "#fffbff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-x-hidden">
+<!-- SideNavBar (Authority: JSON) -->
+<nav class="bg-[#edf5f9] dark:bg-[#1c262a] h-screen w-64 fixed left-0 top-0 flex flex-col p-6 space-y-8 z-40">
+<div class="flex flex-col space-y-1">
+<span class="font-['Newsreader'] text-xl font-bold text-[#151d20] dark:text-[#f3fbff]">Adzek Admin</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.1em] text-[#151d20]/50">Clinical Inventory Mgmt</span>
+</div>
+<div class="space-y-2 pt-8">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#151d20]/60 dark:text-[#f3fbff]/60 hover:bg-white/50 dark:hover:bg-[#151d20]/50 transition-all cursor-pointer font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Inventory -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#151d20]/60 dark:text-[#f3fbff]/60 hover:bg-white/50 dark:hover:bg-[#151d20]/50 transition-all cursor-pointer font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<!-- Sales -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#151d20]/60 dark:text-[#f3fbff]/60 hover:bg-white/50 dark:hover:bg-[#151d20]/50 transition-all cursor-pointer font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="insights">insights</span>
+<span>Sales</span>
+</a>
+<!-- Orders -->
+<a class="flex items-center gap-3 px-4 py-3 text-[#151d20]/60 dark:text-[#f3fbff]/60 hover:bg-white/50 dark:hover:bg-[#151d20]/50 transition-all cursor-pointer font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="local_shipping">local_shipping</span>
+<span>Orders</span>
+</a>
+<!-- Settings (ACTIVE Mapping) -->
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-[#151d20] text-[#006673] rounded-sm transition-all cursor-pointer font-['Manrope'] font-semibold tracking-tight" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto flex items-center gap-3 p-2">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Professional portrait of a male clinical laboratory director in a soft-lit modern medical setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs6MoSPGolgtMlWtZpOux32f1bceYv-OyvT507QGMB5W2U6G_O8j5linoWUz5p8Tx7P0iwhCXVQsbhy2VnaKvycbJmbG9rrpGl1wlgQA0fO5OAa5LMXJM2pG21-8F5ruB4n-99EeJ9JOfAaBRGHtHLuWfWvWMOT94crN0etkqlqfB2t9POUvJMQvVnhGQUSlbY-09dmiUXmOgB0_2Ak9ZU05dDZmA7-CPIPEjYSWI0_zXy0_CNxVALGYy-c6iSn2y0pS_yBB3RnT8"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-on-surface">Admin User Profile</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Verified Lead</span>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- Header Section: Editorial Contrast -->
+<header class="pt-24 px-16 pb-12">
+<div class="max-w-4xl">
+<h1 class="font-headline text-[4rem] leading-none italic font-medium tracking-tighter text-on-surface mb-4">Security Protocol</h1>
+<p class="font-body text-on-surface-variant max-w-xl text-lg leading-relaxed">
+                    Manage your credentials and authentication layers. Adzek Clinical employs laboratory-grade encryption to ensure your data remains compartmentalized and secure.
+                </p>
+</div>
+</header>
+<!-- Bento Grid Section -->
+<section class="px-16 pb-24 max-w-7xl">
+<div class="grid grid-cols-12 gap-8">
+<!-- Security Overview / Stats (Asymmetric Layout) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-low p-10 flex flex-col justify-between">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-8">Security Health Score</span>
+<div class="flex items-end gap-4">
+<span class="font-headline text-8xl font-bold text-primary">98</span>
+<span class="font-body text-2xl text-on-surface-variant pb-3 italic">/ 100</span>
+</div>
+</div>
+<div class="mt-12">
+<p class="font-body text-sm text-on-surface max-w-md leading-relaxed">
+                            Your account meets high-tier security standards. Enable biometric hardware keys for 100% compliance.
+                        </p>
+</div>
+</div>
+<!-- Two-Factor Authentication Card -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-lowest p-8 border-l-4 border-primary">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="shield_lock">shield_lock</span>
+<div class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-widest">Active</div>
+</div>
+<h3 class="font-headline text-2xl font-medium mb-4 italic">Two-Factor Authentication</h3>
+<p class="font-body text-xs text-on-surface-variant mb-8 leading-relaxed">Multi-layered verification via SMS and Authenticator app is currently enabled for this account.</p>
+<button class="text-primary font-headline italic text-sm underline decoration-primary/30 underline-offset-4 hover:decoration-primary transition-all">Configure Method</button>
+</div>
+<!-- Password Management -->
+<div class="col-span-12 md:col-span-6 bg-surface-container-low p-8">
+<span class="font-label text-[10px] uppercase tracking-[0.15em] text-on-surface-variant block mb-12">Account Credentials</span>
+<h3 class="font-headline text-3xl font-medium mb-2">Password Management</h3>
+<p class="font-body text-sm text-on-surface-variant mb-12">Last changed 3 months ago. We recommend rotating clinical credentials every 6 months.</p>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 font-body font-bold text-xs uppercase tracking-widest rounded-sm hover:opacity-90 transition-opacity">
+                        Change Password
+                    </button>
+</div>
+<!-- Active Sessions (Visual Data) -->
+<div class="col-span-12 md:col-span-6 bg-surface-container-highest p-8 flex flex-col">
+<div class="flex justify-between items-center mb-12">
+<span class="font-label text-[10px] uppercase tracking-[0.15em] text-on-surface-variant">Live Sessions</span>
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between pb-6 border-b border-outline-variant/20">
+<div>
+<span class="block font-headline text-xl italic text-on-surface">London, UK</span>
+<span class="font-body text-[10px] text-on-surface-variant uppercase tracking-tighter">Current Session • MacBook Pro</span>
+</div>
+<span class="material-symbols-outlined text-primary/40" data-icon="location_on">location_on</span>
+</div>
+<div class="flex items-center justify-between opacity-50">
+<div>
+<span class="block font-headline text-xl italic text-on-surface">New York, US</span>
+<span class="font-body text-[10px] text-on-surface-variant uppercase tracking-tighter">2 days ago • Chrome on Windows</span>
+</div>
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</div>
+</div>
+<div class="mt-auto pt-8">
+<button class="font-body text-xs text-error font-semibold uppercase tracking-widest flex items-center gap-2">
+                            Terminate All Other Sessions
+                            <span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+</button>
+</div>
+</div>
+<!-- Abstract Visual Decor (Editorial Piece) -->
+<div class="col-span-12 mt-8">
+<div class="h-[300px] relative overflow-hidden group">
+<img class="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 hover:opacity-60 transition-all duration-1000" data-alt="Abstract macro photography of glass laboratory equipment with blue liquid reflections and clinical white space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7-ttHgP4fMpCfVzyWwJjDV7yWXQX7jm-OvZmW10sZv4Sz7H0hkmpz7yBSTzMbmRWWSVLispDahBBt3gC1d6I3HUfTqRE4ER1J50dWfh0sa1W7R5G96ocwQbypnXbPGdJcESVcFKD452QP91UwyApruNqh85XofblK1xMIprnbCYUHNCdl1iPyBE6m5_rdUEWFfNfwQI941htVfJYxkFG8dnuWSs46X8gE2tuZFXJ2EdkExf4pt03gpY1IH9Xo9MTGDzKXdTpgXKA"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="font-headline text-[10rem] text-on-surface/5 font-extrabold tracking-tighter">ADZEK</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer (Authority: JSON) -->
+<footer class="bg-[#151d20] dark:bg-[#0a0f11] w-full py-20 px-12 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 max-w-[1400px] mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-['Newsreader'] text-2xl text-[#f3fbff]">Adzek</span>
+<p class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 max-w-xs leading-loose">
+                        © 2024 Adzek Clinical. The Curated Laboratory.
+                    </p>
+</div>
+<div class="grid grid-cols-2 gap-x-16 gap-y-4">
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Philosophy</a>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Safety Data Sheets</a>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Terms</a>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Privacy</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

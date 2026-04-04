@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adzek Inventory Management | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#8c4b11",
+                      "on-secondary-fixed": "#001f25",
+                      "primary-container": "#008091",
+                      "surface-container-low": "#edf5f9",
+                      "on-primary-container": "#f8feff",
+                      "on-tertiary-fixed-variant": "#703800",
+                      "on-error-container": "#93000a",
+                      "surface-container": "#e7eff3",
+                      "secondary-container": "#c1e6ee",
+                      "on-primary-fixed": "#001f25",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#2a3235",
+                      "error": "#ba1a1a",
+                      "background": "#f3fbff",
+                      "tertiary-fixed": "#ffdcc5",
+                      "surface-container-highest": "#dce4e8",
+                      "tertiary-fixed-dim": "#ffb782",
+                      "secondary": "#41646b",
+                      "on-surface-variant": "#3e494b",
+                      "on-secondary-container": "#45686f",
+                      "surface-dim": "#d3dbe0",
+                      "primary-fixed": "#9fefff",
+                      "inverse-primary": "#6ed5e8",
+                      "on-primary-fixed-variant": "#004e59",
+                      "on-secondary": "#ffffff",
+                      "tertiary-container": "#aa6329",
+                      "surface-tint": "#006876",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed-dim": "#6ed5e8",
+                      "on-tertiary-container": "#fffbff",
+                      "surface-bright": "#f3fbff",
+                      "on-secondary-fixed-variant": "#284c53",
+                      "inverse-on-surface": "#eaf2f6",
+                      "on-background": "#151d20",
+                      "outline-variant": "#bdc9cb",
+                      "surface": "#f3fbff",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#c4e9f1",
+                      "on-surface": "#151d20",
+                      "error-container": "#ffdad6",
+                      "outline": "#6e797c",
+                      "secondary-fixed-dim": "#a8cdd5",
+                      "surface-container-high": "#e1e9ee",
+                      "surface-variant": "#dce4e8",
+                      "primary": "#006673",
+                      "on-tertiary-fixed": "#301400"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Newsreader", "serif"],
+                      "body": ["Manrope", "sans-serif"],
+                      "label": ["Manrope", "sans-serif"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .font-serif { font-family: 'Newsreader', serif; }
+        .font-sans { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen flex flex-col p-6 bg-slate-50 dark:bg-slate-950 h-full w-64 border-r border-transparent z-40">
+<div class="mb-12">
+<h1 class="text-xl font-serif text-cyan-900 dark:text-cyan-100">Adzek Dashboard</h1>
+<p class="text-xs font-label uppercase tracking-wider text-slate-500 mt-1">Clinical Grade Maintenance</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-[12px] font-bold uppercase tracking-wider">Account Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-900 text-cyan-800 dark:text-cyan-300 font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="text-[12px] font-bold uppercase tracking-wider">Order History</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span class="text-[12px] font-bold uppercase tracking-wider">Subscription Lab</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="admin_panel_settings">admin_panel_settings</span>
+<span class="text-[12px] font-bold uppercase tracking-wider">Laboratory Admin</span>
+</a>
+</nav>
+<div class="mt-auto pt-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest overflow-hidden rounded-full">
+<img class="w-full h-full object-cover" data-alt="Close up portrait of a senior laboratory director in professional attire with neutral lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvHJjIShGINk3p4O0uA_KMSq3ze6wLcGTSe7cp9Db6WCaEOdwHGjNhSnSu4br2Sh2Ro8vqBsTM3KQSfZwOooLERRFEWGRZKtnNZrOXQaRVScJz23_WTZd4VuIkTv7spbFE4ubGWxgF10KU2bBpBB2dP5U_nLOhEMaUQ59k-PHwE9Z_DZG75oe-a6VCF-3efSCx5o41KZq5wsF19mROoQtTVntdYUAd9OzPJ-iJwOfIM5789mE1Pm-2bZoJRgWxHs6-DsKVoDbqya4"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">Dr. Aris Thorne</span>
+<span class="text-[10px] text-outline uppercase tracking-tight">Chief Chemist</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 p-12 max-w-7xl">
+<!-- Header Section -->
+<header class="mb-12 flex justify-between items-end">
+<div>
+<h2 class="text-5xl font-serif tracking-tight text-on-background mb-2">Inventory Management</h2>
+<p class="text-on-surface-variant font-body italic max-w-md">Precise calibration of domestic reagents. Monitor stock levels with clinical accuracy.</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-low px-6 py-3 text-primary font-bold text-sm uppercase tracking-widest hover:bg-surface-container-high transition-colors">
+                    Generate Report
+                </button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-3 font-bold text-sm uppercase tracking-widest shadow-lg shadow-primary/10">
+                    Add New Reagent
+                </button>
+</div>
+</header>
+<!-- Stats Overview (Asymmetric Layout) -->
+<div class="grid grid-cols-12 gap-6 mb-12">
+<div class="col-span-12 md:col-span-8 bg-surface-container-low p-8 relative overflow-hidden">
+<div class="relative z-10">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-outline">System Health</span>
+<h3 class="text-3xl font-serif text-primary mt-2">Laboratory Capacity: 94.2%</h3>
+<div class="mt-6 flex gap-12">
+<div>
+<span class="block text-2xl font-serif text-on-surface">1,204</span>
+<span class="text-[10px] font-bold uppercase text-outline">Total SKUs</span>
+</div>
+<div>
+<span class="block text-2xl font-serif text-tertiary">14</span>
+<span class="text-[10px] font-bold uppercase text-outline">Low Reagents</span>
+</div>
+<div>
+<span class="block text-2xl font-serif text-error">2</span>
+<span class="text-[10px] font-bold uppercase text-outline">Depleted</span>
+</div>
+</div>
+</div>
+<div class="absolute right-[-10%] top-[-20%] opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[300px]" data-icon="biotech">biotech</span>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 bg-primary text-white p-8">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">Critical Alert</span>
+<h3 class="text-xl font-serif mt-4">Kitchen Neutralizer batch #881 is reaching sub-optimal pH levels.</h3>
+<a class="inline-block mt-8 text-xs font-bold uppercase tracking-widest border-b border-white/30 pb-1" href="#">Review Formulation</a>
+</div>
+</div>
+<!-- Inventory Table Container -->
+<div class="bg-surface-container-lowest overflow-hidden shadow-sm">
+<div class="px-8 py-6 flex justify-between items-center bg-white">
+<div class="flex gap-8">
+<button class="text-xs font-bold uppercase tracking-widest border-b-2 border-primary pb-1 text-primary">All Products</button>
+<button class="text-xs font-bold uppercase tracking-widest text-outline hover:text-primary transition-colors pb-1 border-b-2 border-transparent">Laundry</button>
+<button class="text-xs font-bold uppercase tracking-widest text-outline hover:text-primary transition-colors pb-1 border-b-2 border-transparent">Kitchen</button>
+<button class="text-xs font-bold uppercase tracking-widest text-outline hover:text-primary transition-colors pb-1 border-b-2 border-transparent">Science</button>
+</div>
+<div class="flex items-center gap-2 border-b border-outline-variant/30 pb-1">
+<span class="material-symbols-outlined text-outline text-lg" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-[10px] font-bold tracking-widest uppercase placeholder:text-outline/50 w-48" placeholder="SEARCH CATALOGUE" type="text"/>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-[10px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">
+<th class="px-8 py-5 font-bold">SKU ID</th>
+<th class="px-8 py-5 font-bold">Product Name</th>
+<th class="px-8 py-5 font-bold">Category</th>
+<th class="px-8 py-5 font-bold">Stock Level</th>
+<th class="px-8 py-5 font-bold text-right">Price (Unit)</th>
+<th class="px-8 py-5 font-bold text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1: Optimal -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-6 font-mono text-[11px] text-outline">ADZ-LN-001</td>
+<td class="px-8 py-6">
+<span class="font-serif text-lg text-on-surface block">Linen Molecular Wash</span>
+<span class="text-[10px] font-body text-outline uppercase tracking-tight">Fragrance: White Cedar</span>
+</td>
+<td class="px-8 py-6">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider">Laundry</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-bold text-on-surface uppercase tracking-wide">Optimal</span>
+<span class="text-[10px] text-outline ml-2">(428 Units)</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-serif text-lg">$42.00</td>
+<td class="px-8 py-6">
+<div class="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-outline hover:text-primary transition-colors" title="Edit Formulation">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors" title="Update Stock">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</button>
+<button class="text-outline hover:text-error transition-colors" title="Archive">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Low Reagent -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-6 font-mono text-[11px] text-outline">ADZ-KT-014</td>
+<td class="px-8 py-6">
+<span class="font-serif text-lg text-on-surface block">Surface Enzyme Degreaser</span>
+<span class="text-[10px] font-body text-outline uppercase tracking-tight">Active: Bio-Enzymes</span>
+</td>
+<td class="px-8 py-6">
+<span class="bg-surface-container-highest text-on-surface text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider">Kitchen</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-xs font-bold text-tertiary uppercase tracking-wide">Low Reagent</span>
+<span class="text-[10px] text-outline ml-2">(12 Units)</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-serif text-lg">$28.50</td>
+<td class="px-8 py-6">
+<div class="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-outline hover:text-primary transition-colors" title="Edit Formulation">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors" title="Update Stock">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</button>
+<button class="text-outline hover:text-error transition-colors" title="Archive">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Depleted -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-6 font-mono text-[11px] text-outline">ADZ-SC-440</td>
+<td class="px-8 py-6">
+<span class="font-serif text-lg text-on-surface block">Distilled Silver Solution</span>
+<span class="text-[10px] font-body text-outline uppercase tracking-tight">Grade: Laboratory</span>
+</td>
+<td class="px-8 py-6">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider">Science</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-xs font-bold text-error uppercase tracking-wide">Depleted</span>
+<span class="text-[10px] text-outline ml-2">(0 Units)</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-serif text-lg">$114.00</td>
+<td class="px-8 py-6">
+<div class="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-outline hover:text-primary transition-colors" title="Edit Formulation">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors" title="Update Stock">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</button>
+<button class="text-outline hover:text-error transition-colors" title="Archive">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Optimal -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="px-8 py-6 font-mono text-[11px] text-outline">ADZ-BT-092</td>
+<td class="px-8 py-6">
+<span class="font-serif text-lg text-on-surface block">Anti-Microbial Bath Elixir</span>
+<span class="text-[10px] font-body text-outline uppercase tracking-tight">Base: Isopropyl Essence</span>
+</td>
+<td class="px-8 py-6">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider">Bathroom</span>
+</td>
+<td class="px-8 py-6">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-bold text-on-surface uppercase tracking-wide">Optimal</span>
+<span class="text-[10px] text-outline ml-2">(92 Units)</span>
+</div>
+</td>
+<td class="px-8 py-6 text-right font-serif text-lg">$35.00</td>
+<td class="px-8 py-6">
+<div class="flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-outline hover:text-primary transition-colors" title="Edit Formulation">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</button>
+<button class="text-outline hover:text-primary transition-colors" title="Update Stock">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+</button>
+<button class="text-outline hover:text-error transition-colors" title="Archive">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer Pagination -->
+<div class="px-8 py-6 bg-surface-container-low flex justify-between items-center">
+<span class="text-[10px] font-bold uppercase tracking-widest text-outline">Showing 4 of 1,204 results</span>
+<div class="flex gap-4 items-center">
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<span class="text-xs font-bold font-serif px-2">Page 01</span>
+<button class="text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Segment -->
+<footer class="mt-20 border-t border-outline-variant/20 pt-12 grid grid-cols-1 md:grid-cols-3 gap-12 text-on-surface">
+<div>
+<h4 class="text-3xl font-serif text-cyan-900 mb-4">Adzek</h4>
+<p class="font-headline italic text-on-surface-variant text-sm leading-relaxed">
+                    © 2024 Adzek Laboratory. Precise Chemistry for the Domestic Sphere.
+                </p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-2">Technical Documentation</span>
+<a class="text-sm font-body hover:text-primary transition-colors" href="#">Sustainability Report</a>
+<a class="text-sm font-body hover:text-primary transition-colors" href="#">Ingredient Disclosure</a>
+<a class="text-sm font-body hover:text-primary transition-colors" href="#">Safety Protocols</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-2">Legal Laboratory</span>
+<a class="text-sm font-body hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm font-body hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-sm font-body hover:text-primary transition-colors" href="#">Lab Admin Access</a>
+</div>
+</footer>
+</main>
+<!-- Contextual FAB (Hidden on inventory management as per suppression rules for task-focus) -->
+</body></html>

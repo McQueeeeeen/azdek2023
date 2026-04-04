@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adzek | The New Standard of Pure</title>
+<!-- Typography -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#008091",
+                    "inverse-primary": "#6ed5e8",
+                    "inverse-on-surface": "#eaf2f6",
+                    "tertiary-fixed-dim": "#ffb782",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#006876",
+                    "tertiary": "#8c4b11",
+                    "on-surface": "#151d20",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#edf5f9",
+                    "on-secondary-fixed": "#001f25",
+                    "on-primary-fixed": "#001f25",
+                    "on-background": "#151d20",
+                    "secondary-fixed-dim": "#a8cdd5",
+                    "secondary-container": "#c1e6ee",
+                    "surface-container-highest": "#dce4e8",
+                    "on-primary-container": "#f8feff",
+                    "surface-container-high": "#e1e9ee",
+                    "primary-fixed-dim": "#6ed5e8",
+                    "tertiary-fixed": "#ffdcc5",
+                    "on-tertiary-fixed-variant": "#703800",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#dce4e8",
+                    "on-error": "#ffffff",
+                    "background": "#f3fbff",
+                    "surface-dim": "#d3dbe0",
+                    "outline-variant": "#bdc9cb",
+                    "on-secondary-container": "#45686f",
+                    "on-surface-variant": "#3e494b",
+                    "surface": "#f3fbff",
+                    "primary-fixed": "#9fefff",
+                    "inverse-surface": "#2a3235",
+                    "on-tertiary-fixed": "#301400",
+                    "tertiary-container": "#aa6329",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f3fbff",
+                    "secondary-fixed": "#c4e9f1",
+                    "surface-container": "#e7eff3",
+                    "primary": "#006673",
+                    "on-secondary-fixed-variant": "#284c53",
+                    "on-tertiary-container": "#fffbff",
+                    "on-primary-fixed-variant": "#004e59",
+                    "secondary": "#41646b",
+                    "outline": "#6e797c",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f3fbff;
+            color: #151d20;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f3fbff]/80 glass-nav shadow-[0_10px_40px_rgba(21,29,32,0.04)]">
+<div class="flex justify-between items-center px-12 py-6 w-full">
+<div class="flex items-center gap-12">
+<a class="font-['Newsreader'] text-3xl font-bold tracking-tighter text-[#151d20]" href="#">Adzek</a>
+<div class="hidden md:flex gap-8">
+<a class="text-[#151d20] font-['Manrope'] uppercase tracking-widest text-[11px] hover:text-[#006673] transition-colors duration-300" href="#">Laundry</a>
+<a class="text-[#151d20] font-['Manrope'] uppercase tracking-widest text-[11px] hover:text-[#006673] transition-colors duration-300" href="#">Kitchen</a>
+<a class="text-[#151d20] font-['Manrope'] uppercase tracking-widest text-[11px] hover:text-[#006673] transition-colors duration-300" href="#">Bathroom</a>
+<a class="text-[#151d20] font-['Manrope'] uppercase tracking-widest text-[11px] hover:text-[#006673] transition-colors duration-300" href="#">Science</a>
+<a class="text-[#151d20] font-['Manrope'] uppercase tracking-widest text-[11px] hover:text-[#006673] transition-colors duration-300" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-6 text-[#006673]">
+<button class="scale-95 transition-transform duration-200"><span class="material-symbols-outlined">search</span></button>
+<button class="scale-95 transition-transform duration-200"><span class="material-symbols-outlined">person</span></button>
+<button class="scale-95 transition-transform duration-200"><span class="material-symbols-outlined">shopping_bag</span></button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative pt-32 pb-24 px-12 overflow-hidden">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-end gap-12">
+<div class="md:w-1/2 z-10">
+<p class="font-['Manrope'] text-[11px] uppercase tracking-[0.3em] text-primary mb-6">Introduction to Purity</p>
+<h1 class="font-['Newsreader'] italic text-7xl md:text-9xl font-medium tracking-tight leading-[0.9] text-on-surface mb-8">
+                    The New <br/>Standard <br/>of <span class="text-primary-container">Pure</span>.
+                </h1>
+<p class="font-['Manrope'] text-lg text-on-surface-variant max-w-md leading-relaxed mb-12">
+                    A clinical evolution in household care. We strip away the toxins to reveal the raw, botanical essence of cleanliness.
+                </p>
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-5 font-['Manrope'] font-bold uppercase tracking-widest text-xs rounded-sm hover:opacity-90 transition-opacity">
+                    Explore the Archive
+                </button>
+</div>
+<div class="md:w-1/2 relative">
+<div class="aspect-[4/5] bg-surface-container-low rounded-sm overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="minimalist white modern laundry room with clean architectural lines marble surfaces and soft natural lighting from a high window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSL_MTMoWcBoWpICrFlqec1Vu42SlaleSfXX0lEHlFNrlzGsqhLOcdFGpAhROSSk91NUTqBg6GcKEa-701-eOMXBNI8e3Gl1PtPh9VjIzyj6tN5oSFf87gPlzmWk1WAISYIZ1HkmeD5H-ab6sWsgk-TqO48SYpMBjrFGc0rJzn6b5kTVzjR_XjGtGmO1y37mttsdbxC0_fJjhidYsgz0F9Pjek0WI7o--B8R9kBneRLdhEx47QvSHPSpgDI4pX9IfrD08TCJlTtS0"/>
+</div>
+<div class="absolute -bottom-8 -left-8 p-8 bg-surface-container-lowest shadow-[0_10px_40px_rgba(21,29,32,0.06)] max-w-[200px]">
+<p class="font-['Newsreader'] italic text-2xl text-primary mb-2">pH 7.2</p>
+<p class="font-['Manrope'] text-[10px] uppercase tracking-widest leading-tight text-on-surface-variant">Neutral baseline for delicate textile preservation.</p>
+</div>
+</div>
+</div>
+</header>
+<!-- The Collection Grid -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-12">
+<div class="flex justify-between items-end mb-16">
+<h2 class="font-['Newsreader'] text-5xl font-bold tracking-tighter">The Collection</h2>
+<a class="font-['Newsreader'] italic text-primary hover:text-primary-container transition-colors text-xl border-b border-primary/20" href="#">View Catalog</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Laundry -->
+<div class="group relative aspect-[3/4] overflow-hidden bg-white">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="close-up of folded white high-quality linen textiles in a bright airy clinical environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ-wmdxOYtkqciiFU5TUYaqIjE5Lmvcc6FQTJ3oJY9Llk9f1kHYIms29pCmBTEU119yf9QhI3SPdZB4yz0LK-Hg-9mH9RPcPqbsos_trZ80m1NQQvtb9LlH7aPW2pAasRIpu4Oxei2oUd3Kxr7V4Eg_gDHP_h56GHJQV6wfdX3KM3PK2-GZrsFRTebObxOEif7Nb2-1TjiBl807GbB0xZkP3cblUIUkT392FIHNqNjbyZY4rjMBEZQISjkgjnfzBVCnXw_t4kp2l0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/40 to-transparent flex flex-col justify-end p-8">
+<p class="font-['Manrope'] text-[10px] uppercase tracking-widest text-white/80 mb-2">Category 01</p>
+<h3 class="font-['Newsreader'] text-4xl text-white font-medium">Laundry</h3>
+</div>
+</div>
+<!-- Kitchen -->
+<div class="group relative aspect-[3/4] overflow-hidden bg-white">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="ultra-modern minimalist kitchen counter with stainless steel surfaces and glass laboratory glassware" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUnkieBzc_sUKRzekgGFj6HRiuSX2XbTRIz4rEutktnEbLL1MCQcf3y-Yh20oQMCvv_JkPOP3td6UiCbeZNErL8RLAv6tbsMadKpYTYj2hSbPXN3E_XXHxDbaEw7LVnltD5rBwJ7tIoctdPpUJ-ch9RBlv3cCXGZDgDmedMG9DGXw5vgqN0tkj6hrOx7NvWtbO_E_mz-fdEtbY9K9sAb-ccose9CcjlKe82ahgGtpP3L5DoK6KPSrszoGtSBF3sPNIIuA52IWsPo4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/40 to-transparent flex flex-col justify-end p-8">
+<p class="font-['Manrope'] text-[10px] uppercase tracking-widest text-white/80 mb-2">Category 02</p>
+<h3 class="font-['Newsreader'] text-4xl text-white font-medium">Kitchen</h3>
+</div>
+</div>
+<!-- Bathroom -->
+<div class="group relative aspect-[3/4] overflow-hidden bg-white">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="luxurious minimal bathroom with white tiles soft focus soaps and glass bottles on a shelf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAafbUzMv3vugU1S4ct2nUW03wiOFFWtloBWTkSi68c1s4_i5LgdXLnfon2dtGuVdix8NgizzwUh13FMDV3ypvNkkaZXu04wUfUoz0nulvmWaoyPgTFPXH0JG5TNB8GQC6V4P_7A8OSM8uLZ7QDO6jpacqrKnv9CzdYE2Tb2Ax2w2Rs1OgOqCwx9yKO7kSmgG0KDbZjNTIBYPVnd8zJf6BE4OcGb5gzHFjNLGzM_TvEQeyrxVunZm4r7fsuogXZXsY4jb5nB8nM9-k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/40 to-transparent flex flex-col justify-end p-8">
+<p class="font-['Manrope'] text-[10px] uppercase tracking-widest text-white/80 mb-2">Category 03</p>
+<h3 class="font-['Newsreader'] text-4xl text-white font-medium">Bathroom</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Formulations -->
+<section class="py-32 px-12 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-24">
+<span class="font-['Manrope'] text-[10px] uppercase tracking-[0.4em] text-outline mb-4 block">Seasonal Selection</span>
+<h2 class="font-['Newsreader'] text-6xl font-bold tracking-tighter">Featured Formulations</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+<!-- Product 1 -->
+<div class="flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low mb-8 relative group overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="minimal amber glass bottle with clinical white label on a reflective surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwErl9WnIxNfhEKKa5qGN1DPi16gl-SzTr-cTzEuPUgDszc3XnxRVRCwsjHz0C3YgZVuPjySfRtedd6mL7CCMFl3X8ltT4ZnnwlyJG9jW4SWjEpoCBPoEZ3qiaWth_EXkfsjcSfhpPZELJvD4CTA4cmVj7bIAelyroNWqTSIN5IgObNngD89BpwDfz_8z8Tw4FwzzxJQvfXLtX7QUHY42A63Ubvbv21hzEBJdzcjHCxQYX-xref3TaezsqVBENwKk1HSLXlheN_g0"/>
+<div class="absolute inset-0 bg-on-surface/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<button class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] bg-white/90 glass-nav py-4 font-['Manrope'] text-[10px] uppercase tracking-widest font-bold translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+                            Add to Ritual
+                        </button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-['Newsreader'] text-2xl font-medium mb-1">Textile Serum 01</h4>
+<p class="font-['Manrope'] text-[10px] uppercase tracking-widest text-outline">Bergamot &amp; Vetiver</p>
+</div>
+<p class="font-['Manrope'] font-bold text-sm">$42.00</p>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low mb-8 relative group overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="aesthetic laundry soap bar on a ceramic dish in a bright sunlit bathroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXmmDlqO1Wtvy7EwFd8enoSOwNpDdVI165suWm9Ta-LsdYheNr5_fT8IrWm_Z5cVLqn1YtgY2nTkyWAf2KUCp-CNebQdLXQdHpAJPvITyvfM2RBmfdI-KBh5ETDvD1ceT73cXq73rN2ROpZ__IWJFdVksLR05dBBxoQuyjBoKl5qfMYg3BuqvuThZQL3cLvsXrLqM5Pq7J8dufaSH_nDVRIIO-iZ3H7RI2WLkVcYZuSqn0vonSC8SJJtA9cQ0FBgMVvmWHux7AjB8"/>
+<div class="absolute inset-0 bg-on-surface/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<button class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] bg-white/90 glass-nav py-4 font-['Manrope'] text-[10px] uppercase tracking-widest font-bold translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+                            Add to Ritual
+                        </button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-['Newsreader'] text-2xl font-medium mb-1">Pressed Bar N°4</h4>
+<p class="font-['Manrope'] text-[10px] uppercase tracking-widest text-outline">Unscented Botanical</p>
+</div>
+<p class="font-['Manrope'] font-bold text-sm">$18.00</p>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low mb-8 relative group overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="minimalistic glass cleaning solution bottle with professional spray nozzle on marble" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq2LuO_41JBBMZOEHg-uoFigJzVKNvaVVc_rZOnZm8N9oQuW8jtWQliieRWgq9HvFd9DrBud5DDMV7Z3dRGhDXnFJeAl06Ii9PF0dXDA46MKOvEeG_M89FUTkwOICtS2rZ77HECShxvQhgEJKft-zLv4n1Efx8cqXsP13n7AGA_ngGas7yHloPWwRdu0NH1KiUUkv5zqrJF-7duAzlYYud_1ZW-M4qwNXxqhRk6cqNeZd6rVZibtBGhVFhyxiKlb9SMbwCxdi4Dps"/>
+<div class="absolute inset-0 bg-on-surface/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<button class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] bg-white/90 glass-nav py-4 font-['Manrope'] text-[10px] uppercase tracking-widest font-bold translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+                            Add to Ritual
+                        </button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-['Newsreader'] text-2xl font-medium mb-1">Surface Elixir</h4>
+<p class="font-['Manrope'] text-[10px] uppercase tracking-widest text-outline">Eucalyptus Mint</p>
+</div>
+<p class="font-['Manrope'] font-bold text-sm">$36.00</p>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low mb-8 relative group overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="modern eco-friendly dish soap bottle in white ceramic kitchen aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy_HVrxMCwMArf5YFHNEgVHxD6GbeIR_BOAdOKtstJDQSbRqmBhrSDMjgaMBrP1fBxeOgOexm_dW4k_h_Dg6qYuDncT8aZ_7voMSqHkgTn7F-bhHHORDpIJw7DaB7AeAetHH-YGxQl3BoAx-QPgSEmQgcqdvHBOhDvQY--ZhVu7U6VReWbUl2MlTS4VDz7sIoOQsIT5ARvfMxS4veC1Gnkttq5Iy5sVCArUzallBX3aYqi6lX4IngbMN3izOK2iej8caIdzhgreTo"/>
+<div class="absolute inset-0 bg-on-surface/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<button class="absolute bottom-6 left-1/2 -translate-x-1/2 w-[80%] bg-white/90 glass-nav py-4 font-['Manrope'] text-[10px] uppercase tracking-widest font-bold translate-y-12 group-hover:translate-y-0 transition-transform duration-300">
+                            Add to Ritual
+                        </button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h4 class="font-['Newsreader'] text-2xl font-medium mb-1">Culinary Rinse</h4>
+<p class="font-['Manrope'] text-[10px] uppercase tracking-widest text-outline">Sweet Orange Peel</p>
+</div>
+<p class="font-['Manrope'] font-bold text-sm">$28.00</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Science-Led Purity Section (Asymmetric Layout) -->
+<section class="py-32 bg-surface-container-low relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-12 grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+<div class="md:col-span-5 order-2 md:order-1">
+<div class="space-y-12">
+<div class="flex flex-col">
+<span class="font-['Newsreader'] text-7xl font-light text-primary leading-none">99.8%</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest mt-2">Botanical Base Integrity</span>
+</div>
+<div>
+<h3 class="font-['Newsreader'] text-4xl font-bold mb-6">Scientific Methodology</h3>
+<p class="font-['Manrope'] text-sm leading-relaxed text-on-surface-variant mb-8">
+                            Every Adzek formulation undergoes a multi-stage clinical verification process. We combine traditional botanical wisdom with high-performance molecular isolation to create cleaners that outperform synthetic alternatives without the ecological debt.
+                        </p>
+<div class="flex flex-wrap gap-3">
+<span class="bg-secondary-container text-on-secondary-container px-4 py-2 font-['Manrope'] text-[10px] uppercase tracking-widest font-bold rounded-sm">pH Balanced</span>
+<span class="bg-secondary-container text-on-secondary-container px-4 py-2 font-['Manrope'] text-[10px] uppercase tracking-widest font-bold rounded-sm">Biodegradable</span>
+<span class="bg-secondary-container text-on-secondary-container px-4 py-2 font-['Manrope'] text-[10px] uppercase tracking-widest font-bold rounded-sm">Lab Tested</span>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 order-1 md:order-2 flex justify-end">
+<div class="w-full relative">
+<img class="w-[80%] h-auto grayscale-50 ml-auto rounded-sm" data-alt="modern research laboratory glass beakers and equipment with clear liquid and soft bright light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMdnZ97m6F-ZWQk97F2IDBL7Oc6WjuS2AuWIybvsdwzT14OEtUh3meUz6rjMNm2SMWSIaCeYL18UxzxSfuB0-O3TWVtS6uvSIJ5JYSZQt6w8wCdW2BI2UkS-Q91Ou32y2_34WljEwWqOHezKClsbt9-X7a8n3WEpXBR9oWBXp8pLAhz4jyr6EwLGSCcghf0EO78irzdHcXNkR8LPEaQV-OK_jSGMZnJIY_K0Fzjmr7N_Lk6vlkkBm0tcz6eoVkdFqrnAVabbZWqSA"/>
+<div class="absolute top-12 left-0 w-1/2 aspect-square bg-white shadow-[0_40px_100px_rgba(0,0,0,0.08)] p-8 flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-4">science</span>
+<p class="font-['Newsreader'] italic text-xl leading-snug">"The intersection of raw molecular potential and domestic elegance."</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#edf5f9] mt-24">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<a class="font-['Newsreader'] text-2xl font-bold text-[#151d20] mb-6 block" href="#">Adzek</a>
+<p class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#5c6b6e] leading-relaxed">
+                    Elevating the ritual of domestic care through clinical precision and botanical artistry.
+                </p>
+</div>
+<div>
+<h5 class="font-['Manrope'] text-[10px] tracking-widest uppercase font-bold mb-6 text-primary">Information</h5>
+<ul class="space-y-4">
+<li><a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#5c6b6e] hover:text-[#006673] transition-colors" href="#">Safety Data Sheets</a></li>
+<li><a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#5c6b6e] hover:text-[#006673] transition-colors" href="#">Ingredient Transparency</a></li>
+<li><a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#5c6b6e] hover:text-[#006673] transition-colors" href="#">Shipping &amp; Returns</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-['Manrope'] text-[10px] tracking-widest uppercase font-bold mb-6 text-primary">Legal</h5>
+<ul class="space-y-4">
+<li><a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#5c6b6e] hover:text-[#006673] transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#5c6b6e] hover:text-[#006673] transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-['Manrope'] text-[10px] tracking-widest uppercase font-bold mb-6 text-primary">Journal</h5>
+<p class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#5c6b6e] mb-4">Subscribe for laboratory updates.</p>
+<div class="border-b border-primary/20 pb-2 flex justify-between items-center">
+<input class="bg-transparent border-none p-0 focus:ring-0 text-[10px] tracking-widest font-['Manrope'] placeholder:text-outline w-full uppercase" placeholder="EMAIL ADDRESS" type="email"/>
+<button class="text-primary hover:translate-x-1 transition-transform">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-12 py-8 border-t border-primary/5 text-center">
+<p class="font-['Manrope'] text-[10px] tracking-widest uppercase text-[#5c6b6e]">© 2024 ADZEK CLINICAL. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+</body></html>

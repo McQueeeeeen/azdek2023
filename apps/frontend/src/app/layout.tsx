@@ -9,8 +9,8 @@ import MobileBottomNav from "@/components/layout/mobile-bottom-nav";
 import ToastHost from "@/components/ui/toast-host";
 
 export const metadata: Metadata = {
-  title: "Azdek - Интернет-магазин",
-  description: "Интернет-магазин бытовой химии Azdek",
+  title: "Adzek2023 - Online Store",
+  description: "Online household chemicals store Adzek2023",
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",

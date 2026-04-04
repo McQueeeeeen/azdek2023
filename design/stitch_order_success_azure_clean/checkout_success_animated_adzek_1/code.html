@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | Adzek Clinical Household</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    // Step Transitions Logic
+    const shippingSection = document.getElementById('shipping-section');
+    const paymentSection = document.getElementById('payment-section');
+    const shippingInputs = shippingSection.querySelectorAll('input');
+    
+    // Simulate activation of payment section when shipping is "filled"
+    shippingInputs.forEach(input => {
+        input.addEventListener('blur', () => {
+            let allFilled = Array.from(shippingInputs).every(i => i.value.trim().length > 0);
+            if (allFilled) {
+                paymentSection.style.opacity = "1";
+                shippingSection.style.opacity = "0.6";
+            }
+        });
+    });
+
+    // View Swapping Logic
+    const payButton = document.getElementById('pay-button');
+    const checkoutView = document.getElementById('checkout-view');
+    const successView = document.getElementById('success-view');
+    const loader = document.getElementById('button-loader');
+    const buttonText = document.getElementById('button-text');
+
+    payButton.addEventListener('click', () => {
+        // Show loader
+        loader.classList.remove('hidden');
+        buttonText.innerText = "Processing...";
+        payButton.disabled = true;
+
+        setTimeout(() => {
+            // Redirect to Success Screen
+            window.location.href = '{{DATA:SCREEN:SCREEN_30}}';
+        }, 1500);
+    });
+
+    // Payment Option selection simulation
+    const options = document.querySelectorAll('.payment-option');
+    options.forEach(opt => {
+        opt.addEventListener('click', () => {
+            options.forEach(o => {
+                o.classList.remove('bg-surface-container-lowest', 'ring-1', 'ring-primary/10');
+                o.classList.add('bg-surface-container-low');
+                o.querySelector('.w-4').innerHTML = '';
+            });
+            opt.classList.remove('bg-surface-container-low');
+            opt.classList.add('bg-surface-container-lowest', 'ring-1', 'ring-primary/10');
+            opt.querySelector('.w-4').innerHTML = '<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>';
+        });
+    });
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f3fbff;
+            color: #151d20;
+            overflow-x: hidden;
+        }
+        .font-serif { font-family: 'Newsreader', serif; }
+        
+        .step-transition {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        #checkout-view, #success-view {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .hidden-view {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+        }
+
+        /* Checkmark animation specifics */
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        .check-path {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<header class="fixed top-0 w-full z-50 bg-[#f3fbff]/80 backdrop-blur-md shadow-[0_10px_40px_rgba(21,29,32,0.04)]">
+<div class="flex justify-between items-center px-12 h-20 max-w-full">
+<div class="font-serif text-3xl font-black tracking-tighter text-[#151d20] cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_83}}'">Adzek</div>
+<div class="flex items-center space-x-8">
+<span class="text-xs font-sans uppercase tracking-widest text-[#151d20]/70 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                Secure Checkout
+            </span>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#006673]" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-24 px-12 max-w-7xl mx-auto min-h-[80vh] relative">
+<!-- Checkout Flow Container -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 transition-all duration-700" id="checkout-view">
+<!-- Left Column: Transactional Focus -->
+<div class="lg:col-span-7 space-y-16">
+<!-- Shipping Address Section -->
+<section class="step-transition opacity-100 translate-y-0" id="shipping-section">
+<h2 class="font-serif text-4xl italic mb-10 tracking-tight">Shipping Address</h2>
+<div class="grid grid-cols-2 gap-6">
+<div class="col-span-1">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">First Name</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant/20 focus:border-primary px-0 py-3 text-sm focus:ring-0 transition-colors" type="text" value="Julian"/>
+</div>
+<div class="col-span-1">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Last Name</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant/20 focus:border-primary px-0 py-3 text-sm focus:ring-0 transition-colors" type="text" value="Ames"/>
+</div>
+<div class="col-span-2">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Address</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant/20 focus:border-primary px-0 py-3 text-sm focus:ring-0 transition-colors" type="text" value="742 Evergreen Terrace"/>
+</div>
+<div class="col-span-1">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">City</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant/20 focus:border-primary px-0 py-3 text-sm focus:ring-0 transition-colors" type="text" value="Springfield"/>
+</div>
+<div class="col-span-1">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Zip Code</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant/20 focus:border-primary px-0 py-3 text-sm focus:ring-0 transition-colors" type="text" value="62704"/>
+</div>
+</div>
+</section>
+<!-- Payment Method Section -->
+<section class="step-transition opacity-50" id="payment-section">
+<h2 class="font-serif text-4xl italic mb-10 tracking-tight">Payment Method</h2>
+<div class="space-y-4">
+<!-- Card Option -->
+<div class="payment-option flex items-center justify-between p-6 bg-surface-container-lowest ring-1 ring-primary/10 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-4 h-4 rounded-full border-2 border-primary flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<span class="text-sm font-bold uppercase tracking-wider">Credit Card</span>
+</div>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-outline">credit_card</span>
+</div>
+</div>
+<!-- Apple Pay -->
+<div class="payment-option flex items-center justify-between p-6 bg-surface-container-low hover:bg-surface-container-highest transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-4 h-4 rounded-full border-2 border-outline-variant"></div>
+<span class="text-sm font-bold uppercase tracking-wider">Apple Pay</span>
+</div>
+<span class="material-symbols-outlined text-outline">contactless</span>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-2 gap-6 opacity-100 transition-opacity duration-500">
+<div class="col-span-2">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Card Number</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant/20 focus:border-primary px-0 py-3 text-sm focus:ring-0 transition-colors" placeholder="0000 0000 0000 0000" type="text"/>
+</div>
+<div class="col-span-1">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">Expiry Date</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant/20 focus:border-primary px-0 py-3 text-sm focus:ring-0 transition-colors" placeholder="MM / YY" type="text"/>
+</div>
+<div class="col-span-1">
+<label class="block text-[10px] font-bold text-on-surface-variant uppercase tracking-wider mb-2">CVV</label>
+<input class="w-full bg-surface-container-low border-b border-outline-variant/20 focus:border-primary px-0 py-3 text-sm focus:ring-0 transition-colors" placeholder="000" type="text"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="lg:col-span-5 animate-fade-in-up">
+<div class="bg-surface-container-low p-10 space-y-10 sticky top-32">
+<h3 class="font-serif text-3xl font-bold tracking-tighter">Order Summary</h3>
+<div class="space-y-8">
+<!-- Product 1 -->
+<div class="flex gap-6 items-start">
+<div class="w-20 h-24 bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="minimalist glass bottle of azure laundry detergent" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOv_WxUEXT82ysFTkwp5h0q5tmiq8STRGTtvVUzXi8p-QKaxjytOh2-2UV2U5fBGLRuduDVL7dJMZeOn466LJM-39zzaOIStBM3s4XpXNTIar9T4HjwtDYc49b2OyH1l_gS27MaR4XSiurlyj2Jb9cS4f7vaZnzaWJpZ8SE8f6Q4re9B7IUTqUe-7SMUU1UNDJ55xnGq1lfWdo3rT5rEPEo3_xu0bY62nXxuW72iSmZNozRm8XDivbsYXC9B1u3Y8YLDqWGlJavrc"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-serif text-lg font-bold italic leading-tight">Azure Silk Detergent</h4>
+<span class="text-sm font-bold">$35.00</span>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">750ml • Clinical Formulation</p>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="flex gap-6 items-start">
+<div class="w-20 h-24 bg-surface-container-highest flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="modern kitchen cleaning set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiWy8w9IBADWZaKFrozx08xl1PimFmN5pInD2RWBCQ6Z6PkO4AIuCQannSjPP0uukEUq2OQcsDtuz2l576uhUHyyvS54W6cZInI_n1dviC3V9Vfdye9X5nOdLU9SnMyMGMFcUi528mxlOM4Tp2hCXKO2IQ7ISW6O7FMdLHDBFOb6nNWydRf8hAMQVw_lfzlwNVMeVjAMKcWveXE0Tj1wHBNKPS6MhBwRgjquV9QroevygA49S0sIECdXW_OKFxEoBW4kGoZTohnrg"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-serif text-lg font-bold italic leading-tight">The Kitchen Bundle</h4>
+<span class="text-sm font-bold">$55.00</span>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant mt-1">3 Pieces • Multi-Surface Care</p>
+</div>
+</div>
+</div>
+<div class="pt-10 space-y-4 border-t border-outline-variant/20">
+<div class="flex justify-between text-sm uppercase tracking-widest text-on-surface-variant">
+<span>Subtotal</span>
+<span>$90.00</span>
+</div>
+<div class="flex justify-between text-sm uppercase tracking-widest text-on-surface-variant">
+<span>Shipping</span>
+<span class="text-primary italic">Complimentary</span>
+</div>
+<div class="flex justify-between items-baseline pt-4">
+<span class="font-serif text-2xl font-bold">Total</span>
+<span class="font-serif text-4xl font-black text-primary">$90.00</span>
+</div>
+</div>
+<button class="w-full py-5 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold uppercase tracking-[0.2em] text-xs transition-all hover:scale-[0.99] active:scale-95 flex items-center justify-center gap-2" id="pay-button">
+<span id="button-text">Confirm &amp; Pay</span>
+<span class="hidden material-symbols-outlined animate-spin text-[16px]" id="button-loader">progress_activity</span>
+</button>
+<!-- Security Badges -->
+<div class="grid grid-cols-2 gap-4 pt-10">
+<div class="flex items-center gap-3 bg-surface-container-highest/50 p-4">
+<span class="material-symbols-outlined text-primary text-xl">verified_user</span>
+<div class="leading-none">
+<p class="text-[8px] font-bold uppercase tracking-tighter">AES-256</p>
+<p class="text-[10px] text-on-surface-variant">Encryption</p>
+</div>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-highest/50 p-4">
+<span class="material-symbols-outlined text-primary text-xl">biotech</span>
+<div class="leading-none">
+<p class="text-[8px] font-bold uppercase tracking-tighter">Verified</p>
+<p class="text-[10px] text-on-surface-variant">Clinical Lab</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Success Flow View (Initially Hidden) -->
+<div class="hidden-view max-w-2xl mx-auto text-center space-y-12 py-12" id="success-view">
+<div class="space-y-6">
+<div class="success-checkmark bg-primary/10 rounded-full flex items-center justify-center animate-scale-pulse">
+<svg class="w-12 h-12" viewbox="0 0 52 52">
+<circle class="stroke-primary fill-none" cx="26" cy="26" r="25" stroke-width="2"></circle>
+<path class="check-path stroke-primary fill-none animate-check-draw" d="M14.1 27.2l7.1 7.2 16.7-16.8" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+</div>
+<h2 class="font-serif text-5xl italic tracking-tight animate-fade-in-up" style="animation-delay: 0.2s">Order Confirmed</h2>
+<p class="text-on-surface-variant animate-fade-in-up" style="animation-delay: 0.4s">Thank you, Julian. Your clinical laboratory shipment is being prepared for dispatch.</p>
+</div>
+<div class="bg-surface-container-low p-10 space-y-8 animate-fade-in-up text-left" style="animation-delay: 0.6s">
+<div class="flex justify-between items-center border-b border-outline-variant/20 pb-6">
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Order Number</p>
+<p class="font-serif text-xl font-bold">#ADZ-8829-X</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-1">Expected Delivery</p>
+<p class="font-serif text-xl font-bold italic">Oct 24 - 26</p>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Delivery Address</p>
+<div class="text-sm leading-relaxed">
+                    Julian Ames<br/>
+                    742 Evergreen Terrace<br/>
+                    Springfield, IL 62704
+                </div>
+</div>
+<button class="w-full py-4 border border-primary text-primary font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-primary/5 transition-colors">
+                Download Invoice
+            </button>
+</div>
+<div class="pt-8 animate-fade-in-up" style="animation-delay: 0.8s">
+<a class="text-primary text-xs font-bold uppercase tracking-widest underline underline-offset-4 decoration-primary/30 hover:decoration-primary" href="#">Return to Catalog</a>
+</div>
+</div>
+</main>
+<footer class="bg-[#edf5f9] dark:bg-[#1c262a] w-full py-16">
+<div class="max-w-7xl mx-auto px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="space-y-6">
+<div class="font-serif text-xl font-bold text-[#151d20] dark:text-[#f3fbff]">Adzek</div>
+<p class="font-sans text-xs opacity-80 leading-relaxed max-w-xs">
+                Elevating domestic chemistry to an editorial ritual. Every formulation is a testament to clinical precision and aesthetic clarity.
+            </p>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-sans uppercase tracking-widest text-[10px] font-bold opacity-50">Scientific Links</span>
+<div class="flex flex-col space-y-2">
+<a class="font-sans text-xs text-[#151d20]/50 hover:text-[#006673] transition-colors" href="#">Sourcing</a>
+<a class="font-sans text-xs text-[#151d20]/50 hover:text-[#006673] transition-colors" href="#">Terms of Science</a>
+<a class="font-sans text-xs text-[#151d20]/50 hover:text-[#006673] transition-colors text-[#006673] underline underline-offset-4" href="#">Privacy</a>
+<a class="font-sans text-xs text-[#151d20]/50 hover:text-[#006673] transition-colors" href="#">Contact</a>
+</div>
+</div>
+<div class="space-y-6">
+<span class="font-sans uppercase tracking-widest text-[10px] font-bold opacity-50">Copyright</span>
+<p class="font-sans text-xs opacity-80">© 2024 Adzek Clinical Household. All Rights Reserved.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-[#006673] opacity-40">science</span>
+<span class="material-symbols-outlined text-[#006673] opacity-40">eco</span>
+<span class="material-symbols-outlined text-[#006673] opacity-40">shield_with_heart</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Step Transitions Logic
+    const shippingSection = document.getElementById('shipping-section');
+    const paymentSection = document.getElementById('payment-section');
+    const shippingInputs = shippingSection.querySelectorAll('input');
+    
+    // Simulate activation of payment section when shipping is "filled"
+    shippingInputs.forEach(input => {
+        input.addEventListener('blur', () => {
+            let allFilled = Array.from(shippingInputs).every(i => i.value.trim().length > 0);
+            if (allFilled) {
+                paymentSection.style.opacity = "1";
+                shippingSection.style.opacity = "0.6";
+            }
+        });
+    });
+
+    // View Swapping Logic
+    const payButton = document.getElementById('pay-button');
+    const checkoutView = document.getElementById('checkout-view');
+    const successView = document.getElementById('success-view');
+    const loader = document.getElementById('button-loader');
+    const buttonText = document.getElementById('button-text');
+
+    payButton.addEventListener('click', () => {
+        // Show loader
+        loader.classList.remove('hidden');
+        buttonText.innerText = "Processing...";
+        payButton.disabled = true;
+
+        setTimeout(() => {
+            // Redirect to Success Screen
+            window.location.href = '{{DATA:SCREEN:SCREEN_30}}';
+        }, 1500);
+    });
+
+    // Payment Option selection simulation
+    const options = document.querySelectorAll('.payment-option');
+    options.forEach(opt => {
+        opt.addEventListener('click', () => {
+            options.forEach(o => {
+                o.classList.remove('bg-surface-container-lowest', 'ring-1', 'ring-primary/10');
+                o.classList.add('bg-surface-container-low');
+                o.querySelector('.w-4').innerHTML = '';
+            });
+            opt.classList.remove('bg-surface-container-low');
+            opt.classList.add('bg-surface-container-lowest', 'ring-1', 'ring-primary/10');
+            opt.querySelector('.w-4').innerHTML = '<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>';
+        });
+    });
+</script>
+</body></html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#8c4b11",
+                    "on-secondary-fixed": "#001f25",
+                    "primary-container": "#008091",
+                    "surface-container-low": "#edf5f9",
+                    "on-primary-container": "#f8feff",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#703800",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e7eff3",
+                    "secondary-container": "#c1e6ee",
+                    "on-primary-fixed": "#001f25",
+                    "tertiary-fixed-dim": "#ffb782",
+                    "inverse-surface": "#2a3235",
+                    "error": "#ba1a1a",
+                    "background": "#f3fbff",
+                    "tertiary-fixed": "#ffdcc5",
+                    "surface-container-highest": "#dce4e8",
+                    "surface-dim": "#d3dbe0",
+                    "primary-fixed": "#9fefff",
+                    "inverse-primary": "#6ed5e8",
+                    "on-primary-fixed-variant": "#004e59",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#41646b",
+                    "on-surface-variant": "#3e494b",
+                    "on-secondary-container": "#45686f",
+                    "on-secondary-fixed-variant": "#284c53",
+                    "inverse-on-surface": "#eaf2f6",
+                    "on-background": "#151d20",
+                    "outline-variant": "#bdc9cb",
+                    "tertiary-container": "#aa6329",
+                    "surface-tint": "#006876",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#6ed5e8",
+                    "on-tertiary-container": "#fffbff",
+                    "surface-bright": "#f3fbff",
+                    "secondary-fixed": "#c4e9f1",
+                    "on-surface": "#151d20",
+                    "surface": "#f3fbff",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#dce4e8",
+                    "primary": "#006673",
+                    "on-tertiary-fixed": "#301400",
+                    "error-container": "#ffdad6",
+                    "outline": "#6e797c",
+                    "secondary-fixed-dim": "#a8cdd5",
+                    "surface-container-high": "#e1e9ee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .font-serif { font-family: 'Newsreader', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Editorial Typography Rules */
+        .editorial-headline {
+            font-family: 'Newsreader', serif;
+            letter-spacing: -0.02em;
+        }
+        .ui-label {
+            font-family: 'Manrope', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        /* No-line rule implementation via tonal shifts */
+        .no-border-card {
+            border: none;
+            background-color: #ffffff; /* surface-container-lowest */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-50/80 backdrop-blur-xl h-20 flex justify-between items-center px-12 max-w-screen-2xl mx-auto left-0 right-0">
+<div class="text-2xl font-serif text-cyan-950">The Clinical Editorial</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 font-medium ui-label hover:text-cyan-800 transition-colors duration-300" href="#">Shop</a>
+<a class="text-slate-600 font-medium ui-label hover:text-cyan-800 transition-colors duration-300" href="#">Laundry</a>
+<a class="text-slate-600 font-medium ui-label hover:text-cyan-800 transition-colors duration-300" href="#">Kitchen</a>
+<a class="text-slate-600 font-medium ui-label hover:text-cyan-800 transition-colors duration-300" href="#">Bathroom</a>
+<a class="text-slate-600 font-medium ui-label hover:text-cyan-800 transition-colors duration-300" href="#">Science</a>
+<a class="text-slate-600 font-medium ui-label hover:text-cyan-800 transition-colors duration-300" href="#">About</a>
+</div>
+<div class="flex items-center space-x-6 text-cyan-900">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="bg-slate-100/50 border-none rounded-sm pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary/20 w-64" placeholder="Search archive..." type="text"/>
+</div>
+<button class="material-symbols-outlined hover:opacity-70 transition-all">shopping_cart</button>
+<button class="material-symbols-outlined hover:opacity-70 transition-all">person</button>
+</div>
+</nav>
+<div class="flex pt-20 max-w-screen-2xl mx-auto">
+<!-- SideNavBar -->
+<aside class="h-[calc(100vh-5rem)] w-72 sticky top-20 flex flex-col py-10 px-6 gap-8 bg-slate-50">
+<div class="mb-4">
+<h2 class="text-lg font-serif italic text-cyan-900 leading-tight">Member Laboratory</h2>
+<p class="text-xs font-bold ui-label text-slate-500 mt-1">Clinical Account Services</p>
+</div>
+<nav class="flex flex-col space-y-1">
+<a class="flex items-center space-x-3 py-3 text-cyan-900 font-bold border-l-2 border-cyan-800 pl-4 bg-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">account_circle</span>
+<span class="ui-label">Profile</span>
+</a>
+<a class="flex items-center space-x-3 py-3 text-slate-500 pl-4 hover:bg-slate-200 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">package_2</span>
+<span class="ui-label">Orders</span>
+</a>
+<a class="flex items-center space-x-3 py-3 text-slate-500 pl-4 hover:bg-slate-200 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">favorite</span>
+<span class="ui-label">Favorites</span>
+</a>
+<a class="flex items-center space-x-3 py-3 text-slate-500 pl-4 hover:bg-slate-200 transition-all" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="ui-label">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-low rounded-sm">
+<span class="ui-label text-[10px] text-primary block mb-2">Member Status</span>
+<p class="font-serif italic text-on-surface">Precision Tier</p>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-12 py-12 bg-white">
+<header class="mb-16">
+<h1 class="editorial-headline text-[3.5rem] leading-none text-on-surface mb-2">Julian Thorne</h1>
+<p class="ui-label text-slate-500">Laboratory Personnel Profile — Archive Reference #4922-JT</p>
+</header>
+<div class="grid grid-cols-12 gap-12">
+<!-- Profile Summary Card -->
+<section class="col-span-12 lg:col-span-4">
+<div class="bg-surface-container-low p-8 rounded-sm sticky top-32">
+<div class="mb-8 flex justify-center">
+<div class="w-32 h-32 rounded-none bg-slate-200 overflow-hidden grayscale contrast-125">
+<img alt="Julian Thorne" class="w-full h-full object-cover" data-alt="Black and white minimalist portrait of a man with clean lines, high contrast editorial photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAudeMbuhY0NJICIBSTr7iduUX3vZYvxH9TUMeoIP1n-z7A6PuYXpI1_vhh1VW6_WKbYW8jPZ4jqgq2qhHir642jfv1ScvT_6EmphFRcGjweyQtvl4nQZHtv8HtBlQv9zXBOpYG_hdWjFpCfWTS4ymSUV1uJWNsu4EAcNh_5HJsVnVyXutKEWuvpccjkrZljatiovq_xVI4evYzOAYbvx_0dc0x-7ef5mFDkqw-nHjXkDWVoPX0SSlrbLwRL0j17MojMyFEcbC0sSk"/>
+</div>
+</div>
+<div class="space-y-6">
+<div>
+<span class="ui-label block text-primary mb-1">Email Registry</span>
+<p class="font-medium">j.thorne@editorial.clinical</p>
+</div>
+<div>
+<span class="ui-label block text-primary mb-1">Primary Dispatch</span>
+<p class="font-medium">London, UK — Zone 1</p>
+</div>
+<div>
+<span class="ui-label block text-primary mb-1">Laboratory Metrics</span>
+<div class="flex gap-2 mt-2">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 text-[10px] font-bold ui-label">PH Neutral Life</span>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 text-[10px] font-bold ui-label">Plastic-Free</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Orders & Rituals Content -->
+<div class="col-span-12 lg:col-span-8 space-y-24">
+<!-- Recent Orders -->
+<section>
+<div class="flex justify-between items-end mb-8">
+<h2 class="editorial-headline text-3xl italic">Clinical Archives</h2>
+<a class="font-serif italic text-primary hover:underline underline-offset-4 transition-all" href="#">View All Orders</a>
+</div>
+<div class="overflow-hidden">
+<table class="w-full text-left">
+<thead class="ui-label text-slate-400 border-b border-slate-100">
+<tr>
+<th class="pb-4 font-bold">Reference #</th>
+<th class="pb-4 font-bold">Analysis Date</th>
+<th class="pb-4 font-bold">Status</th>
+<th class="pb-4 font-bold text-right">Value</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<tr class="group hover:bg-slate-50/50 transition-colors">
+<td class="py-6 font-medium">#ORD-88291</td>
+<td class="py-6 text-slate-500">Oct 12, 2024</td>
+<td class="py-6">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[10px] font-bold ui-label bg-emerald-50 text-emerald-700">In Transit</span>
+</td>
+<td class="py-6 text-right font-serif text-lg">£84.00</td>
+</tr>
+<tr class="group hover:bg-slate-50/50 transition-colors">
+<td class="py-6 font-medium">#ORD-88104</td>
+<td class="py-6 text-slate-500">Sep 28, 2024</td>
+<td class="py-6">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[10px] font-bold ui-label bg-slate-100 text-slate-600">Delivered</span>
+</td>
+<td class="py-6 text-right font-serif text-lg">£112.50</td>
+</tr>
+<tr class="group hover:bg-slate-50/50 transition-colors">
+<td class="py-6 font-medium">#ORD-87955</td>
+<td class="py-6 text-slate-500">Sep 14, 2024</td>
+<td class="py-6">
+<span class="inline-flex items-center px-2 py-0.5 rounded-sm text-[10px] font-bold ui-label bg-slate-100 text-slate-600">Delivered</span>
+</td>
+<td class="py-6 text-right font-serif text-lg">£45.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- My Favorites / Rituals -->
+<section>
+<h2 class="editorial-headline text-3xl italic mb-8">Curated Rituals</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Product 1 -->
+<div class="group">
+<div class="bg-surface-container-low aspect-[4/5] mb-4 overflow-hidden relative">
+<img alt="Elemental Glass Polish" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Minimalist frosted glass bottle with black typography on a clean stone surface with sharp architectural shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB11EtzwjmGtMeS2hVXCDjBE2H2t8x0oqcKkx2IGcNggwvAp8b4vx6Y746PV0HOGRdOCPsA7xH9vBNhNXL7b1YDL5TGJGMHyb6ROTRukwEuxUMA3QNsgPkirVYToiTdkihB0Hfex2Ymp82SRSEYmp0agFg_ggMZv9ZQYr2dHWHDaeKPVZDrhSJQfbqkkDN6CFW-bYSA14YgZX8oH1kHbeBE_mND8rJUd8R4M4T-6ocuLG4cjFiUMK6K4gZh7PC6GeXBmEzz3UuAo2U"/>
+<button class="absolute bottom-4 right-4 bg-white/90 backdrop-blur p-3 rounded-none shadow-sm opacity-0 group-hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-primary">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-serif text-xl mb-1">Elemental Glass Polish</h3>
+<p class="ui-label text-[10px] text-slate-500 mb-2">Ref. No 004 — Silicon Formula</p>
+<p class="font-serif text-primary">£28.00</p>
+</div>
+<!-- Product 2 -->
+<div class="group">
+<div class="bg-surface-container-low aspect-[4/5] mb-4 overflow-hidden relative">
+<img alt="Linen Silk Wash" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A pour of thick transparent liquid detergent catching the light, minimalist laboratory bottle design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbH_8Ejm65tM56Qk3hxaQ82YFQA8Q3qozNGrBJ0Nh1vbF_fmyR94OO-lSsh-uB48m7oCsGvSnmG3XUNoE694BxaKR9HPmhUu6bP8wGKa3i-AnDxBhtDMEsMe4_SPP79eG-mILQUKa60dlaV3LSs8xHTcIyMdKC0sNpMj0VExMU8ZO0j8ObovzwnrWLwTh3AN7qbjQVfYqsfCwtWAHdiLcJXPMofb3SXsWH8WvefGlVoc54io9uzFdu9F5H_63C8ou9UxqtjkFpc8c"/>
+<button class="absolute bottom-4 right-4 bg-white/90 backdrop-blur p-3 rounded-none shadow-sm opacity-0 group-hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-primary">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-serif text-xl mb-1">Linen Silk Wash</h3>
+<p class="ui-label text-[10px] text-slate-500 mb-2">Ref. No 021 — Enzyme Care</p>
+<p class="font-serif text-primary">£34.00</p>
+</div>
+<!-- Product 3 -->
+<div class="group">
+<div class="bg-surface-container-low aspect-[4/5] mb-4 overflow-hidden relative">
+<img alt="Culinary Surface Mist" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="An amber glass spray bottle with a clean white label on a marble kitchen island, bright clinical lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaim_VHueqMyk-OD8d5PiXm1PqXXWkWXsKxmSx5GpQ7JbgHpQUFKivb-bQzAmvNGK_OSVU76ndBDlwTvveSvGrP6Qk-YkZ9mTTQeWhSHPhQORQwTlQjRKAekmEhTi7D9Jg68Z2afKSrX9vKobJ7EY85LtHMtXnMcZMAUZv4a3qKL1IeatGQj4Nnc5uGxWdTpq82g1IB2PI2CJvQJL8DDfYEEESwnGnuyxrOf3iGF7iwgNGIXFAtQSeyx9CpMAzorruvV8_g41y2C0"/>
+<button class="absolute bottom-4 right-4 bg-white/90 backdrop-blur p-3 rounded-none shadow-sm opacity-0 group-hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-primary">add_shopping_cart</span>
+</button>
+</div>
+<h3 class="font-serif text-xl mb-1">Culinary Surface Mist</h3>
+<p class="ui-label text-[10px] text-slate-500 mb-2">Ref. No 012 — Citrus Archive</p>
+<p class="font-serif text-primary">£22.00</p>
+</div>
+</div>
+</section>
+<!-- Laboratory Metrics Section (Bento Style) -->
+<section class="bg-slate-50 p-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div>
+<h4 class="ui-label text-primary mb-4">Sustainability Audit</h4>
+<div class="space-y-4">
+<div class="flex justify-between items-baseline border-b border-slate-200 pb-2">
+<span class="text-sm font-medium">Plastic Displaced</span>
+<span class="font-serif text-2xl">4.2 kg</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-slate-200 pb-2">
+<span class="text-sm font-medium">Refill Frequency</span>
+<span class="font-serif text-2xl">Every 45 days</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col justify-center">
+<p class="font-serif italic text-slate-600 text-lg leading-relaxed">
+                                    "The editorial choice to maintain a plastic-free laboratory environment has reduced your carbon footprint by 12% this quarter."
+                                </p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full mt-24 flex flex-col md:flex-row justify-between items-center px-12 py-16 border-t border-slate-200/20 bg-slate-100">
+<div class="mb-8 md:mb-0">
+<p class="ui-label text-cyan-900 font-bold mb-2">The Clinical Editorial</p>
+<p class="ui-label text-[10px] text-slate-500 tracking-widest">© 2024 THE CLINICAL EDITORIAL. THE CURATED LABORATORY.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="ui-label text-[10px] text-slate-500 hover:text-cyan-900 transition-colors" href="#">Sustainability</a>
+<a class="ui-label text-[10px] text-slate-500 hover:text-cyan-900 transition-colors" href="#">Shipping</a>
+<a class="ui-label text-[10px] text-slate-500 hover:text-cyan-900 transition-colors" href="#">Returns</a>
+<a class="ui-label text-[10px] text-slate-500 hover:text-cyan-900 transition-colors" href="#">Privacy</a>
+<a class="ui-label text-[10px] text-slate-500 hover:text-cyan-900 transition-colors" href="#">Laboratory Specs</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Tracking | Adzek Clinical</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2a3235",
+                        "outline": "#6e797c",
+                        "surface-dim": "#d3dbe0",
+                        "surface-container-highest": "#dce4e8",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e1e9ee",
+                        "secondary-fixed": "#c4e9f1",
+                        "on-surface-variant": "#3e494b",
+                        "on-surface": "#151d20",
+                        "background": "#f3fbff",
+                        "tertiary": "#8c4b11",
+                        "surface-bright": "#f3fbff",
+                        "secondary": "#41646b",
+                        "on-error-container": "#93000a",
+                        "primary": "#006673",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-background": "#151d20",
+                        "surface-variant": "#dce4e8",
+                        "primary-fixed": "#9fefff",
+                        "surface": "#f3fbff",
+                        "inverse-on-surface": "#eaf2f6",
+                        "tertiary-fixed-dim": "#ffb782",
+                        "on-secondary-fixed-variant": "#284c53",
+                        "tertiary-fixed": "#ffdcc5",
+                        "outline-variant": "#bdc9cb",
+                        "on-primary-fixed-variant": "#004e59",
+                        "tertiary-container": "#aa6329",
+                        "inverse-primary": "#6ed5e8",
+                        "surface-container-low": "#edf5f9",
+                        "on-primary-container": "#f8feff",
+                        "secondary-container": "#c1e6ee",
+                        "primary-fixed-dim": "#6ed5e8",
+                        "primary-container": "#008091",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#001f25",
+                        "on-tertiary-fixed": "#301400",
+                        "on-tertiary-fixed-variant": "#703800",
+                        "surface-container": "#e7eff3",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#006876",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#001f25",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#45686f",
+                        "secondary-fixed-dim": "#a8cdd5",
+                        "on-tertiary-container": "#fffbff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .editorial-shadow {
+            box-shadow: 0 10px 40px 0 rgba(21, 29, 32, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<nav class="fixed top-0 w-full z-50 bg-[#f3fbff]/80 backdrop-blur-md editorial-shadow">
+<div class="flex justify-between items-center px-12 py-6 max-w-[1920px] mx-auto">
+<div class="font-headline text-3xl font-bold tracking-tighter text-[#151d20]">Adzek</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="text-[#151d20]/70 font-label uppercase tracking-widest text-[10px] hover:text-[#006673] transition-colors duration-300" href="#">Laundry</a>
+<a class="text-[#151d20]/70 font-label uppercase tracking-widest text-[10px] hover:text-[#006673] transition-colors duration-300" href="#">Kitchen</a>
+<a class="text-[#151d20]/70 font-label uppercase tracking-widest text-[10px] hover:text-[#006673] transition-colors duration-300" href="#">Bathroom</a>
+</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-[#006673] cursor-pointer active:opacity-70">shopping_cart</span>
+<span class="material-symbols-outlined text-[#006673] cursor-pointer active:opacity-70">account_circle</span>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-[1920px] mx-auto">
+<header class="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-label uppercase tracking-[0.2em] text-xs text-secondary mb-4 block">Order Tracking Protocol</span>
+<h1 class="font-headline text-5xl md:text-7xl italic font-medium tracking-tight text-on-surface leading-[1.1]">
+                    Logistics Update: <br/>Order #ADZ-8829104
+                </h1>
+</div>
+<div class="flex flex-col items-start md:items-end">
+<div class="bg-secondary-container px-4 py-2 mb-2 inline-flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label font-semibold text-on-secondary-container text-xs uppercase tracking-widest">In Transit</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm tracking-tight">Est. Delivery: Wednesday, October 24</p>
+</div>
+</header>
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden rounded-sm editorial-shadow bg-surface-container-low">
+<div class="lg:col-span-8 relative h-[500px] lg:h-[750px] bg-surface-dim">
+<div class="absolute inset-0 grayscale contrast-125 opacity-70">
+<img class="w-full h-full object-cover" data-alt="Minimalist grayscale satellite map showing city layout with clean white vector lines indicating a delivery route across urban blocks" data-location="Berlin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKxgnOQjs205j-LsRoSwqi3Kl0_xLIpQca1Gz9QB0LAFa48R8iAWf0goTcsAOhdyp_QECpEUlSs7z4bhnehyjY_Hnz1_BsvI0VSPiQD_AQA1KMBIhMa2Mo40A1_PvnXrwqttM9xiSTOlEvJ5IoiwvZ594muleGSFPz0U2Lx0tzDaJV0olHGdQMumeHpTBTuF1IIG_ZdKOq258SIybnecwp49PC9KhwlfHWZ3S_4dgFPq67_G8f8TKkyTcl-sotIoGxmZRO44Pm3hQ"/>
+</div>
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<div class="absolute top-1/2 left-1/3 w-4 h-4 bg-primary rounded-full ring-8 ring-primary/20 flex items-center justify-center">
+<div class="w-1.5 h-1.5 bg-on-primary rounded-full"></div>
+</div>
+<div class="absolute bottom-12 left-12 p-6 bg-surface-bright/90 backdrop-blur-md max-w-xs editorial-shadow">
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary block mb-2">Live Location</span>
+<p class="font-headline italic text-lg text-on-surface leading-tight">Currently navigating the Central Distribution Hub sector.</p>
+</div>
+</div>
+<div class="lg:col-span-4 bg-surface-container-lowest p-8 md:p-12 border-l border-outline-variant/10">
+<div class="mb-12">
+<h3 class="font-headline text-2xl italic mb-6">Detailed Progress</h3>
+<div class="space-y-12 relative before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-variant/30">
+<div class="relative pl-10">
+<div class="absolute left-0 top-1.5 w-[23px] h-[23px] bg-primary rounded-full flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline block mb-1">Oct 21, 09:42 AM</span>
+<p class="font-body font-semibold text-sm text-on-surface">Order Processed</p>
+<p class="font-body text-xs text-on-surface-variant mt-1">Laboratory quality check completed.</p>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1.5 w-[23px] h-[23px] bg-primary rounded-full flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline block mb-1">Oct 21, 02:15 PM</span>
+<p class="font-body font-semibold text-sm text-on-surface">Handed to Carrier</p>
+<p class="font-body text-xs text-on-surface-variant mt-1">Adzek Logistics Protocol confirmed receipt.</p>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1.5 w-[23px] h-[23px] border-2 border-primary bg-surface-container-lowest rounded-full flex items-center justify-center z-10">
+<div class="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-primary font-bold block mb-1">Oct 22, 11:30 AM</span>
+<p class="font-body font-semibold text-sm text-on-surface">In Transit</p>
+<p class="font-body text-xs text-on-surface-variant mt-1">Arrived at regional sorting facility 04.</p>
+</div>
+<div class="relative pl-10 opacity-30">
+<div class="absolute left-0 top-1.5 w-[23px] h-[23px] border border-outline-variant bg-surface-container-low rounded-full z-10"></div>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline block mb-1">Pending</span>
+<p class="font-body font-semibold text-sm text-on-surface">Out for Delivery</p>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-12 border-t border-outline-variant/10">
+<div class="space-y-6">
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-outline block mb-1">Carrier Agency</span>
+<p class="font-body text-sm font-bold text-on-surface">Adzek Logistics Protocol</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-gradient-to-tr from-primary to-primary-container text-on-primary font-label font-bold text-[10px] uppercase tracking-widest px-6 py-4 rounded-sm flex-1 text-center hover:opacity-90 transition-opacity">
+                                Contact Carrier
+                            </button>
+<button class="bg-surface-container-high text-primary font-label font-bold text-[10px] uppercase tracking-widest px-6 py-4 rounded-sm flex-1 text-center hover:bg-surface-container-highest transition-colors">
+                                Order Details
+                            </button>
+</div>
+<a class="font-headline italic text-sm text-primary underline decoration-primary/30 underline-offset-4 flex items-center justify-center pt-4" href="#">
+                            Need assistance? Visit Help Center
+                        </a>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="p-8 bg-surface-container-low rounded-sm">
+<span class="material-symbols-outlined text-primary mb-4" style="font-variation-settings: 'opsz' 48;">science</span>
+<h4 class="font-headline text-xl mb-2">Clinical Standards</h4>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">Every item in shipment #ADZ-8829104 has been verified against our 12-point clinical purity protocol before dispatch.</p>
+</div>
+<div class="p-8 bg-surface-container-low rounded-sm">
+<span class="material-symbols-outlined text-primary mb-4" style="font-variation-settings: 'opsz' 48;">package_2</span>
+<h4 class="font-headline text-xl mb-2">Eco-Neutral Shell</h4>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">Our packaging uses 100% biodegradable fiber matrices, ensuring zero laboratory waste enters the ecosystem.</p>
+</div>
+<div class="p-8 bg-surface-container-low rounded-sm">
+<span class="material-symbols-outlined text-primary mb-4" style="font-variation-settings: 'opsz' 48;">verified_user</span>
+<h4 class="font-headline text-xl mb-2">Secure Transit</h4>
+<p class="font-body text-xs text-on-surface-variant leading-relaxed">Your order is protected by Adzek's Delivery Guarantee. Any clinical inconsistencies will be resolved within 24 hours.</p>
+</div>
+</section>
+</main>
+<footer class="bg-[#151d20] w-full py-20 px-12 mt-24">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 max-w-[1920px] mx-auto">
+<div>
+<div class="font-headline text-2xl text-[#f3fbff] mb-8">Adzek</div>
+<p class="font-body text-xs font-light tracking-widest uppercase text-white/50">© 2024 Adzek Clinical. <br/>The Curated Laboratory.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="flex flex-col space-y-4">
+<span class="font-label text-[10px] text-white/30 uppercase tracking-[0.2em] mb-2">Protocol</span>
+<a class="font-label text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Philosophy</a>
+<a class="font-label text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Safety Data Sheets</a>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-label text-[10px] text-white/30 uppercase tracking-[0.2em] mb-2">Legal</span>
+<a class="font-label text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Terms</a>
+<a class="font-label text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Privacy</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

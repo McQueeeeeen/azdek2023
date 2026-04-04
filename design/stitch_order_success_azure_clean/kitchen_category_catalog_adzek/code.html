@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#bdc9cb",
+                    "error": "#ba1a1a",
+                    "outline": "#6e797c",
+                    "primary": "#006673",
+                    "inverse-surface": "#2a3235",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffdcc5",
+                    "surface-container-highest": "#dce4e8",
+                    "inverse-primary": "#6ed5e8",
+                    "surface-dim": "#d3dbe0",
+                    "on-tertiary-fixed": "#301400",
+                    "surface-container-high": "#e1e9ee",
+                    "primary-fixed-dim": "#6ed5e8",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#e7eff3",
+                    "primary-container": "#008091",
+                    "tertiary-fixed-dim": "#ffb782",
+                    "inverse-on-surface": "#eaf2f6",
+                    "on-surface-variant": "#3e494b",
+                    "secondary-fixed": "#c4e9f1",
+                    "secondary": "#41646b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary-fixed": "#001f25",
+                    "background": "#f3fbff",
+                    "tertiary-container": "#aa6329",
+                    "on-tertiary-fixed-variant": "#703800",
+                    "surface-tint": "#006876",
+                    "secondary-container": "#c1e6ee",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#151d20",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#284c53",
+                    "surface": "#f3fbff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#f8feff",
+                    "on-secondary-container": "#45686f",
+                    "surface-container-low": "#edf5f9",
+                    "primary-fixed": "#9fefff",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed-variant": "#004e59",
+                    "on-primary-fixed": "#001f25",
+                    "on-background": "#151d20",
+                    "surface-variant": "#dce4e8",
+                    "surface-bright": "#f3fbff",
+                    "secondary-fixed-dim": "#a8cdd5",
+                    "tertiary": "#8c4b11"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        .font-newsreader { font-family: 'Newsreader', serif; }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f3fbff]/80 dark:bg-[#151d20]/80 backdrop-blur-md shadow-[0_10px_40px_rgba(21,29,32,0.04)]">
+<div class="flex justify-between items-center px-8 h-20 w-full max-w-7xl mx-auto">
+<div class="text-2xl font-black font-newsreader text-[#151d20] dark:text-[#f3fbff]">ADZEK</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="text-[#151d20]/60 dark:text-[#f3fbff]/60 font-manrope uppercase tracking-widest text-xs hover:text-[#006673] transition-colors duration-300" href="#">Laundry</a>
+<a class="text-[#006673] dark:text-[#008091] border-b border-[#006673]/30 pb-1 font-manrope uppercase tracking-widest text-xs" href="#">Kitchen</a>
+<a class="text-[#151d20]/60 dark:text-[#f3fbff]/60 font-manrope uppercase tracking-widest text-xs hover:text-[#006673] transition-colors duration-300" href="#">Bathroom</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group hidden lg:block">
+<span class="material-symbols-outlined text-[#151d20]/60 dark:text-[#f3fbff]/60 absolute left-3 top-1/2 -translate-y-1/2 text-sm">search</span>
+<input class="bg-transparent border-b border-outline-variant/20 focus:border-primary outline-none py-1 pl-10 text-[10px] tracking-widest uppercase font-manrope w-48" placeholder="SEARCH FORMULATIONS" type="text"/>
+</div>
+<button class="scale-95 transition-transform duration-200 text-[#006673] dark:text-[#008091] relative">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-tertiary rounded-full"></span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[870px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover object-center scale-105" data-alt="Modern minimalist high-end kitchen with white marble countertops, sleek stainless steel appliances, editorial style composition, and soft natural light streaming through a window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT3WibOCTRvBi5eUlg4AOOmnbfSLhnz3RCjj5fMVUs6wvWQlCQqnG98BX_T-C0zqpUpwo1_RvwGtHd3Yr5AZt7hhJkB8ATYz0BpQst416bGWyhiJwd6k1uVlvN9PBukIHemFjsceeQ06dr4g6nBMHPtB7lWODhLvWyO4_5BgrnRYaWvwapZ8VRzPUXCMTnD1K3cPOAX-ak1mYODp105iSeN82a_aiiCm8f6M8feMLZ58nV-l90Jkfi4RWft_D0ECgK3QaQZ4S3upo"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-8 w-full">
+<div class="max-w-2xl">
+<span class="font-manrope text-[10px] uppercase tracking-[0.3em] text-primary mb-6 block font-bold">Scientific Culinary Care</span>
+<h1 class="text-7xl font-newsreader font-black text-on-surface leading-[0.9] tracking-tight mb-8">Kitchen <br/><span class="italic text-primary">Maintenance</span> <br/>Vol. 01</h1>
+<p class="font-newsreader text-2xl italic text-on-surface-variant max-w-md leading-relaxed">
+                        A curated laboratory approach to culinary surface sterilization and molecular degreasing.
+                    </p>
+<div class="mt-12 flex gap-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary font-manrope font-bold text-xs uppercase tracking-widest py-5 px-10 rounded-sm hover:shadow-lg transition-all duration-300">Explore Collection</button>
+<button class="bg-surface-container-highest text-primary font-manrope font-bold text-xs uppercase tracking-widest py-5 px-10 rounded-sm transition-all duration-300">The Archive</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Product View Section -->
+<section class="max-w-7xl mx-auto px-8 py-24 flex flex-col md:flex-row gap-16">
+<!-- Sidebar Filter -->
+<aside class="w-full md:w-64 flex-shrink-0">
+<div class="sticky top-32 space-y-12">
+<div class="space-y-6">
+<h3 class="font-manrope text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant pb-2 border-b border-outline-variant/10">Filter By Class</h3>
+<ul class="space-y-4">
+<li class="flex items-center group cursor-pointer">
+<span class="w-2 h-2 rounded-full border border-primary group-hover:bg-primary mr-3 transition-colors"></span>
+<span class="font-manrope text-xs uppercase tracking-widest text-on-surface/60 group-hover:text-primary transition-colors">Dish Soap</span>
+</li>
+<li class="flex items-center group cursor-pointer">
+<span class="w-2 h-2 rounded-full border border-primary bg-primary mr-3"></span>
+<span class="font-manrope text-xs uppercase tracking-widest text-primary font-bold">Surface Cleaners</span>
+</li>
+<li class="flex items-center group cursor-pointer">
+<span class="w-2 h-2 rounded-full border border-primary group-hover:bg-primary mr-3 transition-colors"></span>
+<span class="font-manrope text-xs uppercase tracking-widest text-on-surface/60 group-hover:text-primary transition-colors">Degreasers</span>
+</li>
+</ul>
+</div>
+<div class="space-y-6">
+<h3 class="font-manrope text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant pb-2 border-b border-outline-variant/10">Scent Profile</h3>
+<ul class="space-y-4">
+<li class="flex items-center group cursor-pointer">
+<span class="font-manrope text-xs uppercase tracking-widest text-on-surface/60 group-hover:text-primary transition-colors">Ozone</span>
+</li>
+<li class="flex items-center group cursor-pointer">
+<span class="font-manrope text-xs uppercase tracking-widest text-on-surface/60 group-hover:text-primary transition-colors">Unscented (Laboratory Neutral)</span>
+</li>
+<li class="flex items-center group cursor-pointer">
+<span class="font-manrope text-xs uppercase tracking-widest text-on-surface/60 group-hover:text-primary transition-colors">Pressed Citrus</span>
+</li>
+</ul>
+</div>
+<div class="space-y-6">
+<h3 class="font-manrope text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant pb-2 border-b border-outline-variant/10">Valuation</h3>
+<div class="relative h-1 bg-surface-container-high w-full mt-4">
+<div class="absolute h-full bg-primary w-2/3"></div>
+<div class="absolute top-1/2 -translate-y-1/2 left-0 w-3 h-3 bg-primary rounded-full"></div>
+<div class="absolute top-1/2 -translate-y-1/2 left-2/3 w-3 h-3 bg-primary rounded-full"></div>
+</div>
+<div class="flex justify-between font-manrope text-[10px] text-on-surface-variant uppercase tracking-widest">
+<span>$18.00</span>
+<span>$50.00+</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-grow">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Product 1 -->
+<div class="group relative bg-surface-container-low p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5">
+<div class="aspect-[4/5] overflow-hidden mb-8 relative">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Modern amber glass bottle of luxury dish soap on a white marble surface, clinical label design, soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK5To3ADcBU6OsayywdVv4ryBWa2Pu7V4upq_bOkeytk_z9o3er7cg7KZw-a5nNeDR6muETo7ysS3NYCYa9yjL_IZaJDT37AVq8eJllRnHda3BdxWAssNxmZscAHX5nWVp3AdRkywsEK0jMqQwa9crpfmb734eHieAtlnv5-9ZN3wOPTM3zUjaMn1MQ4vJlKoF7K9FM-n458XUYn3NbVxGcoPQMvVprcGnHFLiMOJVhs3SyM9OvbzV4y7mADbWlm70tjuf5BlGVNc"/>
+<div class="absolute top-4 right-4">
+<span class="bg-secondary-container text-on-secondary-container font-manrope text-[10px] font-bold px-3 py-1 uppercase tracking-widest">pH 7.4 Neutral</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-baseline">
+<h2 class="font-newsreader text-3xl font-bold group-hover:text-primary transition-colors">Degreasing Dish Nectar</h2>
+<span class="font-manrope text-sm font-bold text-on-surface-variant">$28.00</span>
+</div>
+<p class="font-manrope text-[10px] text-on-surface/50 uppercase tracking-[0.1em] mb-6">Molecular break-down technology • Scent: Ozone</p>
+<button class="w-full mt-6 py-4 px-6 border border-primary/20 text-primary font-manrope font-bold text-[10px] uppercase tracking-[0.2em] group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">Add to Cart</button>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group relative bg-surface-container-low p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5">
+<div class="aspect-[4/5] overflow-hidden mb-8 relative">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Premium spray bottle for surface cleaning, minimalist industrial aesthetic, laboratory setting with steel accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_7IThiyT5dc34ERHQ_LC-wjdWrgubuIVswTdDFIVZt6UIawkXaT-3-YFwhHjY9Sc_C2EfTVofNeRlMEAk340FbFQOKbCBJ_GT9-T3bzAGQwsffHWJ7GFbLwc_QB4EPi8t5tckwSreOefehxBn_aUhTZzG3JaukO_WTzgY-XveY184FzXmP3Xl0lB9J72e-keT55vssU4roUQuOW7crbZciBuhH_6tnisQsPHp5bHKGlPo9gXiWVRCnhkeELVqtA8LFCzTVq5mNHk"/>
+<div class="absolute top-4 right-4">
+<span class="bg-secondary-container text-on-secondary-container font-manrope text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Medical Grade</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-baseline">
+<h2 class="font-newsreader text-3xl font-bold group-hover:text-primary transition-colors">Culinary Surface Elixir</h2>
+<span class="font-manrope text-sm font-bold text-on-surface-variant">$32.00</span>
+</div>
+<p class="font-manrope text-[10px] text-on-surface/50 uppercase tracking-[0.1em] mb-6">Anti-microbial barrier formula • Scent: Neutral</p>
+<button class="w-full mt-6 py-4 px-6 border border-primary/20 text-primary font-manrope font-bold text-[10px] uppercase tracking-[0.2em] group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">Add to Cart</button>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group relative bg-surface-container-low p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5">
+<div class="aspect-[4/5] overflow-hidden mb-8 relative">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Professional grade cleaning scrubber on a stainless steel background, close-up with sharp focus, industrial clean aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-qHMDGSDfhklXgvXz0mOWVQQr1K7r6Ub6hiF9EWPGoSz_UD8GkJgemse_VMtDZA2oR8RNmQPcNIO6KNsNTC1AZuOULXIhmT1wALnG6L9v9N7nMBkLfdWk4q_7rP1kBALPaJzNyLmW8qpwETVYvt1M9eiqJeFcRMVnbpABXIL3g9PeMHCUsQFCGvqjTJvxyJDhu1Z74pS5J4eePL69iX2tJoRPaKRGvAZADloWSxFQd_LYN3SkNL1AMk0eKHZg78sblYQiZ9e8Zlw"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-baseline">
+<h2 class="font-newsreader text-3xl font-bold group-hover:text-primary transition-colors">Surgical Grade Scrubber</h2>
+<span class="font-manrope text-sm font-bold text-on-surface-variant">$18.00</span>
+</div>
+<p class="font-manrope text-[10px] text-on-surface/50 uppercase tracking-[0.1em] mb-6">High-density abrasive polymer • Texture: Coarse</p>
+<button class="w-full mt-6 py-4 px-6 border border-primary/20 text-primary font-manrope font-bold text-[10px] uppercase tracking-[0.2em] group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">Add to Cart</button>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="group relative bg-surface-container-low p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5">
+<div class="aspect-[4/5] overflow-hidden mb-8 relative">
+<img class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Minimalist laboratory bottle with dropper, focused on clear liquid against a high-end kitchen backsplash, clinical photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCS_vd3o2GpyS9_Tabvyyk6uaCDIpExB1LfIyhyIGUKgo6u_wJ_9KAT18voQuU1xSjnaPWFk4DV1cQsFXKcN0pWQoaCBX-np_pCnAM9IpGYRSfG2Rp_ac80VIwjiWy3s2PxmDmrMUZRcijX6D8hgxC3KM90S1H0_casvWCR888BhZ1X09uzUrun766iivgOPjDftw13IxeMqWNxg6TlD7vHxCYJ0bDP2L2B0TIvtWmNX5TbZcUe1FkS3Kl0vu2Iq7Jvn1sIPLUKes"/>
+<div class="absolute top-4 right-4">
+<span class="bg-tertiary-container text-on-tertiary-container font-manrope text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Concentrate</span>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-baseline">
+<h2 class="font-newsreader text-3xl font-bold group-hover:text-primary transition-colors">Mineral Deposit Neutralizer</h2>
+<span class="font-manrope text-sm font-bold text-on-surface-variant">$45.00</span>
+</div>
+<p class="font-manrope text-[10px] text-on-surface/50 uppercase tracking-[0.1em] mb-6">Acidic chelation formulation • Scent: Unscented</p>
+<button class="w-full mt-6 py-4 px-6 border border-primary/20 text-primary font-manrope font-bold text-[10px] uppercase tracking-[0.2em] group-hover:bg-primary group-hover:text-on-primary transition-all duration-300">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Informational Strip -->
+<section class="bg-surface-container py-32 mt-12 overflow-hidden relative">
+<div class="absolute -right-20 top-1/2 -translate-y-1/2 opacity-[0.03] select-none">
+<span class="font-newsreader text-[25rem] font-black italic leading-none">CHEMISTRY</span>
+</div>
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10">
+<div class="space-y-6">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="science">science</span>
+<h3 class="font-newsreader text-2xl font-bold">Biocompatible Specs</h3>
+<p class="font-manrope text-sm text-on-surface-variant leading-relaxed">Our formulas are balanced for human safety without compromising on laboratory-grade efficacy in the kitchen.</p>
+</div>
+<div class="space-y-6">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="water_drop">water_drop</span>
+<h3 class="font-newsreader text-2xl font-bold">Molecular Ratios</h3>
+<p class="font-manrope text-sm text-on-surface-variant leading-relaxed">Specific surface tension modifiers ensure that grease is lifted and suspended for effortless rinsing.</p>
+</div>
+<div class="space-y-6">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+<h3 class="font-newsreader text-2xl font-bold">Editorial Precision</h3>
+<p class="font-manrope text-sm text-on-surface-variant leading-relaxed">Every bottle is a piece of industrial design, crafted to sit atop the most refined kitchen surfaces.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#edf5f9] dark:bg-[#1c262a] w-full mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-7xl mx-auto">
+<div class="font-newsreader text-lg italic text-[#151d20] dark:text-[#f3fbff]">ADZEK</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<a class="text-[#151d20]/50 dark:text-[#f3fbff]/50 font-manrope text-[10px] uppercase tracking-[0.1em] hover:text-[#8c4b11] transition-colors" href="#">PH ANALYSIS</a>
+<a class="text-[#151d20]/50 dark:text-[#f3fbff]/50 font-manrope text-[10px] uppercase tracking-[0.1em] hover:text-[#8c4b11] transition-colors" href="#">FORMULATION SPECS</a>
+<a class="text-[#151d20]/50 dark:text-[#f3fbff]/50 font-manrope text-[10px] uppercase tracking-[0.1em] hover:text-[#8c4b11] transition-colors" href="#">SAFETY DATA</a>
+<a class="text-[#151d20]/50 dark:text-[#f3fbff]/50 font-manrope text-[10px] uppercase tracking-[0.1em] hover:text-[#8c4b11] transition-colors" href="#">EDITORIAL</a>
+<a class="text-[#151d20]/50 dark:text-[#f3fbff]/50 font-manrope text-[10px] uppercase tracking-[0.1em] hover:text-[#8c4b11] transition-colors" href="#">ARCHIVE</a>
+</div>
+<div class="text-[#151d20]/50 dark:text-[#f3fbff]/50 font-manrope text-[10px] uppercase tracking-[0.1em]">
+                © 2024 ADZEK LABORATORIES. ALL RIGHTS RESERVED.
+            </div>
+</div>
+</footer>
+</body></html>

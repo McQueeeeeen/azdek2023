@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#2a3235",
+                    "outline": "#6e797c",
+                    "surface-dim": "#d3dbe0",
+                    "surface-container-highest": "#dce4e8",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#e1e9ee",
+                    "secondary-fixed": "#c4e9f1",
+                    "on-surface-variant": "#3e494b",
+                    "on-surface": "#151d20",
+                    "background": "#f3fbff",
+                    "tertiary": "#8c4b11",
+                    "surface-bright": "#f3fbff",
+                    "secondary": "#41646b",
+                    "on-error-container": "#93000a",
+                    "primary": "#006673",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-background": "#151d20",
+                    "surface-variant": "#dce4e8",
+                    "primary-fixed": "#9fefff",
+                    "surface": "#f3fbff",
+                    "inverse-on-surface": "#eaf2f6",
+                    "tertiary-fixed-dim": "#ffb782",
+                    "on-secondary-fixed-variant": "#284c53",
+                    "tertiary-fixed": "#ffdcc5",
+                    "outline-variant": "#bdc9cb",
+                    "on-primary-fixed-variant": "#004e59",
+                    "tertiary-container": "#aa6329",
+                    "inverse-primary": "#6ed5e8",
+                    "surface-container-low": "#edf5f9",
+                    "on-primary-container": "#f8feff",
+                    "secondary-container": "#c1e6ee",
+                    "primary-fixed-dim": "#6ed5e8",
+                    "primary-container": "#008091",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#001f25",
+                    "on-tertiary-fixed": "#301400",
+                    "on-tertiary-fixed-variant": "#703800",
+                    "surface-container": "#e7eff3",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#006876",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#001f25",
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#45686f",
+                    "secondary-fixed-dim": "#a8cdd5",
+                    "on-tertiary-container": "#fffbff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Newsreader"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .editorial-shadow {
+            box-shadow: 0 10px 40px 0 rgba(21, 29, 32, 0.04);
+        }
+        .glass-header {
+            background: rgba(243, 251, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .tonal-shift {
+            background-color: #edf5f9;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#edf5f9] flex flex-col p-6 space-y-8 z-40">
+<div class="flex flex-col space-y-1">
+<span class="font-['Newsreader'] text-xl font-bold text-[#151d20]">Adzek Admin</span>
+<span class="font-['Manrope'] text-[10px] uppercase tracking-widest text-[#151d20]/60">Clinical Inventory Mgmt</span>
+</div>
+<nav class="flex flex-col space-y-2">
+<a class="flex items-center space-x-3 px-4 py-3 text-[#151d20]/60 font-['Manrope'] font-semibold tracking-tight hover:bg-white/50 transition-all rounded-sm tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#151d20]/60 font-['Manrope'] font-semibold tracking-tight hover:bg-white/50 transition-all rounded-sm tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 bg-white text-[#006673] font-['Manrope'] font-semibold tracking-tight rounded-sm tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+<span>Favorites</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#151d20]/60 font-['Manrope'] font-semibold tracking-tight hover:bg-white/50 transition-all rounded-sm tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span>Sales</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#151d20]/60 font-['Manrope'] font-semibold tracking-tight hover:bg-white/50 transition-all rounded-sm tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span>Orders</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-[#151d20]/60 font-['Manrope'] font-semibold tracking-tight hover:bg-white/50 transition-all rounded-sm tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-8 flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Admin User Profile" class="w-full h-full object-cover" data-alt="Professional studio portrait of a man in clinical attire with soft neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcxbacPDCTZV717Hdw7cqRURb6pgVaIS8fHXy-IN2sXDvWh3TAlKxkMAxHD6niz35frVui_pnNHk7Xve3Z5tiGdflU6wj3TdjOL-fWddvsfyRBey_xgnXxRGfDp-u9X_8Fc0OQwTw3KnojjsSeg0x8mLXQJzbUItPO5-23diUtST6-8eXHtXIc48BASucOU1387yNAg7cV6hTfzr9OtR3W9nWrGX-MJ-CcVnAfsOvdzME_u58OfYVBVbxb0SHTFJqZdz4OM0nvwCw"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold font-label">Dr. Aris Thorne</span>
+<span class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Chief Researcher</span>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen bg-surface flex flex-col">
+<!-- Top Navigation -->
+<header class="fixed top-0 right-0 left-64 z-30 glass-header editorial-shadow">
+<div class="flex justify-between items-center px-12 py-6 max-w-[1920px] mx-auto">
+<div class="flex items-center space-x-12">
+<h1 class="font-['Newsreader'] text-3xl font-bold tracking-tighter text-[#151d20]">Adzek</h1>
+<nav class="hidden md:flex space-x-8">
+<a class="text-[#151d20]/70 font-['Manrope'] uppercase tracking-widest text-[10px] hover:text-[#006673] transition-colors duration-300" href="#">Laundry</a>
+<a class="text-[#151d20]/70 font-['Manrope'] uppercase tracking-widest text-[10px] hover:text-[#006673] transition-colors duration-300" href="#">Kitchen</a>
+<a class="text-[#151d20]/70 font-['Manrope'] uppercase tracking-widest text-[10px] hover:text-[#006673] transition-colors duration-300" href="#">Bathroom</a>
+</nav>
+</div>
+<div class="flex items-center space-x-6 text-[#006673]">
+<div class="cursor-pointer active:opacity-70 hover:text-[#006673] transition-colors duration-300">
+<span class="material-symbols-outlined">shopping_cart</span>
+</div>
+<div class="cursor-pointer active:opacity-70 hover:text-[#006673] transition-colors duration-300">
+<span class="material-symbols-outlined">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<section class="pt-32 px-12 pb-20 max-w-7xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+<div class="max-w-2xl">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-4 block">Personal Archive</span>
+<h2 class="font-headline text-6xl italic font-medium tracking-tighter text-on-surface">Curated Favorites</h2>
+<p class="mt-6 font-body text-on-surface-variant font-light leading-relaxed max-w-lg">
+                        A precise selection of your most essential laboratory-grade domestic rituals. These formulas are held in high regard for their chemical purity and olfactory excellence.
+                    </p>
+</div>
+<div class="flex space-x-4 pb-2">
+<button class="flex items-center space-x-2 border-b border-outline-variant/30 pb-1 text-[10px] font-label uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">
+<span>Filter by Series</span>
+<span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<button class="flex items-center space-x-2 border-b border-outline-variant/30 pb-1 text-[10px] font-label uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors">
+<span>Sort: Recently Added</span>
+<span class="material-symbols-outlined text-[14px]">sort</span>
+</button>
+</div>
+</div>
+<!-- Asymmetric Bento Grid of Favorites -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<!-- Large Featured Item -->
+<div class="md:col-span-7 group cursor-pointer">
+<div class="relative aspect-[4/5] bg-surface-container-low overflow-hidden rounded-sm transition-transform duration-700 hover:scale-[1.01]">
+<img alt="Elemental Glass Polish" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Minimalist luxury glass cleaning spray bottle on a polished marble surface with clean morning light and soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMOkMPJixbmjY8H8wGPn0M_XsFIdo4N4o6Y6P-wUkbhcCrjdWHvfeExizca5pOa_KxoSLAchT4IkHY1_GviDyRVy6I35YxsxznfwtLWoJNEzfptsfloQhRccOgGSy2449CKbjFYXJFtiuNxUCsT-hQ7307Osk8JppcklYHRdVMtmXDZfLkJGLgikDqw0YjwW-GC4T42SzT68ewyZ3uM5mRvL0AknRRBHlxRKcBapE2weHDKcz4Oz28ijk0XvdiSK20QlPBu-icFX8"/>
+<div class="absolute top-6 left-6">
+<span class="bg-primary/90 text-white font-label text-[10px] uppercase tracking-widest px-3 py-1.5 backdrop-blur-md">Signature Series</span>
+</div>
+<button class="absolute top-6 right-6 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="mt-8 flex justify-between items-start">
+<div>
+<h3 class="font-headline text-3xl font-medium text-on-surface">Elemental Glass Polish</h3>
+<div class="flex space-x-3 mt-3">
+<span class="bg-secondary-container px-2 py-0.5 text-[10px] font-label text-on-secondary-container uppercase tracking-tight">pH 7.2 Neutral</span>
+<span class="bg-secondary-container px-2 py-0.5 text-[10px] font-label text-on-secondary-container uppercase tracking-tight">Bergamot / Ozone</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-body font-bold text-xl block">$42.00</span>
+<button class="mt-4 bg-gradient-to-br from-primary to-primary-container text-white font-label font-bold text-[10px] uppercase tracking-widest px-6 py-3 rounded-sm hover:opacity-90 transition-opacity">
+                                Add to Cart
+                            </button>
+</div>
+</div>
+</div>
+<!-- Vertical Stack for smaller items -->
+<div class="md:col-span-5 flex flex-col space-y-24">
+<!-- Item 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[1/1] bg-surface-container-low overflow-hidden rounded-sm transition-transform duration-700 hover:scale-[1.01]">
+<img alt="Linen Silk Wash" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Premium glass laundry detergent bottle next to folded white silk fabric in a bright sunlit studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArDfjfzIlnkLFyLpNUnxfvGDZu8sMuECMeSJYxISdfNeEz-8tNK6WENF0lvEihEXHChTaB74A52sma3py_GRzgf2Ad2mob9Ldu5JXYufC2OIq-NEzq1hmf-bPm8RbH8AotDJ2Z81EvFLJtYJmPGIklvz716Le7oJS7uEymCnuIWPdHwYWscIECPFG-B0KHOWcFKfGTiSV-fNiFcnjTgn9Zw3wOYj4fco1aJZQJ9gQMW6ykLtKZ6Z9Cy-2nFJ2tzHwEYxBVpTGbwRo"/>
+<button class="absolute top-6 right-6 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h3 class="font-headline text-2xl font-medium text-on-surface">Linen Silk Wash</h3>
+<p class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant mt-2">Laboratory Series No. 12</p>
+</div>
+<div class="text-right">
+<span class="font-body font-bold text-lg block">$58.00</span>
+<button class="mt-4 text-primary font-label font-bold text-[10px] uppercase tracking-widest border-b border-primary/30 pb-1 hover:border-primary transition-all">
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[1/1] bg-surface-container-low overflow-hidden rounded-sm transition-transform duration-700 hover:scale-[1.01]">
+<img alt="Culinary Surface Mist" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Amber glass spray bottle on a sleek kitchen counter with herbs and citrus fruits blurred in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO2YR5b-XUGcwYIE31YygirkpW9-7eQMfmGNdakbwaFUcHFwwtt3U-ziMWh6e05b7Skxu_qRt9A0EH34k41JvcppKPBkPP6u0ADyC9UEk2S-ouJ1k96oL_4d8VfEQYpAdCtUD01wdR0Yh86wAgKr40L62SNxuwDLV2HsByrXtkH84tWN7n75c5RcXncM-VGcUWYssnBWJxV_xeF8R9XFTRJbIuB92B1m6y7vkX7BVtwbH7vlwkrbt-S92t8DYpqP4sewhvLCTCdh0"/>
+<button class="absolute top-6 right-6 w-10 h-10 bg-white/80 backdrop-blur-md flex items-center justify-center rounded-full text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="mt-6 flex justify-between items-start">
+<div>
+<h3 class="font-headline text-2xl font-medium text-on-surface">Culinary Surface Mist</h3>
+<p class="text-[10px] font-label uppercase tracking-widest text-on-surface-variant mt-2">Bio-Enzymatic formula</p>
+</div>
+<div class="text-right">
+<span class="font-body font-bold text-lg block">$36.00</span>
+<button class="mt-4 text-primary font-label font-bold text-[10px] uppercase tracking-widest border-b border-primary/30 pb-1 hover:border-primary transition-all">
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommendations / Empty Fill Section -->
+<div class="mt-40 pt-20 border-t border-outline-variant/10">
+<div class="flex items-center justify-between mb-12">
+<h4 class="font-headline text-4xl tracking-tighter italic">Complementary Formulations</h4>
+<a class="font-label text-[10px] uppercase tracking-widest text-primary border-b border-primary/30 pb-1 italic" href="#">Discover the full laboratory</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<!-- Subtle minimalist card -->
+<div class="aspect-[3/4] bg-surface-container-low p-8 flex flex-col justify-between hover:bg-surface-container transition-colors duration-500">
+<div class="space-y-4">
+<span class="font-label text-[10px] uppercase tracking-widest text-tertiary">New Arrival</span>
+<h5 class="font-headline text-xl font-medium leading-tight">Amber &amp; Vetiver Hand Wash</h5>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-body font-bold">$28</span>
+<span class="material-symbols-outlined text-primary">add_circle</span>
+</div>
+</div>
+<div class="aspect-[3/4] bg-surface-container-low p-8 flex flex-col justify-between hover:bg-surface-container transition-colors duration-500">
+<div class="space-y-4">
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Best Seller</span>
+<h5 class="font-headline text-xl font-medium leading-tight">Charcoal Air Purification Bricks</h5>
+</div>
+<div class="flex justify-between items-end">
+<span class="font-body font-bold">$45</span>
+<span class="material-symbols-outlined text-primary">add_circle</span>
+</div>
+</div>
+<div class="md:col-span-2 relative overflow-hidden group">
+<img alt="Laboratory Background" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="Artistic macro photography of water droplets and scientific laboratory glassware with teal and amber lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCanlC60QeUJdBwXWnyfGhxpHIzHmpA-dOCK5eibHWBHrk3nfrTTmHWf1nJSUa-44ItMlMVV1VoiZs4TPd6kVvAlJbUs6eBv7Ey10ypUqP4yDFm8u0K7Z7AE5UmBKhi-xhXdYMtUXyb8YvT_sZGg8u4e9LZAbuREeTBq9iVo3xju1bZIa0uCXvgfRBvsggWDrtC704BjhfdziyBgAVcQ91yxy62tfD4d3zvKkdBRABX7IbqLZR8aNy7vckCP-dAEHJHnIG9d-F-09g"/>
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-[2px]"></div>
+<div class="relative h-full p-12 flex flex-col justify-center items-start text-white">
+<h5 class="font-headline text-4xl italic mb-4">The Custom Subscription</h5>
+<p class="font-body text-xs uppercase tracking-widest opacity-80 mb-8">Never deplete your essential inventory.</p>
+<button class="bg-white text-primary font-label font-bold text-[10px] uppercase tracking-widest px-8 py-4 rounded-sm">Configure Cycle</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Section -->
+<footer class="w-full py-20 px-12 bg-[#151d20] flex flex-col md:flex-row justify-between items-start gap-12 mt-auto">
+<div class="space-y-6">
+<span class="font-['Newsreader'] text-2xl text-[#f3fbff]">Adzek</span>
+<p class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 max-w-xs leading-relaxed">
+                    © 2024 Adzek Clinical. The Curated Laboratory. Precision meets Domesticity.
+                </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-24">
+<div class="flex flex-col space-y-4">
+<span class="font-['Manrope'] text-[10px] font-bold tracking-[0.2em] text-white uppercase">Brand</span>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Philosophy</a>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Safety Data Sheets</a>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-['Manrope'] text-[10px] font-bold tracking-[0.2em] text-white uppercase">Legal</span>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Terms</a>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Privacy</a>
+</div>
+<div class="flex flex-col space-y-4">
+<span class="font-['Manrope'] text-[10px] font-bold tracking-[0.2em] text-white uppercase">Social</span>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">Instagram</a>
+<a class="font-['Manrope'] text-xs font-light tracking-widest uppercase text-white/50 hover:text-[#008091] transition-colors duration-500" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Adzek | The Laundry Ritual</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#ffb782",
+                      "outline-variant": "#bdc9cb",
+                      "surface-container-low": "#edf5f9",
+                      "background": "#f3fbff",
+                      "tertiary-container": "#aa6329",
+                      "primary-fixed-dim": "#6ed5e8",
+                      "on-error": "#ffffff",
+                      "surface-container-high": "#e1e9ee",
+                      "surface-bright": "#f3fbff",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed": "#ffdcc5",
+                      "inverse-primary": "#6ed5e8",
+                      "tertiary": "#8c4b11",
+                      "surface-dim": "#d3dbe0",
+                      "secondary": "#41646b",
+                      "outline": "#6e797c",
+                      "on-tertiary-fixed": "#301400",
+                      "on-primary-container": "#f8feff",
+                      "surface-container-highest": "#dce4e8",
+                      "primary-fixed": "#9fefff",
+                      "on-secondary-fixed": "#001f25",
+                      "inverse-on-surface": "#eaf2f6",
+                      "on-tertiary-container": "#fffbff",
+                      "on-primary-fixed": "#001f25",
+                      "inverse-surface": "#2a3235",
+                      "primary": "#006673",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed-variant": "#284c53",
+                      "on-tertiary": "#ffffff",
+                      "secondary-fixed-dim": "#a8cdd5",
+                      "surface-tint": "#006876",
+                      "on-background": "#151d20",
+                      "error": "#ba1a1a",
+                      "on-surface-variant": "#3e494b",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#c1e6ee",
+                      "primary-container": "#008091",
+                      "on-tertiary-fixed-variant": "#703800",
+                      "on-secondary-container": "#45686f",
+                      "surface": "#f3fbff",
+                      "surface-variant": "#dce4e8",
+                      "surface-container": "#e7eff3",
+                      "on-surface": "#151d20",
+                      "secondary-fixed": "#c4e9f1",
+                      "on-primary-fixed-variant": "#004e59",
+                      "on-secondary": "#ffffff",
+                      "on-primary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Newsreader"],
+                      "body": ["Manrope"],
+                      "label": ["Manrope"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            transition: background-color 0.5s ease;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+        .stagger-1 { transition-delay: 100ms; }
+        .stagger-2 { transition-delay: 200ms; }
+        .stagger-3 { transition-delay: 300ms; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-[0_10px_40px_rgba(21,29,32,0.04)] flex justify-between items-center px-12 h-24 w-full tonal-shift">
+<div class="font-['Newsreader'] text-3xl font-bold tracking-tighter text-cyan-900 dark:text-cyan-100">Adzek</div>
+<div class="hidden md:flex items-center gap-12">
+<a class="text-cyan-900 dark:text-cyan-100 border-b-2 border-cyan-800 dark:border-cyan-400 pb-1 font-['Manrope'] uppercase tracking-widest text-[11px] hover:text-cyan-700 transition-colors duration-300" href="#">Laundry</a>
+<a class="text-slate-500 dark:text-slate-400 font-['Manrope'] uppercase tracking-widest text-[11px] hover:text-cyan-700 transition-colors duration-300" href="#">Kitchen</a>
+<a class="text-slate-500 dark:text-slate-400 font-['Manrope'] uppercase tracking-widest text-[11px] hover:text-cyan-700 transition-colors duration-300" href="#">Bathroom</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-cyan-800 dark:text-cyan-400 scale-95 transition-transform duration-200" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-cyan-800 dark:text-cyan-400 scale-95 transition-transform duration-200" data-icon="person">person</button>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-[1440px] mx-auto">
+<!-- Header Section -->
+<header class="mb-20">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-primary mb-4 block">The Curated Laboratory</span>
+<h1 class="font-headline italic text-6xl md:text-8xl tracking-tighter text-on-surface leading-none">
+                        The Laundry Ritual
+                    </h1>
+</div>
+<p class="font-body text-on-surface-variant max-w-sm text-sm leading-relaxed pb-2">
+                    Precise chemical formulations designed to preserve the architectural integrity of your finest textiles. Domestic care elevated to a science.
+                </p>
+</div>
+</header>
+<!-- Filtering Options -->
+<section class="mb-16">
+<div class="flex flex-wrap items-center gap-4">
+<span class="font-label text-[10px] uppercase tracking-widest text-outline mr-4">Filter by Need:</span>
+<button class="px-6 py-2 bg-primary text-on-primary text-[11px] font-bold uppercase tracking-widest round-sm transition-all hover:brightness-110">All Essentials</button>
+<button class="px-6 py-2 bg-surface-container-high text-on-surface-variant text-[11px] font-bold uppercase tracking-widest round-sm hover:bg-surface-container-highest transition-colors">Silk &amp; Delicate</button>
+<button class="px-6 py-2 bg-surface-container-high text-on-surface-variant text-[11px] font-bold uppercase tracking-widest round-sm hover:bg-surface-container-highest transition-colors">Stain Removal</button>
+<button class="px-6 py-2 bg-surface-container-high text-on-surface-variant text-[11px] font-bold uppercase tracking-widest round-sm hover:bg-surface-container-highest transition-colors">Sensitive Skin</button>
+<button class="px-6 py-2 bg-surface-container-high text-on-surface-variant text-[11px] font-bold uppercase tracking-widest round-sm hover:bg-surface-container-highest transition-colors">Deep Clean</button>
+</div>
+</section>
+<!-- Product Grid (Bento/Editorial Hybrid) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+<!-- Product Card 1 -->
+<article class="group relative flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low overflow-hidden mb-6 relative">
+<img alt="Azure Silk Detergent" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Minimalist frosted glass bottle with turquoise liquid on a clean white marble surface with soft clinical shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiidfz0K2E1JXkWbly6zj8OGU5vz-WIi6wfKe-OyOmwWU_CruzHwRLtiFgGQ6sHTAxiQBjcNd3TWbdJXV6f4GKG8FrkjVhl12Sk7tQy8D_WSLfaCECzTGizqPvWgfLr9A2EnZFaf94CDG9f45R4fRpVxN6TNY_PGItNdvTMYzOpXef7xAuETdXrq5wOiXX0lSvDkUI7Qi3owKit8PDmr0YTzJ8_zvYF5SAZSL9FKkQiFbDaGb_kzJBgYmE_Ng82wyWrMbc8oddiLM"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 text-[10px] font-bold uppercase tracking-tighter">pH Neutral 7.0</span>
+</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-2xl text-on-surface group-hover:text-primary transition-colors">Azure Silk Detergent</h3>
+<span class="font-body text-lg text-on-surface-variant">$32.00</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant mb-6 leading-relaxed">
+                    A clinical-grade formula optimized for protein-based fibers. Prevents structural degradation of silk and wool while ensuring purity.
+                </p>
+<button class="mt-auto w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 font-bold uppercase text-[11px] tracking-widest round-sm transition-transform active:scale-[0.98]">
+                    Add to Cart
+                </button>
+</article>
+<!-- Product Card 2 -->
+<article class="group relative flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low overflow-hidden mb-6 relative">
+<img alt="Linen Softening Mist" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A tall thin aluminum spray bottle sitting in a bright airy laundry room with soft sunlight filtering through white curtains" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmAwLpi3VbWDDr6gaVnmn3pZ-za2YZnLibzjPbWO2Dm3sP8xXI5odbfW6J8qkSTv726nnwWT6nxpWzc7lQb3-B-4-WIA6n9zXzeWuG4_Iax8VZ6hBkcD5dCq9w2_pjTCRood5yalKZ0RmTyLDEZTskbMdwT8H6uzxJaWPtr7OBGvraBuQX45_rmF-5boKNL92DiDTKBTu4CXAnCIFxHkVjF327l4RLbDqlkmzfPu59ErmPNKLVuWastyAjt_eVV7rqwI7EN5pZD7A"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 text-[10px] font-bold uppercase tracking-tighter">Static Control</span>
+</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-2xl text-on-surface group-hover:text-primary transition-colors">Linen Softening Mist</h3>
+<span class="font-body text-lg text-on-surface-variant">$28.00</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant mb-6 leading-relaxed">
+                    Post-wash textile treatment with ionized particles to neutralize static and impart a clinical scent of cold mineral water.
+                </p>
+<button class="mt-auto w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 font-bold uppercase text-[11px] tracking-widest round-sm transition-transform active:scale-[0.98]">
+                    Add to Cart
+                </button>
+</article>
+<!-- Product Card 3 -->
+<article class="group relative flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low overflow-hidden mb-6 relative">
+<img alt="Enzyme Fabric Tonic" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Overhead shot of a minimalist white bottle next to a piece of clean folded white fabric on a pale blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9p5D6gZJsA9e0obBLYHYIgXw6RQvaK5khEoVgnyYj-T13T-6XJd-QUovX0EqVHRCT3PmSHKqiLEqb_bMSNUh_bKWzgeYXJGMY35fMXZtb_kWWz31Vu0mZ-rzz2Pmzi2Df1QEt6Hh9H6fB-SogieQJK5a8wFzxEtrJvLJeBXs-LhVGFLTtEVfGHWCRZKvO9n91Wirhmtv0jGLc0PZkDQLuxw-Haipkvc51kI5oRh1KUUnujHcPtivsZevWV9ivtu4KQCvGPhcnOLU"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 text-[10px] font-bold uppercase tracking-tighter">Bio-Active</span>
+</div>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-2xl text-on-surface group-hover:text-primary transition-colors">Enzyme Fabric Tonic</h3>
+<span class="font-body text-lg text-on-surface-variant">$45.00</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant mb-6 leading-relaxed">
+                    Hyper-concentrated stain removal utilizing proteolytic enzymes to break down organic matter at a molecular level without heat.
+                </p>
+<button class="mt-auto w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 font-bold uppercase text-[11px] tracking-widest round-sm transition-transform active:scale-[0.98]">
+                    Add to Cart
+                </button>
+</article>
+<!-- Product Card 4 -->
+<article class="group relative flex flex-col">
+<div class="aspect-[4/5] bg-surface-container-low overflow-hidden mb-6 relative">
+<img alt="Active-Wear Cleanser" class="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A sleek black and white bottle of cleaning fluid standing on a grey concrete shelf in a high-end minimalist setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCrSXrEonArYNsR0UZ4d4Yu3RPb62bg9Lf-ld_Z-efZt154PDn9tQYiuZU3_vAyjbBrmG1uwFHEk5mPdgt_4ZXxaQ_uSIZX5IkgButWunvOrtXU310p7knI-eAG2x6z3lxqsSy58Suu1zF9SbWgxH68FFFRMIUFjQlJDycboYo5bFjZENmx-L4_1Wwbe-6S7CeB0th7M6rgKfUJTDNhi58BuX1WQW5BeMg_7KqB92yDg7e6SSQOiaxDJW952rmx578dm8VGA2eTIs"/>
+</div>
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-2xl text-on-surface group-hover:text-primary transition-colors">Synthetic Optimizer</h3>
+<span class="font-body text-lg text-on-surface-variant">$38.00</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant mb-6 leading-relaxed">
+                    Designed for high-performance elastomers. Removes deep-seated sebum while maintaining the elastic recovery of modern synthetics.
+                </p>
+<button class="mt-auto w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-4 font-bold uppercase text-[11px] tracking-widest round-sm transition-transform active:scale-[0.98]">
+                    Add to Cart
+                </button>
+</article>
+<!-- Editorial Feature Callout (Bento Element) -->
+<div class="lg:col-span-2 bg-surface-container-low p-12 flex flex-col md:flex-row gap-12 items-center">
+<div class="flex-1">
+<h2 class="font-headline text-4xl italic mb-6 leading-tight">Beyond Clean: The Scientific Specification</h2>
+<p class="font-body text-on-surface-variant mb-8 text-sm leading-relaxed">
+                        At Adzek, we believe every wash cycle is a chemical reaction that should be controlled. Our Laboratory Kits allow you to customize the mineral balance of your water for surgical precision in garment care.
+                    </p>
+<a class="font-headline italic text-primary underline underline-offset-8 decoration-primary/30 hover:decoration-primary transition-all" href="#">Explore Laboratory Specs</a>
+</div>
+<div class="flex-1 w-full h-64 bg-white/40 border border-white/20 backdrop-blur-sm flex items-center justify-center p-8">
+<div class="grid grid-cols-2 gap-4 w-full">
+<div class="text-center p-4 bg-surface-container-lowest">
+<span class="block font-headline text-3xl mb-1">0%</span>
+<span class="block font-label text-[9px] uppercase tracking-widest text-outline">Phosphates</span>
+</div>
+<div class="text-center p-4 bg-surface-container-lowest">
+<span class="block font-headline text-3xl mb-1">99.4</span>
+<span class="block font-label text-[9px] uppercase tracking-widest text-outline">Biodegradable</span>
+</div>
+<div class="text-center p-4 bg-surface-container-lowest">
+<span class="block font-headline text-3xl mb-1">12</span>
+<span class="block font-label text-[9px] uppercase tracking-widest text-outline">Botanical Extracts</span>
+</div>
+<div class="text-center p-4 bg-surface-container-lowest">
+<span class="block font-headline text-3xl mb-1">∞</span>
+<span class="block font-label text-[9px] uppercase tracking-widest text-outline">Cycle Integrity</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-24 pb-12 bg-slate-50 dark:bg-slate-900 border-t border-slate-200/20 tonal-shift">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-12">
+<div class="flex flex-col items-center md:items-start gap-4 mb-12 md:mb-0">
+<div class="font-['Newsreader'] italic text-xl text-cyan-950 dark:text-white">Adzek Editorial Laboratory</div>
+<p class="font-['Manrope'] text-xs uppercase tracking-[0.1em] text-slate-400">© 2024 Adzek Editorial Laboratory</p>
+</div>
+<div class="flex gap-12">
+<div class="flex flex-col gap-3">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary mb-2">Philosophy</span>
+<a class="text-slate-400 font-['Manrope'] text-xs uppercase tracking-[0.1em] hover:text-cyan-600 transition-opacity" href="#">Sustainability</a>
+<a class="text-slate-400 font-['Manrope'] text-xs uppercase tracking-[0.1em] hover:text-cyan-600 transition-opacity" href="#">Scientific Specs</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary mb-2">Service</span>
+<a class="text-slate-400 font-['Manrope'] text-xs uppercase tracking-[0.1em] hover:text-cyan-600 transition-opacity" href="#">Contact</a>
+<a class="text-slate-400 font-['Manrope'] text-xs uppercase tracking-[0.1em] hover:text-cyan-600 transition-opacity" href="#">Shipping</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
