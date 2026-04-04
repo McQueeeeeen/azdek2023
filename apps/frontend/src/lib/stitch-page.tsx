@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Script from "next/script";
+import { unstable_noStore as noStore } from "next/cache";
 import type { Metadata } from "next";
 
 type ParsedStitch = {
@@ -58,8 +59,21 @@ function repairEncodingArtifacts(input: string): string {
     .replaceAll("РІР‚Сњ", "”")
     .replaceAll("Р’В©", "©");
 }
+function normalizeVisibleMojibake(input: string): string {
+  return input
+    .replaceAll("\u0432\u0402\u045e", "•")
+    .replaceAll("\u0432\u0402\u2014", "—")
+    .replaceAll("\u0432\u0402\u2013", "–")
+    .replaceAll("\u0432\u0402\u2019", "’")
+    .replaceAll("\u0432\u0402\u201c", "“")
+    .replaceAll("\u0432\u0402\u201d", "”")
+    .replaceAll("\u0412\u00a9", "©")
+    .replaceAll("N\u0412\u00ba", "Nº")
+    .replaceAll("N\u0412\u0454", "Nº");
+}
+
 function parseStitchHtml(html: string): ParsedStitch {
-  const repaired = repairEncodingArtifacts(html);
+  const repaired = normalizeVisibleMojibake(repairEncodingArtifacts(html));
   const title = repaired.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim();
   const body = repaired.match(/<body[^>]*>([\s\S]*?)<\/body>/i)?.[1]?.trim() ?? repaired;
 
@@ -96,6 +110,8 @@ export function getStitchMetadata(folder: string, fallbackDescription = "Azure C
 }
 
 export function StitchPage({ folder }: { folder: string }) {
+  // Prevent stale prerender artifacts when design HTML is replaced.
+  noStore();
   const parsed = readStitch(folder);
   const safeTailwindConfig = normalizeTailwindConfig(parsed.tailwindConfig);
   const stylesheetImports = parsed.fontStylesheets.map((href) => `@import url("${href}");`).join("\n");
