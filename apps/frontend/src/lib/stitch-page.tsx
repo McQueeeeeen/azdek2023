@@ -26,13 +26,16 @@ function normalizeTailwindConfig(config?: string): string | undefined {
 
 function repairEncodingArtifacts(input: string): string {
   return input
-    .replaceAll("РІР‚Сћ", "•")
-    .replaceAll("РІР‚вЂќ", "—")
-    .replaceAll("РІР‚вЂњ", "–")
-    .replaceAll("РІР‚в„ў", "’")
-    .replaceAll("РІР‚Сљ", "“")
-    .replaceAll("РІР‚Сњ", "”")
-    .replaceAll("Р’В©", "©")
+    // Single-step mojibake (UTF-8 bytes interpreted as cp1251/win-1252)
+    .replaceAll("вЂў", "•")
+    .replaceAll("вЂ—", "—")
+    .replaceAll("вЂ“", "–")
+    .replaceAll("вЂ™", "’")
+    .replaceAll("вЂњ", "“")
+    .replaceAll("вЂќ", "”")
+    .replaceAll("В©", "©")
+    .replaceAll("NВє", "Nº")
+    // Double-step mojibake variants seen in imported stitch packs
     .replaceAll("Р Р†Р вЂљРЎС›", "•")
     .replaceAll("Р Р†Р вЂљРІР‚Сњ", "—")
     .replaceAll("Р Р†Р вЂљРІР‚Сљ", "–")
@@ -40,15 +43,21 @@ function repairEncodingArtifacts(input: string): string {
     .replaceAll("Р Р†Р вЂљРЎС™", "“")
     .replaceAll("Р Р†Р вЂљРЎСљ", "”")
     .replaceAll("Р вЂ™Р’В©", "©")
-    .replaceAll("вЂў", "•")
-    .replaceAll("вЂ”", "—")
-    .replaceAll("вЂ“", "–")
-    .replaceAll("вЂ™", "’")
-    .replaceAll("вЂњ", "“")
-    .replaceAll("вЂќ", "”")
-    .replaceAll("В©", "©");
+    .replaceAll("Р В Р вЂ Р В РІР‚С™Р РЋРЎвЂє", "•")
+    .replaceAll("Р В Р вЂ Р В РІР‚С™Р Р†Р вЂљРЎСљ", "—")
+    .replaceAll("Р В Р вЂ Р В РІР‚С™Р Р†Р вЂљРЎС™", "–")
+    .replaceAll("Р В Р вЂ Р В РІР‚С™Р Р†РІР‚С›РЎС›", "’")
+    .replaceAll("Р В Р вЂ Р В РІР‚С™Р РЋРЎв„ў", "“")
+    .replaceAll("Р В Р вЂ Р В РІР‚С™Р РЋРЎС™", "”")
+    .replaceAll("Р В РІР‚в„ўР вЂ™Р’В©", "©")
+    .replaceAll("РІР‚Сћ", "•")
+    .replaceAll("РІР‚вЂќ", "—")
+    .replaceAll("РІР‚вЂњ", "–")
+    .replaceAll("РІР‚в„ў", "’")
+    .replaceAll("РІР‚Сљ", "“")
+    .replaceAll("РІР‚Сњ", "”")
+    .replaceAll("Р’В©", "©");
 }
-
 function parseStitchHtml(html: string): ParsedStitch {
   const repaired = repairEncodingArtifacts(html);
   const title = repaired.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.trim();
@@ -250,13 +259,12 @@ input[type="range"]::-moz-range-thumb {
             return parts.join(" ").replace(/\\s+/g, " ").trim();
           };
 
-          const resolveRoute = (label) => {
+                    const resolveRoute = (label) => {
             const text = normalize(label);
             if (!text) return null;
 
             if (/(shopping_cart|shopping_bag|add to cart|quick add|add to ritual|add to bag|buy again|acquire bundle|subscribe|cart|bag|корзина|добавить в корзину)/.test(text)) return "/cart";
-            if (/(confirm.*pay|complete checkout|checkout|pay\\b|proceed to payment|оформить|оплатить|чекаут)/.test(text)) return "/checkout";
-            if (/(shop new arrivals|shop all|shop the collection|explore collection|explore the collection|view all products|view all labs|view all rituals|collections?|laundry|kitchen|bathroom|bundles|fragrances|catalog|ритуал|ritual|каталог|стирка|кухня|ванная|пополнения|ритуалы)/.test(text)) return "/catalog";
+            if (/(confirm.*pay|complete checkout|checkout|pay\\b|proceed to payment|оформить|оплатить|чекаут|перейти к оформлению)/.test(text)) return "/checkout";
             if (/(log in|login|sign in|create account|forgot password|logout|войти|выйти|регистрация)/.test(text)) return "/login";
             if (/(account_circle|person\\b|member account|account portal|account overview|личный кабинет|кабинет|account)/.test(text)) return "/account";
             if (/(profile|edit profile|save changes|профиль|редактировать профиль|сохранить изменения)/.test(text)) return "/account/profile";
@@ -270,12 +278,13 @@ input[type="range"]::-moz-range-thumb {
             if (/(dashboard|inventory|analytics|sales|settings|export report|admin system|admin|админ|админ-панель)/.test(text)) return "/admin";
             if (/billing/.test(text)) return "/admin/billing";
             if (/nodes/.test(text)) return "/admin/nodes";
+            if (/(shop new arrivals|shop all|shop the collection|explore collection|explore the collection|view all products|view all labs|view all rituals|collections?|laundry|kitchen|bathroom|bundles|fragrances|catalog|ритуал|ritual|каталог|стирка|кухня|ванная|пополнения|ритуалы)/.test(text)) return "/catalog";
             if (/(privacy|terms|shipping|returns|archive|science|story|material safety data sheets|условия|доставка|возврат)/.test(text)) return "/support";
             if (/(adzek|azure clean|pure curator|linen & ether|home care|home\\b|back to home|главная)/.test(text)) return "/";
             return null;
           };
 
-          const applyCatalogFixes = () => {
+                    const applyCatalogFixes = () => {
             const badges = Array.from(document.querySelectorAll("span,div"));
             for (const badge of badges) {
               const text = normalize(badge.textContent || "");
@@ -309,18 +318,22 @@ input[type="range"]::-moz-range-thumb {
               cta.style.minHeight = cta.style.minHeight || "44px";
               cta.style.marginTop = "auto";
 
+              const card = cta.closest("article, .group");
+              if (card instanceof HTMLElement) {
+                card.style.display = "flex";
+                card.style.flexDirection = "column";
+                card.style.height = "100%";
+              }
+
               const parent = cta.parentElement;
               if (parent instanceof HTMLElement) {
-                const pStyle = window.getComputedStyle(parent);
-                if (pStyle.display === "block") {
-                  parent.style.display = "flex";
-                  parent.style.flexDirection = "column";
-                  parent.style.gap = "8px";
-                }
+                parent.style.display = "flex";
+                parent.style.flexDirection = "column";
+                parent.style.gap = "8px";
+                parent.style.height = "100%";
               }
             }
           };
-
           const bindActions = () => {
             const elements = Array.from(document.querySelectorAll("a, button"));
             for (const element of elements) {
@@ -374,3 +387,4 @@ input[type="range"]::-moz-range-thumb {
     </>
   );
 }
+
