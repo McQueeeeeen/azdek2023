@@ -70,6 +70,20 @@ export function StitchPage({ folder }: { folder: string }) {
   const mergedStyles = `
 ${stylesheetImports}
 ${parsed.styleBlocks.join("\n\n")}
+
+html.stitch-loading body {
+  opacity: 0;
+}
+
+body.stitch-ready {
+  opacity: 1;
+  transition: opacity 140ms ease-out;
+}
+
+body.stitch-nav-out {
+  opacity: 0;
+  transition: opacity 100ms ease-in;
+}
 `;
 
   const tailwindCdn = parsed.scriptSrcs.find((src) => src.includes("cdn.tailwindcss.com"));
@@ -84,6 +98,10 @@ ${parsed.styleBlocks.join("\n\n")}
       ) : null}
 
       {tailwindCdn ? <Script src={tailwindCdn} strategy="beforeInteractive" /> : null}
+
+      <Script id={`stitch-loading-${folder}`} strategy="beforeInteractive">{`
+        document.documentElement.classList.add("stitch-loading");
+      `}</Script>
 
       {otherScripts.map((src) => (
         <Script key={`${folder}-${src}`} src={src} strategy="afterInteractive" />
@@ -164,15 +182,24 @@ ${parsed.styleBlocks.join("\n\n")}
               element.style.cursor = "pointer";
               element.addEventListener("click", (event) => {
                 event.preventDefault();
-                window.location.href = route;
+                document.body.classList.add("stitch-nav-out");
+                window.setTimeout(() => {
+                  window.location.href = route;
+                }, 90);
               });
             }
           };
 
           if (document.readyState === "loading") {
-            document.addEventListener("DOMContentLoaded", bindActions);
+            document.addEventListener("DOMContentLoaded", () => {
+              bindActions();
+              document.documentElement.classList.remove("stitch-loading");
+              document.body.classList.add("stitch-ready");
+            });
           } else {
             bindActions();
+            document.documentElement.classList.remove("stitch-loading");
+            document.body.classList.add("stitch-ready");
           }
 
           const observer = new MutationObserver(bindActions);

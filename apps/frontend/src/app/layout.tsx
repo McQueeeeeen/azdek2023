@@ -2,7 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import GlobalAnalyticsTracker from "@/components/global-analytics-tracker";
-import ScrollReveal from "@/components/scroll-reveal";
 import ToastHost from "@/components/ui/toast-host";
 
 export const metadata: Metadata = {
@@ -19,7 +18,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="ru">
       <body>
         <GlobalAnalyticsTracker />
-        <ScrollReveal />
         <ToastHost />
         <main>{children}</main>
       </body>
