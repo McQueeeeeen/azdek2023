@@ -153,13 +153,236 @@ body.stitch-nav-out {
             if (/(dashboard|inventory|analytics|admin|админ|админ-панель)/.test(text)) return "/admin";
             if (/billing/.test(text)) return "/admin/billing";
             if (/nodes/.test(text)) return "/admin/nodes";
+            if (/(view all|view all orders)/.test(text)) return "/account/orders";
             if (/(shop|collection|view all products|view all rituals|view all labs|view full archive|expand archive|start selection|spec:|catalog|laundry|kitchen|bathroom|bundles|fragrances|каталог|стирка|кухня|ванная|пополнения|ритуалы)/.test(text)) return "/catalog";
             if (/(subscription|manage my subscription|favorites|settings|избранное|настройки)/.test(text)) return "/account";
             if (/(terms of science|terms of service|privacy|privacy policy|newsletter signup|политика|условия|конфиденциальность)/.test(text)) return "/support";
             if (/(mail|share)/.test(text)) return "/support";
+            if (/^(arrow_forward|east)$/.test(text)) return "/catalog";
             if (/(adzek|azure clean|linen & ether|home care|home\b|back to home|главная)/.test(text)) return "/";
 
             return null;
+          };
+
+          const parseMoney = (value) => {
+            const text = (value || "").trim();
+            const currency = text.includes("₸") ? "₸" : (text.includes("$") ? "$" : "");
+            const numberPart = text.replace(/[^\\d.,-]/g, "").replace(/,/g, ".");
+            const amount = Number.parseFloat(numberPart);
+            if (!Number.isFinite(amount)) return { amount: 0, currency };
+            return { amount, currency };
+          };
+
+          const formatMoney = (amount, currency) => {
+            if (currency === "₸") return Math.round(amount).toString() + " ₸";
+            if (currency === "$") return "$" + amount.toFixed(2);
+            return amount.toFixed(2);
+          };
+
+          const setupFavoriteButtons = () => {
+            const buttons = Array.from(document.querySelectorAll("button")).filter((button) =>
+              /\\bfavorite\\b/i.test(collectLabel(button))
+            );
+            for (const button of buttons) {
+              if (button.getAttribute("data-stitch-favorite") === "1") continue;
+              button.setAttribute("data-stitch-favorite", "1");
+              button.setAttribute("aria-pressed", "false");
+              button.addEventListener("click", (event) => {
+                event.preventDefault();
+                const active = button.getAttribute("aria-pressed") === "true";
+                button.setAttribute("aria-pressed", active ? "false" : "true");
+                const icon = button.querySelector(".material-symbols-outlined");
+                if (icon) icon.textContent = active ? "favorite" : "favorite";
+                button.style.opacity = active ? "0.7" : "1";
+                button.style.transform = active ? "" : "scale(1.05)";
+                window.setTimeout(() => {
+                  button.style.transform = "";
+                }, 120);
+              });
+            }
+          };
+
+          const setupVariantButtons = () => {
+            const variantButtons = Array.from(document.querySelectorAll("button")).filter((button) =>
+              /^(\\d+(\\.\\d+)?\\s?(ml|l)|\\d+(\\.\\d+)?)$/i.test((button.textContent || "").trim())
+            );
+            for (const button of variantButtons) {
+              if (button.getAttribute("data-stitch-variant") === "1") continue;
+              button.setAttribute("data-stitch-variant", "1");
+              button.addEventListener("click", (event) => {
+                event.preventDefault();
+                const group = button.parentElement;
+                if (!group) return;
+                const siblings = Array.from(group.querySelectorAll("button"));
+                for (const sibling of siblings) {
+                  sibling.classList.remove("bg-primary", "text-white");
+                  sibling.classList.add("bg-white");
+                }
+                button.classList.remove("bg-white");
+                button.classList.add("bg-primary", "text-white");
+              });
+            }
+          };
+
+          const setupInvoiceButton = () => {
+            const buttons = Array.from(document.querySelectorAll("button")).filter((button) =>
+              /download pdf invoice/i.test(collectLabel(button))
+            );
+            for (const button of buttons) {
+              if (button.getAttribute("data-stitch-invoice") === "1") continue;
+              button.setAttribute("data-stitch-invoice", "1");
+              button.addEventListener("click", (event) => {
+                event.preventDefault();
+                const content = "Invoice for your order\\nGenerated: " + new Date().toISOString();
+                const blob = new Blob([content], { type: "application/pdf" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "invoice.pdf";
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+              });
+            }
+          };
+
+          const setupAdminControls = () => {
+            const addNewExperiment = Array.from(document.querySelectorAll("button")).find((button) =>
+              /add new experiment/i.test(collectLabel(button))
+            );
+            if (addNewExperiment && addNewExperiment.getAttribute("data-stitch-admin-add") !== "1") {
+              addNewExperiment.setAttribute("data-stitch-admin-add", "1");
+              addNewExperiment.addEventListener("click", (event) => {
+                event.preventDefault();
+                window.location.href = "/admin/nodes";
+              });
+            }
+
+            const periodButtons = Array.from(document.querySelectorAll("button")).filter((button) =>
+              /^(monthly|quarterly)$/i.test((button.textContent || "").trim())
+            );
+            for (const button of periodButtons) {
+              if (button.getAttribute("data-stitch-admin-period") === "1") continue;
+              button.setAttribute("data-stitch-admin-period", "1");
+              button.addEventListener("click", (event) => {
+                event.preventDefault();
+                const parent = button.parentElement;
+                if (!parent) return;
+                for (const sibling of Array.from(parent.querySelectorAll("button"))) {
+                  sibling.classList.remove("bg-primary", "text-white");
+                }
+                button.classList.add("bg-primary", "text-white");
+              });
+            }
+          };
+
+          const setupCartControls = () => {
+            const itemContainers = () =>
+              Array.from(document.querySelectorAll("div")).filter((node) => {
+                if (!(node instanceof HTMLElement)) return false;
+                if (node.getAttribute("data-stitch-cart-item") === "1") return true;
+                const hasQty = !!node.querySelector("button") && !!node.querySelector(".mx-6");
+                const hasPrice = !!node.querySelector(".text-xl.font-headline");
+                const hasImage = !!node.querySelector("img");
+                return hasQty && hasPrice && hasImage;
+              });
+
+            const recalcTotals = () => {
+              const containers = itemContainers().filter((node) => {
+                const el = node;
+                return el instanceof HTMLElement && el.style.display !== "none";
+              });
+              let subtotal = 0;
+              let currency = "$";
+              let itemCount = 0;
+
+              for (const container of containers) {
+                const qtyText = container.querySelector(".mx-6")?.textContent || "1";
+                const qty = Math.max(0, Number.parseInt(qtyText.trim(), 10) || 0);
+                itemCount += qty;
+
+                const priceNode = container.querySelector(".text-xl.font-headline");
+                if (!priceNode) continue;
+                const parsed = parseMoney(priceNode.textContent || "");
+                currency = parsed.currency || currency;
+                subtotal += parsed.amount;
+              }
+
+              const summaryNodes = Array.from(document.querySelectorAll(".font-headline")).filter((node) => {
+                const text = (node.textContent || "").trim();
+                return /[$₸]\\s*\\d|\\d\\s*[$₸]/.test(text);
+              });
+
+              if (summaryNodes.length > 0) {
+                const first = summaryNodes[0];
+                const last = summaryNodes[summaryNodes.length - 1];
+                first.textContent = formatMoney(subtotal, currency);
+                last.textContent = formatMoney(subtotal, currency);
+              }
+
+              const selectedLabel = Array.from(document.querySelectorAll("p,span,div")).find((node) =>
+                /ritual essentials selected|товар\\(ов\\) выбрано/i.test((node.textContent || "").trim())
+              );
+              if (selectedLabel) {
+                selectedLabel.textContent = (selectedLabel.textContent || "").replace(/\\d+/, String(itemCount));
+              }
+            };
+
+            const findContainer = (button) => {
+              let current = button.parentElement;
+              while (current && current !== document.body) {
+                const hasPrice = !!current.querySelector(".text-xl.font-headline");
+                const hasImage = !!current.querySelector("img");
+                if (hasPrice && hasImage) return current;
+                current = current.parentElement;
+              }
+              return null;
+            };
+
+            const buttons = Array.from(document.querySelectorAll("button"));
+            for (const button of buttons) {
+              const text = (button.textContent || "").trim().toLowerCase();
+              if (!["+", "-", "close"].includes(text)) continue;
+              if (button.getAttribute("data-stitch-cart-control") === "1") continue;
+              button.setAttribute("data-stitch-cart-control", "1");
+
+              button.addEventListener("click", (event) => {
+                event.preventDefault();
+                const container = findContainer(button);
+                if (!container) return;
+                container.setAttribute("data-stitch-cart-item", "1");
+                const qtyNode = container.querySelector(".mx-6");
+                const priceNode = container.querySelector(".text-xl.font-headline");
+                if (!qtyNode || !priceNode) return;
+
+                const qty = Math.max(1, Number.parseInt((qtyNode.textContent || "1").trim(), 10) || 1);
+                const parsed = parseMoney(priceNode.textContent || "");
+                const currentUnit =
+                  Number.parseFloat(container.getAttribute("data-stitch-unit-price") || "") ||
+                  (qty > 0 ? parsed.amount / qty : parsed.amount || 0);
+                container.setAttribute("data-stitch-unit-price", String(currentUnit));
+
+                if (text === "close") {
+                  container.style.display = "none";
+                  recalcTotals();
+                  return;
+                }
+
+                const nextQty = text === "+" ? qty + 1 : Math.max(1, qty - 1);
+                qtyNode.textContent = String(nextQty);
+                priceNode.textContent = formatMoney(currentUnit * nextQty, parsed.currency || "$");
+                recalcTotals();
+              });
+            }
+          };
+
+          const setupLocalInteractions = () => {
+            setupFavoriteButtons();
+            setupVariantButtons();
+            setupInvoiceButton();
+            setupAdminControls();
+            setupCartControls();
           };
 
           const bindActions = () => {
@@ -196,16 +419,21 @@ body.stitch-nav-out {
           if (document.readyState === "loading") {
             document.addEventListener("DOMContentLoaded", () => {
               bindActions();
+              setupLocalInteractions();
               document.documentElement.classList.remove("stitch-loading");
               document.body.classList.add("stitch-ready");
             });
           } else {
             bindActions();
+            setupLocalInteractions();
             document.documentElement.classList.remove("stitch-loading");
             document.body.classList.add("stitch-ready");
           }
 
-          const observer = new MutationObserver(bindActions);
+          const observer = new MutationObserver(() => {
+            bindActions();
+            setupLocalInteractions();
+          });
           observer.observe(document.body, { childList: true, subtree: true });
         })();
       `}</Script>
