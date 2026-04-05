@@ -42,10 +42,9 @@ export default function WishlistToggle({ slug }: { slug: string }) {
   return (
     <button
       type="button"
-      className="ui-button ui-button-secondary"
+      className={`wishlist-toggle ${active ? "is-active" : ""}`}
       aria-label={active ? "Remove from wishlist" : "Add to wishlist"}
       onClick={toggle}
-      style={{ minWidth: 42 }}
     >
       {active ? "♥" : "♡"}
     </button>

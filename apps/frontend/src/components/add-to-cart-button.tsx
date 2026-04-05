@@ -30,8 +30,16 @@ function enqueueVariantId(variantId: string) {
   window.dispatchEvent(new Event("azdek-cart-updated"));
 }
 
+function enqueueVariantIds(variantId: string, quantity: number) {
+  const safeQty = Number.isFinite(quantity) ? Math.max(1, Math.floor(quantity)) : 1;
+  for (let i = 0; i < safeQty; i += 1) {
+    enqueueVariantId(variantId);
+  }
+}
+
 export default function AddToCartButton({
   variantId,
+  quantity = 1,
   label = "Добавить в корзину",
   redirectToCart = true,
   className,
@@ -40,6 +48,7 @@ export default function AddToCartButton({
   failedLabel,
 }: {
   variantId: string;
+  quantity?: number;
   label?: string;
   redirectToCart?: boolean;
   className?: string;
@@ -68,12 +77,12 @@ export default function AddToCartButton({
           setState("pending");
           // Backward-compatible single key + queue for multi-add flow.
           localStorage.setItem("azdek_variant_id", variantId);
-          enqueueVariantId(variantId);
+          enqueueVariantIds(variantId, quantity);
           void trackEvent({
             eventType: "add_to_cart",
             sessionId: getSessionIdForCheckout(),
             idempotencyKey: `add_to_cart:${variantId}:${Date.now()}`,
-            metadata: { variantId },
+            metadata: { variantId, quantity },
           });
           setState("done");
           toast({

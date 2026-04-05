@@ -7,8 +7,8 @@ import Button from "@/components/ui/button";
 import ProductGallery from "@/components/commerce/product-gallery";
 import ProductGrid from "@/components/commerce/product-grid";
 import AddToCartButton from "@/components/add-to-cart-button";
-import WishlistToggle from "@/components/commerce/wishlist-toggle";
 import PriceBlock from "@/components/commerce/price-block";
+import ProductPurchasePanel from "@/components/commerce/product-purchase-panel";
 import { getRelatedProducts, getStorefrontProductBySlug } from "@/lib/storefront";
 import { getProductCommercialContent } from "@/lib/product-commercial-content";
 
@@ -55,21 +55,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
                 </span>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 8 }}>
-                {variant ? (
-                  <AddToCartButton
-                    variantId={variant.id}
-                    label="Add to cart"
-                    redirectToCart={false}
-                    pendingLabel="Adding..."
-                    doneLabel="Added"
-                    failedLabel="Retry"
-                  />
-                ) : (
-                  <Button disabled>Out of stock</Button>
-                )}
-                <WishlistToggle slug={product.slug} />
-              </div>
+              {variant && variant.stock > 0 ? (
+                <ProductPurchasePanel variantId={variant.id} stock={variant.stock} slug={product.slug} />
+              ) : (
+                <Button disabled>Out of stock</Button>
+              )}
 
               <div className="product-tabs">
                 <h3 className="h4">Specifications</h3>
@@ -88,7 +78,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           </div>
 
           <div className="sticky-mobile-cta">
-            {variant ? (
+            {variant && variant.stock > 0 ? (
               <AddToCartButton variantId={variant.id} label="Add to cart" redirectToCart={false} />
             ) : (
               <Button className="full-width" disabled>

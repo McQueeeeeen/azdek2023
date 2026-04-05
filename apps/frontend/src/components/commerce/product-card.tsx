@@ -10,9 +10,10 @@ import { StorefrontProduct } from "@/lib/storefront";
 export default function ProductCard({ product }: { product: StorefrontProduct }) {
   const firstVariant = product.variants[0];
   const isInStock = (firstVariant?.stock ?? 0) > 0;
+  const comparePrice = product.isDiscount && firstVariant ? Math.round(firstVariant.price * 1.2) : null;
 
   return (
-    <Card className="product-card">
+    <Card className={`product-card ${!isInStock ? "is-out" : ""}`}>
       <div className="product-image-frame">
         <SmartImage
           className="product-image"
@@ -23,7 +24,9 @@ export default function ProductCard({ product }: { product: StorefrontProduct })
           sizes="(max-width: 900px) 100vw, 33vw"
           loading="lazy"
         />
-        {product.isDiscount ? <span className="product-image-tag">Discount</span> : null}
+        <WishlistToggle slug={product.slug} />
+        {product.isDiscount ? <span className="product-image-tag product-image-tag-discount">Discount</span> : null}
+        {!product.isDiscount ? <span className="product-image-tag product-image-tag-featured">Top pick</span> : null}
       </div>
 
       <div className="product-card-body">
@@ -36,7 +39,7 @@ export default function ProductCard({ product }: { product: StorefrontProduct })
         <p className="small">{product.short}</p>
         <p className="product-pitch">{product.description}</p>
 
-        <PriceBlock amount={firstVariant?.price ?? 0} currency={firstVariant?.currency ?? "KZT"} />
+        <PriceBlock amount={firstVariant?.price ?? 0} currency={firstVariant?.currency ?? "KZT"} compareAmount={comparePrice} />
       </div>
 
       <div className="product-card-cta">
@@ -60,7 +63,6 @@ export default function ProductCard({ product }: { product: StorefrontProduct })
             View details
           </Button>
         </Link>
-        <WishlistToggle slug={product.slug} />
       </div>
     </Card>
   );

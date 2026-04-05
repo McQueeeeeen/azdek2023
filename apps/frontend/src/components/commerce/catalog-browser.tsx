@@ -25,6 +25,7 @@ export default function CatalogBrowser({
   const [activeBrand, setActiveBrand] = useState("all");
   const [activeUsage, setActiveUsage] = useState("all");
   const [sortMode, setSortMode] = useState<SortMode>("featured");
+  const [maxPrice, setMaxPrice] = useState<number | null>(null);
   const [visibleCount, setVisibleCount] = useState(pageSize);
 
   const categories = useMemo(() => getStorefrontCategories(products), [products]);
@@ -36,6 +37,12 @@ export default function CatalogBrowser({
     { slug: "bathroom", label: "Bathroom" },
     { slug: "universal", label: "Universal" },
   ];
+  const highestPrice = useMemo(
+    () => Math.max(0, ...products.map((product) => product.variants[0]?.price ?? 0)),
+    [products],
+  );
+
+  const resolvedMaxPrice = maxPrice ?? highestPrice;
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -51,6 +58,10 @@ export default function CatalogBrowser({
 
     if (activeUsage !== "all") {
       result = result.filter((p) => p.usage === activeUsage);
+    }
+
+    if (resolvedMaxPrice > 0) {
+      result = result.filter((p) => (p.variants[0]?.price ?? 0) <= resolvedMaxPrice);
     }
 
     if (normalizedQuery) {
@@ -77,7 +88,7 @@ export default function CatalogBrowser({
     }
 
     return result;
-  }, [products, activeCategory, activeBrand, activeUsage, query, sortMode]);
+  }, [products, activeCategory, activeBrand, activeUsage, resolvedMaxPrice, query, sortMode]);
 
   const visibleItems = filtered.slice(0, visibleCount);
   const canLoadMore = visibleCount < filtered.length;
@@ -88,6 +99,7 @@ export default function CatalogBrowser({
     setActiveBrand("all");
     setActiveUsage("all");
     setSortMode("featured");
+    setMaxPrice(null);
     setVisibleCount(pageSize);
   };
 
@@ -106,72 +118,101 @@ export default function CatalogBrowser({
       <aside className="filters-panel">
         <h3 className="h4">Filters</h3>
 
-        <div className="filter-group">
-          <label className="small" htmlFor="catalog-search">Search</label>
-          <Input
-            id="catalog-search"
-            value={query}
-            onChange={(event) => {
-              setQuery(event.target.value);
-              setVisibleCount(pageSize);
-            }}
-            placeholder="Search by product"
-          />
-        </div>
+        <details className="filter-block" open>
+          <summary>Search</summary>
+          <div className="filter-group">
+            <Input
+              id="catalog-search"
+              value={query}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setVisibleCount(pageSize);
+              }}
+              placeholder="Search by product"
+            />
+          </div>
+        </details>
 
-        <div className="filter-group">
-          <label className="small">Category</label>
-          {categories.map((category) => (
-            <label key={category.slug} className="filter-check">
-              <input
-                type="radio"
-                name="category"
-                checked={activeCategory === category.slug}
-                onChange={() => {
-                  setActiveCategory(category.slug);
-                  setVisibleCount(pageSize);
-                }}
-              />
-              <span>{category.label}</span>
-            </label>
-          ))}
-        </div>
+        <details className="filter-block" open>
+          <summary>Price range</summary>
+          <div className="filter-group">
+            <input
+              className="price-range"
+              type="range"
+              min={0}
+              max={highestPrice || 1}
+              value={resolvedMaxPrice}
+              onChange={(event) => {
+                setMaxPrice(Number(event.target.value));
+                setVisibleCount(pageSize);
+              }}
+            />
+            <div className="price-range-labels">
+              <span>$0</span>
+              <span>${resolvedMaxPrice}</span>
+            </div>
+          </div>
+        </details>
 
-        <div className="filter-group">
-          <label className="small">Brand</label>
-          <select
-            className="ui-input"
-            value={activeBrand}
-            onChange={(event) => {
-              setActiveBrand(event.target.value);
-              setVisibleCount(pageSize);
-            }}
-          >
-            {brands.map((brand) => (
-              <option key={brand} value={brand}>
-                {brand === "all" ? "All brands" : brand}
-              </option>
+        <details className="filter-block" open>
+          <summary>Category</summary>
+          <div className="filter-group">
+            {categories.map((category) => (
+              <label key={category.slug} className="filter-check">
+                <input
+                  type="radio"
+                  name="category"
+                  checked={activeCategory === category.slug}
+                  onChange={() => {
+                    setActiveCategory(category.slug);
+                    setVisibleCount(pageSize);
+                  }}
+                />
+                <span>{category.label}</span>
+              </label>
             ))}
-          </select>
-        </div>
+          </div>
+        </details>
 
-        <div className="filter-group">
-          <label className="small">Usage</label>
-          <select
-            className="ui-input"
-            value={activeUsage}
-            onChange={(event) => {
-              setActiveUsage(event.target.value);
-              setVisibleCount(pageSize);
-            }}
-          >
-            {usageOptions.map((option) => (
-              <option key={option.slug} value={option.slug}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
+        <details className="filter-block" open>
+          <summary>Brand</summary>
+          <div className="filter-group">
+            <select
+              className="ui-input"
+              value={activeBrand}
+              onChange={(event) => {
+                setActiveBrand(event.target.value);
+                setVisibleCount(pageSize);
+              }}
+            >
+              {brands.map((brand) => (
+                <option key={brand} value={brand}>
+                  {brand === "all" ? "All brands" : brand}
+                </option>
+              ))}
+            </select>
+          </div>
+        </details>
+
+        <details className="filter-block" open>
+          <summary>Usage</summary>
+          <div className="filter-group">
+            <select
+              className="ui-input"
+              value={activeUsage}
+              onChange={(event) => {
+                setActiveUsage(event.target.value);
+                setVisibleCount(pageSize);
+              }}
+            >
+              {usageOptions.map((option) => (
+                <option key={option.slug} value={option.slug}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </details>
 
         <Button variant="secondary" onClick={resetAll}>
           Reset filters
