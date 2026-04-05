@@ -10,7 +10,7 @@ import { formatMoney } from "@/lib/money";
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const product = await getStorefrontProductBySlug(params.slug);
   return {
-    title: product ? `${product.name} | PureLab` : "Товар | PureLab",
+    title: product ? `${product.name} | Adzek` : "Товар | Adzek",
     description: product?.description ?? "Карточка товара",
   };
 }
