@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { href: "/promotions", label: "Promotions" },
   { href: "/about", label: "About" },
   { href: "/support", label: "Support" },
+  { href: "/design-system", label: "UI Kit" },
 ];
 
 export default function SiteHeader() {

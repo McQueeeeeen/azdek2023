@@ -4,14 +4,24 @@ import Section from "@/components/ui/section";
 import { ReactNode } from "react";
 
 const links = [
-  { href: "/account", label: "Overview" },
-  { href: "/account/profile", label: "Profile" },
-  { href: "/account/orders", label: "Orders" },
-  { href: "/account/payment-methods", label: "Payment" },
-  { href: "/account/notifications", label: "Notifications" },
+  { href: "/account/orders", label: "Мои заказы" },
+  { href: "/account/profile", label: "Личные данные" },
+  { href: "/account/addresses", label: "Адреса доставки" },
+  { href: "/account/loyalty", label: "Программа лояльности" },
+  { href: "/account/notifications", label: "Уведомления" },
 ];
 
-export default function AccountShell({ active, title, subtitle, children }: { active: string; title: string; subtitle?: string; children: ReactNode }) {
+export default function AccountShell({
+  active,
+  title,
+  subtitle,
+  children,
+}: {
+  active: string;
+  title: string;
+  subtitle?: string;
+  children: ReactNode;
+}) {
   return (
     <Section>
       <Container className="grid" style={{ gap: 14 }}>
@@ -21,7 +31,7 @@ export default function AccountShell({ active, title, subtitle, children }: { ac
         </div>
 
         <div className="account-grid">
-          <nav className="account-menu" aria-label="Account navigation">
+          <nav className="account-menu" aria-label="Навигация личного кабинета">
             {links.map((link) => (
               <Link key={link.href} href={link.href} className={active === link.href ? "active" : undefined}>
                 {link.label}
