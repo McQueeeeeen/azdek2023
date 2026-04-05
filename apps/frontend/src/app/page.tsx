@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 const products = [
   {
@@ -37,7 +37,7 @@ const products = [
 
 export default function HomePage() {
   return (
-    <>
+    <main className="pt-20">
       <section className="relative h-[870px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -45,7 +45,7 @@ export default function HomePage() {
             className="w-full h-full object-cover"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNtWgIdBmGvUxUJD-VfQUZOEIXayQP2Y5y-wgfaSlsm9jM8aBigJR2okstBWGuQ5u-fLr66qxa1amTB1fe3B3LTrgezZYtFS4xZavVIbeIGWsFIUZ-auDtftBoY1uq_JaCxj6XuwvegDAEDY7rBs6IIkElgWFlXm6ecl0pXpXZNChQjGimy2N4E8P19Z1m3t8QVf-hMXKrFNb2BzlKhOugD76oVbMwATEy6W-p_xt8I_qlxC09soJH68gaHBligKf8JFDI_mjLo84H"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-surface/90 via-surface/35 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface/80 via-surface/20 to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-8 w-full">
           <div className="max-w-2xl">
@@ -57,14 +57,11 @@ export default function HomePage() {
               Создаем безупречную чистоту в вашем доме, используя только силу растений и минералов. Безопасно для семьи, бережно к планете.
             </p>
             <div className="flex gap-4">
-              <Link
-                href="/catalog"
-                className="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:opacity-90 transition-all flex items-center gap-2"
-              >
+              <Link className="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-bold shadow-lg hover:opacity-90 transition-all flex items-center gap-2" href="/catalog">
                 Смотреть каталог
                 <span className="material-symbols-outlined">arrow_forward</span>
               </Link>
-              <Link href="/promotions" className="bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform">
+              <Link className="bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform" href="/promotions">
                 Эко-линейка
               </Link>
             </div>
@@ -77,7 +74,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="md:col-span-2 bg-surface-container-lowest p-12 rounded-xl flex flex-col justify-between relative overflow-hidden group">
               <div className="relative z-10">
-                <h2 className="text-3xl font-bold mb-4 tracking-tight">Стандарт Adzek Green</h2>
+                <h2 className="text-3xl font-bold mb-4 tracking-tight">Стандарт PureLab Green</h2>
                 <p className="text-on-surface-variant max-w-md">Каждый наш продукт проходит строгую сертификацию. Мы исключили фосфаты, хлор и агрессивные ПАВ.</p>
               </div>
               <div className="flex gap-4 mt-8 relative z-10">
@@ -99,8 +96,8 @@ export default function HomePage() {
                 </div>
               </div>
               <img
+                alt="Abstract composition of recycled paper textures and green botanical elements"
                 className="absolute right-0 bottom-0 w-1/2 h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity"
-                alt="Текстуры переработки"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtaOka7VU3zqjLnJEpzPciWBO-GN_UjWUBZ_UQG3f_A4MjZnEOfpLYkDXSidjAvXX6shNZTCirRsWjvALTSQD7h-zMNdGLipMU_mY6sZ3QuiVyj0W0qNEnBS9fSozqkBX2Ht822SUGUqKouhI9a7KUM6OffWgRKKbV6wA27WUHVNiupKyxBwUBICPUaJTzMQZG4GiBkt0VHyYk8WaTh9ttSc_9zlZD0evF1vTkRieBA2QlAk2IhD-CsKS1psD2i71qLXeggYtv_XWg"
               />
             </div>
@@ -120,17 +117,15 @@ export default function HomePage() {
                   Вторая жизнь пластика
                 </div>
                 <h2 className="text-4xl font-bold mb-6 tracking-tighter">Мы зациклили производство</h2>
-                <p className="text-on-surface-variant mb-8 text-lg">
-                  Каждая упаковка Adzek на 100% состоит из переработанного океанического пластика. Принесите пустую тару в наши пункты приема и получите скидку 15%.
-                </p>
+                <p className="text-on-surface-variant mb-8 text-lg">Каждая упаковка PureLab на 100% состоит из переработанного океанического пластика. Принесите пустую тару в наши пункты приема и получите скидку 15%.</p>
                 <button className="border-2 border-primary text-primary px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-colors">
                   Найти пункт приема
                 </button>
               </div>
               <div className="h-80 md:h-full">
                 <img
+                  alt="Neatly organized blue and white recycled plastic bottles in a bright minimalist setting"
                   className="w-full h-full object-cover"
-                  alt="Переработанный пластик"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN5u28x-EGNlSIWJiS1en3F5MB_NqlhtrYYYVmCnEKdW8FoKKetUFLe53dyNCoiNTyTgXGnZ16f0zM6zGKqctW_2K9cmQfXI0pDeQRswtYxret87IzfwS8ZiIPvhqEg0eld1xL_hAnk5O5v8qNORGdAe_Gl_Wj1HOcS0S2k05D73K5pNLYl8FIhhNGPTFkvVZY_eNiojglp-Fhts2F163hds6rOzyI0w0CLGB3pqV4eMrTFZatfkoUVv4P_LMPlx_IYZ04eNxHU7F3"
                 />
               </div>
@@ -146,7 +141,7 @@ export default function HomePage() {
               <h2 className="text-4xl font-extrabold tracking-tight mb-4">Натуральные бестселлеры</h2>
               <p className="text-on-surface-variant">Средства, которые выбирают осознанные потребители</p>
             </div>
-            <Link href="/catalog" className="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all">
+            <Link className="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all" href="/catalog">
               Весь каталог <span className="material-symbols-outlined">east</span>
             </Link>
           </div>
@@ -164,7 +159,7 @@ export default function HomePage() {
                 <p className="text-on-surface-variant text-sm mb-4">{product.subtitle}</p>
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-black text-on-surface">{product.price}</span>
-                  <button className="bg-surface-container-high p-3 rounded-full hover:bg-primary hover:text-white transition-all" type="button" aria-label={`Добавить ${product.title} в корзину`}>
+                  <button className="bg-surface-container-high p-3 rounded-full hover:bg-primary hover:text-white transition-all" type="button">
                     <span className="material-symbols-outlined">add_shopping_cart</span>
                   </button>
                 </div>
@@ -177,21 +172,17 @@ export default function HomePage() {
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
+            alt="Blurry atmospheric background of a dense green forest with soft light filtering through leaves"
             className="w-full h-full object-cover"
-            alt="Зеленый фон"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC1fBGxBQk0qL3475z1em3zXZNs3Ql_0l0IgT9BltcpKCTmSTVpNjTLwm32CdAXvRKIRG3wd4Yo1vWw96B5KyBuOeBTbf4aTzyHChbsfXM7Hi0hJRtYySJD05B3PGJjHkdNrtWD2gpj_6JA-BBU1UUSU1ZdY-Qh-dAIsrL9CDFRmkt_Q7_wnuW1P8t18zMKPsd8DFoNE_7WFjf9yL1vAxwcmb3ya_iWSVkCyGyJreS_JJHVxplWbr3mEL1QDZz5hJetUZsD_03mZgf"
           />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-8">
           <div className="bg-white/30 backdrop-blur-xl p-16 rounded-xl border border-white/40 text-center">
-            <h2 className="text-4xl font-bold mb-6 tracking-tight">Станьте частью Adzek</h2>
+            <h2 className="text-4xl font-bold mb-6 tracking-tight">Станьте частью PureLab</h2>
             <p className="text-lg mb-10 text-on-surface">Подпишитесь на наши советы по экологичной уборке и получайте персональные предложения.</p>
             <form className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
-              <input
-                className="flex-grow px-6 py-4 rounded-xl bg-white/60 border-none focus:ring-2 focus:ring-primary/20 placeholder:text-slate-600"
-                placeholder="Ваш e-mail"
-                type="email"
-              />
+              <input className="flex-grow px-6 py-4 rounded-xl bg-white/60 border-none focus:ring-2 focus:ring-primary/20 placeholder:text-slate-600" placeholder="Ваш e-mail" type="email" />
               <button className="bg-primary text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-primary/30 transition-all" type="submit">
                 Подписаться
               </button>
@@ -199,7 +190,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }
-
