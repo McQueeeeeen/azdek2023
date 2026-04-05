@@ -77,7 +77,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="md:col-span-2 bg-surface-container-lowest p-12 rounded-xl flex flex-col justify-between relative overflow-hidden group">
               <div className="relative z-10">
-                <h2 className="text-3xl font-bold mb-4 tracking-tight">Стандарт PureLab Green</h2>
+                <h2 className="text-3xl font-bold mb-4 tracking-tight">Стандарт Adzek Green</h2>
                 <p className="text-on-surface-variant max-w-md">Каждый наш продукт проходит строгую сертификацию. Мы исключили фосфаты, хлор и агрессивные ПАВ.</p>
               </div>
               <div className="flex gap-4 mt-8 relative z-10">
@@ -121,7 +121,7 @@ export default function HomePage() {
                 </div>
                 <h2 className="text-4xl font-bold mb-6 tracking-tighter">Мы зациклили производство</h2>
                 <p className="text-on-surface-variant mb-8 text-lg">
-                  Каждая упаковка PureLab на 100% состоит из переработанного океанического пластика. Принесите пустую тару в наши пункты приема и получите скидку 15%.
+                  Каждая упаковка Adzek на 100% состоит из переработанного океанического пластика. Принесите пустую тару в наши пункты приема и получите скидку 15%.
                 </p>
                 <button className="border-2 border-primary text-primary px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-colors">
                   Найти пункт приема
@@ -184,7 +184,7 @@ export default function HomePage() {
         </div>
         <div className="relative z-10 max-w-4xl mx-auto px-8">
           <div className="bg-white/30 backdrop-blur-xl p-16 rounded-xl border border-white/40 text-center">
-            <h2 className="text-4xl font-bold mb-6 tracking-tight">Станьте частью PureLab</h2>
+            <h2 className="text-4xl font-bold mb-6 tracking-tight">Станьте частью Adzek</h2>
             <p className="text-lg mb-10 text-on-surface">Подпишитесь на наши советы по экологичной уборке и получайте персональные предложения.</p>
             <form className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
               <input
@@ -202,3 +202,4 @@ export default function HomePage() {
     </>
   );
 }
+

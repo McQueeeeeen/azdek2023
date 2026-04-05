@@ -163,7 +163,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             </div>
             <div className="aspect-video rounded-xl overflow-hidden shadow-2xl">
               <img
-                alt="PureLab Production"
+                alt="Adzek Production"
                 className="w-full h-full object-cover"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfAKHfYaHpTen-u-hz4BKb8N34vpM8WO1oSRNYkqULC2m-RkWc9037958-iJxD1o0t1B1Y2oZLEAQI2cIy7bn8Q84qdeJlDYoo8wfbHYT0JMwlHlv8UsCzhHrhB5sVtCnDYJLFQSxj8GXUKKWSREswkSwmQ9qI6-PQ8AgBIadIho1ftyJKSQVsSbc974j7F3bcASjwSzSFr5Xycpzl55ciF1sRAeWlG-BFce0tKE9U4pGrs2m8hCkeqtGSsah5t7o49J09mpH0n17R"
               />

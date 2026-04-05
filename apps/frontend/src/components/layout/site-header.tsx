@@ -107,7 +107,7 @@ export default function SiteHeader() {
       <Container className="flex justify-between items-center h-full">
         <div className="flex items-center gap-10">
           <Link href="/" className="text-2xl font-black text-blue-700 tracking-tighter font-headline">
-            PureLab
+            Adzek
           </Link>
           <nav className="hidden md:flex gap-8 items-center" aria-label="Главная навигация">
             {NAV_ITEMS.map((item) => {
@@ -176,3 +176,4 @@ export default function SiteHeader() {
     </header>
   );
 }
+

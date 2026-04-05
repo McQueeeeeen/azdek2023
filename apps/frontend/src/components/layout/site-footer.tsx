@@ -6,7 +6,7 @@ export default function SiteFooter() {
     <footer className="bg-slate-50 w-full pt-16 pb-8 mt-20 border-t border-slate-100">
       <Container className="grid grid-cols-2 md:grid-cols-4 gap-12">
         <div className="col-span-2 md:col-span-1">
-          <div className="text-xl font-bold text-slate-900 mb-6 font-headline">PureLab</div>
+          <div className="text-xl font-bold text-slate-900 mb-6 font-headline">Adzek</div>
           <p className="text-slate-500 text-sm leading-relaxed">
             Совершенство чистоты в гармонии с природой. Инновационные формулы для вашего комфорта.
           </p>
@@ -87,7 +87,7 @@ export default function SiteFooter() {
       </Container>
 
       <Container className="mt-16 pt-8 border-t border-slate-200 flex justify-between items-center text-slate-400 text-xs">
-        <span>© 2024 PureLab. Совершенство чистоты.</span>
+        <span>© 2024 Adzek. Совершенство чистоты.</span>
         <div className="flex gap-6">
           <span>Сделано с любовью к планете</span>
         </div>
@@ -95,3 +95,4 @@ export default function SiteFooter() {
     </footer>
   );
 }
+
