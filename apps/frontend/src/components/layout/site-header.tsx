@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { canAccessAdmin, getClientRole } from "@/lib/roles";
 import Container from "../ui/container";
 import Button from "../ui/button";
@@ -11,7 +11,10 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 const PENDING_VARIANTS_KEY = "azdek_pending_variant_ids";
 
 const NAV_ITEMS = [
-  { href: "/catalog", label: "Каталог" },
+  { href: "/catalog", label: "Catalog" },
+  { href: "/promotions", label: "Promotions" },
+  { href: "/about", label: "About" },
+  { href: "/support", label: "Support" },
 ];
 
 export default function SiteHeader() {
@@ -20,13 +23,12 @@ export default function SiteHeader() {
   const [role, setRole] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [search, setSearch] = useState("");
 
   const readPendingVariantIds = () => {
     try {
       const raw = localStorage.getItem(PENDING_VARIANTS_KEY);
-      if (!raw) {
-        return [] as string[];
-      }
+      if (!raw) return [] as string[];
       const parsed = JSON.parse(raw);
       return Array.isArray(parsed) ? parsed.filter((item) => typeof item === "string") : [];
     } catch {
@@ -38,7 +40,6 @@ export default function SiteHeader() {
     try {
       const pendingCount = readPendingVariantIds().length;
       const cartId = localStorage.getItem("azdek_cart_id");
-
       if (!cartId) {
         setCartCount(pendingCount);
         return;
@@ -70,13 +71,8 @@ export default function SiteHeader() {
       setCartCount(0);
     }
 
-    const onStorage = () => {
-      void loadCartCount();
-    };
-
-    const onCartUpdated = () => {
-      void loadCartCount();
-    };
+    const onStorage = () => void loadCartCount();
+    const onCartUpdated = () => void loadCartCount();
 
     window.addEventListener("storage", onStorage);
     window.addEventListener("azdek-cart-updated", onCartUpdated);
@@ -87,7 +83,7 @@ export default function SiteHeader() {
     };
   }, []);
 
-  const canSeeAdmin = canAccessAdmin(role);
+  const canSeeAdmin = useMemo(() => canAccessAdmin(role), [role]);
 
   const logout = () => {
     localStorage.removeItem("azdek_access_token");
@@ -100,62 +96,70 @@ export default function SiteHeader() {
     router.push("/");
   };
 
+  const submitSearch = (event: FormEvent) => {
+    event.preventDefault();
+    const q = search.trim();
+    router.push(q ? `/catalog?q=${encodeURIComponent(q)}` : "/catalog");
+  };
+
   return (
     <header className="site-header">
       <Container className="site-header-inner">
         <div className="brand-wrap">
           <Link className="brand-mark" href="/">
-            Azdek Elemental
+            Adzek
           </Link>
         </div>
 
-        <nav className="desktop-nav" aria-label="Основная навигация">
+        <nav className="desktop-nav" aria-label="Main navigation">
           {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={pathname.startsWith(item.href) ? "is-active" : undefined}
-            >
+            <Link key={item.href} href={item.href} className={pathname.startsWith(item.href) ? "is-active" : undefined}>
               {item.label}
             </Link>
           ))}
         </nav>
 
         <div className="header-tools">
-          <div className="header-search-wrap">
-            <input className="header-search" placeholder="Поиск ритуалов..." type="text" />
+          <form className="header-search-wrap" onSubmit={submitSearch}>
+            <input
+              className="header-search"
+              placeholder="Search products"
+              type="search"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+            />
             <span className="header-search-icon">⌕</span>
-          </div>
+          </form>
 
-          <Link href="/cart" aria-label="Корзина">
+          <Link href="/cart" aria-label="Cart">
             <Button className="header-cart-btn" variant="secondary">
-              Корзина
+              Cart
               {cartCount > 0 ? <span className="header-cart-count">{cartCount}</span> : null}
             </Button>
           </Link>
 
           {isAuthenticated ? (
             <div className="header-auth-links">
-              <Link href="/account" aria-label="Личный кабинет">
+              <Link href="/account" aria-label="Account">
                 <Button className="header-account-btn" variant="secondary">
-                  Личный кабинет
+                  Account
                 </Button>
               </Link>
               {canSeeAdmin ? (
-                <Link href="/admin" aria-label="Админ-панель">
-                  <Button className="header-role-btn" variant="secondary">
-                    Админ-панель
+                <Link href="/admin" aria-label="Admin">
+                  <Button className="header-role-btn" variant="outline">
+                    Admin
                   </Button>
                 </Link>
               ) : null}
               <Button className="header-logout-btn" variant="ghost" onClick={logout}>
-                Выйти
+                Sign out
               </Button>
             </div>
           ) : (
             <Link href="/login">
               <Button className="header-cta" variant="secondary">
-                Войти
+                Sign in
               </Button>
             </Link>
           )}

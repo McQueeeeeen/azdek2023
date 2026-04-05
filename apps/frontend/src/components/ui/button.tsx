@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 import { UiActionState } from "@/lib/ui-state";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "outline" | "ghost";
 
 export default function Button({
   variant = "primary",

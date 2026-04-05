@@ -5,11 +5,12 @@ export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <Container className="site-footer-inner">
-        <p>Azdek Elemental</p>
+        <p>Adzek Home Care</p>
         <div className="footer-links">
-          <Link href="/catalog">Каталог</Link>
-          <Link href="/checkout">Оформление</Link>
-          <Link href="/account">Поддержка</Link>
+          <Link href="/catalog">Catalog</Link>
+          <Link href="/checkout">Checkout</Link>
+          <Link href="/support">Support</Link>
+          <Link href="/about">About</Link>
         </div>
       </Container>
     </footer>

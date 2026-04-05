@@ -1,22 +1,14 @@
 ﻿import Link from "next/link";
-import { CatalogProduct } from "@/lib/api";
 import Card from "../ui/card";
 import Button from "../ui/button";
 import PriceBlock from "./price-block";
-import { getProductMedia } from "@/lib/product-media";
-import { getProductCommercialContent } from "@/lib/product-commercial-content";
 import SmartImage from "../ui/smart-image";
 import AddToCartButton from "../add-to-cart-button";
+import WishlistToggle from "./wishlist-toggle";
+import { StorefrontProduct } from "@/lib/storefront";
 
-export default function ProductCard({ product }: { product: CatalogProduct }) {
+export default function ProductCard({ product }: { product: StorefrontProduct }) {
   const firstVariant = product.variants[0];
-  const media = getProductMedia(product.slug);
-  const commercial = getProductCommercialContent(product.slug);
-  const reviewCount = commercial.reviews.length;
-  const rating =
-    reviewCount > 0
-      ? (commercial.reviews.reduce((sum, review) => sum + review.rating, 0) / reviewCount).toFixed(1)
-      : "4.9";
   const isInStock = (firstVariant?.stock ?? 0) > 0;
 
   return (
@@ -24,44 +16,52 @@ export default function ProductCard({ product }: { product: CatalogProduct }) {
       <div className="product-image-frame">
         <SmartImage
           className="product-image"
-          src={media.card}
-          fallbackSrc="/media/laundry-gel.svg"
+          src={product.image}
+          fallbackSrc="/media/laundry-gel-final.jpg"
           alt={product.name}
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          sizes="(max-width: 900px) 100vw, 33vw"
           loading="lazy"
         />
-        {media.tag ? <span className="product-image-tag">{media.tag}</span> : null}
+        {product.isDiscount ? <span className="product-image-tag">Discount</span> : null}
       </div>
+
       <div className="product-card-body">
-        <p className="small">{product.category.name}</p>
-        <h3 className="h3 product-title">{commercial.cardTitle ?? product.name}</h3>
-        <p className="product-pitch">{commercial.cardPitch}</p>
-        <div className="product-benefits">
-          {commercial.highlights.slice(0, 4).map((highlight) => (
-            <span key={highlight} className="product-benefit-chip">
-              {highlight}
-            </span>
-          ))}
-        </div>
-        <p className="text-secondary product-closing">{commercial.cardClosing}</p>
         <div className="product-proof-row">
-          <span className="product-rating">★ {rating} · {reviewCount}+ отзывов</span>
-          <span className={isInStock ? "product-stock ok" : "product-stock warn"}>
-            {isInStock ? "В наличии" : "Под заказ"}
-          </span>
+          <span className="small">{product.category.name}</span>
+          {isInStock ? <span className="small" style={{ color: "var(--success)" }}>In stock</span> : <span className="small" style={{ color: "var(--error)" }}>Out of stock</span>}
         </div>
+
+        <h3 className="h3 product-title">{product.name}</h3>
+        <p className="small">{product.short}</p>
+        <p className="product-pitch">{product.description}</p>
+
         <PriceBlock amount={firstVariant?.price ?? 0} currency={firstVariant?.currency ?? "KZT"} />
       </div>
-      {firstVariant ? (
-        <div className="product-card-cta">
-          <AddToCartButton variantId={firstVariant.id} label="Купить" redirectToCart={false} />
-        </div>
-      ) : (
+
+      <div className="product-card-cta">
+        {firstVariant ? (
+          <AddToCartButton
+            className="full-width"
+            variantId={firstVariant.id}
+            label="Add to cart"
+            redirectToCart={false}
+            pendingLabel="Adding..."
+            doneLabel="Added"
+            failedLabel="Retry"
+          />
+        ) : (
+          <Button className="full-width" disabled>
+            Out of stock
+          </Button>
+        )}
         <Link href={`/catalog/${product.slug}`}>
-          <Button className="full-width product-card-cta">Купить</Button>
+          <Button className="product-view-link" variant="outline">
+            View details
+          </Button>
         </Link>
-      )}
+        <WishlistToggle slug={product.slug} />
+      </div>
     </Card>
   );
 }

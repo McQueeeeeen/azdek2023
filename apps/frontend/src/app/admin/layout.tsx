@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
@@ -31,10 +31,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
       <Section>
         <Container className="grid">
           <Card className="grid">
-            <h1>Нет доступа к админ-панели</h1>
-            <p className="text-secondary">Войдите под ролью с правами администратора.</p>
+            <h1 className="h2">No access to admin panel</h1>
+            <p className="text-secondary">Sign in with admin role to continue.</p>
             <Link href="/login">
-              <Button>Войти</Button>
+              <Button>Sign in</Button>
             </Link>
           </Card>
         </Container>

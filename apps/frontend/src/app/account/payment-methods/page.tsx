@@ -1,8 +1,13 @@
-import { StitchPage, getStitchMetadata } from "@/lib/stitch-page";
-
-export const metadata = getStitchMetadata("payment_methods_azure_clean", "Azure Clean payment methods");
+﻿import AccountShell from "@/components/account/account-shell";
+import Button from "@/components/ui/button";
 
 export default function AccountPaymentMethodsPage() {
-  return <StitchPage folder="payment_methods_azure_clean" />;
+  return (
+    <AccountShell active="/account/payment-methods" title="Payment methods" subtitle="Saved cards and payment preferences.">
+      <div className="ui-card">
+        <p className="text-secondary">No saved payment method.</p>
+        <Button variant="secondary">Add payment method</Button>
+      </div>
+    </AccountShell>
+  );
 }
-

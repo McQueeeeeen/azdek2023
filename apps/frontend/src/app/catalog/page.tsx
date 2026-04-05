@@ -1,7 +1,17 @@
-import { StitchPage, getStitchMetadata } from "@/lib/stitch-page";
+﻿import Container from "@/components/ui/container";
+import Section from "@/components/ui/section";
+import CatalogBrowser from "@/components/commerce/catalog-browser";
+import { getStorefrontProducts } from "@/lib/storefront";
 
-export const metadata = getStitchMetadata("product_catalog_final_linked_adzek_3", "Adzek catalog");
+export default async function CatalogPage() {
+  const products = await getStorefrontProducts();
+  const hasError = products.length === 0;
 
-export default function CatalogPage() {
-  return <StitchPage folder="product_catalog_final_linked_adzek_3" />;
+  return (
+    <Section>
+      <Container>
+        <CatalogBrowser products={products} hasError={hasError} />
+      </Container>
+    </Section>
+  );
 }

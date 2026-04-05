@@ -1,7 +1,14 @@
-import { ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-export default function Container({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("container", className)}>{children}</div>;
+export default function Container({
+  children,
+  className,
+  ...props
+}: { children: ReactNode; className?: string } & HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div className={cn("container", className)} {...props}>
+      {children}
+    </div>
+  );
 }
-

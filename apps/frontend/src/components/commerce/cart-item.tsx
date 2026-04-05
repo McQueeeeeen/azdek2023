@@ -1,5 +1,7 @@
 ﻿import Card from "../ui/card";
 import { formatMoney } from "@/lib/money";
+import { getProductMedia } from "@/lib/product-media";
+import SmartImage from "../ui/smart-image";
 
 interface CartItemView {
   id: string;
@@ -8,7 +10,7 @@ interface CartItemView {
   unitPrice: number;
   productVariant: {
     title: string;
-    product: { name: string };
+    product: { name: string; slug?: string };
   };
 }
 
@@ -25,13 +27,22 @@ export default function CartItem({
   onRemove: (itemId: string) => void;
   busy?: boolean;
 }) {
+  const media = getProductMedia(item.productVariant.product.slug ?? "");
+
   return (
     <Card className="cart-item">
-      <div className="cart-item-main">
-        <p className="h3">{item.productVariant.product.name}</p>
-        <p className="text-secondary">{item.productVariant.title}</p>
-        <p className="small">Цена за единицу: {formatMoney(item.unitPrice, "KZT")}</p>
+      <div style={{ display: "grid", gridTemplateColumns: "96px 1fr", gap: 12, alignItems: "center" }}>
+        <div style={{ position: "relative", width: 96, height: 96, borderRadius: 10, overflow: "hidden", background: "var(--surface-2)" }}>
+          <SmartImage src={media.card} fallbackSrc="/media/laundry-gel-final.jpg" alt={item.productVariant.product.name} fill sizes="96px" />
+        </div>
+
+        <div className="cart-item-main">
+          <p className="h4">{item.productVariant.product.name}</p>
+          <p className="text-secondary">{item.productVariant.title}</p>
+          <p className="small">Unit price: {formatMoney(item.unitPrice, "KZT")}</p>
+        </div>
       </div>
+
       <div className="cart-item-meta">
         <div className="cart-item-actions">
           <button
@@ -52,10 +63,9 @@ export default function CartItem({
             +
           </button>
         </div>
-        <p>Кол-во: {item.quantity}</p>
         <p>{formatMoney(item.lineTotal, "KZT")}</p>
         <button type="button" className="cart-remove-link" disabled={busy} onClick={() => onRemove(item.id)}>
-          Удалить
+          Remove
         </button>
       </div>
     </Card>

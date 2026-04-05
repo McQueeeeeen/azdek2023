@@ -1,41 +1,41 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
-import Link from "next/link";
-import { CatalogProduct } from "@/lib/api";
+import { useSearchParams } from "next/navigation";
 import EmptyState from "../ui/empty-state";
 import { Input } from "../ui/input";
 import Button from "../ui/button";
-import AddToCartButton from "../add-to-cart-button";
-import PriceBlock from "./price-block";
+import ProductGrid from "./product-grid";
+import { StorefrontProduct, getStorefrontCategories } from "@/lib/storefront";
 
 type SortMode = "featured" | "price_asc" | "price_desc" | "name_asc";
 
-const CATEGORY_LABEL_MAP: Record<string, string> = {
-  laundry: "Стирка",
-  kitchen: "Кухня",
-  refills: "Пополнения",
-  rituals: "Ритуалы",
-};
+const pageSize = 9;
 
-function getMinPrice(product: CatalogProduct): number {
-  return product.variants[0]?.price ?? 0;
-}
-
-export default function CatalogBrowser({ products }: { products: CatalogProduct[] }) {
-  const [query, setQuery] = useState("");
+export default function CatalogBrowser({
+  products,
+  hasError = false,
+}: {
+  products: StorefrontProduct[];
+  hasError?: boolean;
+}) {
+  const params = useSearchParams();
+  const [query, setQuery] = useState(params.get("q") ?? "");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [activeBrand, setActiveBrand] = useState("all");
+  const [activeUsage, setActiveUsage] = useState("all");
   const [sortMode, setSortMode] = useState<SortMode>("featured");
+  const [visibleCount, setVisibleCount] = useState(pageSize);
 
-  const categories = useMemo(() => {
-    const seen = new Map<string, string>();
-    for (const p of products) {
-      if (!seen.has(p.category.slug)) {
-        seen.set(p.category.slug, CATEGORY_LABEL_MAP[p.category.slug] ?? p.category.name);
-      }
-    }
-    return [{ slug: "all", name: "Все" }, ...Array.from(seen.entries()).map(([slug, name]) => ({ slug, name }))];
-  }, [products]);
+  const categories = useMemo(() => getStorefrontCategories(products), [products]);
+  const brands = useMemo(() => ["all", ...Array.from(new Set(products.map((p) => p.brand)))], [products]);
+  const usageOptions = [
+    { slug: "all", label: "All usage" },
+    { slug: "laundry", label: "Laundry" },
+    { slug: "kitchen", label: "Kitchen" },
+    { slug: "bathroom", label: "Bathroom" },
+    { slug: "universal", label: "Universal" },
+  ];
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -43,6 +43,14 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
 
     if (activeCategory !== "all") {
       result = result.filter((p) => p.category.slug === activeCategory);
+    }
+
+    if (activeBrand !== "all") {
+      result = result.filter((p) => p.brand === activeBrand);
+    }
+
+    if (activeUsage !== "all") {
+      result = result.filter((p) => p.usage === activeUsage);
     }
 
     if (normalizedQuery) {
@@ -56,109 +64,160 @@ export default function CatalogBrowser({ products }: { products: CatalogProduct[
 
     switch (sortMode) {
       case "price_asc":
-        result.sort((a, b) => getMinPrice(a) - getMinPrice(b));
+        result.sort((a, b) => (a.variants[0]?.price ?? 0) - (b.variants[0]?.price ?? 0));
         break;
       case "price_desc":
-        result.sort((a, b) => getMinPrice(b) - getMinPrice(a));
+        result.sort((a, b) => (b.variants[0]?.price ?? 0) - (a.variants[0]?.price ?? 0));
         break;
       case "name_asc":
-        result.sort((a, b) => a.name.localeCompare(b.name, "ru"));
+        result.sort((a, b) => a.name.localeCompare(b.name));
         break;
       default:
         break;
     }
 
     return result;
-  }, [products, activeCategory, query, sortMode]);
+  }, [products, activeCategory, activeBrand, activeUsage, query, sortMode]);
+
+  const visibleItems = filtered.slice(0, visibleCount);
+  const canLoadMore = visibleCount < filtered.length;
+
+  const resetAll = () => {
+    setQuery("");
+    setActiveCategory("all");
+    setActiveBrand("all");
+    setActiveUsage("all");
+    setSortMode("featured");
+    setVisibleCount(pageSize);
+  };
+
+  if (hasError) {
+    return (
+      <EmptyState
+        title="Catalog is temporarily unavailable"
+        description="Please refresh the page or try again later."
+        action={<Button onClick={() => window.location.reload()}>Retry</Button>}
+      />
+    );
+  }
 
   return (
-    <div className="grid">
-      <div className="ui-card">
-        <h1>Каталог</h1>
-        <p className="text-secondary">Выберите товар и добавьте в корзину.</p>
+    <div className="catalog-layout">
+      <aside className="filters-panel">
+        <h3 className="h4">Filters</h3>
 
-        <div className="grid" style={{ gridTemplateColumns: "1fr 220px" }}>
+        <div className="filter-group">
+          <label className="small" htmlFor="catalog-search">Search</label>
           <Input
-            placeholder="Поиск по товарам"
+            id="catalog-search"
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            aria-label="Поиск по товарам"
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setVisibleCount(pageSize);
+            }}
+            placeholder="Search by product"
           />
+        </div>
+
+        <div className="filter-group">
+          <label className="small">Category</label>
+          {categories.map((category) => (
+            <label key={category.slug} className="filter-check">
+              <input
+                type="radio"
+                name="category"
+                checked={activeCategory === category.slug}
+                onChange={() => {
+                  setActiveCategory(category.slug);
+                  setVisibleCount(pageSize);
+                }}
+              />
+              <span>{category.label}</span>
+            </label>
+          ))}
+        </div>
+
+        <div className="filter-group">
+          <label className="small">Brand</label>
+          <select
+            className="ui-input"
+            value={activeBrand}
+            onChange={(event) => {
+              setActiveBrand(event.target.value);
+              setVisibleCount(pageSize);
+            }}
+          >
+            {brands.map((brand) => (
+              <option key={brand} value={brand}>
+                {brand === "all" ? "All brands" : brand}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="filter-group">
+          <label className="small">Usage</label>
+          <select
+            className="ui-input"
+            value={activeUsage}
+            onChange={(event) => {
+              setActiveUsage(event.target.value);
+              setVisibleCount(pageSize);
+            }}
+          >
+            {usageOptions.map((option) => (
+              <option key={option.slug} value={option.slug}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <Button variant="secondary" onClick={resetAll}>
+          Reset filters
+        </Button>
+      </aside>
+
+      <section className="grid">
+        <div className="catalog-toolbar">
+          <div>
+            <h1 className="h2">Catalog</h1>
+            <p className="text-secondary">{filtered.length} products found</p>
+          </div>
+
           <select
             className="ui-input"
             value={sortMode}
             onChange={(event) => setSortMode(event.target.value as SortMode)}
-            aria-label="Сортировка"
+            style={{ maxWidth: 220 }}
           >
-            <option value="featured">Сначала популярные</option>
-            <option value="name_asc">По названию</option>
-            <option value="price_asc">Сначала дешевле</option>
-            <option value="price_desc">Сначала дороже</option>
+            <option value="featured">Sort: Featured</option>
+            <option value="name_asc">Sort: Name A-Z</option>
+            <option value="price_asc">Sort: Price low-high</option>
+            <option value="price_desc">Sort: Price high-low</option>
           </select>
         </div>
 
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-          {categories.map((category) => (
-            <Button
-              key={category.slug}
-              variant={activeCategory === category.slug ? "primary" : "secondary"}
-              onClick={() => setActiveCategory(category.slug)}
-            >
-              {category.name}
-            </Button>
-          ))}
-        </div>
-      </div>
+        {filtered.length === 0 ? (
+          <EmptyState
+            title="No products found"
+            description="Try changing category, usage or search query."
+            action={<Button variant="secondary" onClick={resetAll}>Clear filters</Button>}
+          />
+        ) : (
+          <>
+            <ProductGrid products={visibleItems} />
 
-      {filtered.length > 0 ? (
-        <div className="grid">
-          {filtered.map((product) => {
-            const variant = product.variants[0];
-            return (
-              <article key={product.id} className="ui-card">
-                <h3>{product.name}</h3>
-                <p className="text-secondary">{product.description}</p>
-                <p className="small">Категория: {CATEGORY_LABEL_MAP[product.category.slug] ?? product.category.name}</p>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
-                  <PriceBlock amount={variant?.price ?? 0} currency={variant?.currency ?? "KZT"} />
-                  <Link href={`/catalog/${product.slug}`}>
-                    <Button variant="secondary">Открыть</Button>
-                  </Link>
-                  {variant ? (
-                    <AddToCartButton
-                      variantId={variant.id}
-                      label="Добавить в корзину"
-                      redirectToCart={false}
-                      pendingLabel="Добавляем"
-                      doneLabel="Добавлено"
-                      failedLabel="Ошибка"
-                    />
-                  ) : (
-                    <Button disabled>Нет в наличии</Button>
-                  )}
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      ) : (
-        <EmptyState
-          title="Ничего не найдено"
-          description="Измените фильтр или поисковый запрос"
-          action={
-            <Button
-              variant="secondary"
-              onClick={() => {
-                setQuery("");
-                setActiveCategory("all");
-                setSortMode("featured");
-              }}
-            >
-              Сбросить
-            </Button>
-          }
-        />
-      )}
+            {canLoadMore ? (
+              <div className="pagination-row">
+                <Button onClick={() => setVisibleCount((count) => count + pageSize)}>
+                  Load more
+                </Button>
+              </div>
+            ) : null}
+          </>
+        )}
+      </section>
     </div>
   );
 }

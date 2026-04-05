@@ -20,14 +20,14 @@ export default function MobileBottomNav() {
   const canSeeAdmin = useMemo(() => canAccessAdmin(role), [role]);
 
   const items = [
-    { href: "/", label: "Главная" },
-    { href: "/catalog", label: "Каталог" },
-    { href: "/cart", label: "Корзина" },
+    { href: "/", label: "Home" },
+    { href: "/catalog", label: "Catalog" },
+    { href: "/cart", label: "Cart" },
   ];
-  const navItems = canSeeAdmin ? [...items, { href: "/admin", label: "Админ" }] : items;
+  const navItems = canSeeAdmin ? [...items, { href: "/admin", label: "Admin" }] : items;
 
   return (
-    <nav className="mobile-bottom-nav" aria-label="Мобильная навигация">
+    <nav className="mobile-bottom-nav" aria-label="Mobile navigation">
       {navItems.map((item) => (
         <Link key={item.href} href={item.href} className={pathname === item.href ? "is-active" : undefined}>
           {item.label}

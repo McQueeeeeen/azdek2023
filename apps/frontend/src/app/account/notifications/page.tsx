@@ -1,7 +1,11 @@
-﻿import { StitchPage, getStitchMetadata } from "@/lib/stitch-page";
-
-export const metadata = getStitchMetadata("notification_settings_azure_clean_fixed", "Azure Clean notification settings");
+﻿import AccountShell from "@/components/account/account-shell";
 
 export default function AccountNotificationsPage() {
-  return <StitchPage folder="notification_settings_azure_clean_fixed" />;
+  return (
+    <AccountShell active="/account/notifications" title="Notifications" subtitle="Control updates from store and delivery.">
+      <label className="filter-check"><input type="checkbox" defaultChecked /> Order status updates</label>
+      <label className="filter-check"><input type="checkbox" defaultChecked /> Promotions and discounts</label>
+      <label className="filter-check"><input type="checkbox" /> Product restock alerts</label>
+    </AccountShell>
+  );
 }

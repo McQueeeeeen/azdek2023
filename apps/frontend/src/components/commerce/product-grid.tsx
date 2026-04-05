@@ -1,7 +1,7 @@
-import { CatalogProduct } from "@/lib/api";
+import { StorefrontProduct } from "@/lib/storefront";
 import ProductCard from "./product-card";
 
-export default function ProductGrid({ products }: { products: CatalogProduct[] }) {
+export default function ProductGrid({ products }: { products: StorefrontProduct[] }) {
   return (
     <div className="product-grid">
       {products.map((product) => (
@@ -10,4 +10,3 @@ export default function ProductGrid({ products }: { products: CatalogProduct[] }
     </div>
   );
 }
-
