@@ -5,7 +5,7 @@ export default function SiteHeader() {
     <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
       <div className="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
         <Link href="/" className="text-2xl font-black text-blue-700 tracking-tighter">
-          PureLab
+          Adzek
         </Link>
 
         <div className="hidden md:flex gap-8 items-center">
@@ -41,3 +41,4 @@ export default function SiteHeader() {
     </nav>
   );
 }
+

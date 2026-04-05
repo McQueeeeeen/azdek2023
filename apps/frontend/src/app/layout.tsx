@@ -27,8 +27,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
         <Script id="tailwind-config" strategy="beforeInteractive">
           {`
-            tailwind = window.tailwind || {};
-            tailwind.config = {
+            window.tailwind = window.tailwind || {};
+            window.tailwind.config = {
               darkMode: "class",
               theme: {
                 extend: {
