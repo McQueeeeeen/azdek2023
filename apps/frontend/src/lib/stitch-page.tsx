@@ -402,6 +402,7 @@ body.stitch-nav-out {
             setupAdminControls();
             setupCartControls();
             setupGenericLocalControls();
+            setupVisibilityGuards();
           };
 
           const setupGenericLocalControls = () => {
@@ -427,6 +428,86 @@ body.stitch-nav-out {
                   button.style.transform = "";
                 }, 120);
               });
+            }
+          };
+
+          const parseRgba = (value) => {
+            const text = (value || "").trim().toLowerCase();
+            if (!text) return null;
+            if (text === "transparent") return { r: 0, g: 0, b: 0, a: 0 };
+            const m = text.match(/rgba?\\(([^)]+)\\)/);
+            if (!m) return null;
+            const parts = m[1].split(",").map((p) => p.trim());
+            if (parts.length < 3) return null;
+            const r = Number.parseFloat(parts[0]) || 0;
+            const g = Number.parseFloat(parts[1]) || 0;
+            const b = Number.parseFloat(parts[2]) || 0;
+            const a = parts.length >= 4 ? Number.parseFloat(parts[3]) || 0 : 1;
+            return { r, g, b, a };
+          };
+
+          const luminance = ({ r, g, b }) => {
+            const srgb = [r, g, b].map((v) => {
+              const c = v / 255;
+              return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+            });
+            return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+          };
+
+          const contrastRatio = (a, b) => {
+            const l1 = luminance(a);
+            const l2 = luminance(b);
+            const lighter = Math.max(l1, l2);
+            const darker = Math.min(l1, l2);
+            return (lighter + 0.05) / (darker + 0.05);
+          };
+
+          const setupVisibilityGuards = () => {
+            const controls = Array.from(document.querySelectorAll("a, button"));
+            for (const control of controls) {
+              if (!(control instanceof HTMLElement)) continue;
+              if (control.getAttribute("data-stitch-visibility-checked") === "1") continue;
+              control.setAttribute("data-stitch-visibility-checked", "1");
+
+              const label = normalize(collectLabel(control));
+              const className = control.className || "";
+              const computed = window.getComputedStyle(control);
+
+              const bg = parseRgba(computed.backgroundColor);
+              const noBgImage = !computed.backgroundImage || computed.backgroundImage === "none";
+              const likelyPrimaryCta =
+                /text-white/.test(className) ||
+                /confirm and pay|complete checkout|shop new arrivals|add to cart|quick add|confirm|checkout|оформ/i.test(label);
+
+              if (likelyPrimaryCta && noBgImage && (!bg || bg.a < 0.08)) {
+                control.style.backgroundColor = "#0f766e";
+                control.style.color = "#ffffff";
+                if (!computed.padding || computed.padding === "0px") control.style.padding = "10px 16px";
+                if (computed.display === "inline") control.style.display = "inline-flex";
+                control.style.alignItems = "center";
+                control.style.justifyContent = "center";
+                if (!computed.borderRadius || computed.borderRadius === "0px") control.style.borderRadius = "8px";
+              }
+
+              const parentBg = parseRgba(window.getComputedStyle(control.parentElement || document.body).backgroundColor) || {
+                r: 255,
+                g: 255,
+                b: 255,
+                a: 1,
+              };
+              const fg = parseRgba(window.getComputedStyle(control).color);
+              if (fg && contrastRatio(fg, parentBg) < 2.1) {
+                control.style.color = "#0f172a";
+              }
+
+              const iconOnly = !label && !!control.querySelector(".material-symbols-outlined, svg");
+              if (iconOnly) {
+                control.style.minWidth = control.style.minWidth || "28px";
+                control.style.minHeight = control.style.minHeight || "28px";
+                if (!control.style.display) control.style.display = "inline-flex";
+                control.style.alignItems = "center";
+                control.style.justifyContent = "center";
+              }
             }
           };
 
