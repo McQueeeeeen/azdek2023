@@ -409,48 +409,105 @@ body.stitch-nav-out {
           };
 
           const setupCartControls = () => {
-            const itemContainers = () =>
-              Array.from(document.querySelectorAll("div")).filter((node) => {
-                if (!(node instanceof HTMLElement)) return false;
-                if (node.getAttribute("data-stitch-cart-item") === "1") return true;
-                const hasQty = !!node.querySelector("button") && !!node.querySelector(".mx-6");
-                const hasPrice = !!node.querySelector(".text-xl.font-headline");
-                const hasImage = !!node.querySelector("img");
-                return hasQty && hasPrice && hasImage;
-              });
+            const moneyLike = (text) => {
+              const t = (text || "").trim();
+              return (/[$₸]/.test(t) && /\\d/.test(t));
+            };
+            const uniqueElements = (list) => Array.from(new Set(list.filter(Boolean)));
+
+            const findItemRoot = (button) => {
+              const known = button.closest(".inventory-item");
+              if (known) return known;
+              let current = button.parentElement;
+              while (current && current !== document.body) {
+                const hasImage = !!current.querySelector("img");
+                const hasPlusMinus =
+                  Array.from(current.querySelectorAll("button")).filter((b) => ["+", "-"].includes((b.textContent || "").trim()))
+                    .length >= 2;
+                if (hasImage && hasPlusMinus) return current;
+                current = current.parentElement;
+              }
+              return null;
+            };
+
+            const findQtyNode = (item, triggerButton) => {
+              const parent = triggerButton?.parentElement;
+              if (parent) {
+                const local = Array.from(parent.children).find((el) => /^\\d+$/.test((el.textContent || "").trim()));
+                if (local instanceof HTMLElement) return local;
+              }
+              const fallback = Array.from(item.querySelectorAll("span,div,p")).find((el) =>
+                /^\\d+$/.test((el.textContent || "").trim())
+              );
+              return fallback instanceof HTMLElement ? fallback : null;
+            };
+
+            const findPriceNode = (item) => {
+              const candidates = Array.from(item.querySelectorAll("p,span,div,h4,h5")).filter((el) =>
+                moneyLike(el.textContent || "")
+              );
+              if (candidates.length === 0) return null;
+              return candidates[candidates.length - 1];
+            };
+
+            const findSummaryValueByLabel = (labelRe) => {
+              const labels = Array.from(document.querySelectorAll("p,span,div"));
+              for (const label of labels) {
+                if (!labelRe.test((label.textContent || "").trim())) continue;
+                const parent = label.parentElement;
+                if (!parent) continue;
+                const valueCandidate = Array.from(parent.querySelectorAll("p,span,div")).find(
+                  (el) => el !== label && moneyLike(el.textContent || "")
+                );
+                if (valueCandidate) return valueCandidate;
+              }
+              return null;
+            };
+
+            const getCartItems = () => {
+              const byClass = Array.from(document.querySelectorAll(".inventory-item"));
+              const byMarker = Array.from(document.querySelectorAll("[data-stitch-cart-item='1']"));
+              return uniqueElements([...byClass, ...byMarker]).filter(
+                (el) => el instanceof HTMLElement && el.style.display !== "none"
+              );
+            };
 
             const recalcTotals = () => {
-              const containers = itemContainers().filter((node) => {
-                const el = node;
-                return el instanceof HTMLElement && el.style.display !== "none";
-              });
+              const items = getCartItems();
               let subtotal = 0;
               let currency = "$";
               let itemCount = 0;
 
-              for (const container of containers) {
-                const qtyText = container.querySelector(".mx-6")?.textContent || "1";
-                const qty = Math.max(0, Number.parseInt(qtyText.trim(), 10) || 0);
+              for (const item of items) {
+                const root = item;
+                if (!(root instanceof HTMLElement)) continue;
+                const qtyNode = findQtyNode(root, null);
+                const priceNode = findPriceNode(root);
+                const qtyRaw = qtyNode?.textContent || "1";
+                const qty = Math.max(0, Number.parseInt(qtyRaw.trim(), 10) || 1);
                 itemCount += qty;
-
-                const priceNode = container.querySelector(".text-xl.font-headline");
                 if (!priceNode) continue;
                 const parsed = parseMoney(priceNode.textContent || "");
-                currency = parsed.currency || currency;
-                subtotal += parsed.amount;
+                if (parsed.currency) currency = parsed.currency;
+                const unit =
+                  Number.parseFloat(root.getAttribute("data-stitch-unit-price") || "") ||
+                  (qty > 0 ? parsed.amount / qty : parsed.amount || 0);
+                root.setAttribute("data-stitch-unit-price", String(unit));
+                subtotal += unit * qty;
+                priceNode.textContent = formatMoney(unit * qty, currency);
               }
 
-              const summaryNodes = Array.from(document.querySelectorAll(".font-headline")).filter((node) => {
-                const text = (node.textContent || "").trim();
-                return /[$₸]\\s*\\d|\\d\\s*[$₸]/.test(text);
-              });
+              const subtotalNode = findSummaryValueByLabel(/subtotal/i);
+              if (subtotalNode) subtotalNode.textContent = formatMoney(subtotal, currency);
 
-              if (summaryNodes.length > 0) {
-                const first = summaryNodes[0];
-                const last = summaryNodes[summaryNodes.length - 1];
-                first.textContent = formatMoney(subtotal, currency);
-                last.textContent = formatMoney(subtotal, currency);
-              }
+              const shippingNode = findSummaryValueByLabel(/shipping/i);
+              const taxNode = findSummaryValueByLabel(/tax/i);
+              const shipping = parseMoney(shippingNode?.textContent || "").amount || 0;
+              const tax = parseMoney(taxNode?.textContent || "").amount || 0;
+              const finalTotal = subtotal + shipping + tax;
+
+              const finalNode = findSummaryValueByLabel(/final total|total/i);
+              if (finalNode) finalNode.textContent = formatMoney(finalTotal, currency);
 
               const selectedLabel = Array.from(document.querySelectorAll("p,span,div")).find((node) =>
                 /ritual essentials selected|товар\\(ов\\) выбрано/i.test((node.textContent || "").trim())
@@ -458,17 +515,6 @@ body.stitch-nav-out {
               if (selectedLabel) {
                 selectedLabel.textContent = (selectedLabel.textContent || "").replace(/\\d+/, String(itemCount));
               }
-            };
-
-            const findContainer = (button) => {
-              let current = button.parentElement;
-              while (current && current !== document.body) {
-                const hasPrice = !!current.querySelector(".text-xl.font-headline");
-                const hasImage = !!current.querySelector("img");
-                if (hasPrice && hasImage) return current;
-                current = current.parentElement;
-              }
-              return null;
             };
 
             const buttons = Array.from(document.querySelectorAll("button"));
@@ -480,11 +526,11 @@ body.stitch-nav-out {
 
               button.addEventListener("click", (event) => {
                 event.preventDefault();
-                const container = findContainer(button);
+                const container = findItemRoot(button);
                 if (!container) return;
                 container.setAttribute("data-stitch-cart-item", "1");
-                const qtyNode = container.querySelector(".mx-6");
-                const priceNode = container.querySelector(".text-xl.font-headline");
+                const qtyNode = findQtyNode(container, button);
+                const priceNode = findPriceNode(container);
                 if (!qtyNode || !priceNode) return;
 
                 const qty = Math.max(1, Number.parseInt((qtyNode.textContent || "1").trim(), 10) || 1);
@@ -501,7 +547,9 @@ body.stitch-nav-out {
                 }
 
                 const nextQty = text === "+" ? qty + 1 : Math.max(1, qty - 1);
-                qtyNode.textContent = String(nextQty);
+                const oldText = (qtyNode.textContent || "").trim();
+                const padded = oldText.length >= 2 ? String(nextQty).padStart(oldText.length, "0") : String(nextQty);
+                qtyNode.textContent = padded;
                 priceNode.textContent = formatMoney(currentUnit * nextQty, parsed.currency || "$");
                 recalcTotals();
               });
