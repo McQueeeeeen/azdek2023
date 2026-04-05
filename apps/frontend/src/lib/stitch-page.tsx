@@ -164,6 +164,24 @@ body.stitch-nav-out {
             return null;
           };
 
+          const resolveLocalAction = (label) => {
+            const text = normalize(label);
+            if (!text) return null;
+            if (/^(\\+|-|close)$/.test(text)) return "cart_item_control";
+            if (/^favorite$/.test(text)) return "favorite_toggle";
+            if (/^(\\d+(\\.\\d+)?\\s?(ml|l)|\\d+(\\.\\d+)?)$/.test(text)) return "variant_select";
+            if (/download pdf invoice/.test(text)) return "invoice_download";
+            if (/^(monthly|quarterly)$/.test(text)) return "admin_period_toggle";
+            if (
+              /(generate report|add new reagent|all products|edit formulation|archive|clear all|apply filters|view specification|begin your protocol|new formula|modify schedule|synchronize updates|reset laboratory defaults|update password|delete|edit\\b|more_vert|chevron_left|chevron_right|clinical musk|eucalyptus 02|unscented|bergamot|silk & delicate|stain removal|sensitive skin|deep clean|all essentials)/.test(
+                text
+              )
+            ) {
+              return "ui_local_control";
+            }
+            return null;
+          };
+
           const parseMoney = (value) => {
             const text = (value || "").trim();
             const currency = text.includes("₸") ? "₸" : (text.includes("$") ? "$" : "");
@@ -383,6 +401,33 @@ body.stitch-nav-out {
             setupInvoiceButton();
             setupAdminControls();
             setupCartControls();
+            setupGenericLocalControls();
+          };
+
+          const setupGenericLocalControls = () => {
+            const buttons = Array.from(document.querySelectorAll("button"));
+            for (const button of buttons) {
+              if (button.getAttribute("data-stitch-bound") === "1") continue;
+              if (button.getAttribute("data-stitch-local") === "1") continue;
+
+              const label = collectLabel(button);
+              const localAction = resolveLocalAction(label);
+              const hasIconOnlyLabel = !normalize(label) && !!button.querySelector(".material-symbols-outlined, svg");
+              const effectiveLocalAction = localAction || (hasIconOnlyLabel ? "icon_only_control" : "generic_control");
+
+              button.setAttribute("data-stitch-local", "1");
+              button.setAttribute("data-stitch-local-kind", effectiveLocalAction);
+              button.style.cursor = "pointer";
+              button.addEventListener("click", (event) => {
+                event.preventDefault();
+                button.classList.add("opacity-80");
+                button.style.transform = "scale(0.98)";
+                window.setTimeout(() => {
+                  button.classList.remove("opacity-80");
+                  button.style.transform = "";
+                }, 120);
+              });
+            }
           };
 
           const bindActions = () => {
