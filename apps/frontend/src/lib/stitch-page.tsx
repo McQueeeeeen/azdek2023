@@ -147,13 +147,16 @@ body.stitch-nav-out {
             if (/(payment methods|save payment method|способы оплаты|оплата)/.test(text)) return "/account/payment-methods";
             if (/(notification|уведомления)/.test(text)) return "/account/notifications";
             if (/(support|help|faq|contact us|contact|поддержка|помощь|контакты)/.test(text)) return "/support";
-            if (/(about|philosophy|manifesto|sustainability|journal|instagram|pinterest|о нас|философия|устойчивость)/.test(text)) return "/about";
+            if (/(about|philosophy|manifesto|sustainability|journal|instagram|pinterest|linkedin|science|the science|read our science|sourcing|ingredient transparency|ingredient disclosure|о нас|философия|устойчивость|состав|ингредиенты)/.test(text)) return "/about";
             if (/(promotions|offers|special offers|reductions|copy code|акции|промо|промокод)/.test(text)) return "/promotions";
             if (/(winter sanctuary|seasonal|сезонное)/.test(text)) return "/seasonal";
             if (/(dashboard|inventory|analytics|admin|админ|админ-панель)/.test(text)) return "/admin";
             if (/billing/.test(text)) return "/admin/billing";
             if (/nodes/.test(text)) return "/admin/nodes";
-            if (/(shop|collection|view all products|catalog|laundry|kitchen|bathroom|bundles|fragrances|каталог|стирка|кухня|ванная|пополнения|ритуалы)/.test(text)) return "/catalog";
+            if (/(shop|collection|view all products|view all rituals|view all labs|view full archive|expand archive|start selection|spec:|catalog|laundry|kitchen|bathroom|bundles|fragrances|каталог|стирка|кухня|ванная|пополнения|ритуалы)/.test(text)) return "/catalog";
+            if (/(subscription|manage my subscription|favorites|settings|избранное|настройки)/.test(text)) return "/account";
+            if (/(terms of science|terms of service|privacy|privacy policy|newsletter signup|политика|условия|конфиденциальность)/.test(text)) return "/support";
+            if (/(mail|share)/.test(text)) return "/support";
             if (/(adzek|azure clean|linen & ether|home care|home\b|back to home|главная)/.test(text)) return "/";
 
             return null;
@@ -168,8 +171,8 @@ body.stitch-nav-out {
 
               if (element.tagName === "A") {
                 const href = element.getAttribute("href");
-                if (isPlaceholderHref(href) && route) {
-                  element.setAttribute("href", route);
+                if (isPlaceholderHref(href)) {
+                  element.setAttribute("href", route || "/");
                   element.removeAttribute("onclick");
                 }
                 continue;
