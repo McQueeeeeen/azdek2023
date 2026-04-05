@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -11,11 +11,10 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 const PENDING_VARIANTS_KEY = "azdek_pending_variant_ids";
 
 const NAV_ITEMS = [
-  { href: "/catalog", label: "Catalog" },
-  { href: "/promotions", label: "Promotions" },
-  { href: "/about", label: "About" },
-  { href: "/support", label: "Support" },
-  { href: "/design-system", label: "UI Kit" },
+  { href: "/catalog", label: "Каталог" },
+  { href: "/promotions", label: "Эко-линейка" },
+  { href: "/about", label: "О бренде" },
+  { href: "/support", label: "Доставка" },
 ];
 
 export default function SiteHeader() {
@@ -104,63 +103,71 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="site-header">
-      <Container className="site-header-inner">
-        <div className="brand-wrap">
-          <Link className="brand-mark" href="/">
-            Adzek
+    <header className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20 border-b border-slate-100">
+      <Container className="flex justify-between items-center h-full">
+        <div className="flex items-center gap-10">
+          <Link href="/" className="text-2xl font-black text-blue-700 tracking-tighter font-headline">
+            PureLab
           </Link>
+          <nav className="hidden md:flex gap-8 items-center" aria-label="Главная навигация">
+            {NAV_ITEMS.map((item) => {
+              const active = pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`font-headline tracking-tight font-semibold transition-transform duration-200 hover:scale-105 ${
+                    active ? "text-blue-700 border-b-2 border-blue-600 pb-1" : "text-slate-600 hover:text-blue-500"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
         </div>
 
-        <nav className="desktop-nav" aria-label="Main navigation">
-          {NAV_ITEMS.map((item) => (
-            <Link key={item.href} href={item.href} className={pathname.startsWith(item.href) ? "is-active" : undefined}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="header-tools">
-          <form className="header-search-wrap" onSubmit={submitSearch}>
+        <div className="flex items-center gap-4">
+          <form className="relative hidden lg:block" onSubmit={submitSearch}>
+            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-blue-700">search</span>
             <input
-              className="header-search"
-              placeholder="Search products"
+              className="bg-white border border-slate-200 rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-blue-200 text-sm outline-none"
+              placeholder="Поиск чистоты..."
               type="search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
-            <span className="header-search-icon">⌕</span>
           </form>
 
-          <Link href="/cart" aria-label="Cart">
-            <Button className="header-cart-btn" variant="secondary">
-              Cart
-              {cartCount > 0 ? <span className="header-cart-count">{cartCount}</span> : null}
-            </Button>
+          <Link href="/cart" className="relative p-2 rounded-full hover:bg-slate-100 transition-colors" aria-label="Корзина">
+            <span className="material-symbols-outlined text-blue-700">shopping_cart</span>
+            {cartCount > 0 ? (
+              <span className="absolute -top-0.5 -right-0.5 bg-blue-700 text-white text-[10px] rounded-full min-w-[16px] h-4 px-1 flex items-center justify-center">
+                {cartCount}
+              </span>
+            ) : null}
           </Link>
 
           {isAuthenticated ? (
-            <div className="header-auth-links">
-              <Link href="/account" aria-label="Account">
-                <Button className="header-account-btn" variant="secondary">
-                  Account
-                </Button>
+            <>
+              <Link href="/account" className="p-2 rounded-full hover:bg-slate-100 transition-colors" aria-label="Личный кабинет">
+                <span className="material-symbols-outlined text-blue-700">person</span>
               </Link>
               {canSeeAdmin ? (
-                <Link href="/admin" aria-label="Admin">
-                  <Button className="header-role-btn" variant="outline">
-                    Admin
+                <Link href="/admin">
+                  <Button className="px-4" variant="outline">
+                    Админ
                   </Button>
                 </Link>
               ) : null}
-              <Button className="header-logout-btn" variant="ghost" onClick={logout}>
-                Sign out
+              <Button className="px-5" variant="secondary" onClick={logout}>
+                Выйти
               </Button>
-            </div>
+            </>
           ) : (
             <Link href="/login">
-              <Button className="header-cta" variant="secondary">
-                Sign in
+              <Button className="ml-2 px-6 py-2.5 text-white rounded-lg font-headline font-semibold text-sm" variant="primary">
+                Войти
               </Button>
             </Link>
           )}

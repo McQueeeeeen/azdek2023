@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+
 :root {
   --bg: #f7f8fa;
   --surface: #ffffff;
@@ -39,7 +41,19 @@ body {
   min-height: 100%;
   background: var(--bg);
   color: var(--text);
-  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.font-headline,
+h1,
+h2,
+h3 {
+  font-family: "Manrope", "Inter", sans-serif;
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
 a {
@@ -125,7 +139,7 @@ p {
 
 .site-main {
   flex: 1;
-  padding: 30px 0 100px;
+  padding: 96px 0 100px;
 }
 
 .container {
