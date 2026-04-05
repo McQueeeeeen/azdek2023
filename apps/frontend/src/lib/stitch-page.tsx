@@ -67,9 +67,122 @@ export function StitchPage({ folder }: { folder: string }) {
   const parsed = readStitch(folder);
   const safeTailwindConfig = normalizeTailwindConfig(parsed.tailwindConfig);
   const stylesheetImports = parsed.fontStylesheets.map((href) => `@import url("${href}");`).join("\n");
+  const clinicalEditorialOverrides = `
+:root {
+  --ce-surface: #f9f9f9;
+  --ce-surface-low: #f4f3f3;
+  --ce-surface-lowest: #ffffff;
+  --ce-surface-high: #e8e8e8;
+  --ce-primary: #088ea0;
+  --ce-primary-deep: #005d69;
+  --ce-tertiary: #c1763a;
+  --ce-on-surface: #1a1c1c;
+  --ce-muted: #3e494b;
+  --ce-ghost: rgba(189, 201, 203, 0.15);
+  --ce-shadow-soft: 0 24px 48px rgba(26, 28, 28, 0.06);
+  --ce-radius: 0.75rem;
+}
+
+html, body {
+  background: var(--ce-surface) !important;
+  color: var(--ce-on-surface) !important;
+  font-family: "Manrope", sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, .font-headline, .font-serif, [class*="font-serif"] {
+  font-family: "Newsreader", serif !important;
+}
+
+p, span, li, a, button, input, textarea, select, label, .font-body, .font-label {
+  font-family: "Manrope", sans-serif;
+}
+
+nav {
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+button,
+a[role="button"],
+input[type="button"],
+input[type="submit"] {
+  border-radius: var(--ce-radius) !important;
+  transition: all 160ms ease !important;
+}
+
+button:hover,
+a[role="button"]:hover {
+  transform: translateY(-0.5px);
+}
+
+input,
+textarea,
+select {
+  border: 1px solid var(--ce-ghost) !important;
+  border-radius: var(--ce-radius) !important;
+  background: var(--ce-surface-low) !important;
+  color: var(--ce-on-surface) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: rgba(8, 142, 160, 0.2) !important;
+  box-shadow: 0 0 0 3px rgba(8, 142, 160, 0.1) !important;
+  background: var(--ce-surface-lowest) !important;
+}
+
+/* No-line rule fallback: replace hard borders with ghost border */
+[class*="border-"],
+[style*="border: 1px solid"],
+[style*="border:1px solid"] {
+  border-color: var(--ce-ghost) !important;
+}
+
+/* Cards/elevated surfaces */
+[class*="shadow"],
+.clinical-shadow {
+  box-shadow: var(--ce-shadow-soft) !important;
+}
+
+[class*="rounded"],
+[class*="rounded-"] {
+  border-radius: var(--ce-radius) !important;
+}
+
+/* Primary CTA consistency */
+button.text-white,
+a.text-white,
+[class*="from-primary"][class*="to-primary"],
+[class*="bg-gradient"] {
+  background: linear-gradient(135deg, var(--ce-primary) 0%, var(--ce-primary-deep) 100%) !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+/* Secondary surfaces */
+[class*="bg-surface-container-low"] {
+  background: var(--ce-surface-low) !important;
+}
+[class*="bg-surface-container-lowest"] {
+  background: var(--ce-surface-lowest) !important;
+}
+[class*="bg-surface-container-high"] {
+  background: var(--ce-surface-high) !important;
+}
+
+/* Freshness chip */
+[class*="rounded-full"][class*="text-[10px]"],
+[class*="badge"],
+[class*="chip"] {
+  border-radius: 9999px !important;
+}
+`;
   const mergedStyles = `
 ${stylesheetImports}
 ${parsed.styleBlocks.join("\n\n")}
+${clinicalEditorialOverrides}
 
 html.stitch-loading body {
   opacity: 0;
