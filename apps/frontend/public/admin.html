@@ -1,0 +1,327 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Админ-панель — Adzek</title>
+  <meta name="robots" content="noindex,nofollow" />
+  <script>
+    (function enforceAdminAccess() {
+      try {
+        var authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
+        var role = localStorage.getItem('adzekRole') || sessionStorage.getItem('adzekRole');
+        var issued = localStorage.getItem('adzekAdminAccess') === 'granted' || sessionStorage.getItem('adzekAdminAccess') === 'granted';
+        if (!(authed && role === 'admin' && issued)) {
+          window.location.replace('index.html');
+        }
+      } catch (e) {
+        window.location.replace('index.html');
+      }
+    })();
+  </script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0058bc',
+            'primary-container': '#0070eb',
+            secondary: '#006e1c',
+            'secondary-container': '#91f78e',
+            surface: '#f7f9fb',
+            'surface-container-low': '#f2f4f6',
+            'surface-container': '#eceef0',
+            'surface-container-high': '#e6e8ea',
+            'surface-container-lowest': '#ffffff',
+            'on-surface': '#191c1e',
+            'on-surface-variant': '#414755',
+            outline: '#717786',
+            'outline-variant': '#c1c6d7',
+            error: '#ba1a1a',
+            'error-container': '#ffdad6'
+          },
+          fontFamily: {
+            headline: ['Manrope'],
+            body: ['Inter']
+          },
+          boxShadow: {
+            soft: '0 20px 40px rgba(0,88,188,0.06)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+
+    .admin-reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .35s ease, transform .35s ease;
+    }
+    .admin-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface">
+  <div class="min-h-screen">
+    <header class="fixed top-0 left-0 right-0 z-50 h-20 bg-white/75 backdrop-blur-xl border-b border-outline-variant/30">
+      <div class="h-full max-w-[1600px] mx-auto px-6 lg:px-10 flex items-center justify-between">
+        <div class="flex items-center gap-8">
+          <a href="index.html" class="text-3xl font-black tracking-tighter text-primary hover:opacity-80 transition-opacity">Adzek</a>
+          <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
+            <a href="index.html" class="text-on-surface-variant hover:text-primary transition-colors">Главная</a>
+            <a href="catalog.html" class="text-on-surface-variant hover:text-primary transition-colors">Каталог</a>
+            <a href="account.html" class="text-on-surface-variant hover:text-primary transition-colors">Кабинет</a>
+            <span class="text-primary border-b-2 border-primary pb-1">Админ</span>
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="hidden lg:flex items-center bg-surface-container-lowest rounded-full border border-outline-variant/20 px-4 py-2 w-72">
+            <span class="material-symbols-outlined text-on-surface-variant text-lg">search</span>
+            <input type="text" placeholder="Поиск по заказам, товарам, пользователям..." class="ml-2 bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/70" />
+          </div>
+          <a href="notifications.html" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-surface-container-high transition-colors" aria-label="Уведомления">
+            <span class="material-symbols-outlined text-primary">notifications</span>
+          </a>
+          <a href="account.html" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-surface-container-high transition-colors" aria-label="Профиль">
+            <span class="material-symbols-outlined text-primary">person</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="pt-20 flex">
+      <aside class="hidden lg:block w-72 min-h-[calc(100vh-5rem)] border-r border-outline-variant/20 bg-surface-container-low/60 backdrop-blur-sm p-6">
+        <div class="admin-reveal bg-surface-container-lowest rounded-2xl p-5 shadow-soft mb-6">
+          <p class="text-xs uppercase tracking-widest text-on-surface-variant font-semibold">Админ</p>
+          <h2 class="text-xl font-extrabold mt-2">Панель управления</h2>
+          <p class="text-sm text-on-surface-variant mt-2">Контроль магазина, заказов и пользователей</p>
+        </div>
+
+        <nav class="space-y-2 text-sm font-semibold">
+          <a href="admin.html#dashboard" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container-lowest text-primary shadow-soft">
+            <span class="material-symbols-outlined">dashboard</span>
+            Дашборд
+          </a>
+          <a href="admin.html#products" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            Заказы
+          </a>
+          <a href="admin.html#clients" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+            <span class="material-symbols-outlined">inventory_2</span>
+            Товары
+          </a>
+          <a href="admin.html#finance" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+            <span class="material-symbols-outlined">group</span>
+            Клиенты
+          </a>
+          <a href="admin.html#settings" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+            <span class="material-symbols-outlined">payments</span>
+            Финансы
+          </a>
+          <a href="admin.html#orders" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+            <span class="material-symbols-outlined">settings</span>
+            Настройки
+          </a>
+        </nav>
+      </aside>
+
+      <main class="flex-1 p-6 lg:p-10 max-w-[1600px] mx-auto w-full">
+        <section id="dashboard" class="admin-reveal mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h1 class="text-4xl font-black tracking-tight">Админ-панель Adzek</h1>
+            <p class="text-on-surface-variant mt-2">Обновлено сегодня, 07 апреля 2026 • 12:34</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="px-5 py-3 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-sm font-bold hover:bg-surface-container-low transition-colors">Экспорт отчета</button>
+            <button class="px-5 py-3 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary-container transition-colors">Добавить товар</button>
+          </div>
+        </section>
+
+        <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
+          <article class="admin-reveal bg-surface-container-lowest rounded-2xl p-5 shadow-soft">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-on-surface-variant font-semibold">Выручка за день</p>
+              <span class="material-symbols-outlined text-primary">trending_up</span>
+            </div>
+            <p class="text-3xl font-black mt-3">₸ 1 284 500</p>
+            <p class="text-sm text-secondary font-semibold mt-2">+8.4% к вчера</p>
+          </article>
+
+          <article class="admin-reveal bg-surface-container-lowest rounded-2xl p-5 shadow-soft">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-on-surface-variant font-semibold">Новые заказы</p>
+              <span class="material-symbols-outlined text-primary">receipt_long</span>
+            </div>
+            <p class="text-3xl font-black mt-3">126</p>
+            <p class="text-sm text-on-surface-variant mt-2">18 требуют подтверждения</p>
+          </article>
+
+          <article class="admin-reveal bg-surface-container-lowest rounded-2xl p-5 shadow-soft">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-on-surface-variant font-semibold">Активные клиенты</p>
+              <span class="material-symbols-outlined text-primary">groups</span>
+            </div>
+            <p class="text-3xl font-black mt-3">3 409</p>
+            <p class="text-sm text-secondary font-semibold mt-2">+124 за неделю</p>
+          </article>
+
+          <article class="admin-reveal bg-error-container/40 rounded-2xl p-5 border border-error/20">
+            <div class="flex items-center justify-between">
+              <p class="text-sm text-on-surface-variant font-semibold">Низкий остаток</p>
+              <span class="material-symbols-outlined text-error">warning</span>
+            </div>
+            <p class="text-3xl font-black mt-3">9 SKU</p>
+            <p class="text-sm text-error font-semibold mt-2">Требуется пополнение</p>
+          </article>
+        </section>
+
+        <section class="grid grid-cols-1 2xl:grid-cols-12 gap-6">
+          <div class="2xl:col-span-8 space-y-6">
+            <article id="orders" class="admin-reveal bg-surface-container-lowest rounded-2xl shadow-soft overflow-hidden">
+              <div class="px-6 py-5 border-b border-outline-variant/20 flex items-center justify-between">
+                <h3 class="text-xl font-bold">Последние заказы</h3>
+                <a href="admin.html#orders" class="text-sm font-bold text-primary hover:underline">Все заказы</a>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full min-w-[760px] text-sm">
+                  <thead class="bg-surface-container-low/60 text-on-surface-variant">
+                    <tr>
+                      <th class="text-left py-3 px-6 font-semibold">№</th>
+                      <th class="text-left py-3 px-6 font-semibold">Клиент</th>
+                      <th class="text-left py-3 px-6 font-semibold">Статус</th>
+                      <th class="text-left py-3 px-6 font-semibold">Дата</th>
+                      <th class="text-right py-3 px-6 font-semibold">Сумма</th>
+                      <th class="text-right py-3 px-6 font-semibold">Действие</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-outline-variant/20">
+                    <tr class="hover:bg-surface-container-low/40 transition-colors">
+                      <td class="py-4 px-6 font-bold">#AZ-9412</td>
+                      <td class="py-4 px-6">Алина Омарова</td>
+                      <td class="py-4 px-6"><span class="inline-flex px-2.5 py-1 rounded-full bg-secondary-container text-secondary text-xs font-bold">Оплачен</span></td>
+                      <td class="py-4 px-6 text-on-surface-variant">07.04.2026</td>
+                      <td class="py-4 px-6 text-right font-bold">₸ 84 900</td>
+                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition-colors">Открыть</button></td>
+                    </tr>
+                    <tr class="hover:bg-surface-container-low/40 transition-colors">
+                      <td class="py-4 px-6 font-bold">#AZ-9408</td>
+                      <td class="py-4 px-6">Нурсултан К.</td>
+                      <td class="py-4 px-6"><span class="inline-flex px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">В обработке</span></td>
+                      <td class="py-4 px-6 text-on-surface-variant">07.04.2026</td>
+                      <td class="py-4 px-6 text-right font-bold">₸ 39 500</td>
+                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition-colors">Открыть</button></td>
+                    </tr>
+                    <tr class="hover:bg-surface-container-low/40 transition-colors">
+                      <td class="py-4 px-6 font-bold">#AZ-9399</td>
+                      <td class="py-4 px-6">Ержан Байкенов</td>
+                      <td class="py-4 px-6"><span class="inline-flex px-2.5 py-1 rounded-full bg-error-container text-error text-xs font-bold">Отмена</span></td>
+                      <td class="py-4 px-6 text-on-surface-variant">06.04.2026</td>
+                      <td class="py-4 px-6 text-right font-bold">₸ 12 400</td>
+                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-surface-container-low text-on-surface text-xs font-bold hover:bg-surface-container-high transition-colors">Детали</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <article id="products" class="admin-reveal bg-surface-container-lowest rounded-2xl shadow-soft p-6">
+              <div class="flex items-center justify-between mb-5">
+                <h3 class="text-xl font-bold">Товары с низким остатком</h3>
+                <button class="text-sm font-bold text-primary hover:underline">Сформировать закупку</button>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between">
+                  <div>
+                    <p class="font-bold">Спрей для стекол 500 мл</p>
+                    <p class="text-xs text-on-surface-variant mt-1">SKU: ADZ-GLS-500</p>
+                  </div>
+                  <span class="text-error font-black text-lg">7 шт</span>
+                </div>
+                <div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between">
+                  <div>
+                    <p class="font-bold">Концентрат для стирки 1 л</p>
+                    <p class="text-xs text-on-surface-variant mt-1">SKU: ADZ-WSH-1L</p>
+                  </div>
+                  <span class="text-error font-black text-lg">4 шт</span>
+                </div>
+                <div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between">
+                  <div>
+                    <p class="font-bold">Мыло для рук lavender</p>
+                    <p class="text-xs text-on-surface-variant mt-1">SKU: ADZ-HND-LV</p>
+                  </div>
+                  <span class="text-error font-black text-lg">9 шт</span>
+                </div>
+                <div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between">
+                  <div>
+                    <p class="font-bold">Эко-таблетки для ПММ</p>
+                    <p class="text-xs text-on-surface-variant mt-1">SKU: ADZ-DWM-30</p>
+                  </div>
+                  <span class="text-error font-black text-lg">3 шт</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="2xl:col-span-4 space-y-6">
+            <article id="clients" class="admin-reveal bg-surface-container-lowest rounded-2xl p-6 shadow-soft">
+              <h3 class="text-lg font-bold mb-4">Быстрые действия</h3>
+              <div class="space-y-3">
+                <button class="w-full px-4 py-3 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-container transition-colors">Подтвердить все новые заказы</button>
+                <button class="w-full px-4 py-3 rounded-xl bg-surface-container-low font-bold text-sm hover:bg-surface-container-high transition-colors">Обновить цены по курсу</button>
+                <button class="w-full px-4 py-3 rounded-xl bg-surface-container-low font-bold text-sm hover:bg-surface-container-high transition-colors">Создать промокод</button>
+              </div>
+            </article>
+
+            <article id="finance" class="admin-reveal bg-surface-container-lowest rounded-2xl p-6 shadow-soft">
+              <h3 class="text-lg font-bold mb-4">Активность системы</h3>
+              <div class="space-y-4 text-sm">
+                <div class="flex items-start gap-3">
+                  <span class="w-2.5 h-2.5 rounded-full bg-secondary mt-1.5"></span>
+                  <p><span class="font-semibold">Склад синхронизирован</span><br/><span class="text-on-surface-variant">12:31 • Алматы</span></p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-2.5 h-2.5 rounded-full bg-primary mt-1.5"></span>
+                  <p><span class="font-semibold">Новый отзыв: 5★</span><br/><span class="text-on-surface-variant">12:18 • Каталог / Стирка</span></p>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="w-2.5 h-2.5 rounded-full bg-error mt-1.5"></span>
+                  <p><span class="font-semibold">Ошибка оплаты #AZ-9399</span><br/><span class="text-on-surface-variant">11:47 • Требует проверки</span></p>
+                </div>
+              </div>
+            </article>
+
+            <article id="settings" class="admin-reveal bg-gradient-to-br from-primary to-primary-container rounded-2xl p-6 text-white">
+              <p class="text-xs uppercase tracking-widest text-blue-100 font-semibold">Прогноз</p>
+              <h3 class="text-2xl font-black mt-2">+12.6% выручки</h3>
+              <p class="text-sm text-blue-100 mt-2">Ожидаемый рост к концу месяца при текущей динамике заказов и повторных покупок.</p>
+            </article>
+          </aside>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function revealAdminUI() {
+      var items = document.querySelectorAll('.admin-reveal');
+      items.forEach(function (item, i) {
+        setTimeout(function () { item.classList.add('is-visible'); }, 40 * i);
+      });
+    })();
+  </script>
+</body>
+</html>
+

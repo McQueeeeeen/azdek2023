@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ошибка 404 | Adzek</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#0058bc",
+        "primary-container": "#0070eb",
+        secondary: "#006e1c",
+        "secondary-fixed": "#94f990",
+        "secondary-container": "#91f78e",
+        "on-secondary-fixed": "#002204",
+        "on-secondary-container": "#00731e",
+        surface: "#f7f9fb",
+        background: "#f7f9fb",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#f2f4f6",
+        "surface-container-high": "#e6e8ea",
+        "surface-container-highest": "#e0e3e5",
+        "surface-container": "#eceef0",
+        "on-surface": "#191c1e",
+        "on-surface-variant": "#414755",
+        "primary-fixed": "#d8e2ff",
+        "on-primary-fixed-variant": "#004493",
+        "outline-variant": "#c1c6d7",
+        outline: "#717786"
+      },
+      borderRadius: {
+        DEFAULT: "0.25rem",
+        lg: "0.5rem",
+        xl: "1.5rem",
+        full: "9999px"
+      },
+      fontFamily: {
+        headline: ["Manrope"],
+        body: ["Inter"],
+        label: ["Inter"]
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  }
+  body { font-family: 'Inter', sans-serif; animation: pageFadeIn 220ms ease forwards; }
+  h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+  .top-nav {
+    transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease;
+  }
+  .top-nav.is-scrolled {
+    background-color: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12);
+    height: 4.25rem;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity .35s ease, transform .35s ease;
+  }
+  .reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    body { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
+  <div class="flex justify-between items-center w-full px-8 h-full max-w-7xl mx-auto">
+    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+        <span class="material-symbols-outlined">shopping_cart</span>
+      </a>
+      <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="login.html" aria-label="Личный кабинет">
+        <span class="material-symbols-outlined">person</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main class="min-h-screen pt-20 pb-16 px-6 flex flex-col items-center justify-center relative overflow-hidden">
+  <div class="absolute top-1/4 -left-20 w-96 h-96 bg-secondary-container/20 rounded-full blur-[100px] pointer-events-none"></div>
+  <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary-fixed/30 rounded-full blur-[100px] pointer-events-none"></div>
+
+  <div class="mb-8 flex items-center justify-center reveal">
+    <span class="px-4 py-1 rounded-full bg-surface-container-low text-primary/60 font-headline font-bold text-sm tracking-[0.2em] uppercase">Ошибка 404</span>
+  </div>
+
+  <div class="relative w-full max-w-2xl aspect-[16/9] mb-12 flex items-center justify-center reveal">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface to-surface z-10"></div>
+    <img class="w-full h-full object-cover rounded-xl grayscale-[20%] opacity-80" alt="404 visual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAI2K3_INqQwQF438Aq-A0ScJ8xPQFtkhToAb6bZn66DTVZJ8ZuAcZZejYLKGOnQjHNKnoQQDvJghakad22GT2_s7MYIkvGiuDeqlBjpXoQNmcezYzLJSj_T2Tn76nxmJX9DEGmzvlbxlE2I9itvlXizfmverh4zQ_HGTGG6jTLT8lp0mOQ4tfMC-vczMSFCldgESVBYWO_xl_n07WfZQyu_mnpbNn8dBNReby_Yji0-hiUOUvUJQxaeyWIL19O7cL_o7gTTRa-BAo"/>
+    <div class="absolute -bottom-4 right-4 md:right-12 z-20 bg-surface-container-lowest/70 backdrop-blur-md p-6 rounded-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)] max-w-[280px]">
+      <div class="flex items-center gap-3 mb-2">
+        <span class="material-symbols-outlined text-secondary">eco</span>
+        <span class="text-xs font-bold tracking-widest text-on-surface-variant uppercase font-label">Эко-составы</span>
+      </div>
+      <p class="text-sm text-on-surface-variant leading-relaxed">Наши формулы биоразлагаемы и безопасны для водных ресурсов.</p>
+    </div>
+  </div>
+
+  <div class="text-center max-w-2xl mx-auto px-4 relative z-20 reveal">
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 leading-none font-headline">Страница испарилась</h1>
+    <p class="text-lg md:text-xl text-on-surface-variant font-body font-light leading-relaxed mb-10 opacity-80">Похоже, эта страница больше недоступна. Давайте вернемся к чистому маршруту.</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a class="group relative px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-headline font-bold text-lg shadow-[0px_10px_20px_rgba(0,88,188,0.2)] hover:scale-105 active:scale-95 transition-all duration-300" href="index.html">На главную</a>
+      <a class="px-10 py-4 bg-secondary-fixed text-on-secondary-fixed rounded-lg font-headline font-bold text-lg hover:opacity-80 active:scale-95 transition-all duration-300" href="catalog.html">В каталог</a>
+    </div>
+    <div class="mt-20 flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
+      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">biotech</span><span class="text-xs font-bold font-label tracking-wide uppercase">Pure-Лаборатория</span></div>
+      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">verified_user</span><span class="text-xs font-bold font-label tracking-wide uppercase">Безопасно</span></div>
+      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">water_drop</span><span class="text-xs font-bold font-label tracking-wide uppercase">Чистота</span></div>
+    </div>
+  </div>
+</main>
+
+<footer class="w-full border-t border-slate-200/10 bg-slate-100">
+  <div class="flex flex-col md:flex-row justify-between items-center w-full px-12 py-10 gap-6 max-w-7xl mx-auto">
+    <div class="text-lg font-bold text-blue-700 font-headline">Adzek</div>
+    <div class="flex gap-8 font-inter text-sm tracking-wide">
+      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="privacy.html">Privacy Policy</a>
+      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="terms.html">Terms of Service</a>
+      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="index.html#delivery">Contact Us</a>
+      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="catalog.html">Каталог</a>
+    </div>
+    <p class="text-slate-500 font-inter text-sm">© 2026 Adzek. Purity in every drop.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var topNav = document.getElementById('topNav');
+  if (topNav) {
+    var onScroll = function () { topNav.classList.toggle('is-scrolled', window.scrollY > 12); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  var items = document.querySelectorAll('.reveal');
+  items.forEach(function (el, i) { el.style.transitionDelay = (Math.min(i * 90, 260)) + 'ms'; });
+  if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var io = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('show'); });
+  }
+})();
+</script>
+<script id="pageLinkTransitions">
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var style = document.createElement('style');
+  style.textContent = 'html.is-leaving body{opacity:0;transform:translateY(4px);transition:opacity .16s ease, transform .16s ease;}';
+  document.head.appendChild(style);
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+    if (a.target === '_blank' || a.hasAttribute('download')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    var url; try { url = new URL(a.href, window.location.href); } catch (_) { return; }
+    if (url.origin !== window.location.origin) return;
+    e.preventDefault();
+    document.documentElement.classList.add('is-leaving');
+    window.setTimeout(function () { window.location.href = url.href; }, 160);
+  }, true);
+})();
+</script>
+<script id="authNavResolver">
+(function () {
+  var authed = false;
+  try { authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) {}
+  document.querySelectorAll('a[aria-label="Личный кабинет"]').forEach(function (accountLink) {
+    var parent = accountLink.parentElement;
+    if (!parent) return;
+    var authActions = parent.querySelector('.auth-actions');
+    if (authed) {
+      accountLink.style.display = 'inline-flex';
+      accountLink.setAttribute('href', 'account.html');
+      if (authActions) authActions.remove();
+      return;
+    }
+    accountLink.style.display = 'none';
+    if (!authActions) {
+      authActions = document.createElement('div');
+      authActions.className = 'auth-actions flex items-center gap-2';
+      authActions.innerHTML = '<a href="login.html" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="register.html" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
+      parent.appendChild(authActions);
+    }
+  });
+})();
+</script>
+</body></html>
