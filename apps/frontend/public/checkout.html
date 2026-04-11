@@ -1,179 +1,23 @@
-<!DOCTYPE html>
-<html lang="ru"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link rel="icon" type="image/svg+xml" href="icon.svg"/>
-<title>Оформление заказа | Adzek</title>
-<script id="authGuard">
-(function () {
-  var authed = false;
-  try { authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) {}
-  if (!authed) window.location.replace('/login');
-})();
-</script>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          primary: "#0058bc",
-          "primary-container": "#0070eb",
-          surface: "#f7f9fb",
-          "surface-container-low": "#f2f4f6",
-          "surface-container-lowest": "#ffffff",
-          "surface-container-high": "#e6e8ea",
-          "surface-container": "#eceef0",
-          "on-surface": "#191c1e",
-          "on-surface-variant": "#414755",
-          "secondary-fixed": "#94f990",
-          "secondary-container": "#91f78e",
-          "on-secondary-fixed": "#002204",
-          "on-secondary-fixed-variant": "#005313",
-          "outline-variant": "#c1c6d7"
-        },
-        borderRadius: { DEFAULT: "0.25rem", lg: "1rem", xl: "1.5rem", full: "9999px" },
-        fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"] }
-      }
-    }
-  }
-</script>
-<style>
-  body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; color: #191c1e; }
-  h1, h2, h3 { font-family: 'Manrope', sans-serif; }
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-  .liquid-gradient { background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%); }
-  .top-nav { transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease; }
-  .top-nav.is-scrolled { background-color: rgba(255,255,255,.92); box-shadow: 0 12px 30px rgba(0,88,188,.12); height: 4.25rem; }
-#topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
-</style>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adzek - checkout</title>
 </head>
-<body class="bg-surface selection:bg-blue-100">
-<nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
-  <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
-    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="/">Adzek</a>
-    <div class="hidden md:flex gap-8 items-center">
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/catalog">Каталог</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#eco">Эко-линейка</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#about">О бренде</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#delivery">Доставка</a>
-    </div>
-    <div class="flex items-center gap-6">
-      <div class="relative hidden lg:block">
-        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
-        <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
-      </div>
-      <div class="flex gap-4">
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/cart" aria-label="Корзина"><span class="material-symbols-outlined">shopping_cart</span></a>
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/account" aria-label="Личный кабинет"><span class="material-symbols-outlined">person</span></a>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<main class="pt-28 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-  <div class="mb-10">
-    <h1 class="text-4xl font-extrabold tracking-tighter text-on-surface mb-2">Оформление заказа</h1>
-    <p class="text-on-surface-variant">Заполните данные для бережной доставки ваших покупок</p>
-  </div>
-
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-    <section class="lg:col-span-8 space-y-8">
-      <div class="bg-surface-container-low p-8 rounded-xl space-y-8">
-        <div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">1</div><h2 class="text-xl font-bold">Контактные данные</h2></div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="space-y-2"><label class="block text-sm font-semibold text-on-surface-variant ml-1">Имя</label><input class="w-full px-5 py-4 bg-white border-0 rounded-lg focus:ring-2 focus:ring-blue-500/20" placeholder="Александр Константинопольский" type="text"/></div>
-          <div class="space-y-2"><label class="block text-sm font-semibold text-on-surface-variant ml-1">Телефон</label><input class="w-full px-5 py-4 bg-white border-0 rounded-lg focus:ring-2 focus:ring-blue-500/20" placeholder="+7 (___) ___-__-__" type="tel"/></div>
-          <div class="md:col-span-2 space-y-2"><label class="block text-sm font-semibold text-on-surface-variant ml-1">Email</label><input class="w-full px-5 py-4 bg-white border-0 rounded-lg focus:ring-2 focus:ring-blue-500/20" placeholder="adzek@example.com" type="email"/></div>
-        </div>
-      </div>
-
-      <div class="bg-surface-container-low p-8 rounded-xl space-y-8">
-        <div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">2</div><h2 class="text-xl font-bold">Способ доставки</h2></div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <label class="relative cursor-pointer group"><input checked class="peer sr-only" name="delivery" type="radio"/><div class="p-6 bg-white rounded-xl border-2 border-transparent peer-checked:border-blue-700 transition-all"><h3 class="font-bold text-lg mb-1">Курьер</h3><p class="text-sm text-on-surface-variant">До двери в течение 24 часов. Бесплатно от 3 000 ₸</p></div></label>
-          <label class="relative cursor-pointer group"><input class="peer sr-only" name="delivery" type="radio"/><div class="p-6 bg-white rounded-xl border-2 border-transparent peer-checked:border-blue-700 transition-all"><h3 class="font-bold text-lg mb-1">Самовывоз</h3><p class="text-sm text-on-surface-variant">Из 45 пунктов выдачи Adzek. Сегодня</p></div></label>
-        </div>
-        <div class="space-y-2"><label class="block text-sm font-semibold text-on-surface-variant ml-1">Адрес доставки</label><textarea class="w-full px-5 py-4 bg-white border-0 rounded-lg focus:ring-2 focus:ring-blue-500/20" placeholder="Город, улица, дом, квартира" rows="2"></textarea></div>
-      </div>
-
-      <div class="bg-surface-container-low p-8 rounded-xl space-y-8">
-        <div class="flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold">3</div><h2 class="text-xl font-bold">Способ оплаты</h2></div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <label class="relative cursor-pointer"><input checked class="peer sr-only" name="payment" type="radio"/><div class="flex items-center gap-4 p-5 bg-white rounded-xl border-2 border-transparent peer-checked:border-blue-700"><span class="material-symbols-outlined text-blue-700">credit_card</span><span class="font-semibold">Карта онлайн</span></div></label>
-          <label class="relative cursor-pointer"><input class="peer sr-only" name="payment" type="radio"/><div class="flex items-center gap-4 p-5 bg-white rounded-xl border-2 border-transparent peer-checked:border-blue-700"><span class="material-symbols-outlined text-blue-700">payments</span><span class="font-semibold">При получении</span></div></label>
-        </div>
-      </div>
-    </section>
-
-    <aside class="lg:col-span-4 sticky top-28">
-      <div class="bg-white p-8 rounded-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)] space-y-8">
-        <h2 class="text-2xl font-extrabold">Ваш заказ</h2>
-        <div class="space-y-6">
-          <div class="flex gap-4"><div class="w-20 h-20 bg-green-100 rounded-xl"></div><div class="flex flex-col justify-between py-1"><span class="text-sm font-bold">Гель для стирки Universal</span><span class="text-xs text-slate-500">1.5 л • Эко-сертификат</span><span class="font-semibold text-blue-700">850 ₸</span></div></div>
-          <div class="flex gap-4"><div class="w-20 h-20 bg-green-100 rounded-xl"></div><div class="flex flex-col justify-between py-1"><span class="text-sm font-bold">Средство для стёкол Mint</span><span class="text-xs text-slate-500">500 мл • Без разводов</span><span class="font-semibold text-blue-700">420 ₸</span></div></div>
-        </div>
-        <div class="pt-6 space-y-3 border-t border-slate-200/60">
-          <div class="flex justify-between text-sm text-slate-500"><span>Товары (2)</span><span>1 270 ₸</span></div>
-          <div class="flex justify-between text-sm text-slate-500"><span>Доставка</span><span class="text-green-700 font-medium">Бесплатно</span></div>
-          <div class="flex justify-between text-xl font-extrabold pt-4"><span>Итого</span><span>1 270 ₸</span></div>
-        </div>
-        <button onclick="window.location.href='/order-confirmed'" class="w-full py-5 liquid-gradient text-white rounded-lg font-bold text-lg shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-300">Подтвердить заказ</button>
-        <p class="text-[10px] text-center text-slate-500/80 leading-relaxed px-4">Нажимая на кнопку, вы соглашаетесь с <a class="underline" href="/terms">условиями оферты</a> и <a class="underline" href="/privacy">политикой конфиденциальности</a>.</p>
-      </div>
-      <div class="mt-8 p-6 bg-green-100 rounded-xl flex items-center gap-4"><span class="material-symbols-outlined text-green-900 text-3xl">eco</span><div><p class="text-xs font-bold text-green-900 uppercase tracking-wider">Эко-инициатива</p><p class="text-sm text-green-800">Этот заказ спасает 0.5 кг океанического пластика.</p></div></div>
-    </aside>
-  </div>
-</main>
-
-<footer class="w-full px-12 py-16 grid grid-cols-1 md:grid-cols-4 gap-8 bg-slate-100 rounded-t-3xl mt-12">
-  <div class="space-y-4"><span class="text-lg font-bold text-blue-700">Adzek</span><p class="text-xs text-slate-500 leading-relaxed">© 2026 Adzek. Лаборатория безупречной чистоты.</p></div>
-  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Компания</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="/#about">О нас</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#about">Миссия</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Контакты</a></div>
-  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Помощь</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Доставка</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Возврат</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Вопросы</a></div>
-  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Юридическая информация</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="/privacy">Политика конфиденциальности</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Оферта</a></div>
-</footer>
-
-<script id="authNavResolver">
-(function () {
-  var authed = false;
-  try { authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) {}
-  document.querySelectorAll('a[aria-label="Личный кабинет"]').forEach(function (accountLink) {
-    var parent = accountLink.parentElement;
-    if (!parent) return;
-    var authActions = parent.querySelector('.auth-actions');
-    if (authed) {
-      accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', '/account');
-      if (authActions) authActions.remove();
-      return;
-    }
-    accountLink.style.display = 'none';
-    if (!authActions) {
-      authActions = document.createElement('div');
-      authActions.className = 'auth-actions flex items-center gap-2';
-      authActions.innerHTML = '<a href="/login" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="/register" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
-      parent.appendChild(authActions);
-    }
-  });
-})();
-</script>
-<script>
-(function(){
-  var topNav=document.getElementById('topNav');
-  if(!topNav) return;
-  var onScroll=function(){topNav.classList.toggle('is-scrolled',window.scrollY>12);};
-  window.addEventListener('scroll',onScroll,{passive:true});
-  onScroll();
-})();
-</script>
-<script src='/assets/js/app.js' defer></script>
-</body></html>
-
-
-
-
-
-
+<body>
+  <main>
+    <h1>UI removed</h1>
+    <p>Page: checkout</p>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/catalog">Catalog</a> |
+      <a href="/product">Product</a> |
+      <a href="/cart">Cart</a> |
+      <a href="/checkout">Checkout</a> |
+      <a href="/account">Account</a> |
+      <a href="/login">Login</a>
+    </nav>
+  </main>
+</body>
+</html>

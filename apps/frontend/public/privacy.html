@@ -1,189 +1,23 @@
-<!DOCTYPE html>
-<html lang="ru"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link rel="icon" type="image/svg+xml" href="icon.svg"/>
-<title>Политика конфиденциальности | Adzek</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          primary: "#0058bc",
-          surface: "#f7f9fb",
-          "surface-container-lowest": "#ffffff",
-          "primary-fixed": "#d8e2ff",
-          "secondary": "#006e1c",
-          "secondary-fixed": "#94f990",
-          "surface-container-low": "#f2f4f6",
-          "surface-container": "#eceef0",
-          "surface-container-high": "#e6e8ea",
-          "on-surface": "#191c1e",
-          "on-surface-variant": "#414755",
-          "secondary-container": "#91f78e",
-          "on-secondary-container": "#00731e",
-          "outline-variant": "#c1c6d7",
-          outline: "#717786"
-        },
-        borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", '2xl': "1.5rem", full: "9999px" },
-        fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"] }
-      }
-    }
-  }
-</script>
-<style>
-  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-  body { font-family: 'Inter', sans-serif; }
-  h1, h2, h3 { font-family: 'Manrope', sans-serif; }
-  .top-nav { transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease; }
-  .top-nav.is-scrolled { background-color: rgba(247,249,251,0.94); box-shadow: 0 12px 30px rgba(0,88,188,.12); height: 4.25rem; }
-#topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
-</style>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adzek - privacy</title>
 </head>
-<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
-<nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-xl shadow-sm h-20">
-  <div class="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto">
-    <a class="text-2xl font-black tracking-tighter text-[#191c1e]" href="/">Adzek</a>
-    <div class="hidden md:flex items-center gap-10">
-      <a class="font-manrope tracking-tight font-bold text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="/catalog">Каталог</a>
-      <a class="font-manrope tracking-tight font-bold text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="/#eco">Эко-линейка</a>
-      <a class="font-manrope tracking-tight font-bold text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="/#about">О бренде</a>
-      <a class="font-manrope tracking-tight font-bold text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="/terms">Условия</a>
-    </div>
-    <div class="flex items-center gap-6">
-      <a class="material-symbols-outlined text-[#191c1e]/60 hover:opacity-80 transition-all duration-300 scale-95 active:scale-90" href="/cart" aria-label="Корзина">shopping_cart</a>
-      <a class="material-symbols-outlined text-[#191c1e]/60 hover:opacity-80 transition-all duration-300 scale-95 active:scale-90" href="/login" aria-label="Личный кабинет">account_circle</a>
-    </div>
-  </div>
-</nav>
-
-<main class="pt-40 pb-24 px-6 max-w-[900px] mx-auto">
-<header class="mb-20 text-center md:text-left">
-  <div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-semibold mb-6">
-    <span class="material-symbols-outlined text-[14px]">shield</span>
-    <span>Обновлено: 09 апреля 2026</span>
-  </div>
-  <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-on-surface mb-8 leading-[1.1]">Политика конфиденциальности</h1>
-  <p class="text-xl text-on-surface-variant leading-relaxed font-medium max-w-2xl">Ваша приватность — основа доверия. Мы в Adzek придерживаемся полной прозрачности использования данных.</p>
-</header>
-
-<div class="space-y-24">
-<section class="grid grid-cols-1 md:grid-cols-12 gap-8">
-  <div class="md:col-span-4"><h2 class="text-2xl font-extrabold tracking-tight text-primary">01. Сбор данных</h2></div>
-  <div class="md:col-span-8">
-    <div class="text-on-surface-variant leading-relaxed space-y-6">
-      <p>Мы собираем данные, которые вы предоставляете при оформлении заказа, подписке и обращении в поддержку Adzek.</p>
-      <ul class="space-y-4">
-        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><span><strong>Персональные данные:</strong> имя, email, телефон, адрес доставки.</span></li>
-        <li class="flex items-start gap-4"><span class="material-symbols-outlined text-primary mt-1">check_circle</span><span><strong>Платежные данные:</strong> платежи обрабатываются через защищенные шлюзы, данные карт не хранятся на сайте.</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="p-12 bg-surface-container-low rounded-2xl">
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-    <div class="md:col-span-4"><h2 class="text-2xl font-extrabold tracking-tight">02. Цели использования</h2></div>
-    <div class="md:col-span-8">
-      <p class="text-on-surface-variant leading-relaxed mb-4">Собранные данные позволяют сделать ваш опыт покупки быстрее и удобнее:</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-        <div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm"><span class="material-symbols-outlined text-secondary mb-2">local_shipping</span><p class="text-sm font-semibold">Доставка и логистика</p></div>
-        <div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm"><span class="material-symbols-outlined text-secondary mb-2">science</span><p class="text-sm font-semibold">Анализ предпочтений</p></div>
-        <div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm"><span class="material-symbols-outlined text-secondary mb-2">support_agent</span><p class="text-sm font-semibold">Клиентская поддержка</p></div>
-        <div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm"><span class="material-symbols-outlined text-secondary mb-2">mail</span><p class="text-sm font-semibold">Персональные уведомления</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="grid grid-cols-1 md:grid-cols-12 gap-8">
-  <div class="md:col-span-4"><h2 class="text-2xl font-extrabold tracking-tight text-primary">03. Защита данных</h2></div>
-  <div class="md:col-span-8">
-    <p class="text-on-surface-variant leading-relaxed">Мы используем SSL/TLS-шифрование и ограничиваем доступ к данным только сотрудникам, задействованным в выполнении заказов.</p>
-    <div class="mt-8 p-6 border-l-4 border-primary bg-primary/5 rounded-r-xl"><p class="text-primary italic font-medium">Мы не продаем и не передаем ваши персональные данные третьим лицам для маркетинга.</p></div>
-  </div>
-</section>
-
-<section class="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-outline-variant/15 pt-24">
-  <div class="md:col-span-4"><h2 class="text-2xl font-extrabold tracking-tight">04. Cookies</h2></div>
-  <div class="md:col-span-8"><p class="text-on-surface-variant leading-relaxed">Cookies помогают сохранять ваши настройки и ускоряют оформление заказа. Вы можете отключить cookies в браузере.</p></div>
-</section>
-
-<section class="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-outline-variant/15 pt-24">
-  <div class="md:col-span-4"><h2 class="text-2xl font-extrabold tracking-tight">05. Ваши права</h2></div>
-  <div class="md:col-span-8">
-    <div class="space-y-4">
-      <div class="flex items-center justify-between p-4 bg-surface-container rounded-xl"><span class="font-medium">Запросить доступ к своим данным</span><span class="material-symbols-outlined text-outline">chevron_right</span></div>
-      <div class="flex items-center justify-between p-4 bg-surface-container rounded-xl"><span class="font-medium">Потребовать исправления данных</span><span class="material-symbols-outlined text-outline">chevron_right</span></div>
-      <div class="flex items-center justify-between p-4 bg-surface-container rounded-xl"><span class="font-medium">Отозвать согласие на обработку</span><span class="material-symbols-outlined text-outline">chevron_right</span></div>
-    </div>
-  </div>
-</section>
-</div>
-
-<div class="mt-32 p-12 bg-primary rounded-3xl text-center text-white shadow-2xl relative overflow-hidden">
-  <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-  <h3 class="text-3xl font-bold mb-4 relative z-10">Остались юридические вопросы?</h3>
-  <p class="text-blue-100 mb-8 max-w-md mx-auto relative z-10">Наш отдел комплаенса поможет по вопросам хранения и обработки данных.</p>
-  <a class="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all relative z-10" href="mailto:privacy@adzek.kz"><span class="material-symbols-outlined">mail</span>privacy@adzek.kz</a>
-</div>
-</main>
-
-<footer class="bg-[#f2f4f6] w-full rounded-t-[2.5rem] mt-24">
-  <div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-[1440px] mx-auto">
-    <div class="mb-8 md:mb-0"><span class="font-manrope font-bold text-[#191c1e] text-lg">Adzek</span><p class="font-inter text-sm leading-relaxed text-[#191c1e]/50 mt-2">© 2026 Adzek. All Rights Reserved.</p></div>
-    <div class="flex flex-wrap justify-center gap-8">
-      <a class="font-inter text-sm leading-relaxed font-semibold text-primary hover:opacity-80 transition-colors" href="/privacy">Privacy Policy</a>
-      <a class="font-inter text-sm leading-relaxed text-[#191c1e]/50 hover:text-primary transition-colors" href="/terms">Terms of Service</a>
-      <a class="font-inter text-sm leading-relaxed text-[#191c1e]/50 hover:text-primary transition-colors" href="/#about">Sustainability Report</a>
-      <a class="font-inter text-sm leading-relaxed text-[#191c1e]/50 hover:text-primary transition-colors" href="/#delivery">Contact Us</a>
-    </div>
-  </div>
-</footer>
-
-<script id="authNavResolver">
-(function () {
-  var authed = false;
-  try { authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) {}
-  document.querySelectorAll('a[aria-label="Личный кабинет"]').forEach(function (accountLink) {
-    var parent = accountLink.parentElement;
-    if (!parent) return;
-    var authActions = parent.querySelector('.auth-actions');
-    if (authed) {
-      accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', '/account');
-      if (authActions) authActions.remove();
-      return;
-    }
-    accountLink.style.display = 'none';
-    if (!authActions) {
-      authActions = document.createElement('div');
-      authActions.className = 'auth-actions flex items-center gap-2';
-      authActions.innerHTML = '<a href="/login" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="/register" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
-      parent.appendChild(authActions);
-    }
-  });
-})();
-</script>
-<script>
-(function () {
-  var topNav = document.getElementById('topNav');
-  if (!topNav) return;
-  function onScroll() {
-    if (window.scrollY > 12) topNav.classList.add('is-scrolled');
-    else topNav.classList.remove('is-scrolled');
-  }
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-})();
-</script>
-<script src='/assets/js/app.js' defer></script>
-</body></html>
-
-
-
-
-
+<body>
+  <main>
+    <h1>UI removed</h1>
+    <p>Page: privacy</p>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/catalog">Catalog</a> |
+      <a href="/product">Product</a> |
+      <a href="/cart">Cart</a> |
+      <a href="/checkout">Checkout</a> |
+      <a href="/account">Account</a> |
+      <a href="/login">Login</a>
+    </nav>
+  </main>
+</body>
+</html>
