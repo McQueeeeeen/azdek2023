@@ -1,6 +1,79 @@
 {
-  "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/catalog",
+      "destination": "/catalog.html"
+    },
+    {
+      "source": "/product",
+      "destination": "/product.html"
+    },
+    {
+      "source": "/cart",
+      "destination": "/cart.html"
+    },
+    {
+      "source": "/checkout",
+      "destination": "/checkout.html"
+    },
+    {
+      "source": "/order-confirmed",
+      "destination": "/order-confirmed.html"
+    },
+    {
+      "source": "/account",
+      "destination": "/account.html"
+    },
+    {
+      "source": "/orders",
+      "destination": "/orders.html"
+    },
+    {
+      "source": "/addresses",
+      "destination": "/addresses.html"
+    },
+    {
+      "source": "/loyalty",
+      "destination": "/loyalty.html"
+    },
+    {
+      "source": "/notifications",
+      "destination": "/notifications.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/login.html"
+    },
+    {
+      "source": "/register",
+      "destination": "/register.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    }
+  ],
   "routes": [
     {
       "handle": "filesystem"
