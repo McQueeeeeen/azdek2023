@@ -2,7 +2,8 @@
 <html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Ошибка 404 | Adzek</title>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
+<title>РћС€РёР±РєР° 404 | Adzek</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -71,31 +72,29 @@ tailwind.config = {
     opacity: 1;
     transform: translateY(0);
   }
-  @keyframes pageFadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) {
     body { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
   }
+#topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
 </style>
 </head>
 <body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
 <nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
   <div class="flex justify-between items-center w-full px-8 h-full max-w-7xl mx-auto">
-    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="/">Adzek</a>
     <div class="hidden md:flex items-center gap-8">
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/catalog">РљР°С‚Р°Р»РѕРі</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#eco">Р­РєРѕ-Р»РёРЅРµР№РєР°</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#about">Рћ Р±СЂРµРЅРґРµ</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#delivery">Р”РѕСЃС‚Р°РІРєР°</a>
     </div>
     <div class="flex items-center gap-4">
-      <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+      <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/cart" aria-label="РљРѕСЂР·РёРЅР°">
         <span class="material-symbols-outlined">shopping_cart</span>
       </a>
-      <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="login.html" aria-label="Личный кабинет">
+      <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/login" aria-label="Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚">
         <span class="material-symbols-outlined">person</span>
       </a>
     </div>
@@ -107,7 +106,7 @@ tailwind.config = {
   <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary-fixed/30 rounded-full blur-[100px] pointer-events-none"></div>
 
   <div class="mb-8 flex items-center justify-center reveal">
-    <span class="px-4 py-1 rounded-full bg-surface-container-low text-primary/60 font-headline font-bold text-sm tracking-[0.2em] uppercase">Ошибка 404</span>
+    <span class="px-4 py-1 rounded-full bg-surface-container-low text-primary/60 font-headline font-bold text-sm tracking-[0.2em] uppercase">РћС€РёР±РєР° 404</span>
   </div>
 
   <div class="relative w-full max-w-2xl aspect-[16/9] mb-12 flex items-center justify-center reveal">
@@ -116,23 +115,23 @@ tailwind.config = {
     <div class="absolute -bottom-4 right-4 md:right-12 z-20 bg-surface-container-lowest/70 backdrop-blur-md p-6 rounded-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)] max-w-[280px]">
       <div class="flex items-center gap-3 mb-2">
         <span class="material-symbols-outlined text-secondary">eco</span>
-        <span class="text-xs font-bold tracking-widest text-on-surface-variant uppercase font-label">Эко-составы</span>
+        <span class="text-xs font-bold tracking-widest text-on-surface-variant uppercase font-label">Р­РєРѕ-СЃРѕСЃС‚Р°РІС‹</span>
       </div>
-      <p class="text-sm text-on-surface-variant leading-relaxed">Наши формулы биоразлагаемы и безопасны для водных ресурсов.</p>
+      <p class="text-sm text-on-surface-variant leading-relaxed">РќР°С€Рё С„РѕСЂРјСѓР»С‹ Р±РёРѕСЂР°Р·Р»Р°РіР°РµРјС‹ Рё Р±РµР·РѕРїР°СЃРЅС‹ РґР»СЏ РІРѕРґРЅС‹С… СЂРµСЃСѓСЂСЃРѕРІ.</p>
     </div>
   </div>
 
   <div class="text-center max-w-2xl mx-auto px-4 relative z-20 reveal">
-    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 leading-none font-headline">Страница испарилась</h1>
-    <p class="text-lg md:text-xl text-on-surface-variant font-body font-light leading-relaxed mb-10 opacity-80">Похоже, эта страница больше недоступна. Давайте вернемся к чистому маршруту.</p>
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter mb-6 leading-none font-headline">РЎС‚СЂР°РЅРёС†Р° РёСЃРїР°СЂРёР»Р°СЃСЊ</h1>
+    <p class="text-lg md:text-xl text-on-surface-variant font-body font-light leading-relaxed mb-10 opacity-80">РџРѕС…РѕР¶Рµ, СЌС‚Р° СЃС‚СЂР°РЅРёС†Р° Р±РѕР»СЊС€Рµ РЅРµРґРѕСЃС‚СѓРїРЅР°. Р”Р°РІР°Р№С‚Рµ РІРµСЂРЅРµРјСЃСЏ Рє С‡РёСЃС‚РѕРјСѓ РјР°СЂС€СЂСѓС‚Сѓ.</p>
     <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <a class="group relative px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-headline font-bold text-lg shadow-[0px_10px_20px_rgba(0,88,188,0.2)] hover:scale-105 active:scale-95 transition-all duration-300" href="index.html">На главную</a>
-      <a class="px-10 py-4 bg-secondary-fixed text-on-secondary-fixed rounded-lg font-headline font-bold text-lg hover:opacity-80 active:scale-95 transition-all duration-300" href="catalog.html">В каталог</a>
+      <a class="group relative px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-headline font-bold text-lg shadow-[0px_10px_20px_rgba(0,88,188,0.2)] hover:scale-105 active:scale-95 transition-all duration-300" href="/">РќР° РіР»Р°РІРЅСѓСЋ</a>
+      <a class="px-10 py-4 bg-secondary-fixed text-on-secondary-fixed rounded-lg font-headline font-bold text-lg hover:opacity-80 active:scale-95 transition-all duration-300" href="/catalog">Р’ РєР°С‚Р°Р»РѕРі</a>
     </div>
     <div class="mt-20 flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
-      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">biotech</span><span class="text-xs font-bold font-label tracking-wide uppercase">Pure-Лаборатория</span></div>
-      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">verified_user</span><span class="text-xs font-bold font-label tracking-wide uppercase">Безопасно</span></div>
-      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">water_drop</span><span class="text-xs font-bold font-label tracking-wide uppercase">Чистота</span></div>
+      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">biotech</span><span class="text-xs font-bold font-label tracking-wide uppercase">Pure-Р›Р°Р±РѕСЂР°С‚РѕСЂРёСЏ</span></div>
+      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">verified_user</span><span class="text-xs font-bold font-label tracking-wide uppercase">Р‘РµР·РѕРїР°СЃРЅРѕ</span></div>
+      <div class="flex flex-col items-center gap-2"><span class="material-symbols-outlined text-primary text-3xl">water_drop</span><span class="text-xs font-bold font-label tracking-wide uppercase">Р§РёСЃС‚РѕС‚Р°</span></div>
     </div>
   </div>
 </main>
@@ -141,12 +140,12 @@ tailwind.config = {
   <div class="flex flex-col md:flex-row justify-between items-center w-full px-12 py-10 gap-6 max-w-7xl mx-auto">
     <div class="text-lg font-bold text-blue-700 font-headline">Adzek</div>
     <div class="flex gap-8 font-inter text-sm tracking-wide">
-      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="privacy.html">Privacy Policy</a>
-      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="terms.html">Terms of Service</a>
-      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="index.html#delivery">Contact Us</a>
-      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="catalog.html">Каталог</a>
+      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="/privacy">Privacy Policy</a>
+      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="/terms">Terms of Service</a>
+      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="/#delivery">Contact Us</a>
+      <a class="text-slate-500 hover:text-blue-500 transition-colors" href="/catalog">РљР°С‚Р°Р»РѕРі</a>
     </div>
-    <p class="text-slate-500 font-inter text-sm">© 2026 Adzek. Purity in every drop.</p>
+    <p class="text-slate-500 font-inter text-sm">В© 2026 Adzek. Purity in every drop.</p>
   </div>
 </footer>
 
@@ -179,7 +178,7 @@ tailwind.config = {
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var style = document.createElement('style');
-  style.textContent = 'html.is-leaving body{opacity:0;transform:translateY(4px);transition:opacity .16s ease, transform .16s ease;}';
+  style.textContent = 'html.is-leaving body{opacity:0;transition:opacity .16s ease;}';
   document.head.appendChild(style);
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href]');
@@ -200,13 +199,13 @@ tailwind.config = {
 (function () {
   var authed = false;
   try { authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) {}
-  document.querySelectorAll('a[aria-label="Личный кабинет"]').forEach(function (accountLink) {
+  document.querySelectorAll('a[aria-label="Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚"]').forEach(function (accountLink) {
     var parent = accountLink.parentElement;
     if (!parent) return;
     var authActions = parent.querySelector('.auth-actions');
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -214,10 +213,16 @@ tailwind.config = {
     if (!authActions) {
       authActions = document.createElement('div');
       authActions.className = 'auth-actions flex items-center gap-2';
-      authActions.innerHTML = '<a href="login.html" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="register.html" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
+      authActions.innerHTML = '<a href="/login" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Р’РѕР№С‚Рё</a><a href="/register" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ</a>';
       parent.appendChild(authActions);
     }
   });
 })();
 </script>
+<script src='/assets/js/app.js' defer></script>
 </body></html>
+
+
+
+
+

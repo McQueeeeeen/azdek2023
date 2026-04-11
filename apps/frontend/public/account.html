@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="light" lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -93,13 +94,11 @@
             box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12);
             height: 4.25rem;
         }
-        @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
         html { scroll-behavior: smooth; }
         body { animation: pageFadeIn 220ms ease forwards; }
-    </style>
+    #topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
+</style>
 <script id="authGuard">
 (function () {
   var authed = false;
@@ -107,7 +106,7 @@
     authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
   } catch (e) {}
   if (!authed) {
-    window.location.replace('login.html');
+    window.location.replace('/login');
   }
 })();
 </script>
@@ -115,12 +114,12 @@
 <body class="bg-surface text-on-surface min-h-screen">
 <nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
   <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
-    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="/">Adzek</a>
     <div class="hidden md:flex gap-8 items-center">
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/catalog">Каталог</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#eco">Эко-линейка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#about">О бренде</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#delivery">Доставка</a>
     </div>
     <div class="flex items-center gap-6">
       <div class="relative hidden lg:block">
@@ -128,10 +127,10 @@
         <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
       </div>
       <div class="flex gap-4">
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/cart" aria-label="Корзина">
           <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
         </a>
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="login.html" aria-label="Личный кабинет">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/login" aria-label="Личный кабинет">
           <span class="material-symbols-outlined" data-icon="person">person</span>
         </a>
       </div>
@@ -157,60 +156,61 @@
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
 <aside class="lg:col-span-3 space-y-2">
 <nav class="bg-surface-container-low p-4 rounded-xl">
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="orders.html">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="/orders">
 <span class="material-symbols-outlined text-slate-400 group-hover:text-primary" data-icon="package_2">package_2</span>
 <span class="font-medium text-sm">Мои заказы</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-lowest text-primary shadow-sm group" href="account.html"><span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-lowest text-primary shadow-sm group" href="/account"><span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
 <span class="font-bold text-sm">Личные данные</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="addresses.html">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="/addresses">
 <span class="material-symbols-outlined text-slate-400 group-hover:text-primary" data-icon="location_on">location_on</span>
 <span class="font-medium text-sm">Адреса доставки</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="loyalty.html">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="/loyalty">
 <span class="material-symbols-outlined text-slate-400 group-hover:text-primary" data-icon="loyalty">loyalty</span>
 <span class="font-medium text-sm">Программа лояльности</span>
 </a>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="notifications.html">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="/notifications">
 <span class="material-symbols-outlined text-slate-400 group-hover:text-primary" data-icon="notifications">notifications</span>
 <span class="font-medium text-sm">Уведомления</span>
 </a>
 <div class="h-px bg-outline-variant/20 my-4 mx-4"></div>
-<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-error hover:bg-error-container/20 transition-all duration-300 group" href="index.html" onclick="try{localStorage.removeItem('adzekAuth');sessionStorage.removeItem('adzekAuth');localStorage.removeItem('adzekRole');sessionStorage.removeItem('adzekRole');localStorage.removeItem('adzekAdminAccess');sessionStorage.removeItem('adzekAdminAccess');}catch(e){}">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-error hover:bg-error-container/20 transition-all duration-300 group" href="/" onclick="try{localStorage.removeItem('adzekAuth');sessionStorage.removeItem('adzekAuth');localStorage.removeItem('adzekRole');sessionStorage.removeItem('adzekRole');localStorage.removeItem('adzekAdminAccess');sessionStorage.removeItem('adzekAdminAccess');localStorage.removeItem('adzekAccessToken');sessionStorage.removeItem('adzekAccessToken');localStorage.removeItem('adzekRefreshToken');sessionStorage.removeItem('adzekRefreshToken');}catch(e){}">
 <span class="material-symbols-outlined" data-icon="logout">logout</span>
 <span class="font-medium text-sm">Выход</span>
 </a>
 </nav>
 </aside>
 <section class="lg:col-span-6 bg-surface-container-lowest p-8 md:p-10 rounded-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
-<form class="space-y-6">
+<form id="profileForm" class="space-y-6">
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Имя</label>
-<input class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="text" value="Александр"/>
+<input id="profileFirstName" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="text" value="Александр"/>
 </div>
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Фамилия</label>
-<input class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="text" value="Чистов"/>
+<input id="profileLastName" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="text" value="Чистов"/>
 </div>
 </div>
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Email</label>
-<input class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="email" value="alex@adzek.ru"/>
+<input id="profileEmail" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="email" value="alex@adzek.ru"/>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Телефон</label>
-<input class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="tel" value="+7 (707) 000-00-00"/>
+<input id="profilePhone" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="tel" value="+7 (707) 000-00-00"/>
 </div>
 <div class="space-y-2">
 <label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Дата рождения</label>
-<input class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="text" value="12.05.1992"/>
+<input id="profileBirthDate" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="text" value="12.05.1992"/>
 </div>
 </div>
+<p id="profileSaveStatus" class="hidden text-sm font-medium"></p>
 <div class="pt-4">
-<button class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-lg shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300" type="button">
+<button id="saveProfileBtn" class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-lg shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300" type="button">
                             Сохранить изменения
                         </button>
 </div>
@@ -237,7 +237,7 @@
 <img class="w-10 h-10 rounded-full border-2 border-white object-cover" data-alt="clean minimalist spray bottle for kitchen cleaning set in a bright laboratory aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuNhkFT1IUQEMh_hGXDCumIfY_A7gvIR1gMlRuA6gQbPoTfRwcUmeytKevA9qvfGjn4J9nmA2lD9ABOH0T4el5XOg8XsJJ3FCIZUbph51d8E5pm8QHpe1u7e_VnftQj_kxgeQWxkzxoCPVp7miWpxqFJPbObhXhmLfBX170g-wx1i2tIF6LrFdd3yicar5dW7OTEZIn1hIoHI6XM4u-jSGX5C3T9hLOYDA6sc7J5DWGWXgmwMlHzxYE4fO6O3xL5cdUrr6BBy13BQK"/>
 <div class="w-10 h-10 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-500">+1</div>
 </div>
-<button class="w-full mt-4 text-xs font-bold text-primary hover:text-primary-container flex items-center justify-center gap-2 group">
+<button class="w-full mt-4 text-xs font-bold text-primary hover:text-primary-container flex items-center justify-center gap-2 group" data-order-repeat>
                             Повторить заказ
                             <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="refresh">refresh</span>
 </button>
@@ -263,31 +263,176 @@
 <div>
 <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-4">Навигация</h4>
 <ul class="space-y-2">
-<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html">О нас</a></li>
-<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html#delivery">Доставка</a></li>
-<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html">Гарантия</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="/">О нас</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="/#delivery">Доставка</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="/">Гарантия</a></li>
 </ul>
 </div>
 <div>
 <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-4">Поддержка</h4>
 <ul class="space-y-2">
-<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html">Контакты</a></li>
-<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="privacy.html">Политика конфиденциальности</a></li>
-<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html">Чат с лаборантом</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="/">Контакты</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="/privacy">Политика конфиденциальности</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="/">Чат с лаборантом</a></li>
 </ul>
 </div>
 <div>
 <h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-4">Соцсети</h4>
 <div class="flex gap-4">
-<a class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-colors" href="index.html">
+<a class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-colors" href="/">
 <span class="material-symbols-outlined text-sm" data-icon="share">share</span>
 </a>
-<a class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-colors" href="index.html">
+<a class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-colors" href="/">
 <span class="material-symbols-outlined text-sm" data-icon="alternate_email">alternate_email</span>
 </a>
 </div>
 </div>
 </footer>
+<script id="profilePersistence">
+(function () {
+  function getApiBaseCandidates() {
+    var stored = '';
+    try { stored = localStorage.getItem('adzekApiBase') || sessionStorage.getItem('adzekApiBase') || ''; } catch (e) {}
+    var list = [stored, '/v1', 'http://localhost:4000/v1', 'http://127.0.0.1:4000/v1'].filter(Boolean);
+    return list.filter(function (item, idx) { return list.indexOf(item) === idx; });
+  }
+
+  function getAccessToken() {
+    try {
+      return localStorage.getItem('adzekAccessToken') || sessionStorage.getItem('adzekAccessToken') || '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  function setStatus(message, isError) {
+    var node = document.getElementById('profileSaveStatus');
+    if (!node) return;
+    node.classList.remove('hidden', 'text-error', 'text-secondary');
+    node.classList.add(isError ? 'text-error' : 'text-secondary');
+    node.textContent = message;
+  }
+
+  function getPayload() {
+    var firstName = document.getElementById('profileFirstName');
+    var lastName = document.getElementById('profileLastName');
+    var email = document.getElementById('profileEmail');
+    var phone = document.getElementById('profilePhone');
+    return {
+      firstName: firstName ? String(firstName.value || '').trim() : '',
+      lastName: lastName ? String(lastName.value || '').trim() : '',
+      email: email ? String(email.value || '').trim().toLowerCase() : '',
+      phone: phone ? String(phone.value || '').trim() : '',
+    };
+  }
+
+  function fillProfile(data) {
+    var firstName = document.getElementById('profileFirstName');
+    var lastName = document.getElementById('profileLastName');
+    var email = document.getElementById('profileEmail');
+    var phone = document.getElementById('profilePhone');
+    if (firstName && data.firstName) firstName.value = data.firstName;
+    if (lastName && data.lastName) lastName.value = data.lastName;
+    if (email && data.email) email.value = data.email;
+    if (phone && data.phone) phone.value = data.phone;
+  }
+
+  async function requestWithFallback(path, options) {
+    var token = getAccessToken();
+    if (!token) throw new Error('NO_TOKEN');
+
+    var lastError = null;
+    var bases = getApiBaseCandidates();
+
+    for (var i = 0; i < bases.length; i += 1) {
+      var base = bases[i];
+      var url = base.replace(/\/+$/, '') + path;
+      try {
+        var headers = Object.assign({}, options && options.headers ? options.headers : {}, {
+          Authorization: 'Bearer ' + token,
+        });
+        var response = await fetch(url, Object.assign({}, options || {}, { headers: headers }));
+        if (response.ok) {
+          try {
+            localStorage.setItem('adzekApiBase', base);
+            sessionStorage.setItem('adzekApiBase', base);
+          } catch (e) {}
+          return response;
+        }
+        if (response.status === 401 || response.status === 403) {
+          throw new Error('UNAUTHORIZED');
+        }
+        lastError = new Error('HTTP ' + response.status + ' from ' + url);
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    throw lastError || new Error('API_UNAVAILABLE');
+  }
+
+  async function loadProfile() {
+    try {
+      var profileResponse = await requestWithFallback('/customers/me', { method: 'GET' });
+      var profile = await profileResponse.json();
+      fillProfile(profile || {});
+      return;
+    } catch (error) {
+      // Fallback for accounts without linked customer profile yet.
+      try {
+        var meResponse = await requestWithFallback('/auth/me', { method: 'GET' });
+        var me = await meResponse.json();
+        fillProfile({ email: me.email || '' });
+      } catch (inner) {
+        setStatus('Профиль не загрузился. Войдите снова.', true);
+      }
+    }
+  }
+
+  async function saveProfile() {
+    var button = document.getElementById('saveProfileBtn');
+    var initialText = button ? button.textContent : '';
+    var payload = getPayload();
+
+    if (button) {
+      button.disabled = true;
+      button.textContent = 'Сохранение...';
+    }
+    setStatus('Сохраняем изменения...', false);
+
+    try {
+      var response = await requestWithFallback('/customers/me', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      var data = await response.json();
+      fillProfile(data || payload);
+      setStatus('Изменения сохранены.', false);
+    } catch (error) {
+      if (String(error && error.message || '').includes('UNAUTHORIZED') || String(error && error.message || '').includes('NO_TOKEN')) {
+        setStatus('Сессия истекла. Выполните вход заново.', true);
+        window.setTimeout(function () { window.location.href = '/login'; }, 900);
+      } else {
+        setStatus('Не удалось сохранить профиль. Проверьте API и попробуйте снова.', true);
+      }
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = initialText;
+      }
+    }
+  }
+
+  var saveBtn = document.getElementById('saveProfileBtn');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', function () {
+      saveProfile();
+    });
+  }
+
+  loadProfile();
+})();
+</script>
 <script>
 (function () {
   const topNav = document.getElementById('topNav');
@@ -307,7 +452,7 @@
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var style = document.createElement('style');
-  style.textContent = 'html.is-leaving body{opacity:0;transform:translateY(4px);transition:opacity .16s ease, transform .16s ease;}';
+  style.textContent = 'html.is-leaving body{opacity:0;transition:opacity .16s ease;}';
   document.head.appendChild(style);
 
   document.addEventListener('click', function (e) {
@@ -343,7 +488,7 @@
 
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -355,12 +500,12 @@
       authActions.className = 'auth-actions flex items-center gap-2';
 
       var loginBtn = document.createElement('a');
-      loginBtn.href = 'login.html';
+      loginBtn.href = '/login';
       loginBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors';
       loginBtn.textContent = 'Войти';
 
       var registerBtn = document.createElement('a');
-      registerBtn.href = 'register.html';
+      registerBtn.href = '/register';
       registerBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity';
       registerBtn.textContent = 'Зарегистрироваться';
 
@@ -383,7 +528,7 @@
     try {
       if (intendedHref) {
         var u = new URL(intendedHref, window.location.href);
-        if (u.origin === window.location.origin && u.pathname.toLowerCase().endsWith('.html')) {
+        if (u.origin === window.location.origin && (!/\.[a-z0-9]+$/i.test(u.pathname.toLowerCase()) || u.pathname.toLowerCase().endsWith('.html'))) {
           sessionStorage.setItem('adzekReturnTo', u.pathname.split('/').pop() + u.search + u.hash);
         } else {
           sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop());
@@ -395,7 +540,7 @@
       try { sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop()); } catch (_) {}
     }
     try { sessionStorage.setItem('adzekAuthPrompt', 'commerce'); } catch (e) {}
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   }
 
   function hasText(node, text) {
@@ -414,7 +559,7 @@
 
     if (a) {
       var href = a.getAttribute('href') || '';
-      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('cart.html')) {
+      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('/cart')) {
         needsAuth = true;
       }
     }
@@ -445,7 +590,13 @@
   }, true);
 })();
 </script>
+<script src='/assets/js/app.js' defer></script>
 </body></html>
+
+
+
+
+
 
 
 

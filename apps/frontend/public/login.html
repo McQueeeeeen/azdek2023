@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
 <title>Вход - Adzek</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -78,7 +79,7 @@
   .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24; }
   .bg-login-hero { background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBcLdlzt1jVIRBgNYL5bFNVxAWPiel915ixmdrPqSTFMnu16kxsncQhC5yecODXriI5foThMFeSwgPC-D2zsv97CFJSHTjTbg14n8pg7yft2DkgngiMKqhJt5P8t9Q2nMaI83aIaUGxxXgGrXl0PnRYRr7WhLYM-kCWvbgjIiYG4sRJ7yWrZnyqbbmkl0ao6v1QH2coecnviYTcmTK7l_IQpYgeuDWiLg7mJeu2bkVsDDP8mZRd_-l0FZv80z_GyGdIVmrYvYHgxVLJ); background-size: cover; background-position: center; }
   .primary-gradient { background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%); }
-  @keyframes pageFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes softFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
   .reveal { opacity: 0; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease; }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -103,6 +104,7 @@
   }
   html { scroll-behavior: smooth; }
   body { animation: pageFadeIn 220ms ease forwards; }
+#topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
 </style>
 <script id="authRedirectIfLogged">
 (function () {
@@ -111,7 +113,7 @@
     authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
   } catch (e) {}
   if (authed) {
-    window.location.replace('account.html');
+    window.location.replace('/account');
   }
 })();
 </script>
@@ -122,7 +124,7 @@
     <div class="absolute inset-0 bg-login-hero"><div class="absolute inset-0 bg-primary/10"></div></div>
     <div class="relative z-10 p-16 flex flex-col justify-between w-full">
       <div class="flex items-center gap-2 reveal">
-        <a class="text-2xl font-headline font-extrabold tracking-tighter text-on-primary-fixed-variant drop-shadow-sm hover:opacity-80 transition-opacity" href="index.html">Adzek</a>
+        <a class="text-2xl font-headline font-extrabold tracking-tighter text-on-primary-fixed-variant drop-shadow-sm hover:opacity-80 transition-opacity" href="/">Adzek</a>
       </div>
       <div class="max-w-md reveal" style="transition-delay:.08s">
         <h1 class="text-5xl font-headline font-bold text-on-surface tracking-tight leading-tight mb-6">Чистота как искусство.</h1>
@@ -144,7 +146,7 @@
   <section class="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16 bg-surface">
     <div class="w-full max-w-md space-y-10 reveal">
       <div class="lg:hidden flex justify-center mb-8">
-        <a class="text-3xl font-headline font-extrabold tracking-tighter text-primary hover:opacity-80 transition-opacity" href="index.html">Adzek</a>
+        <a class="text-3xl font-headline font-extrabold tracking-tighter text-primary hover:opacity-80 transition-opacity" href="/">Adzek</a>
       </div>
       <div class="text-center lg:text-left">
         <h2 class="text-3xl font-headline font-bold text-on-surface mb-2">Добро пожаловать</h2>
@@ -166,7 +168,7 @@
         <div class="space-y-2">
           <div class="flex justify-between items-center px-1">
             <label class="block text-sm font-label font-semibold text-on-surface-variant" for="password">Пароль</label>
-            <a class="text-xs font-semibold text-primary hover:text-primary-container transition-colors" href="register.html">Забыли пароль?</a>
+            <a class="text-xs font-semibold text-primary hover:text-primary-container transition-colors" href="/register">Забыли пароль?</a>
           </div>
           <div class="field-shell relative rounded-xl">
             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-outline"><span class="material-symbols-outlined text-xl">lock</span></div>
@@ -189,28 +191,80 @@
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <button class="social-btn flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-lowest border border-outline-variant/10 rounded-xl hover:bg-surface-container-low font-semibold text-sm" type="button">
+        <button class="social-btn flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-lowest border border-outline-variant/10 rounded-xl hover:bg-surface-container-low font-semibold text-sm" type="button" data-toast="���. ���� �����">
           <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>
           Google
         </button>
-        <button class="social-btn flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-lowest border border-outline-variant/10 rounded-xl hover:bg-surface-container-low font-semibold text-sm" type="button">
+        <button class="social-btn flex items-center justify-center gap-2 py-3 px-4 bg-surface-container-lowest border border-outline-variant/10 rounded-xl hover:bg-surface-container-low font-semibold text-sm" type="button" data-toast="���. ���� �����">
           <svg class="w-5 h-5 dark:fill-white" viewBox="0 0 24 24"><path d="M17.05 20.28c-.96 0-2.04-.6-3.23-.6-1.18 0-2.11.58-3.04.58-1.84 0-4.46-3.53-4.46-6.52 0-3.03 2.11-4.63 4.1-4.63 1.07 0 2.01.62 2.72.62.7 0 1.83-.75 3.07-.75 1.48 0 2.65.65 3.38 1.67-3.08 1.54-2.58 5.48.51 6.84-.71 1.67-1.93 3.19-3.05 4.79zM15.11 5.33c-.76.92-2.04 1.58-3.05 1.51-.18-1.15.54-2.45 1.25-3.27.87-1.01 2.22-1.63 3.15-1.57.14 1.12-.59 2.41-1.35 3.33z"></path></svg>
           Apple ID
         </button>
       </div>
 
-      <p class="text-center text-on-surface-variant font-medium">Нет аккаунта? <a class="text-primary font-bold hover:underline" href="register.html">Создать сейчас</a></p>
+      <p class="text-center text-on-surface-variant font-medium">Нет аккаунта? <a class="text-primary font-bold hover:underline" href="/register">Создать сейчас</a></p>
 
       <div class="flex justify-center gap-6 text-[10px] font-label font-bold uppercase tracking-widest text-outline pt-8">
-        <a class="hover:text-primary transition-colors" href="privacy.html">Политика</a>
-        <a class="hover:text-primary transition-colors" href="terms.html">Условия</a>
-        <a class="hover:text-primary transition-colors" href="index.html#delivery">Поддержка</a>
+        <a class="hover:text-primary transition-colors" href="/privacy">Политика</a>
+        <a class="hover:text-primary transition-colors" href="/terms">Условия</a>
+        <a class="hover:text-primary transition-colors" href="/#delivery">Поддержка</a>
       </div>
     </div>
   </section>
 </main>
 
 <script>
+  function getApiBaseCandidates() {
+    var stored = '';
+    try { stored = localStorage.getItem('adzekApiBase') || sessionStorage.getItem('adzekApiBase') || ''; } catch (e) {}
+    var list = [stored, '/v1', 'http://localhost:4000/v1', 'http://127.0.0.1:4000/v1'].filter(Boolean);
+    return list.filter(function (item, idx) { return list.indexOf(item) === idx; });
+  }
+
+  async function requestWithApiFallback(path, options) {
+    var lastError = null;
+    var bases = getApiBaseCandidates();
+    for (var i = 0; i < bases.length; i += 1) {
+      var base = bases[i];
+      var url = base.replace(/\/+$/, '') + path;
+      try {
+        var response = await fetch(url, options);
+        if (response.ok) {
+          try {
+            localStorage.setItem('adzekApiBase', base);
+            sessionStorage.setItem('adzekApiBase', base);
+          } catch (e) {}
+          return response;
+        }
+        lastError = new Error('HTTP ' + response.status + ' from ' + url);
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    throw lastError || new Error('API is unavailable');
+  }
+
+  function persistAuth(payload) {
+    var remember = document.getElementById('remember') && document.getElementById('remember').checked;
+    var primary = remember ? localStorage : sessionStorage;
+    var secondary = remember ? sessionStorage : localStorage;
+
+    try {
+      primary.setItem('adzekAccessToken', payload.accessToken || '');
+      primary.setItem('adzekRefreshToken', payload.refreshToken || '');
+      secondary.removeItem('adzekAccessToken');
+      secondary.removeItem('adzekRefreshToken');
+
+      localStorage.setItem('adzekAuth', '1');
+      sessionStorage.setItem('adzekAuth', '1');
+      localStorage.setItem('adzekRole', (payload.user && payload.user.role) || 'customer');
+      sessionStorage.setItem('adzekRole', (payload.user && payload.user.role) || 'customer');
+      localStorage.removeItem('adzekAdminAccess');
+      sessionStorage.removeItem('adzekAdminAccess');
+      localStorage.setItem('adzekUser', JSON.stringify(payload.user || {}));
+      sessionStorage.setItem('adzekUser', JSON.stringify(payload.user || {}));
+    } catch (err) {}
+  }
+
   document.querySelectorAll('.reveal').forEach(function (el) {
     requestAnimationFrame(function () { el.classList.add('is-visible'); });
   });
@@ -240,22 +294,45 @@
       if (icon) icon.textContent = hidden ? 'visibility_off' : 'visibility';
     });
   });
-  document.getElementById('loginForm')?.addEventListener('submit', function (e) {
+  document.getElementById('loginForm')?.addEventListener('submit', async function (e) {
     e.preventDefault();
+    var emailInput = document.getElementById('email');
+    var passwordInput = document.getElementById('loginPassword');
+    var submitBtn = e.target.querySelector('button[type="submit"]');
+    var initialText = submitBtn ? submitBtn.textContent : '';
+
+    if (!emailInput || !passwordInput) return;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Вход...';
+    }
+
     try {
-      localStorage.setItem('adzekAuth', '1');
-      sessionStorage.setItem('adzekAuth', '1');
-      localStorage.setItem('adzekRole', 'user');
-      sessionStorage.setItem('adzekRole', 'user');
-      localStorage.removeItem('adzekAdminAccess');
-      sessionStorage.removeItem('adzekAdminAccess');
-    } catch (err) {}
-    var target = 'account.html';
+      var response = await requestWithApiFallback('/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: String(emailInput.value || '').trim(),
+          password: String(passwordInput.value || ''),
+        }),
+      });
+      var payload = await response.json();
+      persistAuth(payload);
+    } catch (err) {
+      alert('Не удалось войти. Проверьте email/пароль и доступность backend API.');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = initialText;
+      }
+      return;
+    }
+
+    var target = '/account';
     try {
       var pending = sessionStorage.getItem('adzekReturnTo');
       if (pending) {
         var parsed = new URL(pending, window.location.href);
-        if (parsed.origin === window.location.origin && parsed.pathname.toLowerCase().endsWith('.html')) {
+        if (parsed.origin === window.location.origin && (parsed.pathname.toLowerCase().endsWith('.html') || !/\.[a-z0-9]+$/i.test(parsed.pathname.toLowerCase()))) {
           target = parsed.pathname.split('/').pop() + parsed.search + parsed.hash;
         }
         sessionStorage.removeItem('adzekReturnTo');
@@ -268,7 +345,7 @@
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var style = document.createElement('style');
-  style.textContent = 'html.is-leaving body{opacity:0;transform:translateY(4px);transition:opacity .16s ease, transform .16s ease;}';
+  style.textContent = 'html.is-leaving body{opacity:0;transition:opacity .16s ease;}';
   document.head.appendChild(style);
 
   document.addEventListener('click', function (e) {
@@ -304,7 +381,7 @@
 
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -316,12 +393,12 @@
       authActions.className = 'auth-actions flex items-center gap-2';
 
       var loginBtn = document.createElement('a');
-      loginBtn.href = 'login.html';
+      loginBtn.href = '/login';
       loginBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors';
       loginBtn.textContent = 'Войти';
 
       var registerBtn = document.createElement('a');
-      registerBtn.href = 'register.html';
+      registerBtn.href = '/register';
       registerBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity';
       registerBtn.textContent = 'Зарегистрироваться';
 
@@ -344,7 +421,7 @@
     try {
       if (intendedHref) {
         var u = new URL(intendedHref, window.location.href);
-        if (u.origin === window.location.origin && u.pathname.toLowerCase().endsWith('.html')) {
+        if (u.origin === window.location.origin && (!/\.[a-z0-9]+$/i.test(u.pathname.toLowerCase()) || u.pathname.toLowerCase().endsWith('.html'))) {
           sessionStorage.setItem('adzekReturnTo', u.pathname.split('/').pop() + u.search + u.hash);
         } else {
           sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop());
@@ -356,7 +433,7 @@
       try { sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop()); } catch (_) {}
     }
     try { sessionStorage.setItem('adzekAuthPrompt', 'commerce'); } catch (e) {}
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   }
 
   function hasText(node, text) {
@@ -375,7 +452,7 @@
 
     if (a) {
       var href = a.getAttribute('href') || '';
-      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('cart.html')) {
+      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('/cart')) {
         needsAuth = true;
       }
     }
@@ -406,7 +483,14 @@
   }, true);
 })();
 </script>
+<script src='/assets/js/app.js' defer></script>
 </body></html>
+
+
+
+
+
+
 
 
 

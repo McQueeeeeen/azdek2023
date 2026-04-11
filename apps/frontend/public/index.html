@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -113,10 +114,7 @@
             box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12);
             height: 4.25rem;
         }
-        @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
         html { scroll-behavior: smooth; }
         body { animation: pageFadeIn 220ms ease forwards; }
         @media (prefers-reduced-motion: reduce) {
@@ -134,17 +132,18 @@
                 box-shadow: none;
             }
         }
-    </style>
+    #topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
+</style>
 </head>
 <body class="bg-surface text-on-surface">
 <nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
 <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
-<a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+<a class="text-2xl font-black text-blue-700 tracking-tighter" href="/">Adzek</a>
 <div class="hidden md:flex gap-8 items-center">
-<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
-<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
-<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
-<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/catalog">Каталог</a>
+<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#eco">Эко-линейка</a>
+<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#about">О бренде</a>
+<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#delivery">Доставка</a>
 </div>
 <div class="flex items-center gap-6">
 <div class="relative hidden lg:block">
@@ -152,10 +151,10 @@
 <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
 </div>
 <div class="flex gap-4">
-<a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+<a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/cart" aria-label="Корзина">
 <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
 </a>
-<a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="login.html" aria-label="Личный кабинет">
+<a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/login" aria-label="Личный кабинет">
 <span class="material-symbols-outlined" data-icon="person">person</span>
 </a>
 </div>
@@ -174,11 +173,11 @@
 <h1 class="text-6xl md:text-8xl font-extrabold text-on-surface tracking-tighter mb-6 leading-tight">Чистота от природы</h1>
 <p class="text-xl text-on-surface-variant mb-10 leading-relaxed font-body">Создаем безупречную чистоту в вашем доме, используя только силу растений и минералов. Безопасно для семьи, бережно к планете.</p>
 <div class="flex gap-4">
-<a class="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-bold shadow-lg border border-transparent outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 hover:opacity-90 hover:scale-105 transition-all" href="catalog.html">
+<a class="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-bold shadow-lg border border-transparent outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 hover:opacity-90 hover:scale-105 transition-all" href="/catalog">
                             Смотреть каталог
                             <span class="material-symbols-outlined">arrow_forward</span>
 </a>
-<button class="bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform">
+<button class="bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform" data-route="/#eco">
                             Эко-линейка
                         </button>
 </div>
@@ -222,7 +221,7 @@
                             </div>
 <h2 class="text-4xl font-bold mb-6 tracking-tighter">Мы зациклили производство</h2>
 <p class="text-on-surface-variant mb-8 text-lg">Каждая упаковка Adzek на 100% состоит из переработанного океанического пластика. Принесите пустую тару в наши пункты приема и получите скидку 15%.</p>
-<button class="border-2 border-primary text-primary px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-colors">
+<button class="border-2 border-primary text-primary px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-colors" data-route="/#delivery">
                                 Найти пункт приема
                             </button>
 </div>
@@ -240,7 +239,7 @@
 <h2 class="text-4xl font-extrabold tracking-tight mb-4">Натуральные бестселлеры</h2>
 <p class="text-on-surface-variant">Средства, которые выбирают осознанные потребители</p>
 </div>
-<a class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all" href="catalog.html">
+<a class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all" href="/catalog">
                         Весь каталог <span class="material-symbols-outlined">east</span>
 </a>
 </div>
@@ -320,7 +319,7 @@
 <div class="bg-white/30 backdrop-blur-xl p-16 rounded-xl border border-white/40 text-center">
 <h2 class="text-4xl font-bold mb-6 tracking-tight">Станьте частью Adzek</h2>
 <p class="text-lg mb-10 text-on-surface">Подпишитесь на наши советы по экологичной уборке и получайте персональные предложения.</p>
-<form class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+<form class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto" data-newsletter>
 <input class="flex-grow px-6 py-4 rounded-xl bg-white/60 border-none focus:ring-2 focus:ring-primary/20 placeholder:text-slate-600" placeholder="Ваш e-mail" type="email"/>
 <button class="newsletter-btn bg-primary text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-primary/30 transition-all">Подписаться</button>
 </form>
@@ -337,19 +336,19 @@
 <div>
 <h4 class="font-bold mb-6">Покупателям</h4>
 <ul class="flex flex-col gap-4 text-slate-500 text-sm">
-<li><a class="hover:text-blue-500 transition-colors" href="catalog.html">Каталог</a></li>
-<li><a class="hover:text-blue-500 transition-colors" href="index.html#delivery">Доставка и оплата</a></li>
-<li><a class="hover:text-blue-500 transition-colors" href="index.html#delivery">Условия возврата</a></li>
-<li><a class="hover:text-blue-500 transition-colors" href="index.html#about">Сертификаты</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="/catalog">Каталог</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="/#delivery">Доставка и оплата</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="/#delivery">Условия возврата</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="/#about">Сертификаты</a></li>
 </ul>
 </div>
 <div>
 <h4 class="font-bold mb-6">О компании</h4>
 <ul class="flex flex-col gap-4 text-slate-500 text-sm">
-<li><a class="hover:text-blue-500 transition-colors" href="index.html#about">О бренде</a></li>
-<li><a class="hover:text-blue-500 transition-colors" href="index.html#about">Эко-инициативы</a></li>
-<li><a class="hover:text-blue-500 transition-colors" href="index.html#delivery">Контакты</a></li>
-<li><a class="hover:text-blue-500 transition-colors" href="privacy.html">Политика конфиденциальности</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="/#about">О бренде</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="/#about">Эко-инициативы</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="/#delivery">Контакты</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="/privacy">Политика конфиденциальности</a></li>
 </ul>
 </div>
 <div>
@@ -427,7 +426,7 @@
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var style = document.createElement('style');
-  style.textContent = 'html.is-leaving body{opacity:0;transform:translateY(4px);transition:opacity .16s ease, transform .16s ease;}';
+  style.textContent = 'html.is-leaving body{opacity:0;transition:opacity .16s ease;}';
   document.head.appendChild(style);
 
   document.addEventListener('click', function (e) {
@@ -463,7 +462,7 @@
 
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -475,12 +474,12 @@
       authActions.className = 'auth-actions flex items-center gap-2';
 
       var loginBtn = document.createElement('a');
-      loginBtn.href = 'login.html';
+      loginBtn.href = '/login';
       loginBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors';
       loginBtn.textContent = 'Войти';
 
       var registerBtn = document.createElement('a');
-      registerBtn.href = 'register.html';
+      registerBtn.href = '/register';
       registerBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity';
       registerBtn.textContent = 'Зарегистрироваться';
 
@@ -503,7 +502,7 @@
     try {
       if (intendedHref) {
         var u = new URL(intendedHref, window.location.href);
-        if (u.origin === window.location.origin && u.pathname.toLowerCase().endsWith('.html')) {
+        if (u.origin === window.location.origin && (!/\.[a-z0-9]+$/i.test(u.pathname.toLowerCase()) || u.pathname.toLowerCase().endsWith('.html'))) {
           sessionStorage.setItem('adzekReturnTo', u.pathname.split('/').pop() + u.search + u.hash);
         } else {
           sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop());
@@ -515,7 +514,7 @@
       try { sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop()); } catch (_) {}
     }
     try { sessionStorage.setItem('adzekAuthPrompt', 'commerce'); } catch (e) {}
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   }
 
   function hasText(node, text) {
@@ -534,7 +533,7 @@
 
     if (a) {
       var href = a.getAttribute('href') || '';
-      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('cart.html')) {
+      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('/cart')) {
         needsAuth = true;
       }
     }
@@ -565,7 +564,158 @@
   }, true);
 })();
 </script>
+<script id="adzekCartStore">
+(function (w) {
+  if (w.ADZEK_CART) return;
+
+  function safeParse(value, fallback) {
+    try { return JSON.parse(value); } catch (_) { return fallback; }
+  }
+
+  function getStoredUser() {
+    var fromLocal = safeParse(localStorage.getItem('adzekUser') || 'null', null);
+    if (fromLocal && typeof fromLocal === 'object') return fromLocal;
+    var fromSession = safeParse(sessionStorage.getItem('adzekUser') || 'null', null);
+    if (fromSession && typeof fromSession === 'object') return fromSession;
+    return null;
+  }
+
+  function getUserKey() {
+    var user = getStoredUser();
+    if (!user) return 'anonymous';
+    var raw = user.id || user.userId || user.email || user.phone || user.username || 'anonymous';
+    return String(raw).trim().toLowerCase();
+  }
+
+  function cartKey() {
+    return 'adzekCartV2:' + getUserKey();
+  }
+
+  function isAuthed() {
+    try {
+      return localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function read() {
+    var list = safeParse(localStorage.getItem(cartKey()) || '[]', []);
+    if (!Array.isArray(list)) return [];
+    return list.filter(function (item) {
+      return item && typeof item === 'object' && item.id && item.name && Number(item.price) > 0;
+    });
+  }
+
+  function write(items) {
+    localStorage.setItem(cartKey(), JSON.stringify(items));
+    w.dispatchEvent(new CustomEvent('adzek-cart-changed', { detail: { count: count() } }));
+  }
+
+  function count() {
+    return read().reduce(function (acc, item) { return acc + Math.max(1, Number(item.qty) || 1); }, 0);
+  }
+
+  function makeId(name, price) {
+    var slug = String(name || 'item').toLowerCase().replace(/[^a-z�-�0-9]+/gi, '-').replace(/(^-|-$)/g, '');
+    return slug + '-' + String(price || 0);
+  }
+
+  function add(item) {
+    var list = read();
+    var next = {
+      id: item.id || makeId(item.name, item.price),
+      name: String(item.name || '�����'),
+      subtitle: String(item.subtitle || ''),
+      image: String(item.image || ''),
+      price: Number(item.price) || 0,
+      qty: Math.max(1, Number(item.qty) || 1)
+    };
+    var existing = list.find(function (entry) { return entry.id === next.id; });
+    if (existing) {
+      existing.qty += next.qty;
+    } else {
+      list.push(next);
+    }
+    write(list);
+  }
+
+  function updateQty(id, delta) {
+    var list = read();
+    var row = list.find(function (entry) { return entry.id === id; });
+    if (!row) return;
+    row.qty = Math.max(1, (Number(row.qty) || 1) + delta);
+    write(list);
+  }
+
+  function remove(id) {
+    write(read().filter(function (entry) { return entry.id !== id; }));
+  }
+
+  w.ADZEK_CART = {
+    isAuthed: isAuthed,
+    getUserKey: getUserKey,
+    read: read,
+    write: write,
+    count: count,
+    add: add,
+    updateQty: updateQty,
+    remove: remove
+  };
+})(window);
+</script>
+<script id="indexCartActions">
+(function () {
+  if (!window.ADZEK_CART) return;
+
+  function parsePrice(text) {
+    var num = String(text || '').replace(/[^\d]/g, '');
+    return Number(num || 0);
+  }
+
+  function extractItem(button) {
+    var card = button.closest('.group');
+    if (!card) return null;
+    var nameEl = card.querySelector('h3');
+    var subtitleEl = card.querySelector('p');
+    var priceEl = card.querySelector('p.text-lg, span.text-lg, p.text-xl, span.text-xl');
+    var imageEl = card.querySelector('img');
+    var name = nameEl ? nameEl.textContent.trim() : '';
+    var price = parsePrice(priceEl ? priceEl.textContent : '');
+    if (!name || !price) return null;
+    return {
+      id: card.getAttribute('data-product-id') || '',
+      name: name,
+      subtitle: subtitleEl ? subtitleEl.textContent.trim() : '',
+      image: imageEl ? imageEl.getAttribute('src') || '' : '',
+      price: price,
+      qty: 1
+    };
+  }
+
+  document.addEventListener('click', function (e) {
+    var button = e.target.closest('.product-cart-btn');
+    if (!button) return;
+    if (!window.ADZEK_CART.isAuthed()) return;
+
+    var item = extractItem(button);
+    if (!item) return;
+    window.ADZEK_CART.add(item);
+
+    button.classList.add('ring-2', 'ring-emerald-400');
+    window.setTimeout(function () { button.classList.remove('ring-2', 'ring-emerald-400'); }, 500);
+  }, true);
+})();
+</script>
+<script src='/assets/js/app.js' defer></script>
 </body></html>
+
+
+
+
+
+
+
 
 
 

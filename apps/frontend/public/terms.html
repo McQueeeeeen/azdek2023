@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
 <title>Условия использования | Adzek</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -37,28 +38,31 @@
   body { font-family: 'Inter', sans-serif; }
   h1, h2, h3 { font-family: 'Manrope', sans-serif; }
   .glass-nav { background: rgba(247, 249, 251, 0.7); backdrop-filter: blur(20px); }
+  .top-nav { transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease; }
+  .top-nav.is-scrolled { background-color: rgba(247,249,251,0.94); box-shadow: 0 12px 30px rgba(0,88,188,.12); height: 4.25rem; }
+#topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
 </style>
 </head>
 <body class="bg-surface text-on-surface">
-<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm">
+<nav id="topNav" class="top-nav fixed top-0 w-full z-50 glass-nav shadow-sm h-20">
   <div class="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto">
-    <a class="text-2xl font-black tracking-tighter text-[#191c1e]" href="index.html">Adzek</a>
+    <a class="text-2xl font-black tracking-tighter text-[#191c1e]" href="/">Adzek</a>
     <div class="hidden md:flex items-center space-x-8 font-headline tracking-tight font-bold">
-      <a class="text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="catalog.html">Каталог</a>
-      <a class="text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="index.html#eco">Эко-линейка</a>
-      <a class="text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="index.html#about">О бренде</a>
-      <a class="text-primary border-b-2 border-primary pb-1 transition-all duration-300" href="terms.html">Условия</a>
+      <a class="text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="/catalog">Каталог</a>
+      <a class="text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="/#eco">Эко-линейка</a>
+      <a class="text-[#191c1e]/60 hover:text-primary transition-all duration-300" href="/#about">О бренде</a>
+      <a class="text-primary border-b-2 border-primary pb-1 transition-all duration-300" href="/terms">Условия</a>
     </div>
     <div class="flex items-center space-x-4">
-      <a class="hover:opacity-80 transition-all duration-300 scale-95 active:scale-90 p-2" href="cart.html" aria-label="Корзина"><span class="material-symbols-outlined text-[#191c1e]">shopping_cart</span></a>
-      <a class="hover:opacity-80 transition-all duration-300 scale-95 active:scale-90 p-2" href="login.html" aria-label="Личный кабинет"><span class="material-symbols-outlined text-[#191c1e]">account_circle</span></a>
+      <a class="hover:opacity-80 transition-all duration-300 scale-95 active:scale-90 p-2" href="/cart" aria-label="Корзина"><span class="material-symbols-outlined text-[#191c1e]">shopping_cart</span></a>
+      <a class="hover:opacity-80 transition-all duration-300 scale-95 active:scale-90 p-2" href="/login" aria-label="Личный кабинет"><span class="material-symbols-outlined text-[#191c1e]">account_circle</span></a>
     </div>
   </div>
 </nav>
 
 <main class="pt-32 pb-24 px-6 md:px-12 max-w-[1440px] mx-auto">
   <div class="mb-12 flex items-center space-x-2 text-on-surface-variant text-sm">
-    <a href="index.html">Главная</a><span class="material-symbols-outlined text-xs">chevron_right</span>
+    <a href="/">Главная</a><span class="material-symbols-outlined text-xs">chevron_right</span>
     <span>Помощь</span><span class="material-symbols-outlined text-xs">chevron_right</span>
     <span class="text-primary font-semibold">Условия использования</span>
   </div>
@@ -123,7 +127,7 @@
             <div class="relative z-10">
               <h2 class="text-3xl font-bold mb-4">Безопасность данных</h2>
               <p class="text-blue-100 text-lg max-w-xl mb-8">Мы используем шифрование банковского уровня для защиты персональных данных и транзакций.</p>
-              <a class="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary font-bold rounded-lg hover:opacity-90 transition-all" href="privacy.html">Политика конфиденциальности <span class="material-symbols-outlined">arrow_forward</span></a>
+              <a class="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary font-bold rounded-lg hover:opacity-90 transition-all" href="/privacy">Политика конфиденциальности <span class="material-symbols-outlined">arrow_forward</span></a>
             </div>
             <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-primary-container rounded-full opacity-20 blur-3xl"></div>
           </div>
@@ -146,7 +150,7 @@
 
         <div class="bg-surface-container-high p-10 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-8">
           <div><h3 class="text-2xl font-bold mb-2">Остались вопросы?</h3><p class="text-on-surface-variant">Наша служба поддержки работает круглосуточно.</p></div>
-          <a href="index.html#delivery" class="px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all">Связаться с нами</a>
+          <a href="/#delivery" class="px-8 py-4 bg-primary text-white font-bold rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all">Связаться с нами</a>
         </div>
       </div>
     </article>
@@ -157,10 +161,10 @@
   <div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-[1440px] mx-auto">
     <div class="mb-8 md:mb-0"><div class="font-manrope font-bold text-[#191c1e] text-xl mb-4">Adzek</div><p class="font-inter text-sm leading-relaxed text-[#191c1e]/50 max-w-xs">Создаем чистое будущее через науку и уважение к природе.</p></div>
     <div class="flex flex-wrap justify-center gap-8 md:gap-12">
-      <a class="font-inter text-sm text-[#191c1e]/50 hover:text-primary transition-colors" href="privacy.html">Privacy Policy</a>
-      <a class="font-inter text-sm font-semibold text-primary" href="terms.html">Terms of Service</a>
-      <a class="font-inter text-sm text-[#191c1e]/50 hover:text-primary transition-colors" href="index.html#about">Sustainability Report</a>
-      <a class="font-inter text-sm text-[#191c1e]/50 hover:text-primary transition-colors" href="index.html#delivery">Contact Us</a>
+      <a class="font-inter text-sm text-[#191c1e]/50 hover:text-primary transition-colors" href="/privacy">Privacy Policy</a>
+      <a class="font-inter text-sm font-semibold text-primary" href="/terms">Terms of Service</a>
+      <a class="font-inter text-sm text-[#191c1e]/50 hover:text-primary transition-colors" href="/#about">Sustainability Report</a>
+      <a class="font-inter text-sm text-[#191c1e]/50 hover:text-primary transition-colors" href="/#delivery">Contact Us</a>
     </div>
   </div>
   <div class="w-full text-center pb-8 text-xs text-[#191c1e]/30">© 2026 Adzek. All Rights Reserved.</div>
@@ -176,7 +180,7 @@
     var authActions = parent.querySelector('.auth-actions');
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -184,11 +188,29 @@
     if (!authActions) {
       authActions = document.createElement('div');
       authActions.className = 'auth-actions flex items-center gap-2';
-      authActions.innerHTML = '<a href="login.html" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="register.html" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
+      authActions.innerHTML = '<a href="/login" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="/register" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
       parent.appendChild(authActions);
     }
   });
 })();
 </script>
+<script>
+(function () {
+  var topNav = document.getElementById('topNav');
+  if (!topNav) return;
+  function onScroll() {
+    if (window.scrollY > 12) topNav.classList.add('is-scrolled');
+    else topNav.classList.remove('is-scrolled');
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+<script src='/assets/js/app.js' defer></script>
 </body></html>
+
+
+
+
+
 

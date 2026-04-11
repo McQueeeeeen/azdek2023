@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Админ-панель — Adzek</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg"/>
+<title>Админ-панель — Adzek</title>
   <meta name="robots" content="noindex,nofollow" />
   <script>
     (function enforceAdminAccess() {
@@ -12,10 +13,10 @@
         var role = localStorage.getItem('adzekRole') || sessionStorage.getItem('adzekRole');
         var issued = localStorage.getItem('adzekAdminAccess') === 'granted' || sessionStorage.getItem('adzekAdminAccess') === 'granted';
         if (!(authed && role === 'admin' && issued)) {
-          window.location.replace('index.html');
+          window.location.replace('/');
         }
       } catch (e) {
-        window.location.replace('index.html');
+        window.location.replace('/');
       }
     })();
   </script>
@@ -71,18 +72,19 @@
       opacity: 1;
       transform: translateY(0);
     }
-  </style>
+  #topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
+</style>
 </head>
 <body class="bg-surface text-on-surface">
   <div class="min-h-screen">
     <header class="fixed top-0 left-0 right-0 z-50 h-20 bg-white/75 backdrop-blur-xl border-b border-outline-variant/30">
       <div class="h-full max-w-[1600px] mx-auto px-6 lg:px-10 flex items-center justify-between">
         <div class="flex items-center gap-8">
-          <a href="index.html" class="text-3xl font-black tracking-tighter text-primary hover:opacity-80 transition-opacity">Adzek</a>
+          <a href="/" class="text-3xl font-black tracking-tighter text-primary hover:opacity-80 transition-opacity">Adzek</a>
           <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
-            <a href="index.html" class="text-on-surface-variant hover:text-primary transition-colors">Главная</a>
-            <a href="catalog.html" class="text-on-surface-variant hover:text-primary transition-colors">Каталог</a>
-            <a href="account.html" class="text-on-surface-variant hover:text-primary transition-colors">Кабинет</a>
+            <a href="/" class="text-on-surface-variant hover:text-primary transition-colors">Главная</a>
+            <a href="/catalog" class="text-on-surface-variant hover:text-primary transition-colors">Каталог</a>
+            <a href="/account" class="text-on-surface-variant hover:text-primary transition-colors">Кабинет</a>
             <span class="text-primary border-b-2 border-primary pb-1">Админ</span>
           </nav>
         </div>
@@ -92,10 +94,10 @@
             <span class="material-symbols-outlined text-on-surface-variant text-lg">search</span>
             <input type="text" placeholder="Поиск по заказам, товарам, пользователям..." class="ml-2 bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/70" />
           </div>
-          <a href="notifications.html" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-surface-container-high transition-colors" aria-label="Уведомления">
+          <a href="/notifications" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-surface-container-high transition-colors" aria-label="Уведомления">
             <span class="material-symbols-outlined text-primary">notifications</span>
           </a>
-          <a href="account.html" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-surface-container-high transition-colors" aria-label="Профиль">
+          <a href="/account" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-surface-container-high transition-colors" aria-label="Профиль">
             <span class="material-symbols-outlined text-primary">person</span>
           </a>
         </div>
@@ -111,27 +113,27 @@
         </div>
 
         <nav class="space-y-2 text-sm font-semibold">
-          <a href="admin.html#dashboard" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container-lowest text-primary shadow-soft">
+          <a href="/admin#dashboard" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-container-lowest text-primary shadow-soft">
             <span class="material-symbols-outlined">dashboard</span>
             Дашборд
           </a>
-          <a href="admin.html#products" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+          <a href="/admin#products" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
             <span class="material-symbols-outlined">shopping_bag</span>
             Заказы
           </a>
-          <a href="admin.html#clients" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+          <a href="/admin#clients" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
             <span class="material-symbols-outlined">inventory_2</span>
             Товары
           </a>
-          <a href="admin.html#finance" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+          <a href="/admin#finance" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
             <span class="material-symbols-outlined">group</span>
             Клиенты
           </a>
-          <a href="admin.html#settings" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+          <a href="/admin#settings" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
             <span class="material-symbols-outlined">payments</span>
             Финансы
           </a>
-          <a href="admin.html#orders" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
+          <a href="/admin#orders" class="admin-reveal flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary transition-all">
             <span class="material-symbols-outlined">settings</span>
             Настройки
           </a>
@@ -145,8 +147,8 @@
             <p class="text-on-surface-variant mt-2">Обновлено сегодня, 07 апреля 2026 • 12:34</p>
           </div>
           <div class="flex items-center gap-3">
-            <button class="px-5 py-3 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-sm font-bold hover:bg-surface-container-low transition-colors">Экспорт отчета</button>
-            <button class="px-5 py-3 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary-container transition-colors">Добавить товар</button>
+            <button class="px-5 py-3 rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-sm font-bold hover:bg-surface-container-low transition-colors" data-admin-action="������� ������">Экспорт отчета</button>
+            <button class="px-5 py-3 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary-container transition-colors" data-admin-action="�������� �����">Добавить товар</button>
           </div>
         </section>
 
@@ -193,7 +195,7 @@
             <article id="orders" class="admin-reveal bg-surface-container-lowest rounded-2xl shadow-soft overflow-hidden">
               <div class="px-6 py-5 border-b border-outline-variant/20 flex items-center justify-between">
                 <h3 class="text-xl font-bold">Последние заказы</h3>
-                <a href="admin.html#orders" class="text-sm font-bold text-primary hover:underline">Все заказы</a>
+                <a href="/admin#orders" class="text-sm font-bold text-primary hover:underline">Все заказы</a>
               </div>
               <div class="overflow-x-auto">
                 <table class="w-full min-w-[760px] text-sm">
@@ -214,7 +216,7 @@
                       <td class="py-4 px-6"><span class="inline-flex px-2.5 py-1 rounded-full bg-secondary-container text-secondary text-xs font-bold">Оплачен</span></td>
                       <td class="py-4 px-6 text-on-surface-variant">07.04.2026</td>
                       <td class="py-4 px-6 text-right font-bold">₸ 84 900</td>
-                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition-colors">Открыть</button></td>
+                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition-colors" data-admin-action="������� �����">Открыть</button></td>
                     </tr>
                     <tr class="hover:bg-surface-container-low/40 transition-colors">
                       <td class="py-4 px-6 font-bold">#AZ-9408</td>
@@ -222,7 +224,7 @@
                       <td class="py-4 px-6"><span class="inline-flex px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">В обработке</span></td>
                       <td class="py-4 px-6 text-on-surface-variant">07.04.2026</td>
                       <td class="py-4 px-6 text-right font-bold">₸ 39 500</td>
-                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition-colors">Открыть</button></td>
+                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-primary text-white text-xs font-bold hover:bg-primary-container transition-colors" data-admin-action="������� �����">Открыть</button></td>
                     </tr>
                     <tr class="hover:bg-surface-container-low/40 transition-colors">
                       <td class="py-4 px-6 font-bold">#AZ-9399</td>
@@ -230,7 +232,7 @@
                       <td class="py-4 px-6"><span class="inline-flex px-2.5 py-1 rounded-full bg-error-container text-error text-xs font-bold">Отмена</span></td>
                       <td class="py-4 px-6 text-on-surface-variant">06.04.2026</td>
                       <td class="py-4 px-6 text-right font-bold">₸ 12 400</td>
-                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-surface-container-low text-on-surface text-xs font-bold hover:bg-surface-container-high transition-colors">Детали</button></td>
+                      <td class="py-4 px-6 text-right"><button class="px-3 py-2 rounded-lg bg-surface-container-low text-on-surface text-xs font-bold hover:bg-surface-container-high transition-colors" data-admin-action="������">Детали</button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -240,7 +242,7 @@
             <article id="products" class="admin-reveal bg-surface-container-lowest rounded-2xl shadow-soft p-6">
               <div class="flex items-center justify-between mb-5">
                 <h3 class="text-xl font-bold">Товары с низким остатком</h3>
-                <button class="text-sm font-bold text-primary hover:underline">Сформировать закупку</button>
+                <button class="text-sm font-bold text-primary hover:underline" data-admin-action="������������ �������">Сформировать закупку</button>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="p-4 rounded-xl bg-surface-container-low flex items-center justify-between">
@@ -279,9 +281,9 @@
             <article id="clients" class="admin-reveal bg-surface-container-lowest rounded-2xl p-6 shadow-soft">
               <h3 class="text-lg font-bold mb-4">Быстрые действия</h3>
               <div class="space-y-3">
-                <button class="w-full px-4 py-3 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-container transition-colors">Подтвердить все новые заказы</button>
-                <button class="w-full px-4 py-3 rounded-xl bg-surface-container-low font-bold text-sm hover:bg-surface-container-high transition-colors">Обновить цены по курсу</button>
-                <button class="w-full px-4 py-3 rounded-xl bg-surface-container-low font-bold text-sm hover:bg-surface-container-high transition-colors">Создать промокод</button>
+                <button class="w-full px-4 py-3 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-container transition-colors" data-admin-action="����������� ������">Подтвердить все новые заказы</button>
+                <button class="w-full px-4 py-3 rounded-xl bg-surface-container-low font-bold text-sm hover:bg-surface-container-high transition-colors" data-admin-action="�������� ����">Обновить цены по курсу</button>
+                <button class="w-full px-4 py-3 rounded-xl bg-surface-container-low font-bold text-sm hover:bg-surface-container-high transition-colors" data-admin-action="������� ��������">Создать промокод</button>
               </div>
             </article>
 
@@ -322,6 +324,14 @@
       });
     })();
   </script>
+<script src='/assets/js/app.js' defer></script>
 </body>
 </html>
+
+
+
+
+
+
+
 

@@ -2,12 +2,13 @@
 <html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Заказ подтвержден | Adzek</title>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
+<title>Р—Р°РєР°Р· РїРѕРґС‚РІРµСЂР¶РґРµРЅ | Adzek</title>
 <script id="authGuard">
 (function () {
   var authed = false;
   try { authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) {}
-  if (!authed) window.location.replace('login.html');
+  if (!authed) window.location.replace('/login');
 })();
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -50,33 +51,34 @@ tailwind.config = {
   .top-nav.is-scrolled { background-color: rgba(255, 255, 255, 0.92); box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12); height: 4.25rem; }
   .reveal { opacity: 0; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease; }
   .reveal.show { opacity: 1; transform: translateY(0); }
-  @keyframes pageFadeIn { from { opacity: 0; transform: translateY(6px);} to { opacity: 1; transform: translateY(0);} }
+  @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
   @media (prefers-reduced-motion: reduce) {
     body { animation: none; }
     .reveal { opacity: 1; transform: none; transition: none; }
   }
+#topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
 </style>
 </head>
 <body class="bg-surface text-on-surface">
 <nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
   <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
-    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="/">Adzek</a>
     <div class="hidden md:flex gap-8 items-center">
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/catalog">РљР°С‚Р°Р»РѕРі</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#eco">Р­РєРѕ-Р»РёРЅРµР№РєР°</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#about">Рћ Р±СЂРµРЅРґРµ</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#delivery">Р”РѕСЃС‚Р°РІРєР°</a>
     </div>
     <div class="flex items-center gap-6">
       <div class="relative hidden lg:block">
         <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
-        <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
+        <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-primary/20 text-sm" placeholder="РџРѕРёСЃРє С‡РёСЃС‚РѕС‚С‹..." type="text"/>
       </div>
       <div class="flex gap-4">
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/cart" aria-label="РљРѕСЂР·РёРЅР°">
           <span class="material-symbols-outlined">shopping_cart</span>
         </a>
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="account.html" aria-label="Личный кабинет">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/account" aria-label="Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚">
           <span class="material-symbols-outlined">person</span>
         </a>
       </div>
@@ -89,8 +91,8 @@ tailwind.config = {
     <div class="inline-flex items-center justify-center w-20 h-20 bg-secondary-container rounded-full mb-6">
       <span class="material-symbols-outlined text-on-secondary-container text-4xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
     </div>
-    <h1 class="font-headline text-4xl font-extrabold tracking-tight mb-4">Заказ №4829 подтвержден</h1>
-    <p class="text-on-surface-variant text-lg max-w-md mx-auto">Спасибо за заказ. Мы уже начали сборку и скоро передадим его в доставку.</p>
+    <h1 class="font-headline text-4xl font-extrabold tracking-tight mb-4">Р—Р°РєР°Р· в„–4829 РїРѕРґС‚РІРµСЂР¶РґРµРЅ</h1>
+    <p class="text-on-surface-variant text-lg max-w-md mx-auto">РЎРїР°СЃРёР±Рѕ Р·Р° Р·Р°РєР°Р·. РњС‹ СѓР¶Рµ РЅР°С‡Р°Р»Рё СЃР±РѕСЂРєСѓ Рё СЃРєРѕСЂРѕ РїРµСЂРµРґР°РґРёРј РµРіРѕ РІ РґРѕСЃС‚Р°РІРєСѓ.</p>
   </section>
 
   <section class="bg-surface-container-lowest rounded-xl p-8 mb-8 shadow-[0_20px_40px_rgba(0,88,188,0.06)] reveal">
@@ -99,19 +101,19 @@ tailwind.config = {
       <div class="absolute top-5 left-0 w-1/3 h-0.5 bg-secondary -z-0"></div>
       <div class="relative z-10 flex flex-col items-center gap-3">
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-secondary text-white"><span class="material-symbols-outlined text-sm">check</span></div>
-        <span class="text-xs font-semibold tracking-wide uppercase text-on-surface-variant">Принят</span>
+        <span class="text-xs font-semibold tracking-wide uppercase text-on-surface-variant">РџСЂРёРЅСЏС‚</span>
       </div>
       <div class="relative z-10 flex flex-col items-center gap-3">
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-white shadow-[0_0_0_4px_#d8e2ff]"><span class="material-symbols-outlined text-sm">inventory_2</span></div>
-        <span class="text-xs font-semibold tracking-wide uppercase text-primary">Собирается</span>
+        <span class="text-xs font-semibold tracking-wide uppercase text-primary">РЎРѕР±РёСЂР°РµС‚СЃСЏ</span>
       </div>
       <div class="relative z-10 flex flex-col items-center gap-3">
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-outline"><span class="material-symbols-outlined text-sm">local_shipping</span></div>
-        <span class="text-xs font-semibold tracking-wide uppercase text-outline">В пути</span>
+        <span class="text-xs font-semibold tracking-wide uppercase text-outline">Р’ РїСѓС‚Рё</span>
       </div>
       <div class="relative z-10 flex flex-col items-center gap-3">
         <div class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-outline"><span class="material-symbols-outlined text-sm">home_pin</span></div>
-        <span class="text-xs font-semibold tracking-wide uppercase text-outline">Доставлен</span>
+        <span class="text-xs font-semibold tracking-wide uppercase text-outline">Р”РѕСЃС‚Р°РІР»РµРЅ</span>
       </div>
     </div>
   </section>
@@ -119,27 +121,27 @@ tailwind.config = {
   <div class="grid md:grid-cols-2 gap-6 mb-8">
     <div class="bg-surface-container-lowest rounded-xl p-6 shadow-[0_20px_40px_rgba(0,88,188,0.06)] flex flex-col gap-4 reveal">
       <div class="flex items-center justify-between">
-        <h3 class="font-headline font-bold text-lg">Детали доставки</h3>
-        <span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tighter">В сборке</span>
+        <h3 class="font-headline font-bold text-lg">Р”РµС‚Р°Р»Рё РґРѕСЃС‚Р°РІРєРё</h3>
+        <span class="bg-primary-fixed text-on-primary-fixed-variant text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tighter">Р’ СЃР±РѕСЂРєРµ</span>
       </div>
       <div class="space-y-3">
         <div class="flex gap-3">
           <span class="material-symbols-outlined text-outline text-xl">calendar_today</span>
-          <div><p class="text-xs text-on-surface-variant uppercase font-medium">Ожидаемая дата</p><p class="text-sm font-semibold">14 октября 2026</p></div>
+          <div><p class="text-xs text-on-surface-variant uppercase font-medium">РћР¶РёРґР°РµРјР°СЏ РґР°С‚Р°</p><p class="text-sm font-semibold">14 РѕРєС‚СЏР±СЂСЏ 2026</p></div>
         </div>
         <div class="flex gap-3">
           <span class="material-symbols-outlined text-outline text-xl">location_on</span>
-          <div><p class="text-xs text-on-surface-variant uppercase font-medium">Адрес</p><p class="text-sm font-semibold">г. Алматы, ул. Зеленая, 15, кв. 42</p></div>
+          <div><p class="text-xs text-on-surface-variant uppercase font-medium">РђРґСЂРµСЃ</p><p class="text-sm font-semibold">Рі. РђР»РјР°С‚С‹, СѓР». Р—РµР»РµРЅР°СЏ, 15, РєРІ. 42</p></div>
         </div>
       </div>
     </div>
 
     <div class="bg-secondary-container/30 rounded-xl p-6 shadow-[0_20px_40px_rgba(0,88,188,0.06)] flex flex-col justify-between border border-secondary-container reveal">
       <div>
-        <h3 class="font-headline font-bold text-lg mb-1">Подарок для вас</h3>
-        <p class="text-sm text-on-secondary-container">Промокод на следующий заказ</p>
+        <h3 class="font-headline font-bold text-lg mb-1">РџРѕРґР°СЂРѕРє РґР»СЏ РІР°СЃ</h3>
+        <p class="text-sm text-on-secondary-container">РџСЂРѕРјРѕРєРѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ Р·Р°РєР°Р·</p>
       </div>
-      <button class="mt-4 bg-surface-container-lowest border-2 border-dashed border-secondary rounded-lg p-3 flex items-center justify-between group hover:bg-white transition-colors">
+      <button class="mt-4 bg-surface-container-lowest border-2 border-dashed border-secondary rounded-lg p-3 flex items-center justify-between group hover:bg-white transition-colors" data-copy="ADZEK15">
         <span class="font-mono font-bold text-secondary text-lg">ADZEK15</span>
         <div class="flex items-center gap-1 text-secondary"><span class="text-xs font-bold uppercase">-15%</span><span class="material-symbols-outlined text-sm">content_copy</span></div>
       </button>
@@ -149,29 +151,29 @@ tailwind.config = {
   <section class="bg-surface-container-lowest rounded-xl overflow-hidden mb-8 shadow-[0_20px_40px_rgba(0,88,188,0.06)] reveal">
     <button type="button" id="toggleItems" class="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-colors">
       <div class="flex items-center gap-4">
-        <h3 class="font-headline font-bold text-lg">Список заказанных товаров</h3>
-        <span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-md">3 ТОВАРА</span>
+        <h3 class="font-headline font-bold text-lg">РЎРїРёСЃРѕРє Р·Р°РєР°Р·Р°РЅРЅС‹С… С‚РѕРІР°СЂРѕРІ</h3>
+        <span class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold px-2 py-0.5 rounded-md">3 РўРћР’РђР Рђ</span>
       </div>
       <span id="itemsChevron" class="material-symbols-outlined text-outline transition-transform">expand_more</span>
     </button>
     <div id="itemsPanel" class="px-6 pb-6 space-y-4">
-      <div class="flex items-center gap-4 p-3 bg-surface rounded-lg"><div class="w-12 h-12 bg-secondary-container rounded-md"></div><div class="flex-1"><p class="text-sm font-semibold">Универсальный эко-очиститель</p><p class="text-xs text-on-surface-variant">500 мл • Цитрус</p></div><p class="text-sm font-bold">1 250 ₸</p></div>
-      <div class="flex items-center gap-4 p-3 bg-surface rounded-lg"><div class="w-12 h-12 bg-secondary-container rounded-md"></div><div class="flex-1"><p class="text-sm font-semibold">Гипоаллергенное мыло для рук</p><p class="text-xs text-on-surface-variant">300 мл • Алоэ вера</p></div><p class="text-sm font-bold">890 ₸</p></div>
-      <div class="flex items-center gap-4 p-3 bg-surface rounded-lg"><div class="w-12 h-12 bg-secondary-container rounded-md"></div><div class="flex-1"><p class="text-sm font-semibold">Набор бамбуковых салфеток</p><p class="text-xs text-on-surface-variant">5 шт • Органический хлопок</p></div><p class="text-sm font-bold">450 ₸</p></div>
+      <div class="flex items-center gap-4 p-3 bg-surface rounded-lg"><div class="w-12 h-12 bg-secondary-container rounded-md"></div><div class="flex-1"><p class="text-sm font-semibold">РЈРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ СЌРєРѕ-РѕС‡РёСЃС‚РёС‚РµР»СЊ</p><p class="text-xs text-on-surface-variant">500 РјР» вЂў Р¦РёС‚СЂСѓСЃ</p></div><p class="text-sm font-bold">1 250 в‚ё</p></div>
+      <div class="flex items-center gap-4 p-3 bg-surface rounded-lg"><div class="w-12 h-12 bg-secondary-container rounded-md"></div><div class="flex-1"><p class="text-sm font-semibold">Р“РёРїРѕР°Р»Р»РµСЂРіРµРЅРЅРѕРµ РјС‹Р»Рѕ РґР»СЏ СЂСѓРє</p><p class="text-xs text-on-surface-variant">300 РјР» вЂў РђР»РѕСЌ РІРµСЂР°</p></div><p class="text-sm font-bold">890 в‚ё</p></div>
+      <div class="flex items-center gap-4 p-3 bg-surface rounded-lg"><div class="w-12 h-12 bg-secondary-container rounded-md"></div><div class="flex-1"><p class="text-sm font-semibold">РќР°Р±РѕСЂ Р±Р°РјР±СѓРєРѕРІС‹С… СЃР°Р»С„РµС‚РѕРє</p><p class="text-xs text-on-surface-variant">5 С€С‚ вЂў РћСЂРіР°РЅРёС‡РµСЃРєРёР№ С…Р»РѕРїРѕРє</p></div><p class="text-sm font-bold">450 в‚ё</p></div>
     </div>
   </section>
 
   <section class="bg-secondary-container rounded-xl p-5 flex items-center gap-4 mb-12 border border-secondary/10 reveal">
     <div class="w-10 h-10 bg-white/50 rounded-full flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">eco</span></div>
-    <p class="text-sm font-medium text-on-secondary-container leading-snug">Эко-факт: этот заказ помог сократить 450 г первичного пластика благодаря возвратной таре.</p>
+    <p class="text-sm font-medium text-on-secondary-container leading-snug">Р­РєРѕ-С„Р°РєС‚: СЌС‚РѕС‚ Р·Р°РєР°Р· РїРѕРјРѕРі СЃРѕРєСЂР°С‚РёС‚СЊ 450 Рі РїРµСЂРІРёС‡РЅРѕРіРѕ РїР»Р°СЃС‚РёРєР° Р±Р»Р°РіРѕРґР°СЂСЏ РІРѕР·РІСЂР°С‚РЅРѕР№ С‚Р°СЂРµ.</p>
   </section>
 
   <div class="flex flex-col sm:flex-row gap-4 justify-center reveal">
-    <a class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20" href="orders.html">
-      <span class="material-symbols-outlined">receipt_long</span>К моим заказам
+    <a class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20" href="/orders">
+      <span class="material-symbols-outlined">receipt_long</span>Рљ РјРѕРёРј Р·Р°РєР°Р·Р°Рј
     </a>
-    <a class="bg-white text-on-surface border border-outline-variant/30 px-8 py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 transition-all hover:bg-surface-container-low active:scale-95" href="catalog.html">
-      <span class="material-symbols-outlined">shopping_bag</span>Продолжить покупки
+    <a class="bg-white text-on-surface border border-outline-variant/30 px-8 py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 transition-all hover:bg-surface-container-low active:scale-95" href="/catalog">
+      <span class="material-symbols-outlined">shopping_bag</span>РџСЂРѕРґРѕР»Р¶РёС‚СЊ РїРѕРєСѓРїРєРё
     </a>
   </div>
 </main>
@@ -180,12 +182,12 @@ tailwind.config = {
   <div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto gap-8">
     <div class="text-lg font-bold text-slate-900 font-headline">Adzek Laboratory.</div>
     <div class="flex flex-wrap justify-center gap-6 font-inter text-sm tracking-wide">
-      <a class="text-slate-400 hover:text-blue-600 transition-colors hover:underline decoration-blue-600/30 underline-offset-4" href="privacy.html">Privacy Policy</a>
-      <a class="text-slate-400 hover:text-blue-600 transition-colors hover:underline decoration-blue-600/30 underline-offset-4" href="terms.html">Terms of Service</a>
-      <a class="text-slate-400 hover:text-blue-600 transition-colors hover:underline decoration-blue-600/30 underline-offset-4" href="index.html#delivery">Contact Support</a>
-      <a class="text-slate-400 hover:text-blue-600 transition-colors hover:underline decoration-blue-600/30 underline-offset-4" href="index.html#delivery">Shipping & Returns</a>
+      <a class="text-slate-400 hover:text-blue-600 transition-colors hover:underline decoration-blue-600/30 underline-offset-4" href="/privacy">Privacy Policy</a>
+      <a class="text-slate-400 hover:text-blue-600 transition-colors hover:underline decoration-blue-600/30 underline-offset-4" href="/terms">Terms of Service</a>
+      <a class="text-slate-400 hover:text-blue-600 transition-colors hover:underline decoration-blue-600/30 underline-offset-4" href="/#delivery">Contact Support</a>
+      <a class="text-slate-400 hover:text-blue-600 transition-colors hover:underline decoration-blue-600/30 underline-offset-4" href="/#delivery">Shipping & Returns</a>
     </div>
-    <div class="text-slate-400 font-inter text-sm">© 2026 Adzek. All rights reserved.</div>
+    <div class="text-slate-400 font-inter text-sm">В© 2026 Adzek. All rights reserved.</div>
   </div>
 </footer>
 
@@ -228,7 +230,7 @@ tailwind.config = {
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var style = document.createElement('style');
-  style.textContent = 'html.is-leaving body{opacity:0;transform:translateY(4px);transition:opacity .16s ease, transform .16s ease;}';
+  style.textContent = 'html.is-leaving body{opacity:0;transition:opacity .16s ease;}';
   document.head.appendChild(style);
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href]');
@@ -249,13 +251,13 @@ tailwind.config = {
 (function () {
   var authed = false;
   try { authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) {}
-  document.querySelectorAll('a[aria-label="Личный кабинет"]').forEach(function (accountLink) {
+  document.querySelectorAll('a[aria-label="Р›РёС‡РЅС‹Р№ РєР°Р±РёРЅРµС‚"]').forEach(function (accountLink) {
     var parent = accountLink.parentElement;
     if (!parent) return;
     var authActions = parent.querySelector('.auth-actions');
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -263,10 +265,17 @@ tailwind.config = {
     if (!authActions) {
       authActions = document.createElement('div');
       authActions.className = 'auth-actions flex items-center gap-2';
-      authActions.innerHTML = '<a href="login.html" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="register.html" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
+      authActions.innerHTML = '<a href="/login" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Р’РѕР№С‚Рё</a><a href="/register" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊСЃСЏ</a>';
       parent.appendChild(authActions);
     }
   });
 })();
 </script>
+<script src='/assets/js/app.js' defer></script>
 </body></html>
+
+
+
+
+
+

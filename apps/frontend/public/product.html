@@ -1,32 +1,42 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Карточка товара — Adzek</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg"/>
+<title>Карточка товара — Adzek</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   <style>
     body { font-family: 'Inter', sans-serif; }
     h1,h2,h3 { font-family: 'Manrope', sans-serif; }
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-  </style>
+    .top-nav {
+      transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease;
+    }
+    .top-nav.is-scrolled {
+      background-color: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12);
+      height: 4.25rem;
+    }
+  #topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
+</style>
 </head>
 <body class="bg-[#f7f9fb] text-slate-900">
-  <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md h-20 border-b border-slate-200/50">
+  <nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md h-20 border-b border-slate-200/50">
     <div class="max-w-7xl mx-auto h-full px-8 flex items-center justify-between">
-      <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+      <a class="text-2xl font-black text-blue-700 tracking-tighter" href="/">Adzek</a>
       <div class="hidden md:flex gap-8 items-center">
-        <a class="font-semibold text-slate-600 hover:text-blue-700" href="catalog.html">Каталог</a>
-        <a class="font-semibold text-slate-600 hover:text-blue-700" href="index.html#eco">Эко-линейка</a>
-        <a class="font-semibold text-slate-600 hover:text-blue-700" href="index.html#about">О бренде</a>
-        <a class="font-semibold text-slate-600 hover:text-blue-700" href="index.html#delivery">Доставка</a>
+        <a class="font-semibold text-slate-600 hover:text-blue-700" href="/catalog">Каталог</a>
+        <a class="font-semibold text-slate-600 hover:text-blue-700" href="/#eco">Эко-линейка</a>
+        <a class="font-semibold text-slate-600 hover:text-blue-700" href="/#about">О бренде</a>
+        <a class="font-semibold text-slate-600 hover:text-blue-700" href="/#delivery">Доставка</a>
       </div>
       <div class="flex items-center gap-4">
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/cart" aria-label="Корзина">
           <span class="material-symbols-outlined">shopping_cart</span>
         </a>
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="login.html" aria-label="Личный кабинет">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/login" aria-label="Личный кабинет">
           <span class="material-symbols-outlined">person</span>
         </a>
       </div>
@@ -35,9 +45,9 @@
 
   <main class="pt-28 pb-16 px-8 max-w-7xl mx-auto">
     <nav class="text-sm text-slate-500 flex items-center gap-2 mb-8">
-      <a href="index.html" class="hover:text-blue-700">Главная</a>
+      <a href="/" class="hover:text-blue-700">Главная</a>
       <span class="material-symbols-outlined text-xs">chevron_right</span>
-      <a href="catalog.html" class="hover:text-blue-700">Каталог</a>
+      <a href="/catalog" class="hover:text-blue-700">Каталог</a>
       <span class="material-symbols-outlined text-xs">chevron_right</span>
       <span class="text-slate-900 font-semibold">Концентрат No.04</span>
     </nav>
@@ -62,7 +72,7 @@
             <p class="text-sm font-semibold text-green-700">★ 4.9 (124 отзыва)</p>
           </div>
           <button data-requires-auth="cart" class="w-full mt-5 bg-blue-700 text-white py-4 rounded-xl font-bold hover:bg-blue-600 transition-colors">Добавить в корзину</button>
-          <button class="w-full mt-3 bg-green-100 text-green-800 py-4 rounded-xl font-bold">Подписаться на пополнение (-15%)</button>
+          <button class="w-full mt-3 bg-green-100 text-green-800 py-4 rounded-xl font-bold" data-toast="�������� ���������">Подписаться на пополнение (-15%)</button>
         </div>
       </div>
     </section>
@@ -78,7 +88,7 @@
     var authActions = parent.querySelector('.auth-actions');
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -86,7 +96,7 @@
     if (!authActions) {
       authActions = document.createElement('div');
       authActions.className = 'auth-actions flex items-center gap-2';
-      authActions.innerHTML = '<a href="login.html" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="register.html" class="px-3 py-2 rounded-full text-sm font-semibold bg-blue-700 text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
+      authActions.innerHTML = '<a href="/login" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="/register" class="px-3 py-2 rounded-full text-sm font-semibold bg-blue-700 text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
       parent.appendChild(authActions);
     }
   });
@@ -98,13 +108,13 @@
     try { return localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) { return false; }
   }
   function markReturnAndGo() {
-    try { sessionStorage.setItem('adzekReturnTo', 'product.html'); } catch (e) {}
+    try { sessionStorage.setItem('adzekReturnTo', '/product'); } catch (e) {}
     try { sessionStorage.setItem('adzekAuthPrompt', 'commerce'); } catch (e) {}
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   }
   document.addEventListener('click', function (e) {
     var target = e.target;
-    var cartLink = target.closest('a[href*="cart.html"]');
+    var cartLink = target.closest('a[href*="/cart"]');
     var guarded = target.closest('button[data-requires-auth="cart"]');
     if (!cartLink && !guarded) return;
     if (isAuthed()) return;
@@ -114,5 +124,164 @@
   }, true);
 })();
 </script>
+<script id="adzekCartStore">
+(function (w) {
+  if (w.ADZEK_CART) return;
+
+  function safeParse(value, fallback) {
+    try { return JSON.parse(value); } catch (_) { return fallback; }
+  }
+
+  function getStoredUser() {
+    var fromLocal = safeParse(localStorage.getItem('adzekUser') || 'null', null);
+    if (fromLocal && typeof fromLocal === 'object') return fromLocal;
+    var fromSession = safeParse(sessionStorage.getItem('adzekUser') || 'null', null);
+    if (fromSession && typeof fromSession === 'object') return fromSession;
+    return null;
+  }
+
+  function getUserKey() {
+    var user = getStoredUser();
+    if (!user) return 'anonymous';
+    var raw = user.id || user.userId || user.email || user.phone || user.username || 'anonymous';
+    return String(raw).trim().toLowerCase();
+  }
+
+  function cartKey() {
+    return 'adzekCartV2:' + getUserKey();
+  }
+
+  function isAuthed() {
+    try {
+      return localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function read() {
+    var list = safeParse(localStorage.getItem(cartKey()) || '[]', []);
+    if (!Array.isArray(list)) return [];
+    return list.filter(function (item) {
+      return item && typeof item === 'object' && item.id && item.name && Number(item.price) > 0;
+    });
+  }
+
+  function write(items) {
+    localStorage.setItem(cartKey(), JSON.stringify(items));
+    w.dispatchEvent(new CustomEvent('adzek-cart-changed', { detail: { count: count() } }));
+  }
+
+  function count() {
+    return read().reduce(function (acc, item) { return acc + Math.max(1, Number(item.qty) || 1); }, 0);
+  }
+
+  function makeId(name, price) {
+    var slug = String(name || 'item').toLowerCase().replace(/[^a-z�-�0-9]+/gi, '-').replace(/(^-|-$)/g, '');
+    return slug + '-' + String(price || 0);
+  }
+
+  function add(item) {
+    var list = read();
+    var next = {
+      id: item.id || makeId(item.name, item.price),
+      name: String(item.name || '�����'),
+      subtitle: String(item.subtitle || ''),
+      image: String(item.image || ''),
+      price: Number(item.price) || 0,
+      qty: Math.max(1, Number(item.qty) || 1)
+    };
+    var existing = list.find(function (entry) { return entry.id === next.id; });
+    if (existing) {
+      existing.qty += next.qty;
+    } else {
+      list.push(next);
+    }
+    write(list);
+  }
+
+  function updateQty(id, delta) {
+    var list = read();
+    var row = list.find(function (entry) { return entry.id === id; });
+    if (!row) return;
+    row.qty = Math.max(1, (Number(row.qty) || 1) + delta);
+    write(list);
+  }
+
+  function remove(id) {
+    write(read().filter(function (entry) { return entry.id !== id; }));
+  }
+
+  w.ADZEK_CART = {
+    isAuthed: isAuthed,
+    getUserKey: getUserKey,
+    read: read,
+    write: write,
+    count: count,
+    add: add,
+    updateQty: updateQty,
+    remove: remove
+  };
+})(window);
+</script>
+<script id="productCartActions">
+(function () {
+  if (!window.ADZEK_CART) return;
+
+  function parsePrice(text) {
+    var num = String(text || '').replace(/[^\d]/g, '');
+    return Number(num || 0);
+  }
+
+  function extractProduct() {
+    var titleEl = document.querySelector('h1');
+    var subtitleEl = document.querySelector('h1 + p');
+    var priceEl = document.querySelector('.text-3xl.font-black, .text-3xl.font-bold');
+    var imageEl = document.querySelector('.lg\\:col-span-7 img, .col-span-2 img, main img');
+    var name = titleEl ? titleEl.textContent.trim() : '';
+    var price = parsePrice(priceEl ? priceEl.textContent : '');
+    if (!name || !price) return null;
+    return {
+      id: document.body.getAttribute('data-product-id') || '',
+      name: name,
+      subtitle: subtitleEl ? subtitleEl.textContent.trim() : '',
+      image: imageEl ? imageEl.getAttribute('src') || '' : '',
+      price: price,
+      qty: 1
+    };
+  }
+
+  document.addEventListener('click', function (e) {
+    var button = e.target.closest('button[data-requires-auth="cart"]');
+    if (!button) return;
+    if (!window.ADZEK_CART.isAuthed()) return;
+    var item = extractProduct();
+    if (!item) return;
+    window.ADZEK_CART.add(item);
+    button.classList.add('ring-2', 'ring-emerald-400');
+    window.setTimeout(function () { button.classList.remove('ring-2', 'ring-emerald-400'); }, 500);
+  }, true);
+})();
+</script>
+<script>
+(function () {
+  var topNav = document.getElementById('topNav');
+  if (!topNav) return;
+  function onScroll() {
+    if (window.scrollY > 12) topNav.classList.add('is-scrolled');
+    else topNav.classList.remove('is-scrolled');
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+<script src='/assets/js/app.js' defer></script>
 </body>
 </html>
+
+
+
+
+
+
+

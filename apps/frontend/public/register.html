@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
 <title>Регистрация - Adzek</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -30,7 +31,7 @@
     color: #94a3b8;
   }
   .bg-custom-gradient { background: linear-gradient(135deg, #7db3c6 0%, #c39d84 100%); }
-  @keyframes pageFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes softFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
   .reveal { opacity: 0; transform: translateY(10px); transition: opacity .35s ease, transform .35s ease; }
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
@@ -45,6 +46,7 @@
   .social-btn:hover { transform: translateY(-1px); }
   html { scroll-behavior: smooth; }
   body { animation: pageFadeIn 220ms ease forwards; }
+#topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
 </style>
 <script id="authRedirectIfLogged">
 (function () {
@@ -53,7 +55,7 @@
     authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
   } catch (e) {}
   if (authed) {
-    window.location.replace('account.html');
+    window.location.replace('/account');
   }
 })();
 </script>
@@ -63,7 +65,7 @@
   <div class="relative hidden w-1/2 md:flex flex-col justify-between p-12 overflow-hidden bg-custom-gradient">
     <img alt="Bright eco-minimalist interior with eucalyptus" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfnLD25s6eClMm2bt8IMwp7yYZqe7byS2UMXFFW97QkH2eOu296knvMatw3QQHj2760C4Lo1juiHujTFDweBhXHUWhi4eAiuBtWaQC4Q_2kRYJnl3fTV01vPsJ_-HV_NsE8MG6NcKeTZUQMhT0X7rkutrLX0jYwVihjHxSIFX_y3CCzVgn19A7Rxl9r6_sfINIJpUXLcc_wFSJlkrpFkzNEd1fjEL7IasBhnJr3yTu0uJWHRGr7COwkkWRmm0ms6CN08F6cUGlsL7h"/>
     <div class="relative z-10 reveal">
-      <a class="text-2xl font-bold text-[#004e9a] dark:text-white mb-8 tracking-tight inline-block hover:opacity-80 transition-opacity" href="index.html">Adzek</a>
+      <a class="text-2xl font-bold text-[#004e9a] dark:text-white mb-8 tracking-tight inline-block hover:opacity-80 transition-opacity" href="/">Adzek</a>
     </div>
     <div class="relative z-10 max-w-lg mb-20 reveal" style="transition-delay:.08s">
       <h1 class="text-6xl font-bold text-slate-900 dark:text-white leading-[1.1] mb-6">Чистота как искусство.</h1>
@@ -93,7 +95,7 @@
           <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Имя и фамилия</label>
           <div class="field-shell relative rounded-2xl">
             <span class="absolute inset-y-0 left-0 pl-4 flex items-center"><span class="material-symbols-outlined text-lg">person</span></span>
-            <input class="block w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="Иван Иванов" type="text" required/>
+            <input id="registerName" class="block w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="Иван Иванов" type="text" required/>
           </div>
         </div>
 
@@ -101,7 +103,7 @@
           <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Электронная почта</label>
           <div class="field-shell relative rounded-2xl">
             <span class="absolute inset-y-0 left-0 pl-4 flex items-center"><span class="material-symbols-outlined text-lg">mail</span></span>
-            <input class="block w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="name@example.com" type="email" required/>
+            <input id="registerEmail" class="block w-full pl-11 pr-4 py-3.5 bg-slate-50 dark:bg-slate-800 border-none rounded-2xl text-slate-900 dark:text-white placeholder:text-slate-400" placeholder="name@example.com" type="email" required/>
           </div>
         </div>
 
@@ -116,7 +118,7 @@
 
         <div class="flex items-start gap-3 py-2">
           <input class="mt-1 h-5 w-5 rounded border-slate-300 dark:border-slate-700 text-primary focus:ring-primary" id="terms" type="checkbox" required/>
-          <label class="text-sm text-slate-600 dark:text-slate-400 leading-snug" for="terms">Я соглашаюсь с <a class="text-primary hover:underline" href="terms.html">условиями использования</a> и <a class="text-primary hover:underline" href="privacy.html">политикой конфиденциальности</a></label>
+          <label class="text-sm text-slate-600 dark:text-slate-400 leading-snug" for="terms">Я соглашаюсь с <a class="text-primary hover:underline" href="/terms">условиями использования</a> и <a class="text-primary hover:underline" href="/privacy">политикой конфиденциальности</a></label>
         </div>
 
         <button class="action-btn w-full bg-primary hover:bg-blue-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-blue-500/20" type="submit">Зарегистрироваться</button>
@@ -128,30 +130,78 @@
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <button class="social-btn flex items-center justify-center gap-3 py-3 px-4 border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl font-medium" type="button">
+        <button class="social-btn flex items-center justify-center gap-3 py-3 px-4 border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl font-medium" type="button" data-toast="���. ���� �����">
           <svg class="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path></svg>
           Google
         </button>
-        <button class="social-btn flex items-center justify-center gap-3 py-3 px-4 border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl font-medium" type="button">
+        <button class="social-btn flex items-center justify-center gap-3 py-3 px-4 border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-2xl font-medium" type="button" data-toast="���. ���� �����">
           <svg class="w-5 h-5 dark:fill-white" viewBox="0 0 24 24"><path d="M17.05 20.28c-.96 0-2.04-.6-3.23-.6-1.18 0-2.11.58-3.04.58-1.84 0-4.46-3.53-4.46-6.52 0-3.03 2.11-4.63 4.1-4.63 1.07 0 2.01.62 2.72.62.7 0 1.83-.75 3.07-.75 1.48 0 2.65.65 3.38 1.67-3.08 1.54-2.58 5.48.51 6.84-.71 1.67-1.93 3.19-3.05 4.79zM15.11 5.33c-.76.92-2.04 1.58-3.05 1.51-.18-1.15.54-2.45 1.25-3.27.87-1.01 2.22-1.63 3.15-1.57.14 1.12-.59 2.41-1.35 3.33z"></path></svg>
           Apple ID
         </button>
       </div>
 
       <div class="mt-12 text-center">
-        <p class="text-slate-500 dark:text-slate-400">Уже есть аккаунт? <a class="text-primary font-bold hover:underline" href="login.html">Войти в систему</a></p>
+        <p class="text-slate-500 dark:text-slate-400">Уже есть аккаунт? <a class="text-primary font-bold hover:underline" href="/login">Войти в систему</a></p>
       </div>
 
       <div class="mt-16 flex justify-center gap-6 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.2em]">
-        <a class="hover:text-primary transition-colors" href="privacy.html">Политика</a>
-        <a class="hover:text-primary transition-colors" href="terms.html">Условия</a>
-        <a class="hover:text-primary transition-colors" href="index.html#delivery">Поддержка</a>
+        <a class="hover:text-primary transition-colors" href="/privacy">Политика</a>
+        <a class="hover:text-primary transition-colors" href="/terms">Условия</a>
+        <a class="hover:text-primary transition-colors" href="/#delivery">Поддержка</a>
       </div>
     </div>
   </div>
 </div>
 
 <script>
+  function getApiBaseCandidates() {
+    var stored = '';
+    try { stored = localStorage.getItem('adzekApiBase') || sessionStorage.getItem('adzekApiBase') || ''; } catch (e) {}
+    var list = [stored, '/v1', 'http://localhost:4000/v1', 'http://127.0.0.1:4000/v1'].filter(Boolean);
+    return list.filter(function (item, idx) { return list.indexOf(item) === idx; });
+  }
+
+  async function requestWithApiFallback(path, options) {
+    var lastError = null;
+    var bases = getApiBaseCandidates();
+    for (var i = 0; i < bases.length; i += 1) {
+      var base = bases[i];
+      var url = base.replace(/\/+$/, '') + path;
+      try {
+        var response = await fetch(url, options);
+        if (response.ok) {
+          try {
+            localStorage.setItem('adzekApiBase', base);
+            sessionStorage.setItem('adzekApiBase', base);
+          } catch (e) {}
+          return response;
+        }
+        lastError = new Error('HTTP ' + response.status + ' from ' + url);
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    throw lastError || new Error('API is unavailable');
+  }
+
+  function persistAuth(payload) {
+    try {
+      localStorage.setItem('adzekAccessToken', payload.accessToken || '');
+      localStorage.setItem('adzekRefreshToken', payload.refreshToken || '');
+      sessionStorage.removeItem('adzekAccessToken');
+      sessionStorage.removeItem('adzekRefreshToken');
+
+      localStorage.setItem('adzekAuth', '1');
+      sessionStorage.setItem('adzekAuth', '1');
+      localStorage.setItem('adzekRole', (payload.user && payload.user.role) || 'customer');
+      sessionStorage.setItem('adzekRole', (payload.user && payload.user.role) || 'customer');
+      localStorage.removeItem('adzekAdminAccess');
+      sessionStorage.removeItem('adzekAdminAccess');
+      localStorage.setItem('adzekUser', JSON.stringify(payload.user || {}));
+      sessionStorage.setItem('adzekUser', JSON.stringify(payload.user || {}));
+    } catch (err) {}
+  }
+
   document.querySelectorAll('.reveal').forEach(function (el) {
     requestAnimationFrame(function () { el.classList.add('is-visible'); });
   });
@@ -166,22 +216,53 @@
       if (icon) icon.textContent = hidden ? 'visibility_off' : 'visibility';
     });
   });
-  document.getElementById('registerForm')?.addEventListener('submit', function (e) {
+  document.getElementById('registerForm')?.addEventListener('submit', async function (e) {
     e.preventDefault();
+    var nameInput = document.getElementById('registerName');
+    var emailInput = document.getElementById('registerEmail');
+    var passInput = document.getElementById('registerPassword');
+    var submitBtn = e.target.querySelector('button[type="submit"]');
+    var initialText = submitBtn ? submitBtn.textContent : '';
+
+    if (!nameInput || !emailInput || !passInput) return;
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Создание...';
+    }
+
+    var nameParts = String(nameInput.value || '').trim().split(/\s+/).filter(Boolean);
+    var firstName = nameParts[0] || '';
+    var lastName = nameParts.slice(1).join(' ') || undefined;
+
     try {
-      localStorage.setItem('adzekAuth', '1');
-      sessionStorage.setItem('adzekAuth', '1');
-      localStorage.setItem('adzekRole', 'user');
-      sessionStorage.setItem('adzekRole', 'user');
-      localStorage.removeItem('adzekAdminAccess');
-      sessionStorage.removeItem('adzekAdminAccess');
-    } catch (err) {}
-    var target = 'account.html';
+      var response = await requestWithApiFallback('/auth/register/customer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: String(emailInput.value || '').trim(),
+          password: String(passInput.value || ''),
+          firstName: firstName || undefined,
+          lastName: lastName,
+          customerType: 'b2c',
+        }),
+      });
+      var payload = await response.json();
+      persistAuth(payload);
+    } catch (err) {
+      alert('Не удалось зарегистрировать аккаунт. Возможно email уже занят или backend недоступен.');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = initialText;
+      }
+      return;
+    }
+
+    var target = '/account';
     try {
       var pending = sessionStorage.getItem('adzekReturnTo');
       if (pending) {
         var parsed = new URL(pending, window.location.href);
-        if (parsed.origin === window.location.origin && parsed.pathname.toLowerCase().endsWith('.html')) {
+        if (parsed.origin === window.location.origin && (parsed.pathname.toLowerCase().endsWith('.html') || !/\.[a-z0-9]+$/i.test(parsed.pathname.toLowerCase()))) {
           target = parsed.pathname.split('/').pop() + parsed.search + parsed.hash;
         }
         sessionStorage.removeItem('adzekReturnTo');
@@ -194,7 +275,7 @@
 (function () {
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var style = document.createElement('style');
-  style.textContent = 'html.is-leaving body{opacity:0;transform:translateY(4px);transition:opacity .16s ease, transform .16s ease;}';
+  style.textContent = 'html.is-leaving body{opacity:0;transition:opacity .16s ease;}';
   document.head.appendChild(style);
 
   document.addEventListener('click', function (e) {
@@ -230,7 +311,7 @@
 
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -242,12 +323,12 @@
       authActions.className = 'auth-actions flex items-center gap-2';
 
       var loginBtn = document.createElement('a');
-      loginBtn.href = 'login.html';
+      loginBtn.href = '/login';
       loginBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors';
       loginBtn.textContent = 'Войти';
 
       var registerBtn = document.createElement('a');
-      registerBtn.href = 'register.html';
+      registerBtn.href = '/register';
       registerBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity';
       registerBtn.textContent = 'Зарегистрироваться';
 
@@ -270,7 +351,7 @@
     try {
       if (intendedHref) {
         var u = new URL(intendedHref, window.location.href);
-        if (u.origin === window.location.origin && u.pathname.toLowerCase().endsWith('.html')) {
+        if (u.origin === window.location.origin && (!/\.[a-z0-9]+$/i.test(u.pathname.toLowerCase()) || u.pathname.toLowerCase().endsWith('.html'))) {
           sessionStorage.setItem('adzekReturnTo', u.pathname.split('/').pop() + u.search + u.hash);
         } else {
           sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop());
@@ -282,7 +363,7 @@
       try { sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop()); } catch (_) {}
     }
     try { sessionStorage.setItem('adzekAuthPrompt', 'commerce'); } catch (e) {}
-    window.location.href = 'login.html';
+    window.location.href = '/login';
   }
 
   function hasText(node, text) {
@@ -301,7 +382,7 @@
 
     if (a) {
       var href = a.getAttribute('href') || '';
-      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('cart.html')) {
+      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('/cart')) {
         needsAuth = true;
       }
     }
@@ -332,7 +413,14 @@
   }, true);
 })();
 </script>
+<script src='/assets/js/app.js' defer></script>
 </body></html>
+
+
+
+
+
+
 
 
 

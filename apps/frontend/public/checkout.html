@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
 <title>Оформление заказа | Adzek</title>
 <script id="authGuard">
 (function () {
   var authed = false;
   try { authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1'; } catch (e) {}
-  if (!authed) window.location.replace('login.html');
+  if (!authed) window.location.replace('/login');
 })();
 </script>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -45,26 +46,33 @@
   h1, h2, h3 { font-family: 'Manrope', sans-serif; }
   .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
   .liquid-gradient { background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%); }
+  .top-nav { transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease; }
+  .top-nav.is-scrolled { background-color: rgba(255,255,255,.92); box-shadow: 0 12px 30px rgba(0,88,188,.12); height: 4.25rem; }
+#topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
 </style>
 </head>
 <body class="bg-surface selection:bg-blue-100">
-<header class="fixed top-0 w-full z-50 bg-white/75 backdrop-blur-md border-b border-slate-200/30">
-  <div class="flex items-center justify-between px-8 py-4 max-w-7xl mx-auto">
-    <div class="flex items-center gap-10">
-      <a class="text-2xl font-black tracking-tighter text-blue-700" href="index.html">Adzek</a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-tight">
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="catalog.html">Каталог</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="index.html#eco">Эко-линейка</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="index.html#about">О бренде</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors" href="index.html#delivery">Доставка</a>
-      </nav>
+<nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
+  <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
+    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="/">Adzek</a>
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/catalog">Каталог</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#eco">Эко-линейка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#about">О бренде</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#delivery">Доставка</a>
     </div>
-    <div class="flex items-center gap-4">
-      <a class="p-2 hover:bg-white/70 rounded-full transition-all" href="cart.html" aria-label="Корзина"><span class="material-symbols-outlined text-slate-700">shopping_cart</span></a>
-      <a class="p-2 hover:bg-white/70 rounded-full transition-all" href="account.html" aria-label="Личный кабинет"><span class="material-symbols-outlined text-slate-700">person</span></a>
+    <div class="flex items-center gap-6">
+      <div class="relative hidden lg:block">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
+        <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
+      </div>
+      <div class="flex gap-4">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/cart" aria-label="Корзина"><span class="material-symbols-outlined">shopping_cart</span></a>
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/account" aria-label="Личный кабинет"><span class="material-symbols-outlined">person</span></a>
+      </div>
     </div>
   </div>
-</header>
+</nav>
 
 <main class="pt-28 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
   <div class="mb-10">
@@ -113,8 +121,8 @@
           <div class="flex justify-between text-sm text-slate-500"><span>Доставка</span><span class="text-green-700 font-medium">Бесплатно</span></div>
           <div class="flex justify-between text-xl font-extrabold pt-4"><span>Итого</span><span>1 270 ₸</span></div>
         </div>
-        <button onclick="window.location.href='order-confirmed.html'" class="w-full py-5 liquid-gradient text-white rounded-lg font-bold text-lg shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-300">Подтвердить заказ</button>
-        <p class="text-[10px] text-center text-slate-500/80 leading-relaxed px-4">Нажимая на кнопку, вы соглашаетесь с <a class="underline" href="terms.html">условиями оферты</a> и <a class="underline" href="privacy.html">политикой конфиденциальности</a>.</p>
+        <button onclick="window.location.href='/order-confirmed'" class="w-full py-5 liquid-gradient text-white rounded-lg font-bold text-lg shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-300">Подтвердить заказ</button>
+        <p class="text-[10px] text-center text-slate-500/80 leading-relaxed px-4">Нажимая на кнопку, вы соглашаетесь с <a class="underline" href="/terms">условиями оферты</a> и <a class="underline" href="/privacy">политикой конфиденциальности</a>.</p>
       </div>
       <div class="mt-8 p-6 bg-green-100 rounded-xl flex items-center gap-4"><span class="material-symbols-outlined text-green-900 text-3xl">eco</span><div><p class="text-xs font-bold text-green-900 uppercase tracking-wider">Эко-инициатива</p><p class="text-sm text-green-800">Этот заказ спасает 0.5 кг океанического пластика.</p></div></div>
     </aside>
@@ -123,9 +131,9 @@
 
 <footer class="w-full px-12 py-16 grid grid-cols-1 md:grid-cols-4 gap-8 bg-slate-100 rounded-t-3xl mt-12">
   <div class="space-y-4"><span class="text-lg font-bold text-blue-700">Adzek</span><p class="text-xs text-slate-500 leading-relaxed">© 2026 Adzek. Лаборатория безупречной чистоты.</p></div>
-  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Компания</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="index.html#about">О нас</a><a class="text-xs text-slate-500 hover:text-blue-500" href="index.html#about">Миссия</a><a class="text-xs text-slate-500 hover:text-blue-500" href="index.html#delivery">Контакты</a></div>
-  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Помощь</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="index.html#delivery">Доставка</a><a class="text-xs text-slate-500 hover:text-blue-500" href="index.html#delivery">Возврат</a><a class="text-xs text-slate-500 hover:text-blue-500" href="index.html#delivery">Вопросы</a></div>
-  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Юридическая информация</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="privacy.html">Политика конфиденциальности</a><a class="text-xs text-slate-500 hover:text-blue-500" href="index.html#delivery">Оферта</a></div>
+  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Компания</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="/#about">О нас</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#about">Миссия</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Контакты</a></div>
+  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Помощь</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Доставка</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Возврат</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Вопросы</a></div>
+  <div class="flex flex-col gap-3"><h4 class="font-bold text-sm">Юридическая информация</h4><a class="text-xs text-slate-500 hover:text-blue-500" href="/privacy">Политика конфиденциальности</a><a class="text-xs text-slate-500 hover:text-blue-500" href="/#delivery">Оферта</a></div>
 </footer>
 
 <script id="authNavResolver">
@@ -138,7 +146,7 @@
     var authActions = parent.querySelector('.auth-actions');
     if (authed) {
       accountLink.style.display = 'inline-flex';
-      accountLink.setAttribute('href', 'account.html');
+      accountLink.setAttribute('href', '/account');
       if (authActions) authActions.remove();
       return;
     }
@@ -146,12 +154,26 @@
     if (!authActions) {
       authActions = document.createElement('div');
       authActions.className = 'auth-actions flex items-center gap-2';
-      authActions.innerHTML = '<a href="login.html" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="register.html" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
+      authActions.innerHTML = '<a href="/login" class="px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors">Войти</a><a href="/register" class="px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity">Зарегистрироваться</a>';
       parent.appendChild(authActions);
     }
   });
 })();
 </script>
+<script>
+(function(){
+  var topNav=document.getElementById('topNav');
+  if(!topNav) return;
+  var onScroll=function(){topNav.classList.toggle('is-scrolled',window.scrollY>12);};
+  window.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+<script src='/assets/js/app.js' defer></script>
 </body></html>
+
+
+
+
 
 

@@ -1,6 +1,7 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { ChannelGroup, Customer } from "@prisma/client";
 import { PrismaService } from "../../shared/infrastructure/prisma.service";
+import { UpdateCustomerProfileDto } from "./dto/update-customer-profile.dto";
 
 @Injectable()
 export class CustomersService {
@@ -79,5 +80,70 @@ export class CustomersService {
         lastTouchChannelGroup: input.channelGroup,
       },
     });
+  }
+
+  async upsertProfileByUser(userId: string, dto: UpdateCustomerProfileDto): Promise<Customer> {
+    const appUser = await this.prisma.appUser.findUnique({
+      where: { id: userId },
+      include: { customer: true },
+    });
+    if (!appUser) {
+      throw new NotFoundException("User not found");
+    }
+
+    const normalizedEmail = dto.email ? dto.email.toLowerCase() : undefined;
+
+    if (normalizedEmail && normalizedEmail !== appUser.email) {
+      const emailOwner = await this.prisma.appUser.findUnique({
+        where: { email: normalizedEmail },
+        select: { id: true },
+      });
+      if (emailOwner && emailOwner.id !== appUser.id) {
+        throw new ConflictException("Email is already in use");
+      }
+    }
+
+    const updatePayload = {
+      firstName: dto.firstName,
+      lastName: dto.lastName,
+      phone: dto.phone,
+      ...(normalizedEmail ? { email: normalizedEmail } : {}),
+    };
+
+    if (appUser.customerId) {
+      const customer = await this.prisma.customer.update({
+        where: { id: appUser.customerId },
+        data: updatePayload,
+      });
+
+      if (normalizedEmail && normalizedEmail !== appUser.email) {
+        await this.prisma.appUser.update({
+          where: { id: appUser.id },
+          data: { email: normalizedEmail },
+        });
+      }
+      return customer;
+    }
+
+    const customer = await this.prisma.customer.create({
+      data: {
+        email: normalizedEmail ?? appUser.email,
+        firstName: dto.firstName,
+        lastName: dto.lastName,
+        phone: dto.phone,
+        type: appUser.role === "b2b" || appUser.role === "b2b_customer" ? "b2b" : "b2c",
+        isWholesaler: appUser.role === "b2b" || appUser.role === "b2b_customer",
+      },
+    });
+
+    await this.prisma.appUser.update({
+      where: { id: appUser.id },
+      data: {
+        customerId: customer.id,
+        ...(normalizedEmail && normalizedEmail !== appUser.email ? { email: normalizedEmail } : {}),
+      },
+    });
+
+    return customer;
   }
 }
