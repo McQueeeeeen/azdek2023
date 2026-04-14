@@ -10,6 +10,86 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/catalog.html",
+      "destination": "/catalog",
+      "permanent": true
+    },
+    {
+      "source": "/product.html",
+      "destination": "/product",
+      "permanent": true
+    },
+    {
+      "source": "/cart.html",
+      "destination": "/cart",
+      "permanent": true
+    },
+    {
+      "source": "/checkout.html",
+      "destination": "/checkout",
+      "permanent": true
+    },
+    {
+      "source": "/order-confirmed.html",
+      "destination": "/order-confirmed",
+      "permanent": true
+    },
+    {
+      "source": "/account.html",
+      "destination": "/account",
+      "permanent": true
+    },
+    {
+      "source": "/orders.html",
+      "destination": "/account/orders",
+      "permanent": true
+    },
+    {
+      "source": "/addresses.html",
+      "destination": "/account/addresses",
+      "permanent": true
+    },
+    {
+      "source": "/loyalty.html",
+      "destination": "/account/loyalty",
+      "permanent": true
+    },
+    {
+      "source": "/notifications.html",
+      "destination": "/account/notifications",
+      "permanent": true
+    },
+    {
+      "source": "/login.html",
+      "destination": "/login",
+      "permanent": true
+    },
+    {
+      "source": "/register.html",
+      "destination": "/register",
+      "permanent": true
+    },
+    {
+      "source": "/admin.html",
+      "destination": "/admin",
+      "permanent": true
+    },
+    {
+      "source": "/terms.html",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
+      "source": "/privacy.html",
+      "destination": "/privacy",
+      "permanent": true
+    },
+    {
+      "source": "/404.html",
+      "destination": "/404",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -72,6 +152,22 @@
     {
       "source": "/privacy",
       "destination": "/privacy.html"
+    },
+    {
+      "source": "/account/orders",
+      "destination": "/orders.html"
+    },
+    {
+      "source": "/account/addresses",
+      "destination": "/addresses.html"
+    },
+    {
+      "source": "/account/loyalty",
+      "destination": "/loyalty.html"
+    },
+    {
+      "source": "/account/notifications",
+      "destination": "/notifications.html"
     }
   ],
   "routes": [

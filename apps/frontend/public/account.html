@@ -1,23 +1,303 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Adzek - account</title>
+﻿<!DOCTYPE html>
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#005313",
+                    "on-secondary-container": "#00731e",
+                    "surface": "#f7f9fb",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f7f9fb",
+                    "primary": "#0058bc",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#f7f9fb",
+                    "on-surface": "#191c1e",
+                    "inverse-primary": "#adc6ff",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-container": "#91f78e",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "on-secondary-fixed": "#002204",
+                    "on-primary-fixed": "#001a41",
+                    "on-tertiary-container": "#fbfcff",
+                    "tertiary-container": "#687780",
+                    "secondary-fixed": "#94f990",
+                    "primary-fixed-dim": "#adc6ff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#0070eb",
+                    "outline": "#717786",
+                    "surface-container-high": "#e6e8ea",
+                    "on-surface-variant": "#414755",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#505e67",
+                    "primary-fixed": "#d8e2ff",
+                    "outline-variant": "#c1c6d7",
+                    "surface-container-highest": "#e0e3e5",
+                    "secondary": "#006e1c",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-fixed-dim": "#78dc77",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d8dadc",
+                    "inverse-surface": "#2d3133",
+                    "on-primary-container": "#fefcff",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "surface-tint": "#005bc1",
+                    "surface-container": "#eceef0",
+                    "inverse-on-surface": "#eff1f3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+        .glass-nav {
+            background: rgba(247, 249, 251, 0.7);
+            backdrop-filter: blur(20px);
+        }
+            .top-nav {
+            transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease;
+        }
+        .top-nav.is-scrolled {
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12);
+            height: 4.25rem;
+        }
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        html { scroll-behavior: smooth; }
+        body {  }
+    </style>
+
 </head>
-<body>
-  <main>
-    <h1>UI removed</h1>
-    <p>Page: account</p>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/catalog">Catalog</a> |
-      <a href="/product">Product</a> |
-      <a href="/cart">Cart</a> |
-      <a href="/checkout">Checkout</a> |
-      <a href="/account">Account</a> |
-      <a href="/login">Login</a>
-    </nav>
-  </main>
-</body>
-</html>
+<body class="bg-surface text-on-surface min-h-screen">
+<nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
+  <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
+    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="relative hidden lg:block">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
+        <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
+      </div>
+      <div class="flex gap-4">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+          <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+        </a>
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="account.html" aria-label="Личный кабинет">
+          <span class="material-symbols-outlined" data-icon="person">person</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+<main class="pt-20 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
+<section class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Добрый день!</h1>
+<p class="text-on-surface-variant font-medium">Рады видеть вас в вашей лаборатории чистоты.</p>
+</div>
+<div class="bg-secondary-container/30 p-6 rounded-xl flex items-center gap-4">
+<div class="bg-secondary-fixed p-3 rounded-full text-on-secondary-fixed">
+<span class="material-symbols-outlined" data-icon="temp_preferences_custom">temp_preferences_custom</span>
+</div>
+<div>
+<div class="text-xs font-bold uppercase tracking-wider text-on-secondary-container">Ваши баллы чистоты</div>
+<div class="text-3xl font-extrabold text-secondary font-headline">0</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<aside class="lg:col-span-3 space-y-2">
+<nav class="bg-surface-container-low p-4 rounded-xl">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="orders.html">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary" data-icon="package_2">package_2</span>
+<span class="font-medium text-sm">Мои заказы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-lowest text-primary shadow-sm group" href="account.html"><span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-bold text-sm">Личные данные</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="addresses.html">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary" data-icon="location_on">location_on</span>
+<span class="font-medium text-sm">Адреса доставки</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="loyalty.html">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary" data-icon="loyalty">loyalty</span>
+<span class="font-medium text-sm">Программа лояльности</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all duration-300 group" href="notifications.html">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary" data-icon="notifications">notifications</span>
+<span class="font-medium text-sm">Уведомления</span>
+</a>
+<div class="h-px bg-outline-variant/20 my-4 mx-4"></div>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-error hover:bg-error-container/20 transition-all duration-300 group" href="index.html" data-logout>
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-medium text-sm">Выход</span>
+</a>
+</nav>
+</aside>
+<section class="lg:col-span-6 bg-surface-container-lowest p-8 md:p-10 rounded-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<form id="accountForm" data-account-form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Имя</label>
+<input name="firstName" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="text" value="" placeholder="Введите имя"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Фамилия</label>
+<input name="lastName" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="text" value="" placeholder="Введите фамилию"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Email</label>
+<input name="email" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="email" value="" placeholder="Введите email"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Телефон</label>
+<input name="phone" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="tel" value="" placeholder="Введите телефон"/>
+</div>
+<div class="space-y-2">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant ml-1">Дата рождения</label>
+<input name="birthday" class="w-full px-4 py-3 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface transition-all outline-none" type="date" value="" placeholder="Дата рождения"/>
+</div>
+</div>
+<div class="pt-4">
+<button class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-lg shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300" type="submit">
+                            Сохранить изменения
+                        </button>
+</div>
+</form>
+</section>
+<aside class="lg:col-span-3 space-y-6">
+<div class="bg-surface-container-high/50 p-6 rounded-xl">
+<h3 class="text-sm font-bold uppercase tracking-widest text-on-surface-variant mb-4">Последний заказ</h3>
+<div class="bg-surface-container-lowest p-5 rounded-lg space-y-4 shadow-sm relative overflow-hidden">
+<div class="absolute -top-4 -right-4 w-16 h-16 bg-blue-100 rounded-full blur-2xl opacity-50"></div>
+<div class="flex justify-between items-start">
+<div>
+<div class="text-xs text-on-surface-variant">Нет заказов</div>
+<div class="font-headline font-bold text-lg mt-1">—</div>
+</div>
+<span class="bg-slate-100 text-slate-500 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Нет данных</span>
+</div>
+<div class="flex items-center gap-3 text-xs text-on-surface-variant pt-2 border-t border-outline-variant/10">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
+<span>Оформите первый заказ в каталоге</span>
+</div>
+<a class="inline-flex w-full items-center justify-center rounded-lg border border-outline-variant/20 px-4 py-3 text-xs font-bold text-primary hover:bg-surface-container-low transition-colors" href="catalog.html">Перейти в каталог</a>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden aspect-[4/5] flex flex-col justify-end p-6">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="close up of soft white linen textures and clean bubbles representing purity and gentle care" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm8s6DjLZpq-o9E_3gDQfd3nwMkmID0Ee5_g5XRxnQOBobbwjsXI3vlGeAZWcD9x5DrOi3rIIYVIhu12KSlJo-2Mcxp7pdIkMFCfMcwmkd5C7yqEzBjEd4hi_k1ylqJcNfLNJjAzTzPr_haT_YkYfSwqbfR7CUrM9ypf_AYmGiUkq9LEOhJb_MB2_Wz6qwZT_nMSNYFOMvgO_IRoBFWCs8mqFGagLUfQgcfDQD2r6zKwQAXwAtN1JGt9hPWu2y66ToOzd9Tyg6Wd8V"/>
+<div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent"></div>
+<div class="relative z-10 text-white">
+<div class="text-[10px] font-bold uppercase tracking-widest text-blue-200 mb-1">Совет от Adzek</div>
+<h4 class="font-headline font-bold text-lg leading-tight">Как сохранить белизну хлопка?</h4>
+<p class="text-xs text-blue-100/80 mt-2">Используйте нашу новую сыворотку для белых тканей при температуре 40°C.</p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<footer class="w-full px-12 py-16 grid grid-cols-1 md:grid-cols-4 gap-8 bg-slate-100 dark:bg-slate-950 rounded-t-3xl">
+<div class="md:col-span-1">
+<div class="text-lg font-bold text-blue-700 dark:text-blue-500 mb-4 font-headline">Adzek</div>
+<p class="font-manrope text-xs text-slate-500 dark:text-slate-400">© 2024 Adzek. Лаборатория безупречной чистоты.</p>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-4">Навигация</h4>
+<ul class="space-y-2">
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html">О нас</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html#delivery">Доставка</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html">Гарантия</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-4">Поддержка</h4>
+<ul class="space-y-2">
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html">Контакты</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="privacy.html">Политика конфиденциальности</a></li>
+<li><a class="font-manrope text-xs text-slate-500 hover:text-blue-500 hover:translate-x-1 transition-transform inline-block" href="index.html">Чат с лаборантом</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest text-slate-900 mb-4">Соцсети</h4>
+<div class="flex gap-4">
+<a class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-colors" href="index.html">
+<span class="material-symbols-outlined text-sm" data-icon="share">share</span>
+</a>
+<a class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-white transition-colors" href="index.html">
+<span class="material-symbols-outlined text-sm" data-icon="alternate_email">alternate_email</span>
+</a>
+</div>
+</div>
+</footer>
+<script type="module" src="/assets/js/runtime.js"></script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

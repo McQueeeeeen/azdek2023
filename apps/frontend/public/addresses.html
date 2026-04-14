@@ -1,23 +1,73 @@
-<!doctype html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Adzek - addresses</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Адреса доставки — Adzek</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; background:#f7f9fb; color:#191c1e; }
+    h1,h2,h3,h4,.font-headline { font-family: 'Manrope', sans-serif; }
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+    .top-nav { transition: background-color .25s ease, box-shadow .25s ease, height .25s ease; }
+    .top-nav.is-scrolled { background-color: rgba(255,255,255,.92); box-shadow: 0 12px 30px rgba(0,88,188,.12); height: 4.25rem; }
+  </style>
 </head>
-<body>
-  <main>
-    <h1>UI removed</h1>
-    <p>Page: addresses</p>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/catalog">Catalog</a> |
-      <a href="/product">Product</a> |
-      <a href="/cart">Cart</a> |
-      <a href="/checkout">Checkout</a> |
-      <a href="/account">Account</a> |
-      <a href="/login">Login</a>
-    </nav>
+<body class="bg-surface text-on-surface min-h-screen">
+  <nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
+    <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
+      <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+      <div class="hidden md:flex gap-8 items-center">
+        <a class="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-700 transition-colors" href="catalog.html">Каталог</a>
+        <a class="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-700 transition-colors" href="index.html#eco">Эко-линейка</a>
+        <a class="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-700 transition-colors" href="index.html#about">О бренде</a>
+        <a class="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-700 transition-colors" href="index.html#delivery">Доставка</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина"><span class="material-symbols-outlined">shopping_cart</span></a>
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="account.html" aria-label="Личный кабинет"><span class="material-symbols-outlined">person</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-20 pb-20 px-4 md:px-8 max-w-7xl mx-auto">
+    <section class="mb-12">
+      <h1 class="text-4xl font-extrabold tracking-tight text-on-surface mb-2">Адреса доставки</h1>
+      <p class="text-on-surface-variant font-medium">Сохраняйте адреса, чтобы оформлять заказы быстрее.</p>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <aside class="lg:col-span-3 space-y-2">
+        <nav class="bg-surface-container-low p-4 rounded-xl">
+          <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all" href="orders.html"><span class="material-symbols-outlined text-slate-400">package_2</span><span class="font-medium text-sm">Мои заказы</span></a>
+          <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all" href="account.html"><span class="material-symbols-outlined text-slate-400">person</span><span class="font-medium text-sm">Личные данные</span></a>
+          <a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-surface-container-lowest text-primary shadow-sm" href="addresses.html"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">location_on</span><span class="font-bold text-sm">Адреса доставки</span></a>
+          <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all" href="loyalty.html"><span class="material-symbols-outlined text-slate-400">loyalty</span><span class="font-medium text-sm">Программа лояльности</span></a>
+          <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-white/50 transition-all" href="notifications.html"><span class="material-symbols-outlined text-slate-400">notifications</span><span class="font-medium text-sm">Уведомления</span></a>
+          <div class="h-px bg-outline-variant/20 my-4 mx-4"></div>
+          <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-error hover:bg-error-container/20 transition-all" href="index.html" data-logout><span class="material-symbols-outlined">logout</span><span class="font-medium text-sm">Выход</span></a>
+        </nav>
+      </aside>
+
+      <section class="lg:col-span-9 bg-surface-container-lowest p-8 md:p-10 rounded-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)] space-y-6">
+        <div class="flex items-center justify-between gap-4 flex-wrap">
+          <h2 class="text-2xl font-bold">Сохраненные адреса</h2>
+          <button type="button" class="rounded-xl border border-primary px-5 py-3 text-sm font-bold text-primary hover:bg-primary hover:text-white transition-colors">Добавить адрес</button>
+        </div>
+
+        <div class="rounded-2xl border border-dashed border-slate-300 bg-surface px-8 py-12 text-center">
+          <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-surface-container-low text-primary">
+            <span class="material-symbols-outlined text-3xl">home_pin</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Адресов пока нет</h3>
+          <p class="text-on-surface-variant max-w-md mx-auto">После подключения формы сохранения и первого введенного адреса здесь появится ваш список точек доставки.</p>
+        </div>
+      </section>
+    </div>
   </main>
+
+  <script type="module" src="/assets/js/runtime.js"></script>
 </body>
 </html>

@@ -1,23 +1,82 @@
-<!doctype html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Adzek - order-confirmed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Заказ подтвержден | Adzek</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <style>
+    body { font-family: 'Inter', sans-serif; background:#f7f9fb; color:#191c1e; }
+    h1,h2,h3,h4,.font-headline { font-family: 'Manrope', sans-serif; }
+    .material-symbols-outlined { font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+    .top-nav { transition: background-color .25s ease, box-shadow .25s ease, height .25s ease; }
+    .top-nav.is-scrolled { background-color: rgba(255,255,255,.92); box-shadow: 0 12px 30px rgba(0,88,188,.12); height: 4.25rem; }
+  </style>
 </head>
-<body>
-  <main>
-    <h1>UI removed</h1>
-    <p>Page: order-confirmed</p>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/catalog">Catalog</a> |
-      <a href="/product">Product</a> |
-      <a href="/cart">Cart</a> |
-      <a href="/checkout">Checkout</a> |
-      <a href="/account">Account</a> |
-      <a href="/login">Login</a>
-    </nav>
+<body class="bg-surface text-on-surface min-h-screen">
+  <nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
+    <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
+      <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+      <div class="hidden md:flex gap-8 items-center">
+        <a class="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-700 transition-colors" href="catalog.html">Каталог</a>
+        <a class="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-700 transition-colors" href="index.html#eco">Эко-линейка</a>
+        <a class="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-700 transition-colors" href="index.html#about">О бренде</a>
+        <a class="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-700 transition-colors" href="index.html#delivery">Доставка</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина"><span class="material-symbols-outlined">shopping_cart</span></a>
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="account.html" aria-label="Личный кабинет"><span class="material-symbols-outlined">person</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 px-6 max-w-4xl mx-auto">
+    <section class="text-center mb-12">
+      <div class="inline-flex items-center justify-center w-20 h-20 bg-secondary-container rounded-full mb-6">
+        <span class="material-symbols-outlined text-on-secondary-container text-4xl" style="font-variation-settings:'FILL' 1;">check_circle</span>
+      </div>
+      <h1 class="font-headline text-4xl font-extrabold tracking-tight mb-4">Заказ подтвержден</h1>
+      <p class="text-on-surface-variant text-lg max-w-xl mx-auto">Спасибо за покупку. Мы приняли ваш заказ и покажем его в личном кабинете, как только backend вернет данные истории заказов.</p>
+    </section>
+
+    <section class="bg-surface-container-lowest rounded-xl p-8 mb-8 shadow-[0_20px_40px_rgba(0,88,188,0.06)]">
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="rounded-2xl bg-surface p-5 text-center">
+          <div class="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface-container-low text-primary">
+            <span class="material-symbols-outlined">inventory_2</span>
+          </div>
+          <h2 class="font-bold mb-2">Сборка</h2>
+          <p class="text-sm text-on-surface-variant">Соберем заказ после подтверждения оплаты.</p>
+        </div>
+        <div class="rounded-2xl bg-surface p-5 text-center">
+          <div class="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface-container-low text-primary">
+            <span class="material-symbols-outlined">local_shipping</span>
+          </div>
+          <h2 class="font-bold mb-2">Доставка</h2>
+          <p class="text-sm text-on-surface-variant">Трек и статус появятся в разделе заказов.</p>
+        </div>
+        <div class="rounded-2xl bg-surface p-5 text-center">
+          <div class="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-surface-container-low text-primary">
+            <span class="material-symbols-outlined">support_agent</span>
+          </div>
+          <h2 class="font-bold mb-2">Поддержка</h2>
+          <p class="text-sm text-on-surface-variant">Если что-то пошло не так, напишите нам из аккаунта.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 shadow-lg shadow-primary/20" href="orders.html">
+        <span class="material-symbols-outlined">receipt_long</span>К моим заказам
+      </a>
+      <a class="bg-white text-on-surface border border-slate-300 px-8 py-4 rounded-xl font-headline font-bold flex items-center justify-center gap-2 transition-all hover:bg-surface-container-low active:scale-95" href="catalog.html">
+        <span class="material-symbols-outlined">shopping_bag</span>Продолжить покупки
+      </a>
+    </div>
   </main>
+
+  <script type="module" src="/assets/js/runtime.js"></script>
 </body>
 </html>

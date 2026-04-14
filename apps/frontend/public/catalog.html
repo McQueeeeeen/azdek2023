@@ -1,23 +1,462 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Adzek - catalog</title>
+﻿<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Каталог Adzek - Эстетика чистоты</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          theme: {
+            extend: {
+              "colors": {
+                "tertiary-fixed-dim": "#bac9d3",
+                "primary": "#0058bc",
+                "tertiary-container": "#687780",
+                "secondary-container": "#91f78e",
+                "on-surface-variant": "#414755",
+                "on-error": "#ffffff",
+                "surface-bright": "#f7f9fb",
+                "surface-container-low": "#f2f4f6",
+                "inverse-on-surface": "#eff1f3",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#adc6ff",
+                "outline": "#717786",
+                "tertiary-fixed": "#d6e5ef",
+                "primary-container": "#0070eb",
+                "on-tertiary-container": "#fbfcff",
+                "surface-variant": "#e0e3e5",
+                "on-primary-fixed-variant": "#004493",
+                "surface-tint": "#005bc1",
+                "background": "#f7f9fb",
+                "on-primary-container": "#fefcff",
+                "on-secondary-fixed-variant": "#005313",
+                "on-background": "#191c1e",
+                "error": "#ba1a1a",
+                "inverse-primary": "#adc6ff",
+                "on-primary-fixed": "#001a41",
+                "primary-fixed": "#d8e2ff",
+                "tertiary": "#505e67",
+                "on-tertiary-fixed-variant": "#3b4951",
+                "surface-container-highest": "#e0e3e5",
+                "secondary-fixed": "#94f990",
+                "on-error-container": "#93000a",
+                "on-secondary-container": "#00731e",
+                "on-surface": "#191c1e",
+                "surface-dim": "#d8dadc",
+                "secondary-fixed-dim": "#78dc77",
+                "outline-variant": "#c1c6d7",
+                "inverse-surface": "#2d3133",
+                "on-secondary": "#ffffff",
+                "secondary": "#006e1c",
+                "surface-container-high": "#e6e8ea",
+                "error-container": "#ffdad6",
+                "surface-container": "#eceef0",
+                "on-tertiary": "#ffffff",
+                "surface": "#f7f9fb",
+                "on-tertiary-fixed": "#0f1d25",
+                "on-secondary-fixed": "#002204",
+                "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "xxl": "1.5rem",
+                "full": "9999px"
+              },
+              "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #0058bc;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+            .top-nav {
+            transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease;
+        }
+        .top-nav.is-scrolled {
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12);
+            height: 4.25rem;
+        }
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        html { scroll-behavior: smooth; }
+        body {  }
+    </style>
 </head>
-<body>
-  <main>
-    <h1>UI removed</h1>
-    <p>Page: catalog</p>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/catalog">Catalog</a> |
-      <a href="/product">Product</a> |
-      <a href="/cart">Cart</a> |
-      <a href="/checkout">Checkout</a> |
-      <a href="/account">Account</a> |
-      <a href="/login">Login</a>
-    </nav>
-  </main>
-</body>
-</html>
+<body class="text-on-background">
+<div class="relative flex min-h-screen w-full flex-col">
+<nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
+  <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
+    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+    <div class="hidden md:flex gap-8 items-center">
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="relative hidden lg:block">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
+        <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
+      </div>
+      <div class="flex gap-4">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+          <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+        </a>
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="login.html" aria-label="Личный кабинет">
+          <span class="material-symbols-outlined" data-icon="person">person</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+<main class="pt-20 pb-10 flex-grow max-w-screen-2xl mx-auto w-full px-6 lg:px-20">
+<nav class="flex items-center gap-2 text-on-surface-variant text-sm mb-8">
+<a class="hover:text-primary" href="index.html">Главная</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface font-medium">Каталог</span>
+</nav>
+<div class="flex flex-col lg:flex-row gap-12">
+<aside class="w-full lg:w-64 flex-shrink-0">
+<div class="sticky top-28 space-y-8">
+<div>
+<h3 class="text-lg font-bold mb-5 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">tune</span> Фильтры
+                            </h3>
+<div class="space-y-4 mb-8">
+<h4 class="text-sm font-bold text-on-surface uppercase tracking-wider">Категории</h4>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter-category="kitchen"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface">Кухня</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter-category="bathroom"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface">Ванная</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter-category="laundry"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface">Стирка</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20" type="checkbox" data-filter-category="eco"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface flex items-center gap-1.5">
+                                            Эко <span class="w-2 h-2 rounded-full bg-secondary"></span>
+</span>
+</label>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<h4 class="text-sm font-bold text-on-surface uppercase tracking-wider">Цена (₸)</h4>
+<div class="px-2">
+<input id="priceRange" class="w-full h-1.5 bg-surface-container-highest rounded-lg appearance-none cursor-pointer" max="5000" min="100" step="50" type="range" value="5000"/>
+<div class="flex justify-between mt-3 text-xs font-medium text-on-surface-variant">
+<span>100 ₸</span>
+<span id="priceMaxLabel">5 000 ₸</span>
+</div>
+</div>
+</div>
+<div class="space-y-4 mb-8">
+<h4 class="text-sm font-bold text-on-surface uppercase tracking-wider">Наличие</h4>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value="" id="inStockOnly"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+<span class="text-sm text-on-surface-variant">В наличии</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex-grow">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<h1 class="text-4xl font-black text-on-surface tracking-tight mb-2">Чистота без компромиссов</h1>
+<p id="catalogCount" class="text-on-surface-variant">Найдено 0 товаров</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-medium text-on-surface-variant">Сортировка:</span>
+<select id="sortSelect" class="bg-surface-container-lowest border-none text-sm font-semibold rounded-lg focus:ring-primary/20 py-2.5 pl-4 pr-10 cursor-pointer shadow-sm">
+<option value="popular">По популярности</option>
+<option value="cheap">Сначала дешевые</option>
+<option value="expensive">Сначала дорогие</option>
+</select>
+</div>
+</div>
+<div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-10">
+<div class="group flex flex-col product-card" data-price="890" data-categories="kitchen,eco" data-in-stock="true" data-eco="true" data-popularity="490">
+<div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
+<img alt="Organic Cleaner" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Minimalist glass spray bottle with clear liquid and organic botanical labels on a bright white clean marble background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPJJn7QC-4EOIQmzMjL4STM-s9KSOzkN4gpj0YVRjaZ_DKukUBTyYOJ8ES7c1qxoygPJSLhOjzb2atsEZZAetd0sbcKTllpknpvplTKjkyehKRNoZTk_ak77-xtr8TBpJMPiKnsyD4es1HuV2X8ZfAdehcdKXg2_-rOhETfuVvEg0p_KPwTFXX9Ju9DgwP8h6xYLOCe5BamRzrF5akdixo16PEfcSKBjrOWQJkItfeoCIUbBR_CtiON7viZKlL-dcjjBH8iUGsYs-j"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Эко</span>
+</div>
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.9</span>
+<span class="text-xs text-on-surface-variant ml-1">(42 отзыва)</span>
+</div>
+<h3 class="text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Универсальный эко-спрей для кухни PureBio</h3>
+<div class="flex items-center justify-between pt-3 mt-auto">
+<span class="text-lg font-extrabold text-on-surface">890 ₸</span>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-container transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+                                        В корзину
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col product-card" data-price="450" data-categories="kitchen" data-in-stock="true" data-eco="false" data-popularity="470">
+<div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
+<img alt="Dish Soap" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern sleek white plastic bottle of premium dishwashing liquid with minimal typography standing in bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATkr01AP5U3sCu0K1tMsiR96aM-pgQdFK-LnEfFfyeGSUGyq8vETSQvfGng5XuMycAG_KsGEQtDV-E5Z8CUzG7-UDt1vWqtiFI55OXP7p-go0tj6boqNffgUN8qX70LaSGVic-ibUTVRdIeFA3N8tvKKOVxSZHEogLnhSY4he3PRtYMkZ5RX5BOrlAh6dhUNb8Or8VMXl0aJHisYpCneU_Bs2nC3xOiqhQolfLSkQEk0JCTZFeL3dXrV0cacHQCVQljsxyyzv0CXPi"/>
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.7</span>
+<span class="text-xs text-on-surface-variant ml-1">(28)</span>
+</div>
+<h3 class="text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Гель для мытья посуды «Лимон и Мята»</h3>
+<div class="flex items-center justify-between pt-3 mt-auto">
+<span class="text-lg font-extrabold text-on-surface">450 ₸</span>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-container transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+                                        В корзину
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col product-card" data-price="1200" data-categories="laundry" data-in-stock="true" data-eco="false" data-popularity="500">
+<div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
+<img alt="Washing Gel" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Large white laundry detergent bottle with blue cap in a bright airy laundry room setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw_FmPiEPVdNM65Zp9C77dgg_D9SGY_EY5olQyzYE9wY2pq9o348wXarx4hxeTsm5heN0doN5iwln0XEwIaEgQfvsIIJ3VCN3TiQL0lx-SwBA4XKGaQAzsn5myoqTI6iBF7gYS0jYgKfAnuK6Bh0dcd3Go2MYab0YHGfAKqcq1RUycmPHUiT_3g101oCsvplchso0b2v4VoMCVXxDV0KyqzizMHdovC6JKjeVcFIoa7bOkR20lRpaethybru9j5Gxv1u9h0KiU9EQL"/>
+<div class="absolute top-4 left-4">
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Хит</span>
+</div>
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">5.0</span>
+<span class="text-xs text-on-surface-variant ml-1">(156)</span>
+</div>
+<h3 class="text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Гель-концентрат для стирки «Снежный лотос»</h3>
+<div class="flex items-center justify-between pt-3 mt-auto">
+<span class="text-lg font-extrabold text-on-surface">1 200 ₸</span>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-container transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+                                        В корзину
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col product-card" data-price="590" data-categories="kitchen" data-in-stock="false" data-eco="false" data-popularity="460">
+<div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
+<img alt="Oven Cleaner" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Heavy duty cleaning spray bottle on a professional stainless steel kitchen counter with soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaSYUEN8BK2lps1ONBYh0G-h1JmBLorp7weI_1B4oDou7umh9InaMjN1QIiNeLmVeCbMOWdEfg97y8IdALaN0kzqEFVBLG1T4HXl8VoQRUVFKrwFQbUhjRbB-J7tBPk_8C17QShbCMXh3P-TKTvxHlip7tLEF7hnHLo5I-IAmSHhNzxur336VXo9lmKG8gWtTK6s7OeV_ZDLKj30dWZxE4az3VtFpc5a3mDdbavEhhfs8cucJHOedr0-QxgdwDTaBsdDffnViAZSx8"/>
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.6</span>
+<span class="text-xs text-on-surface-variant ml-1">(12)</span>
+</div>
+<h3 class="text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Антижир для плит и духовок ExtraClean</h3>
+<div class="flex items-center justify-between pt-3 mt-auto">
+<span class="text-lg font-extrabold text-on-surface">590 ₸</span>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-container transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+                                        В корзину
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col product-card" data-price="670" data-categories="bathroom" data-in-stock="true" data-eco="false" data-popularity="480">
+<div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
+<img alt="Bathroom Cleaner" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Teal colored cleaning product bottle in a bright luxury bathroom with white tiles and soft aesthetic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy_miSsiRwlWJZhNElw_K1ZhtybKanJLl4UbORopr0EWrxv--yJoUIA0Fs8i8oI8g5bJ8hm5j78Kiq0F0ROmER9LKe13QcEbSMv-9xuOr4gmjAESlQh_6tZxsUxXDfIWwloE9TuUVZzF0aYQEwoM3W5EOFVZWyKitziBTRFYbqMaJVXtSEa4b4W3WgFNhnS0IdJC5Ehyeu0m-K4ISOpPGAPICXjxWBqDMsi7WssC5V9WXZcFw1P7Rw3Gj8I93ME-bWezOaoi-3NhYI"/>
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.8</span>
+<span class="text-xs text-on-surface-variant ml-1">(35)</span>
+</div>
+<h3 class="text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Спрей для сияния ванны «Альпийская свежесть»</h3>
+<div class="flex items-center justify-between pt-3 mt-auto">
+<span class="text-lg font-extrabold text-on-surface">670 ₸</span>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-container transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+                                        В корзину
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col product-card" data-price="320" data-categories="bathroom" data-in-stock="true" data-eco="false" data-popularity="450">
+<div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
+<img alt="Window Cleaner" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Blue transparent liquid in a spray bottle on a bright airy balcony with clear blue sky in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqaVZs67ejGMWYqu0ZUjFusM5PfiQWoXLE9Zp_roei_RB2OvWBG46COg8ORBxCFM1DwVvydaQtJgDIaAO6_66LlycGnKBawWWOa4JXmbrx_eZBcKDocDgzHm77KIq3xqzIrq3FaO_GI9afBGzsnBCQbFLdntrQsotpLjB6MQRKw0_HqVT9DFpWebwhzjE3CrWUpSLBcivw2NpnY2x0moyQOpS9f7a7s9zMQT94ZAextOpJl3633c4VXa6eGQt-Q53GsFG0g1HoxF1P"/>
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.5</span>
+<span class="text-xs text-on-surface-variant ml-1">(19)</span>
+</div>
+<h3 class="text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Очиститель стекол «Кристальный блеск»</h3>
+<div class="flex items-center justify-between pt-3 mt-auto">
+<span class="text-lg font-extrabold text-on-surface">320 ₸</span>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-container transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+                                        В корзину
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col product-card" data-price="540" data-categories="bathroom,eco" data-in-stock="true" data-eco="true" data-popularity="495">
+<div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
+<img alt="Hand Soap" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Eco-friendly liquid hand soap in a brown amber bottle with a matte black pump in a minimalist spa-like setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYn3LVIbmo8TeJ6ipIcUfiecsqVfR-ODVthMTvG3l10qbsDCH_VOEFTECieDkQTpUawpFUYh8bhihRWmXIVjQBMJEhTePy0T2d4GlWERDFqfpnj4pZU1Ms8rZ4nFNzAWgp0BhLRpmOyapyA8f8ooh8uOtZfHF-Xi112BTD4S7LuOCYoaKhrNSp8_-XQLiVOrg-s-wFmo6XpaB_CQz7LTdJcjdSfb-DoImjHXxLBDD0SSrFgtDnFgQiNaRoYKbfV_j6xs42LW0clXbb"/>
+<div class="absolute top-4 left-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Эко</span>
+</div>
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.9</span>
+<span class="text-xs text-on-surface-variant ml-1">(64)</span>
+</div>
+<h3 class="text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Жидкое мыло для рук Organic Lavender</h3>
+<div class="flex items-center justify-between pt-3 mt-auto">
+<span class="text-lg font-extrabold text-on-surface">540 ₸</span>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-container transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+                                        В корзину
+                                    </button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col product-card" data-price="710" data-categories="laundry" data-in-stock="true" data-eco="false" data-popularity="475">
+<div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
+<img alt="Softener" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Soft pink laundry softener bottle standing on a white wooden surface next to clean folded towels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM-5kgN14cX2EzhAbx8E02x1XK8MrKWUsR2wMkZRqhxN-XTJEEHH7IPSYwjDJKpb_SE0JpU8rOl-0R7sZ3jBWLjkhj74GdJAUt0X8TFyb1wiYjziksQ1xks8_JotBHOVHbsfhOaDIdYSuWU7J8ke-h2KG3Ykf2ZbxYzrop3FypSxfJ5HBA7-LGV1c8GWeBvLKarBCeG35ld9g7YTi2GIhuIFNuSkGg7_dkvyjVMLltVGI5JzjW_urMGQdCKoF--6tnc-tJev5e72kp"/>
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-on-surface">4.7</span>
+<span class="text-xs text-on-surface-variant ml-1">(22)</span>
+</div>
+<h3 class="text-on-surface font-bold leading-tight group-hover:text-primary transition-colors">Кондиционер для белья «Шелковое облако»</h3>
+<div class="flex items-center justify-between pt-3 mt-auto">
+<span class="text-lg font-extrabold text-on-surface">710 ₸</span>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2 rounded-lg font-bold text-sm hover:bg-primary-container transition-all active:scale-95 shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-base">shopping_cart</span>
+                                        В корзину
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+<div id="catalogEmpty" class="hidden mt-8 p-6 rounded-xl bg-surface-container-low text-on-surface-variant font-semibold">
+По выбранным фильтрам товары не найдены.
+</div>
+<div class="mt-20 flex justify-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all">3</button>
+<span class="flex items-center px-2 text-on-surface-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-container-low mt-20 border-t border-outline-variant/10 py-12 px-6 lg:px-20">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3 text-primary/60 grayscale opacity-70">
+<div class="w-6 h-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-on-surface text-lg font-bold">Adzek</h2>
+</div>
+<div class="flex gap-8 text-sm font-medium text-on-surface-variant">
+<a class="hover:text-primary" href="privacy.html">Политика конфиденциальности</a>
+<a class="hover:text-primary" href="index.html#delivery">Условия возврата</a>
+<a class="hover:text-primary" href="index.html#delivery">Контакты</a>
+</div>
+<p class="text-xs text-on-surface-variant">© 2024 Adzek. Все права защищены.</p>
+</div>
+</footer>
+</div>
+<script type="module" src="/assets/js/runtime.js"></script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

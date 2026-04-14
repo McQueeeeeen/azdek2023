@@ -1,23 +1,333 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Adzek - Home</title>
+﻿<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#414755",
+                        "primary-container": "#0070eb",
+                        "surface-container": "#eceef0",
+                        "secondary-fixed-dim": "#78dc77",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary": "#0058bc",
+                        "primary-fixed": "#d8e2ff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#687780",
+                        "on-secondary-fixed-variant": "#005313",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed": "#0f1d25",
+                        "surface-tint": "#005bc1",
+                        "on-background": "#191c1e",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed-dim": "#adc6ff",
+                        "tertiary-fixed": "#d6e5ef",
+                        "on-secondary-fixed": "#002204",
+                        "outline": "#717786",
+                        "on-tertiary-container": "#fbfcff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#006e1c",
+                        "secondary-container": "#91f78e",
+                        "on-primary-fixed": "#001a41",
+                        "inverse-primary": "#adc6ff",
+                        "outline-variant": "#c1c6d7",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#bac9d3",
+                        "on-surface": "#191c1e",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#505e67",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#d8dadc",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f7f9fb",
+                        "secondary-fixed": "#94f990",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#fefcff",
+                        "on-tertiary-fixed-variant": "#3b4951",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-secondary-container": "#00731e",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 700ms ease, transform 700ms ease;
+            transition-delay: var(--reveal-delay, 0ms);
+            will-change: opacity, transform;
+        }
+        .scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .footer-reveal.scroll-reveal {
+            transform: translateY(38px);
+            transition-duration: 900ms;
+        }
+        .newsletter-btn {
+            transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+        }
+        .newsletter-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 14px 28px rgba(0, 88, 188, 0.28);
+        }
+        .newsletter-btn:active {
+            transform: translateY(0) scale(0.99);
+        }
+        .top-nav {
+            transition: background-color 250ms ease, box-shadow 250ms ease, height 250ms ease;
+        }
+        .top-nav.is-scrolled {
+            background-color: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12);
+            height: 4.25rem;
+        }
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        html { scroll-behavior: smooth; }
+        body {  }
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .newsletter-btn {
+                transition: none;
+            }
+            .newsletter-btn:hover,
+            .newsletter-btn:active {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    </style>
 </head>
-<body>
-  <main>
-    <h1>UI removed</h1>
-    <p>Page: Home</p>
-    <nav>
-      <a href="/">Home</a> |
-      <a href="/catalog">Catalog</a> |
-      <a href="/product">Product</a> |
-      <a href="/cart">Cart</a> |
-      <a href="/checkout">Checkout</a> |
-      <a href="/account">Account</a> |
-      <a href="/login">Login</a>
-    </nav>
-  </main>
-</body>
-</html>
+<body class="bg-surface text-on-surface">
+<nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
+<div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
+<a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
+<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
+<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
+<a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
+<input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
+</div>
+<div class="flex gap-4">
+<a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</a>
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="account.html" aria-label="Личный кабинет">
+          <span class="material-symbols-outlined" data-icon="person">person</span>
+        </a>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<section id="eco" class="relative h-[870px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Чистота от природы" class="w-full h-full object-cover" data-alt="extreme close-up of crystal clear water droplets on a vibrant green leaf with soft morning light and bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNtWgIdBmGvUxUJD-VfQUZOEIXayQP2Y5y-wgfaSlsm9jM8aBigJR2okstBWGuQ5u-fLr66qxa1amTB1fe3B3LTrgezZYtFS4xZavVIbeIGWsFIUZ-auDtftBoY1uq_JaCxj6XuwvegDAEDY7rBs6IIkElgWFlXm6ecl0pXpXZNChQjGimy2N4E8P19Z1m3t8QVf-hMXKrFNb2BzlKhOugD76oVbMwATEy6W-p_xt8I_qlxC09soJH68gaHBligKf8JFDI_mjLo84H"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface/80 via-surface/20 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-8 w-full">
+<div class="max-w-2xl">
+<span class="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-sm font-semibold mb-6">100% Биоразлагаемо</span>
+<h1 class="text-6xl md:text-8xl font-extrabold text-on-surface tracking-tighter mb-6 leading-tight">Чистота от природы</h1>
+<p class="text-xl text-on-surface-variant mb-10 leading-relaxed font-body">Создаем безупречную чистоту в вашем доме, используя только силу растений и минералов. Безопасно для семьи, бережно к планете.</p>
+<div class="flex gap-4">
+<a class="inline-flex items-center gap-2 bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-xl font-bold shadow-lg border border-transparent outline-none ring-0 focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 hover:opacity-90 hover:scale-105 transition-all" href="catalog.html">
+                            Смотреть каталог
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+<button class="bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform">
+                            Эко-линейка
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<section id="about" class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-lowest p-12 rounded-xl flex flex-col justify-between relative overflow-hidden group">
+<div class="relative z-10">
+<h2 class="text-3xl font-bold mb-4 tracking-tight">Стандарт Adzek Green</h2>
+<p class="text-on-surface-variant max-w-md">Каждый наш продукт проходит строгую сертификацию. Мы исключили фосфаты, хлор и агрессивные ПАВ.</p>
+</div>
+<div class="flex gap-4 mt-8 relative z-10">
+<div class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest">Vegan</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest">Water Safe</span>
+</div>
+</div>
+<img class="absolute right-0 bottom-0 w-1/2 h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity" data-alt="abstract composition of recycled paper textures and green botanical elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtaOka7VU3zqjLnJEpzPciWBO-GN_UjWUBZ_UQG3f_A4MjZnEOfpLYkDXSidjAvXX6shNZTCirRsWjvALTSQD7h-zMNdGLipMU_mY6sZ3QuiVyj0W0qNEnBS9fSozqkBX2Ht822SUGUqKouhI9a7KUM6OffWgRKKbV6wA27WUHVNiupKyxBwUBICPUaJTzMQZG4GiBkt0VHyYk8WaTh9ttSc_9zlZD0evF1vTkRieBA2QlAk2IhD-CsKS1psD2i71qLXeggYtv_XWg"/>
+</div>
+<div class="bg-primary text-white p-12 rounded-xl flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-6xl mb-6" style="font-variation-settings: 'FILL' 1;">science</span>
+<h3 class="text-2xl font-bold mb-2">Лабораторный контроль</h3>
+<p class="text-primary-fixed/80 text-sm">Протестировано дерматологами и экспертами по экологии.</p>
+</div>
+<div class="md:col-span-3 bg-surface-container-lowest rounded-xl overflow-hidden grid md:grid-cols-2 items-center">
+<div class="p-12">
+<div class="flex items-center gap-2 text-secondary font-bold mb-4">
+<span class="material-symbols-outlined">recycling</span>
+                                Вторая жизнь пластика
+                            </div>
+<h2 class="text-4xl font-bold mb-6 tracking-tighter">Мы зациклили производство</h2>
+<p class="text-on-surface-variant mb-8 text-lg">Каждая упаковка Adzek на 100% состоит из переработанного океанического пластика. Принесите пустую тару в наши пункты приема и получите скидку 15%.</p>
+<button class="border-2 border-primary text-primary px-6 py-3 rounded-xl font-bold hover:bg-primary hover:text-white transition-colors">
+                                Найти пункт приема
+                            </button>
+</div>
+<div class="h-80 md:h-full">
+<img class="w-full h-full object-cover" data-alt="neatly organized blue and white recycled plastic bottles in a bright minimalist setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN5u28x-EGNlSIWJiS1en3F5MB_NqlhtrYYYVmCnEKdW8FoKKetUFLe53dyNCoiNTyTgXGnZ16f0zM6zGKqctW_2K9cmQfXI0pDeQRswtYxret87IzfwS8ZiIPvhqEg0eld1xL_hAnk5O5v8qNORGdAe_Gl_Wj1HOcS0S2k05D73K5pNLYl8FIhhNGPTFkvVZY_eNiojglp-Fhts2F163hds6rOzyI0w0CLGB3pqV4eMrTFZatfkoUVv4P_LMPlx_IYZ04eNxHU7F3"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight mb-4">Натуральные бестселлеры</h2>
+<p class="text-on-surface-variant">Средства, которые выбирают осознанные потребители</p>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 hover:gap-4 transition-all" href="catalog.html">
+                        Весь каталог <span class="material-symbols-outlined">east</span>
+</a>
+</div>
+<div id="homeProductGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="col-span-full text-on-surface-variant">Загрузка товаров...</div>
+</div>
+</div>
+</section>
+<section id="delivery" class="py-24 relative overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="blurry atmospheric background of a dense green forest with soft light filtering through leaves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC1fBGxBQk0qL3475z1em3zXZNs3Ql_0l0IgT9BltcpKCTmSTVpNjTLwm32CdAXvRKIRG3wd4Yo1vWw96B5KyBuOeBTbf4aTzyHChbsfXM7Hi0hJRtYySJD05B3PGJjHkdNrtWD2gpj_6JA-BBU1UUSU1ZdY-Qh-dAIsrL9CDFRmkt_Q7_wnuW1P8t18zMKPsd8DFoNE_7WFjf9yL1vAxwcmb3ya_iWSVkCyGyJreS_JJHVxplWbr3mEL1QDZz5hJetUZsD_03mZgf"/>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto px-8">
+<div class="bg-white/30 backdrop-blur-xl p-16 rounded-xl border border-white/40 text-center">
+<h2 class="text-4xl font-bold mb-6 tracking-tight">Станьте частью Adzek</h2>
+<p class="text-lg mb-10 text-on-surface">Подпишитесь на наши советы по экологичной уборке и получайте персональные предложения.</p>
+<form class="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+<input class="flex-grow px-6 py-4 rounded-xl bg-white/60 border-none focus:ring-2 focus:ring-primary/20 placeholder:text-slate-600" placeholder="Ваш e-mail" type="email"/>
+<button class="newsletter-btn bg-primary text-white px-10 py-4 rounded-xl font-bold shadow-lg hover:shadow-primary/30 transition-all">Подписаться</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-slate-50 w-full pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="col-span-2 md:col-span-1">
+<div class="text-xl font-bold text-slate-900 mb-6">Adzek</div>
+<p class="text-slate-500 text-sm leading-relaxed">Совершенство чистоты в гармонии с природой. Инновационные формулы для вашего комфорта.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6">Покупателям</h4>
+<ul class="flex flex-col gap-4 text-slate-500 text-sm">
+<li><a class="hover:text-blue-500 transition-colors" href="catalog.html">Каталог</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="index.html#delivery">Доставка и оплата</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="index.html#delivery">Условия возврата</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="index.html#about">Сертификаты</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">О компании</h4>
+<ul class="flex flex-col gap-4 text-slate-500 text-sm">
+<li><a class="hover:text-blue-500 transition-colors" href="index.html#about">О бренде</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="index.html#about">Эко-инициативы</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="index.html#delivery">Контакты</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="privacy.html">Политика конфиденциальности</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Связь</h4>
+<p class="text-slate-500 text-sm mb-4">8 (800) 555-35-35</p>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">public</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center cursor-pointer hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">chat</span>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-slate-200 flex justify-between items-center text-slate-400 text-xs antialiased">
+<span>© 2024 Adzek. Совершенство чистоты.</span>
+<div class="flex gap-6">
+<span>Сделано с любовью к планете</span>
+</div>
+</div>
+</footer>
+<script type="module" src="/assets/js/runtime.js"></script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
