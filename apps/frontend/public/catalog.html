@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/svg+xml" href="icon.svg"/>
 <title>Каталог Adzek - Эстетика чистоты</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
         tailwind.config = {
@@ -97,24 +99,22 @@
             box-shadow: 0 12px 30px rgba(0, 88, 188, 0.12);
             height: 4.25rem;
         }
-        @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
         html { scroll-behavior: smooth; }
-        body {  }
-    </style>
+        body { animation: pageFadeIn 220ms ease forwards; }
+    #topNav{position:fixed;top:0;left:0;right:0;z-index:9999;}
+</style>
 </head>
 <body class="text-on-background">
 <div class="relative flex min-h-screen w-full flex-col">
 <nav id="topNav" class="top-nav fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
   <div class="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
-    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="index.html">Adzek</a>
+    <a class="text-2xl font-black text-blue-700 tracking-tighter" href="/">Adzek</a>
     <div class="hidden md:flex gap-8 items-center">
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="catalog.html">Каталог</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#eco">Эко-линейка</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#about">О бренде</a>
-      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="index.html#delivery">Доставка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/catalog">Каталог</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#eco">Эко-линейка</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#about">О бренде</a>
+      <a class="font-manrope tracking-tight font-semibold text-slate-600 border-b-2 border-transparent pb-1 hover:text-blue-700 hover:border-blue-600 transition-colors duration-200" href="/#delivery">Доставка</a>
     </div>
     <div class="flex items-center gap-6">
       <div class="relative hidden lg:block">
@@ -122,10 +122,10 @@
         <input class="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm" placeholder="Поиск чистоты..." type="text"/>
       </div>
       <div class="flex gap-4">
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="cart.html" aria-label="Корзина">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/cart" aria-label="Корзина">
           <span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
         </a>
-        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="login.html" aria-label="Личный кабинет">
+        <a class="inline-flex items-center justify-center text-blue-700 hover:scale-110 transition-transform" href="/login" aria-label="Личный кабинет">
           <span class="material-symbols-outlined" data-icon="person">person</span>
         </a>
       </div>
@@ -134,7 +134,7 @@
 </nav>
 <main class="pt-20 pb-10 flex-grow max-w-screen-2xl mx-auto w-full px-6 lg:px-20">
 <nav class="flex items-center gap-2 text-on-surface-variant text-sm mb-8">
-<a class="hover:text-primary" href="index.html">Главная</a>
+<a class="hover:text-primary" href="/">Главная</a>
 <span class="material-symbols-outlined text-xs">chevron_right</span>
 <span class="text-on-surface font-medium">Каталог</span>
 </nav>
@@ -213,7 +213,7 @@
 <div class="absolute top-4 left-4">
 <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Эко</span>
 </div>
-<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0" data-wishlist>
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
@@ -236,7 +236,7 @@
 <div class="group flex flex-col product-card" data-price="450" data-categories="kitchen" data-in-stock="true" data-eco="false" data-popularity="470">
 <div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
 <img alt="Dish Soap" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern sleek white plastic bottle of premium dishwashing liquid with minimal typography standing in bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATkr01AP5U3sCu0K1tMsiR96aM-pgQdFK-LnEfFfyeGSUGyq8vETSQvfGng5XuMycAG_KsGEQtDV-E5Z8CUzG7-UDt1vWqtiFI55OXP7p-go0tj6boqNffgUN8qX70LaSGVic-ibUTVRdIeFA3N8tvKKOVxSZHEogLnhSY4he3PRtYMkZ5RX5BOrlAh6dhUNb8Or8VMXl0aJHisYpCneU_Bs2nC3xOiqhQolfLSkQEk0JCTZFeL3dXrV0cacHQCVQljsxyyzv0CXPi"/>
-<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0" data-wishlist>
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
@@ -262,7 +262,7 @@
 <div class="absolute top-4 left-4">
 <span class="bg-error-container text-on-error-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Хит</span>
 </div>
-<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0" data-wishlist>
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
@@ -285,7 +285,7 @@
 <div class="group flex flex-col product-card" data-price="590" data-categories="kitchen" data-in-stock="false" data-eco="false" data-popularity="460">
 <div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
 <img alt="Oven Cleaner" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Heavy duty cleaning spray bottle on a professional stainless steel kitchen counter with soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaSYUEN8BK2lps1ONBYh0G-h1JmBLorp7weI_1B4oDou7umh9InaMjN1QIiNeLmVeCbMOWdEfg97y8IdALaN0kzqEFVBLG1T4HXl8VoQRUVFKrwFQbUhjRbB-J7tBPk_8C17QShbCMXh3P-TKTvxHlip7tLEF7hnHLo5I-IAmSHhNzxur336VXo9lmKG8gWtTK6s7OeV_ZDLKj30dWZxE4az3VtFpc5a3mDdbavEhhfs8cucJHOedr0-QxgdwDTaBsdDffnViAZSx8"/>
-<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0" data-wishlist>
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
@@ -308,7 +308,7 @@
 <div class="group flex flex-col product-card" data-price="670" data-categories="bathroom" data-in-stock="true" data-eco="false" data-popularity="480">
 <div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
 <img alt="Bathroom Cleaner" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Teal colored cleaning product bottle in a bright luxury bathroom with white tiles and soft aesthetic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy_miSsiRwlWJZhNElw_K1ZhtybKanJLl4UbORopr0EWrxv--yJoUIA0Fs8i8oI8g5bJ8hm5j78Kiq0F0ROmER9LKe13QcEbSMv-9xuOr4gmjAESlQh_6tZxsUxXDfIWwloE9TuUVZzF0aYQEwoM3W5EOFVZWyKitziBTRFYbqMaJVXtSEa4b4W3WgFNhnS0IdJC5Ehyeu0m-K4ISOpPGAPICXjxWBqDMsi7WssC5V9WXZcFw1P7Rw3Gj8I93ME-bWezOaoi-3NhYI"/>
-<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0" data-wishlist>
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
@@ -331,7 +331,7 @@
 <div class="group flex flex-col product-card" data-price="320" data-categories="bathroom" data-in-stock="true" data-eco="false" data-popularity="450">
 <div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
 <img alt="Window Cleaner" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Blue transparent liquid in a spray bottle on a bright airy balcony with clear blue sky in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqaVZs67ejGMWYqu0ZUjFusM5PfiQWoXLE9Zp_roei_RB2OvWBG46COg8ORBxCFM1DwVvydaQtJgDIaAO6_66LlycGnKBawWWOa4JXmbrx_eZBcKDocDgzHm77KIq3xqzIrq3FaO_GI9afBGzsnBCQbFLdntrQsotpLjB6MQRKw0_HqVT9DFpWebwhzjE3CrWUpSLBcivw2NpnY2x0moyQOpS9f7a7s9zMQT94ZAextOpJl3633c4VXa6eGQt-Q53GsFG0g1HoxF1P"/>
-<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0" data-wishlist>
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
@@ -357,7 +357,7 @@
 <div class="absolute top-4 left-4">
 <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Эко</span>
 </div>
-<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0" data-wishlist>
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
@@ -380,7 +380,7 @@
 <div class="group flex flex-col product-card" data-price="710" data-categories="laundry" data-in-stock="true" data-eco="false" data-popularity="475">
 <div class="relative aspect-[4/5] rounded-xxl bg-surface-container-low overflow-hidden mb-4">
 <img alt="Softener" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Soft pink laundry softener bottle standing on a white wooden surface next to clean folded towels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM-5kgN14cX2EzhAbx8E02x1XK8MrKWUsR2wMkZRqhxN-XTJEEHH7IPSYwjDJKpb_SE0JpU8rOl-0R7sZ3jBWLjkhj74GdJAUt0X8TFyb1wiYjziksQ1xks8_JotBHOVHbsfhOaDIdYSuWU7J8ke-h2KG3Ykf2ZbxYzrop3FypSxfJ5HBA7-LGV1c8GWeBvLKarBCeG35ld9g7YTi2GIhuIFNuSkGg7_dkvyjVMLltVGI5JzjW_urMGQdCKoF--6tnc-tJev5e72kp"/>
-<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0">
+<button class="absolute bottom-4 right-4 p-3 bg-white/90 backdrop-blur rounded-full text-primary shadow-lg opacity-0 translate-y-4 transition-all group-hover:opacity-100 group-hover:translate-y-0" data-wishlist>
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
@@ -405,11 +405,11 @@
 По выбранным фильтрам товары не найдены.
 </div>
 <div class="mt-20 flex justify-center gap-2">
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all">1</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold">2</button>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all">3</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all" data-page="1">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-white font-bold" data-page="2">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all" data-page="1">3</button>
 <span class="flex items-center px-2 text-on-surface-variant">...</span>
-<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-low text-on-surface-variant hover:bg-primary hover:text-white transition-all" data-page="1">
 <span class="material-symbols-outlined">chevron_right</span>
 </button>
 </div>
@@ -427,15 +427,427 @@
 <h2 class="text-on-surface text-lg font-bold">Adzek</h2>
 </div>
 <div class="flex gap-8 text-sm font-medium text-on-surface-variant">
-<a class="hover:text-primary" href="privacy.html">Политика конфиденциальности</a>
-<a class="hover:text-primary" href="index.html#delivery">Условия возврата</a>
-<a class="hover:text-primary" href="index.html#delivery">Контакты</a>
+<a class="hover:text-primary" href="/privacy">Политика конфиденциальности</a>
+<a class="hover:text-primary" href="/#delivery">Условия возврата</a>
+<a class="hover:text-primary" href="/#delivery">Контакты</a>
 </div>
 <p class="text-xs text-on-surface-variant">© 2024 Adzek. Все права защищены.</p>
 </div>
 </footer>
 </div>
-<script  src="/assets/js/app.js"></script></body></html>
+<script>
+(function () {
+  const topNav = document.getElementById('topNav');
+  if (!topNav) return;
+  const onScroll = () => {
+    if (window.scrollY > 12) {
+      topNav.classList.add('is-scrolled');
+    } else {
+      topNav.classList.remove('is-scrolled');
+    }
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+<script id="catalogFilters">
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.product-card'));
+  if (!cards.length) return;
+
+  var categoryInputs = Array.prototype.slice.call(document.querySelectorAll('[data-filter-category]'));
+  var productGrid = document.getElementById('productGrid');
+  var sortSelect = document.getElementById('sortSelect');
+  var priceRange = document.getElementById('priceRange');
+  var priceMaxLabel = document.getElementById('priceMaxLabel');
+  var inStockOnly = document.getElementById('inStockOnly');
+  var countEl = document.getElementById('catalogCount');
+  var emptyEl = document.getElementById('catalogEmpty');
+
+  function formatPrice(num) {
+    try { return Number(num).toLocaleString('ru-KZ') + ' ₸'; } catch (e) { return num + ' ₸'; }
+  }
+
+  function pluralizeProducts(count) {
+    if (count % 10 === 1 && count % 100 !== 11) return 'товар';
+    if ([2, 3, 4].indexOf(count % 10) !== -1 && [12, 13, 14].indexOf(count % 100) === -1) return 'товара';
+    return 'товаров';
+  }
+
+  function getActiveCategories() {
+    return categoryInputs
+      .filter(function (input) { return input.checked; })
+      .map(function (input) { return input.getAttribute('data-filter-category'); });
+  }
+
+  function applyFilters() {
+    var activeCategories = getActiveCategories();
+    var maxPrice = Number(priceRange ? priceRange.value : 5000);
+    var stockRequired = !!(inStockOnly && inStockOnly.checked);
+    var visibleCount = 0;
+
+    if (priceMaxLabel) priceMaxLabel.textContent = formatPrice(maxPrice);
+
+    var sortMode = sortSelect ? sortSelect.value : 'popular';
+    var orderedCards = cards.slice().sort(function (a, b) {
+      var aPrice = Number(a.getAttribute('data-price') || '0');
+      var bPrice = Number(b.getAttribute('data-price') || '0');
+      var aPop = Number(a.getAttribute('data-popularity') || '0');
+      var bPop = Number(b.getAttribute('data-popularity') || '0');
+      if (sortMode === 'cheap') return aPrice - bPrice;
+      if (sortMode === 'expensive') return bPrice - aPrice;
+      return bPop - aPop;
+    });
+
+    if (productGrid) {
+      orderedCards.forEach(function (card) { productGrid.appendChild(card); });
+    }
+
+    orderedCards.forEach(function (card) {
+      var cardPrice = Number(card.getAttribute('data-price') || '0');
+      var cardCats = (card.getAttribute('data-categories') || '')
+        .split(',')
+        .map(function (v) { return v.trim(); })
+        .filter(Boolean);
+      var isEco = card.getAttribute('data-eco') === 'true';
+      var inStock = card.getAttribute('data-in-stock') === 'true';
+
+      var categoryPass = activeCategories.length === 0 || activeCategories.some(function (cat) {
+        if (cat === 'eco') return isEco;
+        return cardCats.indexOf(cat) !== -1;
+      });
+      var pricePass = cardPrice <= maxPrice;
+      var stockPass = !stockRequired || inStock;
+      var show = categoryPass && pricePass && stockPass;
+
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount += 1;
+    });
+
+    if (countEl) countEl.textContent = 'Найдено ' + visibleCount + ' ' + pluralizeProducts(visibleCount);
+    if (emptyEl) emptyEl.classList.toggle('hidden', visibleCount > 0);
+  }
+
+  categoryInputs.forEach(function (input) { input.addEventListener('change', applyFilters); });
+  if (priceRange) priceRange.addEventListener('input', applyFilters);
+  if (inStockOnly) inStockOnly.addEventListener('change', applyFilters);
+  if (sortSelect) sortSelect.addEventListener('change', applyFilters);
+
+  applyFilters();
+})();
+</script>
+<script id="catalogProductRouting">
+(function () {
+  var grid = document.getElementById('productGrid');
+  if (!grid) return;
+
+  grid.addEventListener('click', function (e) {
+    var target = e.target;
+    if (target.closest('button')) return;
+
+    var card = target.closest('.product-card');
+    if (!card) return;
+
+    var media = target.closest('img');
+    var title = target.closest('h3');
+    if (!media && !title) return;
+
+    window.location.href = '/product';
+  });
+})();
+</script>
+<script id="pageLinkTransitions">
+(function () {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var style = document.createElement('style');
+  style.textContent = 'html.is-leaving body{opacity:0;transition:opacity .16s ease;}';
+  document.head.appendChild(style);
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+    if (a.target === '_blank' || a.hasAttribute('download')) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+
+    var url;
+    try { url = new URL(a.href, window.location.href); } catch (_) { return; }
+    if (url.origin !== window.location.origin) return;
+
+    e.preventDefault();
+    document.documentElement.classList.add('is-leaving');
+    window.setTimeout(function () { window.location.href = url.href; }, 160);
+  }, true);
+})();
+</script>
+<script id="authNavResolver">
+(function () {
+  var authed = false;
+  try {
+    authed = localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
+  } catch (e) {}
+
+  document.querySelectorAll('a[aria-label="Личный кабинет"]').forEach(function (accountLink) {
+    var parent = accountLink.parentElement;
+    if (!parent) return;
+
+    var authActions = parent.querySelector('.auth-actions');
+
+    if (authed) {
+      accountLink.style.display = 'inline-flex';
+      accountLink.setAttribute('href', '/account');
+      if (authActions) authActions.remove();
+      return;
+    }
+
+    accountLink.style.display = 'none';
+
+    if (!authActions) {
+      authActions = document.createElement('div');
+      authActions.className = 'auth-actions flex items-center gap-2';
+
+      var loginBtn = document.createElement('a');
+      loginBtn.href = '/login';
+      loginBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold text-blue-700 hover:bg-blue-50 transition-colors';
+      loginBtn.textContent = 'Войти';
+
+      var registerBtn = document.createElement('a');
+      registerBtn.href = '/register';
+      registerBtn.className = 'px-3 py-2 rounded-full text-sm font-semibold bg-primary text-white hover:opacity-90 transition-opacity';
+      registerBtn.textContent = 'Зарегистрироваться';
+
+      authActions.appendChild(loginBtn);
+      authActions.appendChild(registerBtn);
+      parent.appendChild(authActions);
+    }
+  });
+})();
+</script>
+<script id="commerceGuard">
+(function () {
+  function isAuthed() {
+    try {
+      return localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
+    } catch (e) { return false; }
+  }
+
+  function markReturnAndGo(intendedHref) {
+    try {
+      if (intendedHref) {
+        var u = new URL(intendedHref, window.location.href);
+        if (u.origin === window.location.origin && (!/\.[a-z0-9]+$/i.test(u.pathname.toLowerCase()) || u.pathname.toLowerCase().endsWith('.html'))) {
+          sessionStorage.setItem('adzekReturnTo', u.pathname.split('/').pop() + u.search + u.hash);
+        } else {
+          sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop());
+        }
+      } else {
+        sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop());
+      }
+    } catch (e) {
+      try { sessionStorage.setItem('adzekReturnTo', window.location.pathname.split('/').pop()); } catch (_) {}
+    }
+    try { sessionStorage.setItem('adzekAuthPrompt', 'commerce'); } catch (e) {}
+    window.location.href = '/login';
+  }
+
+  function hasText(node, text) {
+    var t = (node.textContent || '').toLowerCase();
+    return t.includes(text);
+  }
+
+  document.addEventListener('click', function (e) {
+    var target = e.target;
+    var a = target.closest('a[href]');
+    var b = target.closest('button');
+    var control = a || b;
+    if (!control) return;
+
+    var needsAuth = false;
+
+    if (a) {
+      var href = a.getAttribute('href') || '';
+      if (a.getAttribute('aria-label') === 'Корзина' || href.includes('/cart')) {
+        needsAuth = true;
+      }
+    }
+
+    if (b) {
+      if (b.matches('[data-requires-auth="cart"], [data-requires-auth="checkout"]')) {
+        needsAuth = true;
+      }
+      if (!needsAuth) {
+        var icon = b.querySelector('span.material-symbols-outlined');
+        var iconText = ((icon && icon.textContent) ? icon.textContent : '').trim();
+        if (iconText === 'shopping_cart' || iconText === 'add_shopping_cart') {
+          needsAuth = true;
+        }
+      }
+      if (!needsAuth) {
+        if (hasText(b, 'в корзину') || hasText(b, 'добавить в корзину') || hasText(b, 'перейти к оформлению')) {
+          needsAuth = true;
+        }
+      }
+    }
+
+    if (!needsAuth || isAuthed()) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+    markReturnAndGo(a ? a.href : window.location.href);
+  }, true);
+})();
+</script>
+<script id="adzekCartStore">
+(function (w) {
+  if (w.ADZEK_CART) return;
+
+  function safeParse(value, fallback) {
+    try { return JSON.parse(value); } catch (_) { return fallback; }
+  }
+
+  function getStoredUser() {
+    var fromLocal = safeParse(localStorage.getItem('adzekUser') || 'null', null);
+    if (fromLocal && typeof fromLocal === 'object') return fromLocal;
+    var fromSession = safeParse(sessionStorage.getItem('adzekUser') || 'null', null);
+    if (fromSession && typeof fromSession === 'object') return fromSession;
+    return null;
+  }
+
+  function getUserKey() {
+    var user = getStoredUser();
+    if (!user) return 'anonymous';
+    var raw = user.id || user.userId || user.email || user.phone || user.username || 'anonymous';
+    return String(raw).trim().toLowerCase();
+  }
+
+  function cartKey() {
+    return 'adzekCartV2:' + getUserKey();
+  }
+
+  function isAuthed() {
+    try {
+      return localStorage.getItem('adzekAuth') === '1' || sessionStorage.getItem('adzekAuth') === '1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function read() {
+    var list = safeParse(localStorage.getItem(cartKey()) || '[]', []);
+    if (!Array.isArray(list)) return [];
+    return list.filter(function (item) {
+      return item && typeof item === 'object' && item.id && item.name && Number(item.price) > 0;
+    });
+  }
+
+  function write(items) {
+    localStorage.setItem(cartKey(), JSON.stringify(items));
+    w.dispatchEvent(new CustomEvent('adzek-cart-changed', { detail: { count: count() } }));
+  }
+
+  function count() {
+    return read().reduce(function (acc, item) { return acc + Math.max(1, Number(item.qty) || 1); }, 0);
+  }
+
+  function makeId(name, price) {
+    var slug = String(name || 'item').toLowerCase().replace(/[^a-z�-�0-9]+/gi, '-').replace(/(^-|-$)/g, '');
+    return slug + '-' + String(price || 0);
+  }
+
+  function add(item) {
+    var list = read();
+    var next = {
+      id: item.id || makeId(item.name, item.price),
+      name: String(item.name || '�����'),
+      subtitle: String(item.subtitle || ''),
+      image: String(item.image || ''),
+      price: Number(item.price) || 0,
+      qty: Math.max(1, Number(item.qty) || 1)
+    };
+    var existing = list.find(function (entry) { return entry.id === next.id; });
+    if (existing) {
+      existing.qty += next.qty;
+    } else {
+      list.push(next);
+    }
+    write(list);
+  }
+
+  function updateQty(id, delta) {
+    var list = read();
+    var row = list.find(function (entry) { return entry.id === id; });
+    if (!row) return;
+    row.qty = Math.max(1, (Number(row.qty) || 1) + delta);
+    write(list);
+  }
+
+  function remove(id) {
+    write(read().filter(function (entry) { return entry.id !== id; }));
+  }
+
+  w.ADZEK_CART = {
+    isAuthed: isAuthed,
+    getUserKey: getUserKey,
+    read: read,
+    write: write,
+    count: count,
+    add: add,
+    updateQty: updateQty,
+    remove: remove
+  };
+})(window);
+</script>
+<script id="catalogCartActions">
+(function () {
+  if (!window.ADZEK_CART) return;
+  var grid = document.getElementById('productGrid');
+  if (!grid) return;
+
+  function parsePrice(text) {
+    var num = String(text || '').replace(/[^\d]/g, '');
+    return Number(num || 0);
+  }
+
+  function extractItem(card) {
+    var nameEl = card.querySelector('h3');
+    var subtitleEl = card.querySelector('h3 + div, h3 + p, .space-y-1 p');
+    var priceEl = card.querySelector('span.text-lg, span.text-xl, .text-lg.font-extrabold, .text-xl.font-extrabold');
+    var imageEl = card.querySelector('img');
+    var name = nameEl ? nameEl.textContent.trim() : '';
+    var price = parsePrice(priceEl ? priceEl.textContent : '');
+    if (!name || !price) return null;
+    return {
+      id: card.getAttribute('data-product-id') || '',
+      name: name,
+      subtitle: subtitleEl ? subtitleEl.textContent.trim() : '',
+      image: imageEl ? imageEl.getAttribute('src') || '' : '',
+      price: price,
+      qty: 1
+    };
+  }
+
+  grid.addEventListener('click', function (e) {
+    var button = e.target.closest('button');
+    if (!button) return;
+    var icon = button.querySelector('.material-symbols-outlined');
+    var iconName = icon ? icon.textContent.trim() : '';
+    if (iconName !== 'shopping_cart' && iconName !== 'add_shopping_cart') return;
+    if (!window.ADZEK_CART.isAuthed()) return;
+
+    var card = button.closest('.product-card');
+    if (!card) return;
+    var item = extractItem(card);
+    if (!item) return;
+    window.ADZEK_CART.add(item);
+    button.classList.add('ring-2', 'ring-emerald-400');
+    window.setTimeout(function () { button.classList.remove('ring-2', 'ring-emerald-400'); }, 500);
+  }, true);
+})();
+</script>
+<script src='/assets/js/app.js' defer></script>
+</body></html>
+
 
 
 
