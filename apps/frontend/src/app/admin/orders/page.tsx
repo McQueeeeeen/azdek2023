@@ -1,0 +1,324 @@
+'use client';
+
+import Link from 'next/link';
+import { useState } from 'react';
+import SiteHeader from '@/components/layout/site-header';
+import SiteFooter from '@/components/layout/site-footer';
+
+interface Order {
+  id: string;
+  customer: string;
+  email: string;
+  phone: string;
+  date: string;
+  total: number;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  items: number;
+  address: string;
+}
+
+export default function AdminOrdersPage() {
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const orders: Order[] = [
+    {
+      id: '#ORD-001234',
+      customer: 'Иван Иванов',
+      email: 'ivan@example.com',
+      phone: '+7 (999) 123-45-67',
+      date: '2026-04-22',
+      total: 1781,
+      status: 'delivered',
+      items: 2,
+      address: 'ул. Примерная, дом 1, Москва',
+    },
+    {
+      id: '#ORD-001233',
+      customer: 'Мария Петрова',
+      email: 'maria@example.com',
+      phone: '+7 (999) 234-56-78',
+      date: '2026-04-21',
+      total: 2450,
+      status: 'shipped',
+      items: 3,
+      address: 'ул. Деловая, дом 2, Санкт-Петербург',
+    },
+    {
+      id: '#ORD-001232',
+      customer: 'Петр Сидоров',
+      email: 'petr@example.com',
+      phone: '+7 (999) 345-67-89',
+      date: '2026-04-20',
+      total: 890,
+      status: 'processing',
+      items: 1,
+      address: 'ул. Центральная, дом 3, Казань',
+    },
+    {
+      id: '#ORD-001231',
+      customer: 'Анна Смирнова',
+      email: 'anna@example.com',
+      phone: '+7 (999) 456-78-90',
+      date: '2026-04-19',
+      total: 1200,
+      status: 'delivered',
+      items: 2,
+      address: 'ул. Восточная, дом 4, Новосибирск',
+    },
+    {
+      id: '#ORD-001230',
+      customer: 'Dmitri Volkov',
+      email: 'dmitri@example.com',
+      phone: '+7 (999) 567-89-01',
+      date: '2026-04-18',
+      total: 3450,
+      status: 'processing',
+      items: 5,
+      address: 'ул. Западная, дом 5, Екатеринбург',
+    },
+    {
+      id: '#ORD-001229',
+      customer: 'Ольга Соколова',
+      email: 'olga@example.com',
+      phone: '+7 (999) 678-90-12',
+      date: '2026-04-17',
+      total: 567,
+      status: 'cancelled',
+      items: 1,
+      address: 'ул. Северная, дом 6, Челябинск',
+    },
+    {
+      id: '#ORD-001228',
+      customer: 'Сергей Морозов',
+      email: 'sergey@example.com',
+      phone: '+7 (999) 789-01-23',
+      date: '2026-04-16',
+      total: 4200,
+      status: 'shipped',
+      items: 4,
+      address: 'ул. Южная, дом 7, Нижний Новгород',
+    },
+    {
+      id: '#ORD-001227',
+      customer: 'Виктория Романова',
+      email: 'victoria@example.com',
+      phone: '+7 (999) 890-12-34',
+      date: '2026-04-15',
+      total: 2100,
+      status: 'delivered',
+      items: 3,
+      address: 'ул. Красная, дом 8, Казань',
+    },
+  ];
+
+  const filteredOrders = orders.filter(order => {
+    const matchesStatus = filterStatus === 'all' || order.status === filterStatus;
+    const matchesSearch = searchTerm === '' ||
+      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.email.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesStatus && matchesSearch;
+  });
+
+  const getStatusBadge = (status: string) => {
+    const statusMap: Record<string, { label: string; color: string }> = {
+      pending: { label: 'В ожидании', color: 'bg-yellow-100 text-yellow-800' },
+      processing: { label: 'Обработка', color: 'bg-blue-100 text-blue-800' },
+      shipped: { label: 'Отправлено', color: 'bg-purple-100 text-purple-800' },
+      delivered: { label: 'Доставлено', color: 'bg-green-100 text-green-800' },
+      cancelled: { label: 'Отменено', color: 'bg-red-100 text-red-800' },
+    };
+    return statusMap[status] || statusMap.pending;
+  };
+
+  return (
+    <div className="min-h-screen bg-surface">
+      <SiteHeader />
+
+      <main className="pt-20 pb-24">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="mb-12">
+            <h1 className="font-headline font-black text-4xl text-on-surface mb-2">
+              Управление заказами
+            </h1>
+            <p className="text-on-surface-variant">
+              Просмотр и управление всеми заказами
+            </p>
+          </div>
+
+          {/* Search and Filters */}
+          <div className="bg-white rounded-2xl p-6 mb-8 space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-on-surface mb-2">
+                Поиск по номеру, имени или email
+              </label>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Введите поисковый запрос..."
+                className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-on-surface mb-2">
+                Фильтр по статусу
+              </label>
+              <div className="flex flex-wrap gap-3">
+                {['all', 'processing', 'shipped', 'delivered', 'cancelled'].map((status) => (
+                  <button
+                    key={status}
+                    onClick={() => setFilterStatus(status)}
+                    className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+                      filterStatus === status
+                        ? 'bg-primary text-white'
+                        : 'bg-surface-container text-on-surface hover:bg-surface-container-high'
+                    }`}
+                  >
+                    {status === 'all'
+                      ? 'Все заказы'
+                      : status === 'processing'
+                      ? 'Обработка'
+                      : status === 'shipped'
+                      ? 'Отправлено'
+                      : status === 'delivered'
+                      ? 'Доставлено'
+                      : 'Отменено'}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Orders Table */}
+          <div className="bg-white rounded-2xl overflow-hidden">
+            {filteredOrders.length === 0 ? (
+              <div className="p-12 text-center">
+                <span className="material-symbols-outlined text-8xl text-surface-variant mb-4 block">
+                  shopping_bag
+                </span>
+                <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">
+                  Заказы не найдены
+                </h2>
+                <p className="text-on-surface-variant">
+                  Нет заказов, соответствующих вашему поиску и фильтрам
+                </p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-outline-variant bg-surface-container">
+                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                        № заказа
+                      </th>
+                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                        Клиент
+                      </th>
+                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                        Контакты
+                      </th>
+                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                        Адрес
+                      </th>
+                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                        Дата
+                      </th>
+                      <th className="text-center py-4 px-6 font-semibold text-on-surface text-sm">
+                        Товаров
+                      </th>
+                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                        Статус
+                      </th>
+                      <th className="text-right py-4 px-6 font-semibold text-on-surface text-sm">
+                        Сумма
+                      </th>
+                      <th className="text-center py-4 px-6 font-semibold text-on-surface text-sm">
+                        Действия
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredOrders.map((order) => {
+                      const status = getStatusBadge(order.status);
+                      return (
+                        <tr
+                          key={order.id}
+                          className="border-b border-outline-variant hover:bg-surface transition-colors"
+                        >
+                          <td className="py-4 px-6">
+                            <p className="font-semibold text-on-surface">{order.id}</p>
+                          </td>
+                          <td className="py-4 px-6">
+                            <p className="font-medium text-on-surface">{order.customer}</p>
+                          </td>
+                          <td className="py-4 px-6">
+                            <div className="text-sm">
+                              <p className="text-on-surface-variant">{order.email}</p>
+                              <p className="text-on-surface-variant text-xs">{order.phone}</p>
+                            </div>
+                          </td>
+                          <td className="py-4 px-6">
+                            <p className="text-sm text-on-surface-variant max-w-xs truncate">
+                              {order.address}
+                            </p>
+                          </td>
+                          <td className="py-4 px-6">
+                            <p className="text-sm text-on-surface-variant">
+                              {new Date(order.date).toLocaleDateString('ru-RU')}
+                            </p>
+                          </td>
+                          <td className="py-4 px-6 text-center">
+                            <p className="text-on-surface font-medium">{order.items}</p>
+                          </td>
+                          <td className="py-4 px-6">
+                            <span
+                              className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${status.color}`}
+                            >
+                              {status.label}
+                            </span>
+                          </td>
+                          <td className="py-4 px-6 text-right">
+                            <p className="font-semibold text-on-surface">{order.total} ₽</p>
+                          </td>
+                          <td className="py-4 px-6 text-center">
+                            <div className="flex gap-2 justify-center">
+                              <button className="text-primary hover:text-primary/80 transition-colors p-1">
+                                <span className="material-symbols-outlined text-5 w-5 h-5">
+                                  edit
+                                </span>
+                              </button>
+                              <button className="text-red-600 hover:text-red-800 transition-colors p-1">
+                                <span className="material-symbols-outlined text-5 w-5 h-5">
+                                  delete
+                                </span>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
+          {/* Back Link */}
+          <div className="mt-12">
+            <Link href="/admin/dashboard">
+              <button className="text-primary font-semibold hover:underline inline-flex items-center gap-2">
+                <span className="material-symbols-outlined">arrow_back</span>
+                Вернуться на панель администратора
+              </button>
+            </Link>
+          </div>
+        </div>
+      </main>
+
+      <SiteFooter />
+    </div>
+  );
+}
