@@ -1,5 +1,3 @@
-"use client";
+import ProductPage from './page-new';
 
-export default function ProductPage() {
-  return <div className="pt-20 pb-10 min-h-screen bg-surface"><div className="max-w-4xl mx-auto px-6"><h1 className="text-3xl font-bold">Товар</h1></div></div>;
-}
+export default ProductPage;
