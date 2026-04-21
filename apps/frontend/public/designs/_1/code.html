@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Вход: Чистый холст</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-low": "#f2f4f6",
+                    "surface-tint": "#005bc1",
+                    "primary-container": "#0070eb",
+                    "on-primary-fixed-variant": "#004493",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary-container": "#687780",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#c1c6d7",
+                    "surface-variant": "#e0e3e5",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "secondary-container": "#91f78e",
+                    "secondary-fixed": "#94f990",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-fixed-variant": "#005313",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#414755",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#adc6ff",
+                    "surface": "#f7f9fb",
+                    "secondary-fixed-dim": "#78dc77",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary-fixed": "#002204",
+                    "surface-dim": "#d8dadc",
+                    "primary-fixed-dim": "#adc6ff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-primary-container": "#fefcff",
+                    "on-surface": "#191c1e",
+                    "on-primary-fixed": "#001a41",
+                    "surface-container": "#eceef0",
+                    "inverse-surface": "#2d3133",
+                    "secondary": "#006e1c",
+                    "outline": "#717786",
+                    "on-error": "#ffffff",
+                    "tertiary": "#505e67",
+                    "on-tertiary-container": "#fbfcff",
+                    "primary": "#0058bc",
+                    "error-container": "#ffdad6",
+                    "surface-container-high": "#e6e8ea",
+                    "on-background": "#191c1e",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "on-secondary-container": "#00731e",
+                    "surface-bright": "#f7f9fb",
+                    "on-tertiary-fixed": "#0f1d25"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed">
+<nav class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-xl">
+<div class="flex justify-between items-center w-full px-8 py-6 max-w-7xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-[#191c1e] font-headline">
+                Pristine
+            </div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-[#191c1e]/60 hover:text-[#007AFF] transition-opacity duration-300 font-['Manrope'] tracking-tight" href="#">Shop</a>
+<a class="text-[#191c1e]/60 hover:text-[#007AFF] transition-opacity duration-300 font-['Manrope'] tracking-tight" href="#">Philosophy</a>
+<div class="w-px h-4 bg-outline-variant/30"></div>
+<button class="flex items-center text-[#191c1e]/60 hover:text-[#007AFF] transition-opacity duration-300">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="min-h-screen flex items-center justify-center pt-24 pb-12 px-6">
+<div class="w-full max-w-[1200px] grid md:grid-cols-2 gap-12 items-center">
+<div class="space-y-12">
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl">eco</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-secondary text-2xl">water_drop</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-surface-container-lowest flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl">chat_mirror</span>
+</div>
+</div>
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter font-headline text-on-surface leading-[1.1]">
+                        Вход: <br/><span class="text-primary-container">Чистый холст</span>
+</h1>
+<p class="text-lg text-on-surface-variant max-w-md leading-relaxed font-light">
+                        Добро пожаловать в пространство безупречной чистоты. Ваша лаборатория устойчивого быта ждет вас.
+                    </p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary mb-3">science</span>
+<p class="text-sm font-semibold">Чистые формулы</p>
+<p class="text-xs text-on-surface-variant/70">Без токсичных веществ</p>
+</div>
+<div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-secondary mb-3">cyclone</span>
+<p class="text-sm font-semibold">Биоразлагаемость</p>
+<p class="text-xs text-on-surface-variant/70">Забота о планете</p>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -top-12 -right-12 w-64 h-64 bg-primary-fixed/20 blur-[100px] rounded-full"></div>
+<div class="absolute -bottom-12 -left-12 w-64 h-64 bg-secondary-fixed/20 blur-[100px] rounded-full"></div>
+<div class="relative bg-surface-container-lowest p-10 md:p-14 rounded-[2.5rem] shadow-[0px_20px_40px_rgba(0,88,188,0.04)] border border-outline-variant/5">
+<form class="space-y-8">
+<div class="space-y-2">
+<label class="text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1">Электронная почта</label>
+<input class="w-full bg-surface px-6 py-4 rounded-xl border-none ring-1 ring-outline-variant/20 focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" placeholder="example@pristine.lab" type="email"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="text-xs font-semibold uppercase tracking-widest text-on-surface-variant">Пароль</label>
+<a class="text-xs text-primary font-medium hover:underline" href="#">Забыли?</a>
+</div>
+<input class="w-full bg-surface px-6 py-4 rounded-xl border-none ring-1 ring-outline-variant/20 focus:ring-2 focus:ring-primary/20 transition-all outline-none text-on-surface" placeholder="••••••••" type="password"/>
+</div>
+<div class="flex items-center gap-3 px-1">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary-container border-outline-variant/30" id="remember" type="checkbox"/>
+<label class="text-sm text-on-surface-variant" for="remember">Запомнить меня</label>
+</div>
+<button class="w-full py-5 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-xl shadow-lg shadow-primary/10 hover:opacity-90 transition-all active:scale-[0.98] flex items-center justify-center gap-3">
+                            Войти в систему
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</form>
+<div class="mt-12 pt-8 border-t border-outline-variant/10 text-center">
+<p class="text-sm text-on-surface-variant">
+                            Впервые у нас? 
+                            <a class="text-primary font-bold hover:underline ml-1" href="#">Создать аккаунт</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full py-12 bg-[#f7f9fb]">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6 max-w-7xl mx-auto">
+<div class="text-lg font-bold text-[#191c1e] font-headline">Pristine</div>
+<div class="text-[#191c1e]/40 text-sm tracking-wide font-['Inter']">
+                © 2024 Pristine Laboratory. Purely Sustainable.
+            </div>
+<div class="flex gap-8">
+<a class="text-[#191c1e]/40 hover:text-[#007AFF] transition-colors text-sm font-['Inter'] tracking-wide" href="#">Privacy Policy</a>
+<a class="text-[#191c1e]/40 hover:text-[#007AFF] transition-colors text-sm font-['Inter'] tracking-wide" href="#">Terms of Service</a>
+<a class="text-[#191c1e]/40 hover:text-[#007AFF] transition-colors text-sm font-['Inter'] tracking-wide" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

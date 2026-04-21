@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PureLab Admin Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e6e8ea",
+                    "surface": "#f7f9fb",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#414755",
+                    "primary": "#0058bc",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#94f990",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-secondary-fixed": "#002204",
+                    "on-surface": "#191c1e",
+                    "primary-container": "#0070eb",
+                    "on-secondary-fixed-variant": "#005313",
+                    "inverse-primary": "#adc6ff",
+                    "secondary-fixed-dim": "#78dc77",
+                    "inverse-surface": "#2d3133",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#00731e",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#91f78e",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "background": "#f7f9fb",
+                    "outline": "#717786",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#005bc1",
+                    "on-tertiary-container": "#fbfcff",
+                    "on-primary-fixed-variant": "#004493",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary": "#006e1c",
+                    "outline-variant": "#c1c6d7",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-fixed": "#001a41",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary-container": "#fefcff",
+                    "tertiary-container": "#687780",
+                    "error": "#ba1a1a",
+                    "on-background": "#191c1e",
+                    "on-error": "#ffffff",
+                    "tertiary": "#505e67",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "surface-container": "#eceef0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            background: linear-gradient(180deg, rgba(247, 249, 251, 1) 0%, rgba(242, 244, 246, 1) 100%);
+        }
+        .glass-header {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 h-screen w-64 border-r border-slate-200/50 dark:border-slate-800/50 bg-slate-50 dark:bg-slate-900 font-manrope antialiased z-50">
+<div class="mb-10 px-4 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">PureLab</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Admin Console</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active: Дашборд -->
+<a class="flex items-center gap-3 px-4 py-3 text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-800 rounded-xl shadow-sm transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-semibold text-sm">Дашборд</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-sm">Заказы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-sm">Пользователи</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="text-sm">Товары</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm">Настройки</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-primary/5 rounded-2xl border border-primary/10">
+<p class="text-xs text-primary font-semibold mb-1">Нужна помощь?</p>
+<p class="text-[11px] text-slate-500 leading-relaxed">Свяжитесь с техподдержкой для решения системных вопросов.</p>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 ml-64 px-8 sticky top-0 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-sm shadow-blue-500/5 font-manrope text-sm">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full focus-within:ring-2 focus-within:ring-blue-500/20 rounded-full transition-all">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full pl-12 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-full text-xs focus:ring-0 placeholder:text-slate-400" placeholder="Поиск по заказам, клиентам или товарам..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-500 hover:text-blue-500 transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-slate-500 hover:text-blue-500 transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-bold text-slate-900">Александр В.</p>
+<p class="text-[10px] text-slate-500">Администратор</p>
+</div>
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-md" data-alt="professional portrait of a confident middle-aged man in business attire against a clean light grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARqszfxmORPDnBIZk4fajNfOEBOvHxBxPIS0whYZLSl4AdOAKO23K2T21IaG_SHnL6K85tiHKZIbAF-6A94zAKc1CfZahL4dFlsowxThr1X2FxrktWtL3WDeFvMlJypYI_Wkx18KxmlVKDecdr9L6AXeiTn74FjOMgwJNACn7U_ZvHbjvwMaVTKUQ9ysMaILkhzz2Fzl6JmG70BywMqWfXab85EzFVcIuQEU_NSVieWc3YLiicOsZIens0fgQhOKUHFy430q2QwdQH"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-8 min-h-[calc(100vh-64px)] bg-surface">
+<!-- Header Section -->
+<section class="mb-10">
+<h2 class="text-3xl font-extrabold tracking-tight text-on-surface font-headline mb-2">Обзор дашборда</h2>
+<p class="text-on-surface-variant text-sm">Добро пожаловать обратно. Вот что происходит в PureLab сегодня.</p>
+</section>
+<!-- Metric Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<!-- Metric Card: Sales -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:scale-[1.02] transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<span class="text-secondary font-semibold text-xs flex items-center gap-1 bg-secondary/10 px-2 py-1 rounded-full">
+                        +12.5% <span class="material-symbols-outlined text-xs">trending_up</span>
+</span>
+</div>
+<p class="text-on-surface-variant text-xs font-medium mb-1">Продажи за сегодня</p>
+<p class="text-2xl font-bold text-on-surface mb-4">124,500 ₽</p>
+<div class="h-12 w-full bg-primary/5 rounded-lg flex items-end justify-between px-2 gap-1 overflow-hidden">
+<div class="w-full bg-primary/20 rounded-t-sm h-[40%]"></div>
+<div class="w-full bg-primary/20 rounded-t-sm h-[60%]"></div>
+<div class="w-full bg-primary/20 rounded-t-sm h-[35%]"></div>
+<div class="w-full bg-primary/20 rounded-t-sm h-[80%]"></div>
+<div class="w-full bg-primary/40 rounded-t-sm h-[100%]"></div>
+</div>
+</div>
+<!-- Metric Card: New Orders -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:scale-[1.02] transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-secondary/10 rounded-lg text-secondary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+</div>
+<span class="text-secondary font-semibold text-xs flex items-center gap-1 bg-secondary/10 px-2 py-1 rounded-full">
+                        +8 <span class="material-symbols-outlined text-xs">arrow_upward</span>
+</span>
+</div>
+<p class="text-on-surface-variant text-xs font-medium mb-1">Новые заказы</p>
+<p class="text-2xl font-bold text-on-surface">42</p>
+<p class="text-[11px] text-slate-400 mt-2">Ожидают обработки: 14</p>
+</div>
+<!-- Metric Card: Average Check -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:scale-[1.02] transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-tertiary/10 rounded-lg text-tertiary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<span class="text-error font-semibold text-xs flex items-center gap-1 bg-error/10 px-2 py-1 rounded-full">
+                        -2.1% <span class="material-symbols-outlined text-xs">trending_down</span>
+</span>
+</div>
+<p class="text-on-surface-variant text-xs font-medium mb-1">Средний чек</p>
+<p class="text-2xl font-bold text-on-surface">2,960 ₽</p>
+<p class="text-[11px] text-slate-400 mt-2">На 60₽ меньше, чем вчера</p>
+</div>
+<!-- Metric Card: Active Users -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:scale-[1.02] transition-transform duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-primary-fixed-dim/30 rounded-lg text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_play</span>
+</div>
+<div class="flex -space-x-2">
+<img alt="User" class="w-6 h-6 rounded-full border-2 border-white object-cover" data-alt="close-up of a smiling young woman with bright eyes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRbuBL02qluSNLVeBOFiejnhJ_2DOOrPGKpH26YfcZ2gZPRgi_PtGwWIuhYlLMJ-K23w6XHEH9KncJp9e8Zdvl_8gNauMwOxLhHtcYR7XTt_-wsyUCF-l2w4vXlMqRjGqmXANQaNurslTTsvYdfr9C9haPA8ig_NREa_laUi_3NCo87TtTA7qjK1QT9Q6Tig5ksx9CWVVRAuEis3khYEJdTpndxaKkYw1nyqx-k4ZcvVE5VxPm2P1AVzgYVUmZhv30cA66ooWxqEhx"/>
+<img alt="User" class="w-6 h-6 rounded-full border-2 border-white object-cover" data-alt="stylish young man looking sideways with a warm smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuu0oDmTl6pgRhW8X-CnNsIzGVQpm62LNMk7Ud22graeNaZaFNCPxlbT_Tue-qzk7qDsVV83z5x2_ZEEA7Drey_yGbpPHVTTT4B61B3NVRIetNQ_77k3higulqs7p_dzIMT23Io8zXpF641nV8ZCGX5xAzRr30uVSusvvG9SkmipT4s3BIUbK0tgF73dn8FSJn6C7XErLz1RsJl5r0k4CVtHVa-0bRhb10xZjqmM3JFPdkaTnR204tdJndbaaxKgLVvgZe7OQcFUkR"/>
+</div>
+</div>
+<p class="text-on-surface-variant text-xs font-medium mb-1">Активные пользователи</p>
+<p class="text-2xl font-bold text-on-surface">1,204</p>
+<p class="text-[11px] text-secondary font-medium mt-2">● 154 сейчас на сайте</p>
+</div>
+</section>
+<!-- Dynamic Chart Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-8 mb-10 overflow-hidden relative">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div>
+<h3 class="text-xl font-bold text-on-surface font-headline">Динамика заказов</h3>
+<p class="text-on-surface-variant text-xs">Статистика продаж за текущую неделю</p>
+</div>
+<div class="flex gap-2 bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1.5 text-xs font-semibold bg-white text-primary rounded-md shadow-sm transition-all">Неделя</button>
+<button class="px-4 py-1.5 text-xs font-semibold text-on-surface-variant hover:text-primary transition-all">Месяц</button>
+</div>
+</div>
+<!-- Mock Chart -->
+<div class="relative h-[300px] w-full flex items-end justify-between px-4 pb-8 border-b border-outline-variant/20">
+<!-- Vertical Grid Lines -->
+<div class="absolute inset-x-0 top-0 h-full flex justify-between pointer-events-none opacity-10">
+<div class="w-px h-full bg-outline"></div><div class="w-px h-full bg-outline"></div><div class="w-px h-full bg-outline"></div><div class="w-px h-full bg-outline"></div><div class="w-px h-full bg-outline"></div><div class="w-px h-full bg-outline"></div><div class="w-px h-full bg-outline"></div>
+</div>
+<!-- Chart Bars with Liquid Gradients -->
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-12 bg-surface-container-low rounded-t-lg h-[40%] group-hover:bg-primary-fixed-dim transition-all relative">
+<div class="absolute bottom-0 w-full h-[60%] bg-gradient-to-t from-primary to-primary-container rounded-t-lg opacity-80"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Пн</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-12 bg-surface-container-low rounded-t-lg h-[55%] group-hover:bg-primary-fixed-dim transition-all relative">
+<div class="absolute bottom-0 w-full h-[70%] bg-gradient-to-t from-primary to-primary-container rounded-t-lg opacity-80"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Вт</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-12 bg-surface-container-low rounded-t-lg h-[75%] group-hover:bg-primary-fixed-dim transition-all relative">
+<div class="absolute bottom-0 w-full h-[85%] bg-gradient-to-t from-primary to-primary-container rounded-t-lg opacity-80"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Ср</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-12 bg-surface-container-low rounded-t-lg h-[45%] group-hover:bg-primary-fixed-dim transition-all relative">
+<div class="absolute bottom-0 w-full h-[50%] bg-gradient-to-t from-primary to-primary-container rounded-t-lg opacity-80"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Чт</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-12 bg-surface-container-low rounded-t-lg h-[90%] group-hover:bg-primary-fixed-dim transition-all relative shadow-lg shadow-primary/10">
+<div class="absolute bottom-0 w-full h-[95%] bg-gradient-to-t from-primary to-primary-container rounded-t-lg opacity-100"></div>
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-on-surface text-white text-[10px] px-2 py-1 rounded hidden group-hover:block">1,420 ед.</div>
+</div>
+<span class="text-[10px] font-bold text-primary">Пт</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-12 bg-surface-container-low rounded-t-lg h-[65%] group-hover:bg-primary-fixed-dim transition-all relative">
+<div class="absolute bottom-0 w-full h-[75%] bg-gradient-to-t from-primary to-primary-container rounded-t-lg opacity-80"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Сб</span>
+</div>
+<div class="flex flex-col items-center gap-2 group w-full">
+<div class="w-12 bg-surface-container-low rounded-t-lg h-[30%] group-hover:bg-primary-fixed-dim transition-all relative">
+<div class="absolute bottom-0 w-full h-[40%] bg-gradient-to-t from-primary to-primary-container rounded-t-lg opacity-80"></div>
+</div>
+<span class="text-[10px] font-medium text-on-surface-variant">Вс</span>
+</div>
+</div>
+</section>
+<!-- Latest Orders List -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-6 border-b border-surface-container-high flex justify-between items-center">
+<h3 class="text-xl font-bold text-on-surface font-headline">Последние заказы</h3>
+<button class="text-primary text-xs font-bold hover:underline">Смотреть все</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant text-[11px] uppercase tracking-wider font-bold">
+<th class="px-6 py-4">ID Заказа</th>
+<th class="px-6 py-4">Клиент</th>
+<th class="px-6 py-4">Товар</th>
+<th class="px-6 py-4">Дата</th>
+<th class="px-6 py-4">Сумма</th>
+<th class="px-6 py-4">Статус</th>
+<th class="px-6 py-4 text-right">Действие</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<!-- Order Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-bold text-on-surface">#PL-8942</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container text-[10px] font-bold">МК</div>
+<span class="text-xs font-medium">Мария Кузнецова</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Эко-средство для мытья (1л)</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Сегодня, 14:20</td>
+<td class="px-6 py-4 text-xs font-bold">1,850 ₽</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full">Обработка</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 group-hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-bold text-on-surface">#PL-8941</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-[10px] font-bold">ИП</div>
+<span class="text-xs font-medium">Игорь Петров</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Набор "Чистый Дом" (XL)</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Сегодня, 12:45</td>
+<td class="px-6 py-4 text-xs font-bold">4,200 ₽</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-secondary/10 text-secondary text-[10px] font-bold rounded-full">Отправлен</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 group-hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-bold text-on-surface">#PL-8940</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 text-[10px] font-bold">АС</div>
+<span class="text-xs font-medium">Анна Сидорова</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Концентрат универсальный</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Вчера, 18:30</td>
+<td class="px-6 py-4 text-xs font-bold">950 ₽</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-[10px] font-bold rounded-full">Доставлен</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 group-hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-bold text-on-surface">#PL-8939</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Client" class="w-8 h-8 rounded-full object-cover" data-alt="close-up of a young man with a friendly expression and glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC9cEhOuEYlpDWuD-1wqlgkGlry-4XRN-gr4J9JzFIVvmGu_uw0MHaLU-VmqQiRY2pnjwcityDfnvxeXnxURS-bTc10SK7fIGytiY941PwRNAN9_n6Incj6oATWnx354adBVAI6PC3w0TP-hKES0HfZMrFIDceNDF3E1bcoPY-2NdpSdlzyWqWGWX1SzxoESy12EVaZqBdWQ4fF4SUTQMCekxCx-QkduBKCeAt4CpO3raEJjNGhKbjPS2Sq5YWqBvERpn6yAJWk-qr"/>
+<span class="text-xs font-medium">Дмитрий Волков</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Гель для стирки (5л)</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Вчера, 16:15</td>
+<td class="px-6 py-4 text-xs font-bold">2,100 ₽</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-error/10 text-error text-[10px] font-bold rounded-full">Отменен</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 group-hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+<!-- Order Row 5 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 text-xs font-bold text-on-surface">#PL-8938</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center text-on-secondary-fixed text-[10px] font-bold">ЕБ</div>
+<span class="text-xs font-medium">Елена Белова</span>
+</div>
+</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Набор антибактериальный</td>
+<td class="px-6 py-4 text-xs text-on-surface-variant">Вчера, 14:50</td>
+<td class="px-6 py-4 text-xs font-bold">3,400 ₽</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded-full">Обработка</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="p-2 hover:bg-white rounded-lg text-slate-400 group-hover:text-primary transition-all">
+<span class="material-symbols-outlined text-lg">more_horiz</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</body></html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PureLab Admin - Управление пользователями</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e6e8ea",
+                    "surface": "#f7f9fb",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#414755",
+                    "primary": "#0058bc",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#94f990",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-secondary-fixed": "#002204",
+                    "on-surface": "#191c1e",
+                    "primary-container": "#0070eb",
+                    "on-secondary-fixed-variant": "#005313",
+                    "inverse-primary": "#adc6ff",
+                    "secondary-fixed-dim": "#78dc77",
+                    "inverse-surface": "#2d3133",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#00731e",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#91f78e",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "background": "#f7f9fb",
+                    "outline": "#717786",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#005bc1",
+                    "on-tertiary-container": "#fbfcff",
+                    "on-primary-fixed-variant": "#004493",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary": "#006e1c",
+                    "outline-variant": "#c1c6d7",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-fixed": "#001a41",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary-container": "#fefcff",
+                    "tertiary-container": "#687780",
+                    "error": "#ba1a1a",
+                    "on-background": "#191c1e",
+                    "on-error": "#ffffff",
+                    "tertiary": "#505e67",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "surface-container": "#eceef0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-manrope { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .tonal-shift { background-color: #f7f9fb; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 bg-slate-50 dark:bg-slate-900 h-screen w-64 border-r border-slate-200/50 dark:border-slate-800/50 font-manrope antialiased z-50">
+<div class="flex items-center gap-3 px-2 mb-8">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">PureLab</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Admin Console</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium text-sm">Дашборд</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-medium text-sm">Заказы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-600 dark:text-blue-400 bg-white dark:bg-slate-800 rounded-xl shadow-sm transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-semibold text-sm">Пользователи</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-medium text-sm">Товары</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium text-sm">Настройки</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-slate-100/50 dark:bg-slate-800/30 rounded-2xl border border-slate-200/50 dark:border-slate-700/30">
+<div class="flex items-center gap-3">
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full border-2 border-white dark:border-slate-700 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMqCzyze4CqqWJZsVtjdCVeUNPEUHqhQCHn8w14dvsdcrtI3Jx2dQaYz2mpx_GIb3ar-S6RJC2VxQs21C004wcmrvwdZR2zyT_d7f8cUUskpM5Tq6MXgJqCtPQX7FXksgr4ZAkKaaQTSNUytcGg54_kYjfpX6Lvi37ohYpXMwJq9NOhwbEK0IXzIdWJAGe0_9wFkHnNRtOJiI0NLVY9VML0CAb9uNVwsFSxxM7KlIs5IbQq18IBjXf8xivrp_9Rj9fr0yyhBw7bmKS"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate text-slate-900 dark:text-slate-50">Александр В.</p>
+<p class="text-[10px] text-slate-500 truncate">Главный админ</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 ml-64 px-8 sticky top-0 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-sm shadow-blue-500/5 font-manrope text-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md focus-within:ring-2 focus-within:ring-blue-500/20 transition-all rounded-full overflow-hidden">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full bg-surface-container-low border-none pl-12 pr-4 py-2 text-sm focus:ring-0 outline-none placeholder:text-slate-400" placeholder="Поиск сотрудников по имени или роли..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex gap-4">
+<button class="relative p-2 text-slate-500 hover:text-blue-500 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-slate-500 hover:text-blue-500 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-6 w-px bg-slate-200"></div>
+<span class="font-semibold text-slate-900">PureLab Admin</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-8 min-h-screen">
+<!-- Header Section -->
+<section class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+<div class="space-y-1">
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface font-headline">Управление персоналом</h2>
+<p class="text-on-surface-variant font-body">Настраивайте уровни доступа и управляйте учетными записями вашей команды</p>
+</div>
+<button class="flex items-center gap-2 px-6 py-3.5 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined">person_add</span>
+                Добавить пользователя
+            </button>
+</section>
+<!-- Role Overview Cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+<!-- Card 1: Admin -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10 group hover:border-primary/20 transition-all">
+<div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+</div>
+<h3 class="font-bold text-lg mb-2">Администратор</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Полный доступ ко всем функциям системы, управление ролями, финансовая отчетность и системные настройки.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex items-center gap-2 text-[10px] font-bold text-primary tracking-widest uppercase">
+<span>4 Сотрудника</span>
+</div>
+</div>
+<!-- Card 2: Operator -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10 group hover:border-secondary/20 transition-all">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/30 text-secondary flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+<h3 class="font-bold text-lg mb-2">Оператор</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Управление заказами, изменение статусов доставки, инвентаризация и работа с рекламациями клиентов.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex items-center gap-2 text-[10px] font-bold text-secondary tracking-widest uppercase">
+<span>12 Сотрудников</span>
+</div>
+</div>
+<!-- Card 3: Content Manager -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10 group hover:border-tertiary/20 transition-all">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed/50 text-tertiary flex items-center justify-center mb-4 group-hover:bg-tertiary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">edit_note</span>
+</div>
+<h3 class="font-bold text-lg mb-2">Менеджер контента</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Редактирование каталога товаров, загрузка медиафайлов, управление акциями и блоком полезных советов.</p>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex items-center gap-2 text-[10px] font-bold text-tertiary tracking-widest uppercase">
+<span>3 Сотрудника</span>
+</div>
+</div>
+</section>
+<!-- User Table Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-outline-variant/10">
+<div class="px-8 py-6 border-b border-surface-container-low flex justify-between items-center">
+<h3 class="font-bold text-xl">Список сотрудников</h3>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-low rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-lg text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Сотрудник</th>
+<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Роль</th>
+<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Статус</th>
+<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Последний вход</th>
+<th class="px-8 py-4 text-xs font-bold text-on-surface-variant uppercase tracking-wider text-right">Действия</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- User Row 1 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="User 1" class="w-10 h-10 rounded-full object-cover" data-alt="portrait of a professional smiling man with glasses in a modern lab environment soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcRRXmGMvu400mG5qWhOWqQGQKOPxH-1p-1Xpth19RSVVRLpgeg4y9rFr8AH7o7iT5suqEqX1dBDsfIng7e66gyyG-sn8-Z-bxfy8G6UEBd6NyT6rhJyNCr-pglRf1oh5O60SDhZwe5cDhDuPSW1UW2o-ESyPhwjS3BLPfvKcEBnthgd5SDAwmIUUzjAvsUlgsOxQlwEM302yawCvYWgc6yZCeyV6Pgie4RZGeyWDcEbzotTc7mojaW9f_9tcrrsxU4GkhC1eHBgWg"/>
+<div>
+<p class="font-semibold text-on-surface">Иван Денисов</p>
+<p class="text-xs text-on-surface-variant">i.denisov@purelab.com</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">Администратор</span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary rounded-full"></span>
+<span class="text-sm font-medium">Активен</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-on-surface-variant">Сегодня, 09:42</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">Редактировать</button>
+<button class="px-3 py-1.5 text-xs font-bold text-primary hover:bg-primary/10 rounded-lg transition-colors">Изменить роль</button>
+</div>
+</td>
+</tr>
+<!-- User Row 2 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="User 2" class="w-10 h-10 rounded-full object-cover" data-alt="professional woman in lab coat holding a tablet clean minimalist scientific studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8HTxVuWqWlcWdnL425cPVuK_4vZRpbib8j6FlHQS-Hj-bJIhqyZUFoSaJOEY2L5GLhRVzKSOpSWm2axMxys6nz-rAIYwGrbvySyo2jp7acCbo288Q13Bs_HqbINaBMB1vkhYz1Cykcacn57f0pjZmkG-Sb3Kbq-zO89xRxxHfl1Wcr_CfrhLzF0zjB6oy8lfk2mk2RKrjgoWZnhajezSnQ2T-TyodhVxEAOVFJ4R4Qj_LVHPwzfqtrG4BOTS48c4ANs76aiowT6f4"/>
+<div>
+<p class="font-semibold text-on-surface">Мария Соколова</p>
+<p class="text-xs text-on-surface-variant">m.sokolova@purelab.com</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-secondary-container/50 text-secondary text-xs font-bold rounded-full">Оператор</span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary rounded-full"></span>
+<span class="text-sm font-medium">Активен</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-on-surface-variant">Вчера, 18:15</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">Редактировать</button>
+<button class="px-3 py-1.5 text-xs font-bold text-primary hover:bg-primary/10 rounded-lg transition-colors">Изменить роль</button>
+</div>
+</td>
+</tr>
+<!-- User Row 3 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="User 3" class="w-10 h-10 rounded-full object-cover" data-alt="young man with creative style sitting in a bright modern office with plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1cHST2sY5gx0oi7n7pHeNWM9QY94IiI375mHC7bVGbkHi_UmW71h1n-HCWCAma6QfvCvDZF5ZnSzWalqHcqUNapQ93EoAZxC5yfKrgzVty6H1KFNlZZSNJfVHRd5OnY4RxbCfTlkCVNMG4sVRLzijYdiJgUIXtSqrg-ad1rThHtS3IH9aF4dspJOMgcptW6h8obcVET9vBeMamreasDx1QCsPx1QIYWaALFXAeF5yqXmiDSjb1qBlBkPnLHBtTVqL3uvI_GTyE_NX"/>
+<div>
+<p class="font-semibold text-on-surface">Дмитрий Рогов</p>
+<p class="text-xs text-on-surface-variant">d.rogov@purelab.com</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-tertiary-fixed text-tertiary text-xs font-bold rounded-full">Менеджер контента</span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-outline-variant rounded-full"></span>
+<span class="text-sm font-medium text-on-surface-variant">Офлайн</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-on-surface-variant">24.10.2023, 11:20</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">Редактировать</button>
+<button class="px-3 py-1.5 text-xs font-bold text-primary hover:bg-primary/10 rounded-lg transition-colors">Изменить роль</button>
+</div>
+</td>
+</tr>
+<!-- User Row 4 -->
+<tr class="hover:bg-surface-container-low/30 transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<img alt="User 4" class="w-10 h-10 rounded-full object-cover" data-alt="smiling mature woman in professional attire bright airy office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC37sjKkozCK3Sk0bLyfPfWWqYj-nNurM7WoCaf6eQ7a6bx-ylPQt_LrSAclqPjbU4sPch8zxzMHebkU4tjt9OfPllzWCy3sjUBZhQYxbocvyt7ZNsACZJefcXE-xUg20Ku9Ou25Nq-4MXeGkR4zaqLZzUMQW54ke6JdOHA3B18kHU6OhoA0pL04ND3it8QI9G3t11UL4KzWhRtHyr0fSYiKIlw37Pu6aNC7fetX7UmICSNQGti2KYMVfcEgJDDnsuzX0OzHSfoZzE9"/>
+<div>
+<p class="font-semibold text-on-surface">Елена Павлова</p>
+<p class="text-xs text-on-surface-variant">e.pavlova@purelab.com</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-secondary-container/50 text-secondary text-xs font-bold rounded-full">Оператор</span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-error rounded-full"></span>
+<span class="text-sm font-medium">Заблокирован</span>
+</div>
+</td>
+<td class="px-8 py-5 text-sm text-on-surface-variant">15.10.2023, 09:00</td>
+<td class="px-8 py-5 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-3 py-1.5 text-xs font-bold text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">Редактировать</button>
+<button class="px-3 py-1.5 text-xs font-bold text-primary hover:bg-primary/10 rounded-lg transition-colors">Изменить роль</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-8 py-4 bg-surface-container-low/20 flex justify-between items-center border-t border-surface-container-low">
+<p class="text-xs text-on-surface-variant">Показано 4 из 19 сотрудников</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-white transition-colors text-xs font-bold">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-white transition-colors text-xs font-bold">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-outline-variant/30 text-on-surface-variant hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Role Permissions Bento Grid Hint -->
+<section class="mt-12">
+<h3 class="font-extrabold text-2xl mb-6 font-headline">Матрица разрешений</h3>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="col-span-1 md:col-span-2 p-6 bg-surface-container-high rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2">lock_open</span>
+<h4 class="font-bold mb-2">Безопасность прежде всего</h4>
+<p class="text-sm text-on-surface-variant">Все изменения ролей логируются и требуют подтверждения через 2FA для администраторов. PureLab гарантирует сохранность корпоративных данных.</p>
+</div>
+<div class="p-6 bg-white rounded-xl shadow-sm border border-outline-variant/10">
+<h4 class="font-bold text-sm mb-3">Быстрый доступ</h4>
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<span class="text-xs">API Ключи</span>
+<span class="material-symbols-outlined text-sm text-secondary">check_circle</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-xs">Финансы</span>
+<span class="material-symbols-outlined text-sm text-error">cancel</span>
+</div>
+</div>
+</div>
+<div class="p-6 bg-primary-container text-white rounded-xl shadow-lg shadow-primary/20 flex flex-col justify-between">
+<p class="text-xs font-bold opacity-80 uppercase tracking-widest">Совет дня</p>
+<p class="font-medium leading-tight">Регулярно проводите аудит активных сессий для повышения безопасности.</p>
+</div>
+</div>
+</section>
+</main>
+</body></html>

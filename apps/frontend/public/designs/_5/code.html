@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed-dim": "#78dc77",
+                    "surface-dim": "#d8dadc",
+                    "surface-container": "#eceef0",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary-container": "#91f78e",
+                    "tertiary": "#505e67",
+                    "tertiary-container": "#687780",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "background": "#f7f9fb",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "on-surface": "#191c1e",
+                    "on-primary-fixed": "#001a41",
+                    "on-primary-container": "#fefcff",
+                    "secondary": "#006e1c",
+                    "on-secondary-fixed": "#002204",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-background": "#191c1e",
+                    "on-tertiary-container": "#fbfcff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-secondary-container": "#00731e",
+                    "primary-container": "#0070eb",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "outline": "#717786",
+                    "on-surface-variant": "#414755",
+                    "primary": "#0058bc",
+                    "surface-tint": "#005bc1",
+                    "inverse-primary": "#adc6ff",
+                    "primary-fixed": "#d8e2ff",
+                    "secondary-fixed": "#94f990",
+                    "primary-fixed-dim": "#adc6ff",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#005313",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c1c6d7",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            background-color: rgba(242, 244, 246, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)] flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="text-blue-600 dark:text-blue-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="text-2xl font-black text-blue-600 dark:text-blue-400 italic font-manrope tracking-tight">Purely</h1>
+</div>
+<button class="text-blue-600 dark:text-blue-400 hover:opacity-80 transition-opacity scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="pt-20 pb-32 px-4 max-w-md mx-auto">
+<!-- Sticky Search & Filter Section -->
+<div class="sticky top-[72px] z-40 py-4 bg-background/95 backdrop-blur-sm -mx-4 px-4">
+<div class="flex flex-col gap-4">
+<!-- Search Bar -->
+<div class="relative w-full">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+<input class="w-full h-14 pl-12 pr-6 rounded-full border-0 bg-surface-container-lowest shadow-[0px_4px_12px_rgba(0,88,188,0.04)] focus:ring-2 focus:ring-primary/20 text-on-surface placeholder-on-surface-variant/60 font-body transition-all" placeholder="Search eco-safe cleaners..." type="text"/>
+</div>
+<!-- Filters Chip Row -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-on-primary font-medium text-sm shadow-lg shadow-primary/20 transition-transform active:scale-95 whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">tune</span>
+<span>Filters</span>
+</button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm transition-colors hover:bg-surface-container-highest whitespace-nowrap">
+                        Surface Care
+                    </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm transition-colors hover:bg-surface-container-highest whitespace-nowrap">
+                        Laundry
+                    </button>
+<button class="px-5 py-2.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium text-sm transition-colors hover:bg-surface-container-highest whitespace-nowrap">
+                        Plant-Based
+                    </button>
+</div>
+</div>
+</div>
+<!-- Catalog Grid -->
+<section class="mt-4 grid grid-cols-2 gap-4">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-[0px_10px_20px_rgba(0,88,188,0.03)] flex flex-col gap-3 group transition-all duration-300 hover:scale-[1.02] active:scale-95">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 overflow-hidden">
+<img alt="Purely Glass Cleaner" class="w-full h-full object-cover" data-alt="Minimalist glass bottle of blue liquid cleaner on a clean white laboratory surface with soft reflections and bright morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeldeYY2FBxB7SymfzA4dlMd_7F5SOxA063lcOuCjEFscHvHLTsuSVAK2EGN-Wxn37YtHNYR0_r76W-fxXF_WDGO0MRax1l46H83OfvYSpUfVT3j-6VyCH-3ZbQJFySV064ql1RmNNnO_aiU1lndKwgYp-3DMLH-X-iReMyOPQhuMMfMV4NgsWLrTDo3jonGdCjL7ACMKJC3VHAJN2CFjTqjtGLfRrNdnOtcevUkOW4neZBNldicNTEz750umMos1FAOHnIA3EdW1n"/>
+<div class="absolute top-2 right-2 px-2 py-1 rounded-md bg-secondary text-on-secondary text-[10px] font-bold uppercase tracking-widest">ECO</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Surface</span>
+<h3 class="text-on-surface font-semibold text-sm leading-tight h-10 overflow-hidden">Azure Glass &amp; Mirror</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="text-primary font-bold">$12.50</span>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-[0px_10px_20px_rgba(0,88,188,0.03)] flex flex-col gap-3 group transition-all duration-300 hover:scale-[1.02] active:scale-95">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 overflow-hidden">
+<img alt="Eco Laundry Detergent" class="w-full h-full object-cover" data-alt="Frosted white plastic jug of liquid laundry detergent standing next to a small wooden bowl of dried lavender on a marble surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnOCa9R2Ogd_wREN5GrHXOL09xR9iDCbevU9eTx4FUInSAi3SoApcpgoz0PHkyHidxDNbC5PQIFNUSKIJb1ZP2K1etVxUfjpMlaQ6H1EGcmEnAGgA4AtHtH-J1pkVoUlLREkBtVpOufu4ZhNS-qz5OgHbDbGn4Bg2RH_EmAW2nI3zYa-YuGfpuESEM4KcLAzm2xTFAsKaSsRdKBFRlSOqDI6dFBLYxQ8_0AMnmNzXZ0PCmAU9v1KjL_y1jx7PuNJVVDDIFOSGaeyvJ"/>
+<div class="absolute top-2 right-2 px-2 py-1 rounded-md bg-secondary text-on-secondary text-[10px] font-bold uppercase tracking-widest">FRESH</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Laundry</span>
+<h3 class="text-on-surface font-semibold text-sm leading-tight h-10 overflow-hidden">Lavender Fields Wash</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="text-primary font-bold">$24.00</span>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-[0px_10px_20px_rgba(0,88,188,0.03)] flex flex-col gap-3 group transition-all duration-300 hover:scale-[1.02] active:scale-95">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 overflow-hidden">
+<img alt="All Purpose Cleaner" class="w-full h-full object-cover" data-alt="Modern spray bottle with a matte mint green finish containing plant-based cleaning solution against a sterile soft-grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfBsS-RoLCoPdv8uWyyIaIV9Dq-jF2gA4nvg_J_xy7j-A27CUgnhCU-64uYVKbglwj0hclu87CKEs9KS82s_Z0exi5hl16qwsdkBV-BQDbN7wZyVp5_79olYh8jBTbhW84AnYSo9bN8m7pvit2QKIw4LMH5pcOgDdqiNq_TYLXowFGllXW26DGUEAc7ZKSV9MnRZF0p7URGncUNjasVMGPv-ghwxNWETKYYdPgJgyq7B7lCWpmIK5pBqdM9nPI6u3FRNB9ZYaCs4gQ"/>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Kitchen</span>
+<h3 class="text-on-surface font-semibold text-sm leading-tight h-10 overflow-hidden">Citrus Bark Multi-Surface</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="text-primary font-bold">$15.75</span>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-[0px_10px_20px_rgba(0,88,188,0.03)] flex flex-col gap-3 group transition-all duration-300 hover:scale-[1.02] active:scale-95">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 overflow-hidden">
+<img alt="Refill Pouch" class="w-full h-full object-cover" data-alt="Minimalist eco-friendly refill pouch made of recyclable materials with simple typography and botanical illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL8LCMycL7iZG7fkGCimiG1tibYVVzxI2dbQId5eYvBYXERjDUaSMP_xF__IlLnJeE2fJw6hJTaOHYZWp-bEiLnpbrY4HVpYNavwtG8HOg16wNaXPT0ojNrnaKLPxN7z-7wXYRjVdwscvIgR3ZMa75kvYYEsqC98IMI41UPw1zo7X7AuCF2y75On5QbqWzsnPifvwIukNhobQm1DKiG5YECvuWLlxjbT3eJqRyAT5xiw9xfrKUYQ9f1gGgIbdcMuerBQdTT4Pp9-EI"/>
+<div class="absolute top-2 right-2 px-2 py-1 rounded-md bg-secondary text-on-secondary text-[10px] font-bold uppercase tracking-widest">REFILL</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Refills</span>
+<h3 class="text-on-surface font-semibold text-sm leading-tight h-10 overflow-hidden">1L Pure Refill Pack</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="text-primary font-bold">$38.00</span>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-[0px_10px_20px_rgba(0,88,188,0.03)] flex flex-col gap-3 group transition-all duration-300 hover:scale-[1.02] active:scale-95">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 overflow-hidden">
+<img alt="Dish Soap" class="w-full h-full object-cover" data-alt="Close up of a premium amber glass bottle of dish soap with a black pump head on a white tiled background with water droplets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnWsp-coSiDrbJKPm3OV6mx__Y_yHGwNeD6YrqinvFz9FzE-0B_A-rZastC_MC7anb2F8dw66NXR6zuTJ9QnNqlFho3Ru98VF1_BIMl5bRFmeQzbWvfHCKyj5NJi2GsUHEguSPTXkP4UMHnHtT7krCX6OcDEha-NA4lEUaTpKrxBkanyPSV91y5jQf5SFt2S-E3NQ7Urg9GBu7awfoCoOM5oquvT0XbianRLrWXlf4P38IzfmmVNKWXWkjWNmiUgbjzfih_sWuQuvY"/>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Kitchen</span>
+<h3 class="text-on-surface font-semibold text-sm leading-tight h-10 overflow-hidden">Lemon &amp; Sage Dish Liquid</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="text-primary font-bold">$10.25</span>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="bg-surface-container-lowest rounded-xl p-3 shadow-[0px_10px_20px_rgba(0,88,188,0.03)] flex flex-col gap-3 group transition-all duration-300 hover:scale-[1.02] active:scale-95">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 overflow-hidden">
+<img alt="Bath Cleaner" class="w-full h-full object-cover" data-alt="Elegant spray bottle of bathroom cleaner standing on a clean marble ledge in a bright, modern bathroom with soft focus plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNp-K5etRZrWvWkNGj43m284UN1sUTxhfi6mwH6zFXYkiqRcLfcccfDPeEgJ1GYydGVMdb8baUAorhhiOqfoN7HMwp2Hc7KqnSrlCIS6whEMLB1nbKYCqAeZVSHuMy_IBP1muT3DAOWvsReZl6C8LRquL7HQxq3dAPDCM1gT5-TljnX8SJjw83RWOfcec4VaOxj2cdpJWE04ZgotfmUCu1Ez1qgMpiTSKno2vucn6fXzYlk5EwHbJLOk6Zf-LpWF-cYql4F-8DDgSW"/>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-[10px] text-on-surface-variant font-medium uppercase tracking-wider">Bath</span>
+<h3 class="text-on-surface font-semibold text-sm leading-tight h-10 overflow-hidden">Eucalyptus Grime Guard</h3>
+<div class="flex items-center justify-between mt-1">
+<span class="text-primary font-bold">$14.00</span>
+<button class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Load More / Pagination -->
+<div class="mt-12 flex justify-center">
+<button class="px-8 py-4 rounded-full bg-surface-container-high text-on-surface font-semibold text-sm transition-all hover:bg-surface-container-highest active:scale-95 flex items-center gap-2">
+<span>View More Products</span>
+<span class="material-symbols-outlined text-sm">keyboard_arrow_down</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center pb-6 pt-2 px-4 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0px_-10px_30px_rgba(0,88,188,0.04)] z-50 rounded-t-[1.5rem]">
+<!-- Shop (Active) -->
+<div class="flex flex-col items-center justify-center bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-200 rounded-2xl px-4 py-2 scale-110 duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-inter text-[10px] font-medium uppercase tracking-wider mt-1">Shop</span>
+</div>
+<!-- Eco -->
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-500 transition-colors">
+<span class="material-symbols-outlined">eco</span>
+<span class="font-inter text-[10px] font-medium uppercase tracking-wider mt-1">Eco</span>
+</div>
+<!-- Profile -->
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-500 transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="font-inter text-[10px] font-medium uppercase tracking-wider mt-1">Profile</span>
+</div>
+<!-- Cart -->
+<div class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-4 py-2 hover:text-blue-500 transition-colors">
+<div class="relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-primary text-on-primary text-[8px] flex items-center justify-center rounded-full">2</span>
+</div>
+<span class="font-inter text-[10px] font-medium uppercase tracking-wider mt-1">Cart</span>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="bg-background" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PureLab - Household Chemicals</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#00731e",
+                      "on-secondary-fixed-variant": "#005313",
+                      "on-surface-variant": "#414755",
+                      "on-tertiary-fixed": "#0f1d25",
+                      "surface-container-highest": "#e0e3e5",
+                      "tertiary": "#505e67",
+                      "on-primary-container": "#fefcff",
+                      "on-error-container": "#93000a",
+                      "inverse-surface": "#2d3133",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-container-low": "#f2f4f6",
+                      "background": "#f7f9fb",
+                      "surface-bright": "#f7f9fb",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#d6e5ef",
+                      "surface": "#f7f9fb",
+                      "tertiary-fixed-dim": "#bac9d3",
+                      "surface-dim": "#d8dadc",
+                      "secondary-fixed": "#94f990",
+                      "surface-tint": "#005bc1",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-primary": "#adc6ff",
+                      "on-background": "#191c1e",
+                      "secondary": "#006e1c",
+                      "on-tertiary-fixed-variant": "#3b4951",
+                      "surface-variant": "#e0e3e5",
+                      "on-error": "#ffffff",
+                      "secondary-container": "#91f78e",
+                      "primary-fixed": "#d8e2ff",
+                      "on-surface": "#191c1e",
+                      "outline": "#717786",
+                      "on-tertiary-container": "#fbfcff",
+                      "on-primary-fixed-variant": "#004493",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#001a41",
+                      "on-secondary-fixed": "#002204",
+                      "primary": "#0058bc",
+                      "outline-variant": "#c1c6d7",
+                      "primary-fixed-dim": "#adc6ff",
+                      "on-secondary": "#ffffff",
+                      "surface-container": "#eceef0",
+                      "secondary-fixed-dim": "#78dc77",
+                      "tertiary-container": "#687780",
+                      "on-primary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#0070eb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": [
+                              "Manrope", "sans-serif"
+                      ],
+                      "body": [
+                              "Inter", "sans-serif"
+                      ],
+                      "label": [
+                              "Inter", "sans-serif"
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen flex flex-col antialiased">
+<!-- TopNav Shared Component -->
+<header class="flex items-center justify-between whitespace-nowrap px-10 py-3 bg-surface-container-lowest sticky top-0 z-50 transition-shadow duration-300" style="box-shadow: 0px 20px 40px rgba(0, 88, 188, 0.06);">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-on-surface">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined" style="font-size: 24px;">science</span>
+</div>
+<h2 class="text-on-surface text-lg font-bold leading-tight tracking-[-0.015em] font-headline">PureLab</h2>
+</div>
+<label class="flex flex-col min-w-40 !h-12 max-w-96 hidden md:flex">
+<div class="flex w-full flex-1 items-stretch rounded-full h-full bg-surface-container-lowest outline outline-1 outline-outline-variant/15 hover:outline-primary/20 focus-within:outline-primary/50 transition-all duration-200">
+<div class="text-primary flex border-none bg-transparent items-center justify-center pl-5 rounded-l-full" data-icon="search" data-size="24px" data-weight="regular">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-full text-on-surface focus:outline-0 focus:ring-0 border-none bg-transparent h-full placeholder:text-on-surface-variant px-4 pl-2 text-base font-normal leading-normal font-body" placeholder="Search for pure clean..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden lg:flex items-center gap-9">
+<a class="text-on-surface text-sm font-medium leading-normal hover:text-primary transition-colors font-label" href="#">Laundry</a>
+<a class="text-on-surface text-sm font-medium leading-normal hover:text-primary transition-colors font-label" href="#">Cleaning</a>
+<a class="text-on-surface text-sm font-medium leading-normal hover:text-primary transition-colors font-label" href="#">Hygiene</a>
+<a class="text-on-surface text-sm font-medium leading-normal hover:text-primary transition-colors font-label" href="#">Eco-friendly</a>
+</div>
+<div class="flex gap-4">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-6 bg-gradient-to-br from-primary to-primary-container text-on-primary text-sm font-bold leading-normal tracking-[0.015em] font-label hover:opacity-90 transition-opacity">
+<span class="truncate">Cart</span>
+</button>
+<button class="flex cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 w-10 bg-surface-container-low text-on-surface hover:bg-surface-container-high transition-colors">
+<div class="text-on-surface" data-icon="person" data-size="20px" data-weight="regular">
+<span class="material-symbols-outlined">person</span>
+</div>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 max-w-[1440px] mx-auto w-full">
+<!-- Main Content -->
+<main class="flex-1 flex flex-col p-6 lg:p-12 gap-16 lg:gap-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative rounded-[2rem] overflow-hidden min-h-[500px] flex items-center p-8 md:p-16" data-alt="A brightly lit, pristine white laundry room with natural sunlight streaming in, minimalist design, neat shelves with folded towels, fresh and airy atmosphere." style='background-image: linear-gradient(135deg, rgba(247, 249, 251, 0.9) 0%, rgba(247, 249, 251, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgysAqEEcrVfvOGYCNpyU6cJs3vScIqdP5wcCH_mlBxeHtoPNDnKY6e1DBxWgRxxsTv9boq-sWCMqn_dKk-DBET8YSg4PWErXizgxegTRqbE8v_sXMudGbLBpqyuWV548afrYTxwG7EAV2klfz8KvaGTCZ190o07vv7T6npHbwrUZ6mYU0ZPzZ8DirIHvEd0KtVyYewNnxVlmvT3ifSj2FujAaSDamelq67CyHazJvYx32e7SfYV31eLhuWLOuS48c76TJnAXuOhfv"); background-size: cover; background-position: center;'>
+<div class="relative z-10 max-w-2xl flex flex-col gap-6">
+<div class="inline-flex items-center gap-2 bg-secondary-container/50 backdrop-blur-md px-4 py-2 rounded-full w-fit">
+<span class="material-symbols-outlined text-on-secondary-container text-sm">eco</span>
+<span class="text-on-secondary-container font-label text-sm font-semibold tracking-wide uppercase">Pure &amp; Safe</span>
+</div>
+<h1 class="text-on-background font-headline text-5xl md:text-6xl lg:text-[4rem] font-black leading-[1.1] tracking-[-0.02em]">
+                        Cleanliness<br/>You Can Trust.
+                    </h1>
+<p class="text-on-surface-variant font-body text-lg md:text-xl max-w-xl leading-relaxed">
+                        Premium detergents and cleaning supplies formulated for your home's hygiene and safety.
+                    </p>
+<div class="mt-4">
+<button class="flex items-center gap-3 px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-label font-bold text-lg hover:shadow-[0px_20px_40px_rgba(0,88,188,0.15)] transition-all transform hover:-translate-y-0.5">
+                            Shop Bestsellers
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Featured Categories -->
+<section class="flex flex-col gap-8">
+<div class="flex items-center justify-between">
+<h2 class="text-on-background font-headline text-3xl font-bold tracking-tight">Shop by Room</h2>
+<a class="text-primary font-label font-medium hover:underline flex items-center gap-1" href="#">View all <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+<!-- Category 1 -->
+<a class="group flex flex-col items-center gap-4 p-8 bg-surface-container-lowest rounded-[1.5rem] hover:bg-surface-container-low transition-colors duration-300" href="#">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined" style="font-size: 32px;">bathtub</span>
+</div>
+<h3 class="text-on-surface font-headline font-bold text-lg">Bathroom</h3>
+</a>
+<!-- Category 2 -->
+<a class="group flex flex-col items-center gap-4 p-8 bg-surface-container-lowest rounded-[1.5rem] hover:bg-surface-container-low transition-colors duration-300" href="#">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined" style="font-size: 32px;">countertops</span>
+</div>
+<h3 class="text-on-surface font-headline font-bold text-lg">Kitchen</h3>
+</a>
+<!-- Category 3 -->
+<a class="group flex flex-col items-center gap-4 p-8 bg-surface-container-lowest rounded-[1.5rem] hover:bg-surface-container-low transition-colors duration-300" href="#">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined" style="font-size: 32px;">chair</span>
+</div>
+<h3 class="text-on-surface font-headline font-bold text-lg">Living Room</h3>
+</a>
+<!-- Category 4 -->
+<a class="group flex flex-col items-center gap-4 p-8 bg-surface-container-lowest rounded-[1.5rem] hover:bg-surface-container-low transition-colors duration-300" href="#">
+<div class="w-16 h-16 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed-variant group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined" style="font-size: 32px;">local_laundry_service</span>
+</div>
+<h3 class="text-on-surface font-headline font-bold text-lg">Laundry</h3>
+</a>
+</div>
+</section>
+</main>
+</div>
+</body></html>

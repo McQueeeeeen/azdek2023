@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Восстановление пароля | PureLab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#191c1e",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-secondary-fixed": "#002204",
+                    "secondary": "#006e1c",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-tertiary-container": "#fbfcff",
+                    "on-primary-container": "#fefcff",
+                    "on-surface": "#191c1e",
+                    "on-primary-fixed": "#001a41",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "background": "#f7f9fb",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#687780",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary": "#505e67",
+                    "secondary-container": "#91f78e",
+                    "surface-container": "#eceef0",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#78dc77",
+                    "surface": "#f7f9fb",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#005313",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c1c6d7",
+                    "secondary-fixed": "#94f990",
+                    "primary-fixed-dim": "#adc6ff",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#d8e2ff",
+                    "primary": "#0058bc",
+                    "surface-tint": "#005bc1",
+                    "inverse-primary": "#adc6ff",
+                    "primary-container": "#0070eb",
+                    "on-secondary-container": "#00731e",
+                    "on-surface-variant": "#414755",
+                    "outline": "#717786",
+                    "tertiary-fixed-dim": "#bac9d3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3 {
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Header Section (Focused View: Back Button Only) -->
+<header class="w-full flex items-center px-6 py-8 md:px-12">
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined text-lg">arrow_back</span>
+<span class="text-sm font-medium font-label">Назад</span>
+</a>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex items-center justify-center p-6">
+<div class="w-full max-w-[480px]">
+<!-- Branding/Logo -->
+<div class="flex items-center gap-3 mb-10">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-on-background">PureLab</h1>
+</div>
+<!-- Card Container -->
+<div class="bg-surface-container-lowest p-8 md:p-10 rounded-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="mb-8">
+<h2 class="text-3xl font-extrabold text-on-surface leading-tight tracking-tight mb-3">
+                        Восстановление пароля
+                    </h2>
+<p class="text-on-surface-variant text-base leading-relaxed">
+                        Введите ваш email, и мы отправим вам инструкции по сбросу пароля.
+                    </p>
+</div>
+<form class="space-y-6">
+<!-- Email Input -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant font-label" for="email">
+                            Электронная почта
+                        </label>
+<div class="relative">
+<input class="w-full h-14 px-4 bg-surface-container-low border-none rounded-lg focus:ring-2 focus:ring-surface-tint/20 text-on-surface placeholder:text-outline transition-all font-body" id="email" name="email" placeholder="example@mail.com" type="email"/>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full h-14 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2 group" type="submit">
+<span class="truncate">Отправить инструкции</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">send</span>
+</button>
+</form>
+<!-- Footer Links -->
+<div class="mt-8 pt-8 border-t border-surface-container-highest flex flex-col items-center gap-4">
+<a class="text-sm font-medium text-primary hover:underline transition-all" href="#">
+                        Вернуться к входу
+                    </a>
+</div>
+</div>
+<!-- Bottom Note -->
+<p class="mt-8 text-center text-xs text-outline leading-relaxed px-4">
+                Если вы не получили письмо в течение нескольких минут, проверьте папку «Спам» или попробуйте еще раз.
+            </p>
+</div>
+</main>
+<!-- Visual Element (Atmospheric Depth) -->
+<div class="fixed bottom-0 right-0 w-[40vw] h-[409px] bg-secondary-container/20 blur-[120px] rounded-full -z-10 translate-x-1/4 translate-y-1/4"></div>
+<div class="fixed top-0 left-0 w-[30vw] h-[307px] bg-primary/5 blur-[100px] rounded-full -z-10 -translate-x-1/4 -translate-y-1/4"></div>
+</body></html>

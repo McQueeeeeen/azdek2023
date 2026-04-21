@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#0058bc",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#d8e2ff",
+                    "secondary": "#006e1c",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-fixed": "#94f990",
+                    "inverse-primary": "#adc6ff",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "inverse-surface": "#2d3133",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-surface": "#191c1e",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#0070eb",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-dim": "#d8dadc",
+                    "surface-container": "#eceef0",
+                    "surface-container-highest": "#e0e3e5",
+                    "error": "#ba1a1a",
+                    "background": "#f7f9fb",
+                    "outline-variant": "#c1c6d7",
+                    "on-surface-variant": "#414755",
+                    "error-container": "#ffdad6",
+                    "surface": "#f7f9fb",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#717786",
+                    "secondary-container": "#91f78e",
+                    "on-secondary-container": "#00731e",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary-container": "#fbfcff",
+                    "tertiary-container": "#687780",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-primary-container": "#fefcff",
+                    "secondary-fixed-dim": "#78dc77",
+                    "on-primary-fixed": "#001a41",
+                    "on-background": "#191c1e",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-tint": "#005bc1",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "tertiary": "#505e67",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#005313",
+                    "on-secondary-fixed": "#002204"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar Strategy: Minimalist Anchor -->
+<nav class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-xl shadow-sm">
+<div class="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-[#191c1e]">
+                EcoPure
+            </div>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-manrope tracking-tight font-bold text-[#191c1e]/60 hover:text-[#007AFF] transition-all duration-300" href="#">Shop</a>
+<a class="font-manrope tracking-tight font-bold text-[#191c1e]/60 hover:text-[#007AFF] transition-all duration-300" href="#">Eco-Impact</a>
+<a class="font-manrope tracking-tight font-bold text-[#191c1e]/60 hover:text-[#007AFF] transition-all duration-300" href="#">Science</a>
+<a class="font-manrope tracking-tight font-bold text-[#191c1e]/60 hover:text-[#007AFF] transition-all duration-300" href="#">Help</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-[#191c1e]/60 hover:opacity-80 transition-all duration-300 scale-95 active:scale-90" data-icon="shopping_cart">shopping_cart</button>
+<button class="material-symbols-outlined text-[#191c1e]/60 hover:opacity-80 transition-all duration-300 scale-95 active:scale-90" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</nav>
+<!-- Main Content: Juridical Minimalism -->
+<main class="pt-40 pb-24 px-6 max-w-[900px] mx-auto">
+<!-- Header Section -->
+<header class="mb-20 text-center md:text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-semibold mb-6">
+<span class="material-symbols-outlined text-[14px]" data-icon="shield">shield</span>
+<span>Обновлено: 24 мая 2024</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-black tracking-tighter text-on-surface mb-8 leading-[1.1]">
+                Политика конфиденциальности
+            </h1>
+<p class="text-xl text-on-surface-variant leading-relaxed font-medium max-w-2xl">
+                Ваша приватность — это основа доверия. Мы в EcoPure Laboratory верим в прозрачность использования данных так же, как в прозрачность состава наших продуктов.
+            </p>
+</header>
+<!-- Document Content -->
+<div class="space-y-24">
+<!-- Section 1 -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-4">
+<h2 class="text-2xl font-extrabold tracking-tight text-primary">01. Сбор данных</h2>
+</div>
+<div class="md:col-span-8">
+<div class="prose prose-lg text-on-surface-variant leading-relaxed space-y-6">
+<p>Мы собираем информацию, которую вы предоставляете напрямую нам при оформлении заказа, подписке на рассылку или обращении в службу поддержки PureLab.</p>
+<ul class="space-y-4">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="check_circle">check_circle</span>
+<span><strong>Персональные данные:</strong> Имя, адрес электронной почты, номер телефона и адрес доставки.</span>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="check_circle">check_circle</span>
+<span><strong>Платежная информация:</strong> Мы не храним данные ваших карт; все транзакции обрабатываются через защищенные шлюзы.</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Section 2: Tonal Backdrop Block -->
+<section class="p-12 bg-surface-container-low rounded-2xl">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-4">
+<h2 class="text-2xl font-extrabold tracking-tight text-on-surface">02. Цели использования</h2>
+</div>
+<div class="md:col-span-8">
+<div class="text-on-surface-variant leading-relaxed space-y-4">
+<p>Собранные данные позволяют нам делать ваш опыт взаимодействия с лабораторией PureLab бесшовным и эффективным:</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="local_shipping">local_shipping</span>
+<p class="text-sm font-semibold text-on-surface">Доставка и логистика</p>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="science">science</span>
+<p class="text-sm font-semibold text-on-surface">Анализ предпочтений</p>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="support_agent">support_agent</span>
+<p class="text-sm font-semibold text-on-surface">Клиентский сервис</p>
+</div>
+<div class="p-4 bg-surface-container-lowest rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-2" data-icon="mail">mail</span>
+<p class="text-sm font-semibold text-on-surface">Персональные уведомления</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3 -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-4">
+<h2 class="text-2xl font-extrabold tracking-tight text-primary">03. Защита данных</h2>
+</div>
+<div class="md:col-span-8">
+<div class="prose prose-lg text-on-surface-variant leading-relaxed">
+<p>Мы используем передовые методы шифрования (SSL/TLS) для защиты передаваемой информации. Доступ к вашим личным данным ограничен только кругом сотрудников, чья работа напрямую связана с выполнением ваших заказов.</p>
+<div class="mt-8 p-6 border-l-4 border-primary bg-primary/5 rounded-r-xl">
+<p class="text-primary italic font-medium">"Мы никогда не продаем, не обмениваем и не передаем ваши личные данные сторонним маркетинговым агентствам."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4 -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-outline-variant/15 pt-24">
+<div class="md:col-span-4">
+<h2 class="text-2xl font-extrabold tracking-tight text-on-surface">04. Файлы Cookies</h2>
+</div>
+<div class="md:col-span-8">
+<p class="text-on-surface-variant leading-relaxed">
+                        Cookies помогают нам запомнить ваши предпочтения и упростить процесс покупки. Вы можете отключить их в настройках браузера, однако это может ограничить функциональность некоторых разделов сайта PureLab.
+                    </p>
+</div>
+</section>
+<!-- Section 5 -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-outline-variant/15 pt-24">
+<div class="md:col-span-4">
+<h2 class="text-2xl font-extrabold tracking-tight text-on-surface">05. Ваши права</h2>
+</div>
+<div class="md:col-span-8">
+<div class="space-y-6">
+<p class="text-on-surface-variant leading-relaxed">Согласно законодательству о защите данных, у вас есть право:</p>
+<div class="grid gap-4">
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-xl">
+<span class="font-medium">Запросить доступ к своим данным</span>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-xl">
+<span class="font-medium">Потребовать исправления неточностей</span>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container rounded-xl">
+<span class="font-medium">Отозвать согласие на обработку</span>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Contact CTA -->
+<div class="mt-32 p-12 bg-primary rounded-3xl text-center text-on-primary shadow-2xl relative overflow-hidden">
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none" data-alt="subtle abstract geometric texture pattern overlaying blue background"></div>
+<h3 class="text-3xl font-bold mb-4 relative z-10">Остались юридические вопросы?</h3>
+<p class="text-on-primary/80 mb-8 max-w-md mx-auto relative z-10">Наш отдел по комплаенсу готов ответить на любые уточнения по поводу хранения и обработки данных.</p>
+<a class="inline-flex items-center gap-2 bg-surface-container-lowest text-primary px-8 py-4 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all relative z-10" href="mailto:privacy@purelab.eco">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+                privacy@purelab.eco
+            </a>
+</div>
+</main>
+<!-- Footer Strategy: Elegant Closure -->
+<footer class="bg-[#f2f4f6] w-full rounded-t-[2.5rem] mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-[1440px] mx-auto">
+<div class="mb-8 md:mb-0">
+<span class="font-manrope font-bold text-[#191c1e] text-lg">EcoPure Laboratory</span>
+<p class="font-inter text-sm leading-relaxed text-[#191c1e]/50 mt-2">© 2024 EcoPure Laboratory. All Rights Reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-inter text-sm leading-relaxed font-semibold text-[#007AFF] hover:opacity-80 transition-colors" href="#">Privacy Policy</a>
+<a class="font-inter text-sm leading-relaxed text-[#191c1e]/50 hover:text-[#007AFF] transition-colors" href="#">Terms of Service</a>
+<a class="font-inter text-sm leading-relaxed text-[#191c1e]/50 hover:text-[#007AFF] transition-colors" href="#">Sustainability Report</a>
+<a class="font-inter text-sm leading-relaxed text-[#191c1e]/50 hover:text-[#007AFF] transition-colors" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>

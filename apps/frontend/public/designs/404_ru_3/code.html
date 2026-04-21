@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e0e3e5",
+                    "error": "#ba1a1a",
+                    "background": "#f7f9fb",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-low": "#f2f4f6",
+                    "surface-container": "#eceef0",
+                    "on-secondary-container": "#00731e",
+                    "secondary-container": "#91f78e",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#c1c6d7",
+                    "on-surface-variant": "#414755",
+                    "outline": "#717786",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f7f9fb",
+                    "on-primary-fixed": "#001a41",
+                    "secondary-fixed-dim": "#78dc77",
+                    "on-tertiary-container": "#fbfcff",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary-container": "#fefcff",
+                    "inverse-on-surface": "#eff1f3",
+                    "tertiary-container": "#687780",
+                    "tertiary": "#505e67",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "on-secondary-fixed-variant": "#005313",
+                    "on-secondary-fixed": "#002204",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "surface-tint": "#005bc1",
+                    "surface-container-high": "#e6e8ea",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#006e1c",
+                    "primary": "#0058bc",
+                    "secondary-fixed": "#94f990",
+                    "on-primary-fixed-variant": "#004493",
+                    "primary-fixed-dim": "#adc6ff",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "inverse-primary": "#adc6ff",
+                    "on-tertiary-fixed": "#002204",
+                    "inverse-surface": "#2d3133",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0070eb",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .liquid-gradient {
+            background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%);
+        }
+        .ambient-shadow {
+            box-shadow: 0px 20px 40px rgba(0, 88, 188, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Focused View: Navigation Excluded as per Rule 2 -->
+<div class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-x-hidden p-6">
+<!-- Header with Minimal Back Button as per Rule 3 -->
+<div class="fixed top-0 left-0 right-0 p-8 flex justify-between items-center w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-headline font-bold text-xl tracking-tight text-on-surface">PureLab</span>
+</div>
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium text-sm" href="/">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+<span>Вернуться назад</span>
+</a>
+</div>
+<main class="flex flex-col items-center text-center max-w-2xl w-full">
+<!-- Illustration Area -->
+<div class="relative mb-12 w-full max-w-md aspect-square flex items-center justify-center">
+<!-- Decorative blurred background element for "atmospheric depth" -->
+<div class="absolute inset-0 bg-secondary-container/20 blur-[80px] rounded-full scale-75"></div>
+<!-- Main Illustration: The Disappearing Drop -->
+<div class="relative z-10 w-full h-full rounded-xl overflow-hidden ambient-shadow bg-surface-container-lowest">
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container-lowest to-surface-container-low opacity-50"></div>
+<img alt="Creative artistic 404 illustration" class="w-full h-full object-cover mix-blend-multiply opacity-20" data-alt="A single crystal clear water drop suspended in mid-air, partially dissolving into ethereal white mist and soft vapor, minimalist laboratory aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfxsRR_aSXaHBzXKWE4y2nE1HZreM209xrZ16-ykMHXv2y4aUfXKPW3m6mtmtyzgF_IkQ-lkwd0x0o-xfGRzOpaGnCL_vlMsGjEuqrS6TQsi8CGhb8LFyFBdN4xE1Nhzh8m30J1cvmBbzKGZNcUH2RE7F8zqOAtyiGkUPFhnyUB3YeyjZ50B6aKc60iOUIXOd2GKAQM49CFW39q0FPU0mVszTkpyIvrcdKqqATBWzVK-htfroKc0v0glik-YMBWUus3B7iB4uhd8OC"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<div class="text-[12rem] font-headline font-extrabold text-primary/5 leading-none select-none">404</div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-8">
+<!-- Visual metaphor of a drop turning to steam -->
+<div class="relative mb-4">
+<span class="material-symbols-outlined text-primary text-8xl" data-icon="water_drop" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+<div class="absolute -top-4 -right-4 flex flex-col gap-1">
+<span class="material-symbols-outlined text-secondary animate-pulse" data-icon="air">air</span>
+<span class="material-symbols-outlined text-outline-variant/40" data-icon="cloud">cloud</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="space-y-6">
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold text-on-surface tracking-tighter leading-tight">
+                    Страница <span class="text-primary italic">испарилась</span>
+</h1>
+<p class="text-on-surface-variant text-lg md:text-xl max-w-lg mx-auto leading-relaxed">
+                    Она перешла в другое состояние, как капля чистой воды. Возможно, ссылка устарела или произошла химическая реакция в адресе.
+                </p>
+<div class="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="liquid-gradient text-white px-10 py-4 rounded-xl font-bold text-base ambient-shadow hover:scale-[1.02] transition-transform flex items-center gap-2" href="/">
+<span>На главную</span>
+<span class="material-symbols-outlined text-lg" data-icon="home">home</span>
+</a>
+<button class="bg-secondary-fixed text-on-secondary-fixed px-10 py-4 rounded-xl font-bold text-base hover:bg-secondary-fixed-dim transition-colors flex items-center gap-2">
+<span>Сообщить об ошибке</span>
+<span class="material-symbols-outlined text-lg" data-icon="bug_report">bug_report</span>
+</button>
+</div>
+</div>
+<!-- Eco-Badge for PureLab Identity -->
+<div class="mt-20 flex items-center gap-6 px-6 py-3 bg-surface-container-low rounded-full">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-on-secondary-container" data-icon="eco" style="font-variation-settings: 'FILL' 1;">eco</span>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-xs text-on-primary-fixed" data-icon="science" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+</div>
+<p class="text-xs font-label font-semibold text-on-surface-variant uppercase tracking-widest">Pristine Quality Standard</p>
+</div>
+</main>
+<!-- Footer: Integrated minimally for focused view -->
+<footer class="mt-auto w-full py-10 flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto border-t border-outline-variant/15">
+<p class="text-on-surface-variant text-sm">© 2024 PureLab. Все права защищены.</p>
+<div class="flex gap-8 mt-4 md:mt-0">
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium" href="#">О нас</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium" href="#">Контакты</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-sm font-medium" href="#">Политика</a>
+</div>
+</footer>
+</div>
+</body></html>

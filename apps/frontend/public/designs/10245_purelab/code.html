@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Заказ #10245 - PureLab Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#e6e8ea",
+                    "surface": "#f7f9fb",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#414755",
+                    "primary": "#0058bc",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#94f990",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-secondary-fixed": "#002204",
+                    "on-surface": "#191c1e",
+                    "primary-container": "#0070eb",
+                    "on-secondary-fixed-variant": "#005313",
+                    "inverse-primary": "#adc6ff",
+                    "secondary-fixed-dim": "#78dc77",
+                    "inverse-surface": "#2d3133",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#00731e",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#91f78e",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "background": "#f7f9fb",
+                    "outline": "#717786",
+                    "primary-fixed": "#d8e2ff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#005bc1",
+                    "on-tertiary-container": "#fbfcff",
+                    "on-primary-fixed-variant": "#004493",
+                    "surface-container-low": "#f2f4f6",
+                    "secondary": "#006e1c",
+                    "outline-variant": "#c1c6d7",
+                    "surface-dim": "#d8dadc",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-fixed": "#001a41",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary-container": "#fefcff",
+                    "tertiary-container": "#687780",
+                    "error": "#ba1a1a",
+                    "on-background": "#191c1e",
+                    "on-error": "#ffffff",
+                    "tertiary": "#505e67",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "surface-container": "#eceef0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 88, 188, 0.02) 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full flex flex-col p-4 h-screen w-64 border-r border-slate-200/50 bg-slate-50 font-manrope z-50">
+<div class="flex items-center gap-3 mb-8 px-4">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900">PureLab</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Admin Console</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 transition-colors rounded-xl scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium">Дашборд</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-600 bg-white rounded-xl shadow-sm scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-semibold">Заказы</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 transition-colors rounded-xl scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-medium">Пользователи</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 transition-colors rounded-xl scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-medium">Товары</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 transition-colors rounded-xl scale-95 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium">Настройки</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container-low rounded-xl">
+<div class="flex items-center gap-3">
+<img alt="Admin Avatar" class="w-8 h-8 rounded-full bg-secondary-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9kLi77nPo5jgXQglGOZqyQ4YLRU9c-mKINoDEP0dke4xJDqakp7OXZV3BHOVmOYfpUCv3J8IR99gEAoq7b_aDu3UWlZMm7rwncmiNyvKQk0BjMJVx9LHS_M7Pp8XU_LDJe9UlKG7wkkv5WOiWE9ytbsaf65EJgMirIn_eSTxeSBg9ghD4ihepDnAgiARUNh1zpvtDG6M9eIaMU1ey8DcUnvvCGa3UMAX0rV0TRrCAQ02-XIziXU54Fz50OmSTOa7JGdq--uV9JwtG"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold truncate">Александр П.</p>
+<p class="text-[10px] text-on-surface-variant">Главный оператор</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 ml-64 px-8 sticky top-0 z-40 bg-white/70 backdrop-blur-xl shadow-sm shadow-blue-500/5">
+<div class="flex items-center gap-4 w-1/3">
+<div class="relative w-full focus-within:ring-2 focus-within:ring-blue-500/20 rounded-full transition-all">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">search</span>
+<input class="w-full pl-12 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-0" placeholder="Поиск заказа, клиента..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-slate-500 hover:text-blue-500 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="text-slate-500 hover:text-blue-500 transition-all">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-8 min-h-screen">
+<!-- Header Section with Breadcrumbs and Status -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant text-sm mb-2">
+<span>Заказы</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-medium text-primary">Детали заказа</span>
+</div>
+<h2 class="text-4xl font-headline font-extrabold tracking-tight">Заказ #10245</h2>
+<p class="text-on-surface-variant font-medium mt-1">Оформлен 24 мая 2024, 14:32</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-low p-2 rounded-xl">
+<div class="px-4 py-2">
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Статус заказа</p>
+<select class="bg-transparent border-none font-bold text-primary focus:ring-0 p-0 text-sm cursor-pointer">
+<option>В обработке</option>
+<option>Оплачен</option>
+<option selected="">Доставка</option>
+<option>Завершен</option>
+<option>Отменен</option>
+</select>
+</div>
+<div class="h-10 w-px bg-outline-variant/30"></div>
+<button class="bg-primary text-white px-6 py-3 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform active:scale-95">
+                    Сохранить изменения
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Left Column: Customer and Details -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<!-- Order Items Card -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-xl font-headline font-bold">Состав заказа</h3>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold">3 товара</span>
+</div>
+<div class="space-y-6">
+<!-- Product Item 1 -->
+<div class="flex items-center gap-6 group">
+<div class="w-24 h-24 rounded-xl bg-secondary-container/30 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply transition-transform group-hover:scale-110" data-alt="minimalistic white bottle of eco-friendly detergent on a mint green background with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYZPolZuD8wa9pwjCWdKAPUzNXazXbkYBcWGr9wsNVe73CaF26cQFUFf7FUtsJym5kR27hn7AteuUFTp3B0YqtCp2VckAQc3pBf1RMlJHlmWmOx41FG4Mue6pHwXqArOfsrkbzWqDGQdfCV0diMjm8vJJ8N3Gl4DIjXUERWZnH1k2wrrsMpWH26f2W8dZEnXv_OZBH5W-sq6hYEyru_-7Qwep6xM-5af41Ys9TCckc0n1gt7qbeeGjxH3xa4yPwKB__Fo3FHp6YcyO"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-bold text-lg mb-1">Универсальный эко-гель Pure</h4>
+<p class="text-on-surface-variant text-sm">Объем: 1000 мл • Арт: PL-001</p>
+</div>
+<div class="text-right flex-shrink-0">
+<p class="text-on-surface-variant text-sm mb-1">850 ₽ × 2</p>
+<p class="font-bold text-lg">1 700 ₽</p>
+</div>
+</div>
+<div class="h-px bg-surface-container-high"></div>
+<!-- Product Item 2 -->
+<div class="flex items-center gap-6 group">
+<div class="w-24 h-24 rounded-xl bg-secondary-container/30 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply transition-transform group-hover:scale-110" data-alt="set of sustainable bamboo cleaning brushes and textile sponges on a bright minimal background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpKLklMGPVSNgZV6y5h9SOhSLbczEnK_E7X_813gQGdmemFtl62MKh4PVJiEZHHAQOh9GoNFkGiFCEbL0i82AowBNDXP5WRGrvQpm60Jki5oPGWft1DY6vWpY9eZNXvrqApQCg3yczMPGqnzUEvdaxEz1WWChEA8ltlQrwwTZf4SaVFjBYvO7ohTS8ehOEDn2yS6QA5dBQOY0oOoVNQafaQv7pT-hqIPwUd9IVsdJacnZaa1SUvu1NNACdPC1n5SxeqYOHI5NLWocy"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-bold text-lg mb-1">Набор бамбуковых губок</h4>
+<p class="text-on-surface-variant text-sm">Кол-во: 5 шт • Арт: PL-045</p>
+</div>
+<div class="text-right flex-shrink-0">
+<p class="text-on-surface-variant text-sm mb-1">450 ₽ × 1</p>
+<p class="font-bold text-lg">450 ₽</p>
+</div>
+</div>
+<div class="h-px bg-surface-container-high"></div>
+<!-- Product Item 3 -->
+<div class="flex items-center gap-6 group">
+<div class="w-24 h-24 rounded-xl bg-secondary-container/30 flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-multiply transition-transform group-hover:scale-110" data-alt="frosted glass spray bottle with organic surface cleaner inside and a simple green label" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5uD7_3tSsJNlXV9g4EEfGdASHuokhvl_DDfuHe_ydmHnn-BBdN-pKDH3MQlK6AgTSGy_e8JIZ8cLETOpvk8G88riJSPO0ToDo9eC9vBUv7LIDC4ruqN1wRuIqN1a43oXPG8vNF8lv3bfZVL4pLieyN94kNmHr19spQtpgzq2gTMEUjYzgRJg3LhiYB_1m27CGABCNHtALby88JPf8jR2YwusBiPKFcu48bTjOXFMKFcm8sPcHhcYLtsasUBOVTpjBH44sfFHHJ3pz"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-bold text-lg mb-1">Спрей для стекол "Мята"</h4>
+<p class="text-on-surface-variant text-sm">Объем: 500 мл • Арт: PL-012</p>
+</div>
+<div class="text-right flex-shrink-0">
+<p class="text-on-surface-variant text-sm mb-1">620 ₽ × 1</p>
+<p class="font-bold text-lg">620 ₽</p>
+</div>
+</div>
+</div>
+<!-- Order Total Summary -->
+<div class="mt-10 p-6 bg-surface rounded-xl border border-outline-variant/10">
+<div class="space-y-3">
+<div class="flex justify-between text-on-surface-variant">
+<span>Промежуточный итог</span>
+<span>2 770 ₽</span>
+</div>
+<div class="flex justify-between text-on-surface-variant">
+<span>Доставка (Курьер)</span>
+<span>350 ₽</span>
+</div>
+<div class="flex justify-between text-secondary font-bold">
+<span>Скидка по промокоду (ECO24)</span>
+<span>- 277 ₽</span>
+</div>
+<div class="h-px bg-outline-variant/20 my-2"></div>
+<div class="flex justify-between items-end">
+<span class="text-xl font-bold">Итого к оплате</span>
+<span class="text-3xl font-headline font-extrabold text-primary">2 843 ₽</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Internal Operator Comments -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<h3 class="text-xl font-headline font-bold mb-6">Внутренний комментарий оператора</h3>
+<textarea class="w-full h-32 p-4 bg-surface-container-low border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/20 transition-all resize-none" placeholder="Добавьте примечание для коллег..."></textarea>
+<div class="flex justify-end mt-4">
+<button class="flex items-center gap-2 text-primary font-bold text-sm hover:underline">
+<span class="material-symbols-outlined text-sm">history</span>
+                            История изменений
+                        </button>
+</div>
+</section>
+</div>
+<!-- Right Column: Info Panels -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Customer Info -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">person</span>
+<h3 class="text-xl font-headline font-bold">Клиент</h3>
+</div>
+<div class="space-y-6">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">ФИО</p>
+<p class="font-bold text-lg">Анна Сергеевна Петрова</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Телефон</p>
+<a class="font-bold text-lg text-primary hover:underline" href="tel:+79991234567">+7 (999) 123-45-67</a>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Email</p>
+<p class="font-bold">a.petrova@example.com</p>
+</div>
+<div class="pt-4 border-t border-surface-container-high">
+<button class="w-full py-3 bg-surface-container-low text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                Посмотреть профиль
+                            </button>
+</div>
+</div>
+</section>
+<!-- Shipping & Payment -->
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+<h3 class="text-xl font-headline font-bold">Доставка и Оплата</h3>
+</div>
+<div class="space-y-6">
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Адрес доставки</p>
+<p class="font-medium text-sm leading-relaxed">г. Москва, ул. Пречистенка, д. 12, корп. 2, кв. 45<br/>Подъезд 3, этаж 5, домофон 45K</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Способ оплаты</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-secondary">credit_card</span>
+<span class="font-bold">Картой онлайн (Visa •••• 4242)</span>
+</div>
+<span class="inline-block mt-2 px-2 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded uppercase">Оплачено</span>
+</div>
+<div class="pt-2">
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-1">Трек-номер</p>
+<div class="flex items-center gap-2">
+<code class="bg-surface px-2 py-1 rounded font-mono text-sm">RU-987654321</code>
+<button class="material-symbols-outlined text-sm text-on-surface-variant hover:text-primary">content_copy</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Customer Note -->
+<section class="bg-surface-container-low rounded-xl p-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary">sticky_note_2</span>
+<h3 class="text-lg font-headline font-bold">Заметка клиента</h3>
+</div>
+<p class="text-sm italic text-on-surface-variant">"Пожалуйста, оставьте пакет у двери и позвоните. Дома маленький ребенок, спит с 14:00 до 16:00."</p>
+</section>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="mt-12 pt-8 border-t border-outline-variant/20 flex flex-col sm:flex-row gap-4 justify-between">
+<button class="flex items-center justify-center gap-2 px-6 py-3 bg-surface-container-highest font-bold rounded-lg hover:bg-error/10 hover:text-error transition-all">
+<span class="material-symbols-outlined text-sm">delete</span>
+                Удалить заказ
+            </button>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="flex items-center justify-center gap-2 px-6 py-3 bg-white font-bold rounded-lg shadow-sm hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-sm">print</span>
+                    Печать накладной
+                </button>
+<button class="flex items-center justify-center gap-2 px-6 py-3 bg-primary text-white font-bold rounded-lg shadow-lg shadow-primary/20 hover:bg-primary-container transition-all">
+                    Отправить уведомление клиенту
+                </button>
+</div>
+</div>
+</main>
+</body></html>

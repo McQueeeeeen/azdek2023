@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PureLab — Технологичная чистота</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#414755",
+                    "primary-container": "#0070eb",
+                    "surface-container": "#eceef0",
+                    "secondary-fixed-dim": "#78dc77",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary": "#0058bc",
+                    "primary-fixed": "#d8e2ff",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#687780",
+                    "on-secondary-fixed-variant": "#005313",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed": "#001d25",
+                    "surface-tint": "#005bc1",
+                    "on-background": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-high": "#e6e8ea",
+                    "primary-fixed-dim": "#adc6ff",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-secondary-fixed": "#002204",
+                    "outline": "#717786",
+                    "on-tertiary-container": "#fbfcff",
+                    "on-error-container": "#93000a",
+                    "secondary": "#006e1c",
+                    "secondary-container": "#91f78e",
+                    "on-primary-fixed": "#001a41",
+                    "inverse-primary": "#adc6ff",
+                    "outline-variant": "#c1c6d7",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-error": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "on-surface": "#191c1e",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#505e67",
+                    "surface-variant": "#e0e3e5",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "secondary-fixed": "#94f990",
+                    "background": "#f7f9fb",
+                    "on-primary-container": "#fefcff",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-secondary-container": "#00731e",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope", "sans-serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .formula-bg {
+            background-image: radial-gradient(circle at 2px 2px, rgba(0, 88, 188, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-background antialiased">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] flex justify-between items-center px-8 h-20 max-w-full mx-auto">
+<div class="text-2xl font-black text-blue-700 tracking-tighter font-headline">PureLab</div>
+<div class="hidden md:flex items-center gap-8 font-manrope tracking-tight font-semibold">
+<a class="text-blue-700 border-b-2 border-blue-600 pb-1" href="#">Каталог</a>
+<a class="text-slate-600 hover:text-blue-500 transition-transform duration-200 hover:scale-105" href="#">Эко-линейка</a>
+<a class="text-slate-600 hover:text-blue-500 transition-transform duration-200 hover:scale-105" href="#">О бренду</a>
+<a class="text-slate-600 hover:text-blue-500 transition-transform duration-200 hover:scale-105" href="#">Доставка</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-600 hover:scale-105 transition-all active:opacity-80 active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="p-2 text-slate-600 hover:scale-105 transition-all active:opacity-80 active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative overflow-hidden bg-surface-container-low formula-bg py-24 md:py-32">
+<div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center relative z-10">
+<div class="space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full text-xs font-bold tracking-widest uppercase">
+                        LABORATORY CERTIFIED
+                    </div>
+<h1 class="text-5xl md:text-7xl font-headline font-extrabold text-on-surface tracking-tighter leading-none">
+                        Научный подход к <span class="text-primary italic">чистоте</span>
+</h1>
+<p class="text-lg text-on-surface-variant max-w-md leading-relaxed">
+                        Мы объединили передовые разработки в области молекулярной химии с экологической безопасностью, чтобы создать идеальную среду для вашего дома.
+                    </p>
+<div class="flex flex-wrap gap-4 pt-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-8 py-4 rounded-lg font-bold shadow-lg hover:scale-105 transition-transform duration-200">
+                            Смотреть каталог
+                        </button>
+<button class="bg-surface-container-lowest text-primary border border-outline-variant/15 px-8 py-4 rounded-lg font-bold hover:bg-surface-container-high transition-colors">
+                            Технологии
+                        </button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/5 blur-3xl rounded-full transition-opacity group-hover:opacity-75"></div>
+<div class="relative aspect-square rounded-xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="Modern high-tech laboratory with glass flasks, microscopic equipment, and cool blue ambient lighting, scientific aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwgFim7suUhot4GdoHippXVoigB-oevUHXxhRB50DB6hDYDj29S2if_dtNtC7QoWTjtlERUL4EvCmuF418KMUV6zrpDg1C3zreiJDTJ8LLj5zPGhwK6lhAAXUL1VzjVf6gJ7UJTk36DAZXkmoWYsTKohE01Fst_3jYzbQpJWXfyASqaZmCHnlETJjA8_EDsjFvLG25lhW0PrubpI6drH57d76HXkHVoqCo38pQJ7cjto8nH_6C8EmOLGRPEXdWV8rYb5wAuvTEJi5S"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-16">
+<div class="space-y-2">
+<h2 class="text-3xl font-headline font-bold text-on-surface tracking-tight">Активные формулы</h2>
+<div class="w-12 h-1 bg-primary rounded-full"></div>
+</div>
+<div class="hidden md:flex gap-4">
+<span class="text-sm font-medium text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-base" data-icon="verified">verified</span> ISO 9001
+                        </span>
+<span class="text-sm font-medium text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-base" data-icon="eco">eco</span> Biodegradable
+                        </span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Product 1 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,88,188,0.06)] hover:scale-[1.02]">
+<div class="h-64 bg-secondary-container relative">
+<img class="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-110" data-alt="Minimalist product bottle of cleaning solution on a clean light green background with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEzTYL1UXLhpirWKk9FfUj_gj0M4_HCorseDaO5i895MubVJ6IYSpYU3zvEZHa8_TBq8s6TyXXqQi5Vlc5oCKQIRmffQEWxzyB7Xg-4CdOJMSwSoEwaU19dfG4hcrp46OP33vAtm_hbYvs-MV4SJeqwPKWDadZWGsg1sSkdfRhWxZztRtjMTUax2ILBBvWryjo14himnJnCnMBeL-SkCQB-jlxPkwfC3LbZW4kJjZTRt7-N7-pJvDwXcJl5_9qHVVquNElp_xflHdm"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-white/90 backdrop-blur text-primary text-[10px] font-black px-2 py-1 rounded shadow-sm">pH 7.2</span>
+<span class="bg-secondary text-on-secondary text-[10px] font-black px-2 py-1 rounded shadow-sm">ECO-LINE</span>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<h3 class="text-xl font-headline font-bold text-on-surface">PureHydro Balance</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded uppercase tracking-wider">Био-энзимы</span>
+<span class="text-[10px] font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded uppercase tracking-wider">L-Кислота</span>
+</div>
+<div class="pt-4 flex items-center justify-between">
+<span class="text-2xl font-headline font-black text-primary tracking-tighter">890 ₽</span>
+<button class="bg-primary/5 text-primary p-3 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,88,188,0.06)] hover:scale-[1.02]">
+<div class="h-64 bg-primary-fixed relative">
+<img class="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-110" data-alt="Modern spray bottle design on a cool blue sterile laboratory background, sleek and professional" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZLwZnwuVAiZwLn_ooR2hLFmqPT3UmbkW6kgfsFc5KAe_SqtqevqTM138qxsksEPiTnEh7E8FqTxwh-6CZ3CrBX3kn0Sa1_5QqZ5umUoDWsKvMnhDg8KPbBhYktY9kw2jiHqeas06PpWXx1DEA5Gz-ClKYvr2sRqrL4mr-89Mutklgl1rudNxPAp9ckAaKePrIMru7achM1SlrGeXXVh_O5eeb99QFi9h3Q-fhnrnt3lAWSER9xC20zQMYmDc6Az1lBeo05j7Ywbg0"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-white/90 backdrop-blur text-primary text-[10px] font-black px-2 py-1 rounded shadow-sm">pH 9.5</span>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<h3 class="text-xl font-headline font-bold text-on-surface">Crystal Surface Pro</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded uppercase tracking-wider">Nano-silica</span>
+<span class="text-[10px] font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded uppercase tracking-wider">Изопропил</span>
+</div>
+<div class="pt-4 flex items-center justify-between">
+<span class="text-2xl font-headline font-black text-primary tracking-tighter">1 240 ₽</span>
+<button class="bg-primary/5 text-primary p-3 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group bg-surface-container-lowest rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,88,188,0.06)] hover:scale-[1.02]">
+<div class="h-64 bg-surface-container-high relative">
+<img class="w-full h-full object-cover mix-blend-multiply transition-transform duration-500 group-hover:scale-110" data-alt="Transparent bottle of professional detergent showcasing bubbles and liquid clarity, laboratory setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrbbjo9IiItrLyotzEbutVJLZc0xLDj3bU0YnMO0wE_SmCbd8cEdrKMKUw8rDd05i0pruLxptmad19wlCs-2N6k58R-iBUKGg0zyUAdniWmIOuqvl-dS5FwTd2spapCl0OxTwiSKIetln5itDdPfURI_zx08ktognsYAqBsUiSJoCHq0Ekyn47cpBUSuuv66MkXODz585XMiPSRDXQ1fskI8dE_RRdzh_iT7llvayVKFzLx4RqqvFnFY2Q0bBS6lPIAFOrm7J3axVv"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="bg-white/90 backdrop-blur text-primary text-[10px] font-black px-2 py-1 rounded shadow-sm">pH 11.0</span>
+<span class="bg-error text-on-error text-[10px] font-black px-2 py-1 rounded shadow-sm">ULTRA STRENGTH</span>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<h3 class="text-xl font-headline font-bold text-on-surface">DeepClean Molecule</h3>
+<div class="flex flex-wrap gap-2">
+<span class="text-[10px] font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded uppercase tracking-wider">ПАВ 15%</span>
+<span class="text-[10px] font-semibold text-on-surface-variant bg-surface-container px-2 py-1 rounded uppercase tracking-wider">Активный хлор</span>
+</div>
+<div class="pt-4 flex items-center justify-between">
+<span class="text-2xl font-headline font-black text-primary tracking-tighter">950 ₽</span>
+<button class="bg-primary/5 text-primary p-3 rounded-full hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="add_shopping_cart">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technology Section -->
+<section class="py-24 bg-surface-container-low overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-20 items-center">
+<div class="relative order-2 lg:order-1">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<div class="h-48 rounded-xl overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="Microscopic view of clean surfaces, cellular structure inspired abstract visual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4tNNOL12lHFsMG8NuZUfCgRmFHC_V-_oMkAh6zmnLqgB4QjcZ3wY2RDV1hwvjrlrQJZpEtDK8o2pWKV7uRk2qFJXnJ9d6pM6E5dIGPIX24b6eWqs2aTZXMGUbU_XK5oEZEwAmPhwn3vt9IuqtchAjDr6LZzUVu_qrHiYf56cC_zKT9T5CPifCYFIsM4pb8LhMg-K26DfPWTrD7FSN6801YUFhqTQaCf4dfI2mD51wOZPHeCTR9nVO5knaDjXThIC2Wh4_1UcCmmsN"/>
+</div>
+<div class="h-64 rounded-xl overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="Close up of chemical reaction in a test tube, clean blue and white aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbfps_0tL-Y89QdicxkWHgEsGgR_-g3yTE5EoH93AeMNbQu2gNKyiu8Ka67bdapY36pgu9niv_mnq2dnRbPbjaKlP66qj679ZpkV11srS0r_sseX_dSpLEvY6V-4KiAWFpfllEronvlo32vuwmV_yVHt9b6cvdo7YfwzICPTNgpkwHnFr4WdpV2jIg-6mkA5WD42Kjk5cv4g1HkMZmkV85ldFLlzdNn67Y7HpiYFP5D72kNFwvHVJxAbAyXythZwR4t7DO7VhSHXcS"/>
+</div>
+</div>
+<div class="space-y-4 pt-8">
+<div class="h-64 rounded-xl overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="Chemical formula graphics floating over a clean blue background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTtgf1kZnnDQvPVOWxl_Y9mEUoTMArv0r3SkewzX9DwRlFntfWhVc4m4Qcuv4HkYLbvg0HZyUtW936no0Bh4xhkXbUHQl5FjMnvXbPgmNwYr2751Jpmv64EWBnqH9BEUjuov78wi30-CiJZtVZjzdWWu4kctmH0K1j8QQjrkk1jO16C0z0acJy5IZn81BxGbVtvViAb-a18DuGAvQETvSu9Su66Ftjb0k8ZEl3extCz3RDjIiw8kgNicBgz2YdLG_fEPq8W6kH9AiL"/>
+</div>
+<div class="h-48 rounded-xl overflow-hidden shadow-lg">
+<img class="w-full h-full object-cover" data-alt="Modern clean scientific research facility interior, white and bright" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtXBcdZBto_YWauDMaSOT5XRAm5UKkglWMJoW_XmPmcA9p9PUP95jMjDcmOUdhRgnU1cvG4X4TBszzEJMuk8b0W6VFYrht5TqYNKOEjrr7jLB0Ev8dUQISTRhbyS5BauwCBfd8KbfldeMtVX23ZwlA8yy1TB4l9lnwjYPeHQrYzHwFClVWKG34Dn05SGJlF7HdbwSVZ9Vrlsq6o5WbMfrohHkddVmVNmAnFqSIj34qdm9RSvG_JfBVKSOETNI2yKNWHBvE4Fgc5bpM"/>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-8 order-1 lg:order-2">
+<h2 class="text-4xl font-headline font-extrabold text-on-surface tracking-tight leading-tight">
+                        Молекулярная точность для ежедневного комфорта
+                    </h2>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                        Наши формулы разрабатываются в сертифицированных лабораториях. Мы тестируем каждый компонент на эффективность против 99.9% известных бактерий, сохраняя при этом гипоаллергенный статус.
+                    </p>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="bg-primary-fixed p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="biotech">biotech</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Умные ПАВ</h4>
+<p class="text-sm text-on-surface-variant">Распознают тип загрязнения и точечно воздействуют на него.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-secondary-container p-2 rounded-lg text-secondary">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Zero-Toxicity</h4>
+<p class="text-sm text-on-surface-variant">Безопасно для детей и домашних животных. Полный биораспад.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="bg-tertiary-fixed p-2 rounded-lg text-tertiary">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">pH-Контроль</h4>
+<p class="text-sm text-on-surface-variant">Бережное отношение к поверхностям и коже ваших рук.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full pt-16 pb-8 bg-slate-50 border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-12 font-inter text-sm antialiased">
+<div class="col-span-2 md:col-span-1 space-y-6">
+<div class="text-xl font-bold text-slate-900">PureLab</div>
+<p class="text-slate-500 max-w-xs leading-relaxed">
+                    Совершенство чистоты через призму современных технологий и научных достижений.
+                </p>
+</div>
+<div class="space-y-4">
+<h5 class="font-bold text-slate-900">Продукция</h5>
+<ul class="space-y-2 text-slate-500">
+<li><a class="hover:text-blue-500 transition-colors" href="#">Для кухни</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="#">Для ванной</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="#">Стирка</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="#">Дезинфекция</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-bold text-slate-900">Поддержка</h5>
+<ul class="space-y-2 text-slate-500">
+<li><a class="hover:text-blue-500 transition-colors" href="#">Политика конфиденциальности</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="#">Условия возврата</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="#">Сертификаты</a></li>
+<li><a class="hover:text-blue-500 transition-colors" href="#">Контакты</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-bold text-slate-900">Подписка</h5>
+<p class="text-xs text-slate-500">Узнавайте первыми о новых технологиях чистоты.</p>
+<div class="flex gap-2">
+<input class="bg-white border-none rounded-lg text-sm w-full shadow-sm focus:ring-2 focus:ring-primary/20" placeholder="Email" type="email"/>
+<button class="bg-primary text-white p-2 rounded-lg hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-slate-200">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
+<div>© 2024 PureLab. Совершенство чистоты.</div>
+<div class="flex gap-6">
+<span>Designed in Switzerland</span>
+<span>Produced in EU</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

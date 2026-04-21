@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-fixed": "#002204",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-tertiary-container": "#fbfcff",
+                    "secondary-fixed-dim": "#78dc77",
+                    "primary": "#0058bc",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-surface-variant": "#414755",
+                    "on-surface": "#191c1e",
+                    "secondary-container": "#91f78e",
+                    "on-background": "#191c1e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container": "#eceef0",
+                    "surface": "#f7f9fb",
+                    "on-primary-container": "#fefcff",
+                    "surface-bright": "#f7f9fb",
+                    "surface-tint": "#005bc1",
+                    "secondary-fixed": "#94f990",
+                    "background": "#f7f9fb",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "inverse-on-surface": "#eff1f3",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2d3133",
+                    "inverse-primary": "#adc6ff",
+                    "outline-variant": "#c1c6d7",
+                    "tertiary": "#505e67",
+                    "on-secondary-fixed-variant": "#005313",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "outline": "#717786",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#687780",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "primary-fixed-dim": "#adc6ff",
+                    "primary-container": "#0070eb",
+                    "on-primary-fixed-variant": "#004493",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#00731e",
+                    "on-primary-fixed": "#001a41",
+                    "secondary": "#006e1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-72 border-r border-slate-200/15 bg-slate-50/70 backdrop-blur-xl flex flex-col p-6 space-y-8 sticky top-0 shadow-[0_20px_40px_rgba(0,88,188,0.06)]">
+<div class="flex items-center space-x-3 mb-4">
+<div class="w-12 h-12 rounded-xl bg-primary-fixed flex items-center justify-center">
+<img alt="Аватар пользователя" class="w-10 h-10 rounded-lg object-cover" data-alt="Close-up portrait of a professional man with a friendly expression in high-key soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs_O5seF3KCPeahEqDyjzxUTXwkhxPxK-XgTL_6S37fYBIN_uXGNOhh-R1wDbl7kbE8tbBLC2cCfRV3m42NKhVtNoEhh5jCacnoAHnMKAdDjQGT8gl_gtqaNWS7aqq585vM3Y75awrUpi5e5r5EwpB-riRTZE_Fg6knSuRsMYIls9dyZn5GI55HK2YUYKZTpbiUfWwHAayjUQubEDwCI59HtT8ZHMd8MD_EZJFzSO-Qr7buCGodCfHpkaE46SA_pfNl-9XkhaqKO3F"/>
+</div>
+<div>
+<h1 class="text-2xl font-black tracking-tight text-blue-700 font-headline">Личный кабинет</h1>
+<p class="text-xs font-manrope font-medium text-slate-500">PureLab — Чистота и Забота</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Navigation Items -->
+<a class="flex items-center space-x-3 p-3 text-slate-500 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span>Мои заказы</span>
+</a>
+<a class="flex items-center space-x-3 p-3 text-slate-500 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Личные данные</span>
+</a>
+<a class="flex items-center space-x-3 p-3 text-slate-500 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span>Адреса доставки</span>
+</a>
+<!-- Active Tab -->
+<a class="flex items-center space-x-3 p-3 bg-white text-blue-700 shadow-sm rounded-xl font-headline text-sm font-bold scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="card_membership" style="font-variation-settings: 'FILL' 1;">card_membership</span>
+<span>Программа лояльности</span>
+</a>
+<a class="flex items-center space-x-3 p-3 text-slate-500 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span>Уведомления</span>
+</a>
+</nav>
+<button class="flex items-center space-x-3 p-3 text-slate-500 hover:text-error transition-colors mt-auto font-manrope text-sm font-medium">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Выйти</span>
+</button>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-10 bg-surface min-h-screen">
+<header class="mb-12">
+<h2 class="text-4xl font-extrabold font-headline tracking-tight text-on-surface mb-2">Программа лояльности</h2>
+<p class="text-on-surface-variant">Копите баллы PureLab и обменивайте их на чистоту и уют вашего дома.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Balance Card (Large) -->
+<div class="md:col-span-2 bg-gradient-primary rounded-xl p-8 flex flex-col justify-between text-white relative overflow-hidden shadow-[0_20px_40px_rgba(0,88,188,0.1)]">
+<div class="relative z-10">
+<span class="text-primary-fixed font-headline font-bold text-sm tracking-widest uppercase">Ваш текущий баланс</span>
+<div class="flex items-baseline space-x-3 mt-2">
+<span class="text-6xl font-black font-headline tracking-tighter">2,450</span>
+<span class="text-2xl font-bold font-headline opacity-80">баллов</span>
+</div>
+</div>
+<div class="mt-8 flex items-center justify-between relative z-10">
+<div class="bg-white/10 backdrop-blur-md rounded-lg px-4 py-3 flex items-center space-x-3">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+<span class="text-sm font-medium">До следующего уровня 550 баллов</span>
+</div>
+<button class="bg-white text-primary px-6 py-3 rounded-lg font-bold text-sm hover:scale-105 active:scale-95 transition-transform shadow-lg">
+                            Потратить баллы
+                        </button>
+</div>
+<!-- Decorative Background Image -->
+<div class="absolute right-0 top-0 h-full w-1/3 opacity-20 transform translate-x-12 translate-y-4">
+<span class="material-symbols-outlined text-[200px]" data-icon="bubble_chart">bubble_chart</span>
+</div>
+</div>
+<!-- Level Status Card -->
+<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col shadow-[0_20px_40px_rgba(0,88,188,0.06)]">
+<div class="flex items-center justify-between mb-6">
+<span class="font-headline font-bold text-on-surface">Текущий статус</span>
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-xs font-bold font-headline uppercase tracking-wider">Expert</span>
+</div>
+<div class="space-y-4 flex-1">
+<div class="flex items-center space-x-4 p-3 rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="text-sm font-medium">Бесплатная доставка от 1500₽</span>
+</div>
+<div class="flex items-center space-x-4 p-3 rounded-lg bg-surface-container-low">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed text-sm" data-icon="check" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="text-sm font-medium">Кэшбэк 5% с каждой покупки</span>
+</div>
+<div class="flex items-center space-x-4 p-3 rounded-lg bg-surface-container-low opacity-50">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant text-sm" data-icon="lock">lock</span>
+</div>
+<span class="text-sm font-medium">Доступ к закрытым распродажам</span>
+</div>
+</div>
+<a class="mt-6 text-primary text-sm font-bold flex items-center hover:underline" href="#">
+                        Все привилегии
+                        <span class="material-symbols-outlined text-base ml-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- History Table (Wide) -->
+<div class="md:col-span-3 mt-4">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-extrabold font-headline tracking-tight text-on-surface">История баллов</h3>
+<div class="flex space-x-2">
+<button class="px-4 py-2 bg-surface-container-low rounded-lg text-sm font-medium hover:bg-surface-container transition-colors">За все время</button>
+<button class="px-4 py-2 bg-surface-container-lowest rounded-lg text-sm font-medium shadow-sm">Этот месяц</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_40px_rgba(0,88,188,0.06)]">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-surface-container-high bg-surface-container-low/30">
+<th class="px-8 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-wider">Дата и операция</th>
+<th class="px-8 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-wider text-right">Сумма заказа</th>
+<th class="px-8 py-5 text-xs font-bold text-on-surface-variant uppercase tracking-wider text-right">Начислено / Списано</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_basket">shopping_basket</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Заказ №4492-A</div>
+<div class="text-xs text-on-surface-variant">12 Октября 2023</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<span class="text-sm font-medium">3,490 ₽</span>
+</td>
+<td class="px-8 py-6 text-right">
+<span class="text-sm font-bold text-secondary flex items-center justify-end">
+                                            +174 
+                                            <span class="material-symbols-outlined text-xs ml-1" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-error-container/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-error" data-icon="redeem">redeem</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Списание на покупку</div>
+<div class="text-xs text-on-surface-variant">05 Октября 2023</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<span class="text-sm font-medium">—</span>
+</td>
+<td class="px-8 py-6 text-right">
+<span class="text-sm font-bold text-error flex items-center justify-end">
+                                            -500 
+                                            <span class="material-symbols-outlined text-xs ml-1" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-6">
+<div class="flex items-center space-x-4">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="celebration">celebration</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Подарок на День Рождения</div>
+<div class="text-xs text-on-surface-variant">28 Сентября 2023</div>
+</div>
+</div>
+</td>
+<td class="px-8 py-6 text-right">
+<span class="text-sm font-medium">—</span>
+</td>
+<td class="px-8 py-6 text-right">
+<span class="text-sm font-bold text-secondary flex items-center justify-end">
+                                            +500 
+                                            <span class="material-symbols-outlined text-xs ml-1" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Promotional Banner -->
+<div class="md:col-span-3 mt-4 bg-surface-container-low rounded-xl p-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
+<div class="flex items-center space-x-6">
+<img alt="Экологичные средства PureLab" class="w-32 h-20 rounded-lg object-cover" data-alt="Macro close-up of eco-friendly cleaning liquid in a glass bottle with air bubbles and soft mint green lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByHUk_lj6n6rcJ3CKqFZtHL7V4wIQHpNy3M222FzesX-E4gux7Il0IcTQVw4POtGipM36OEdxaoj33sxxNdJKP0Y2bhkNgk0UqrTTZJP8bm4MqtggzhACvS7X4TDH6VsQjYNE51qkvrJDW4o-CvKfGdf-Qpac1V97OFhF_3IvNkQrNsHf5FnaMQNRCUz5ug050_fKnTDV4Vjhy1A3dqf4mLgf8zqu3YGldEiSob39tZsRxndZYtXizQied8SUdP1x883t9PHPuSB2p"/>
+<div>
+<h4 class="font-headline font-bold text-lg">Приглашайте друзей</h4>
+<p class="text-sm text-on-surface-variant max-w-md">Дарим по 500 баллов вам и вашему другу за первую покупку по вашей ссылке.</p>
+</div>
+</div>
+<button class="bg-secondary text-on-secondary px-8 py-3 rounded-lg font-bold text-sm hover:opacity-90 transition-opacity">
+                        Получить ссылку
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

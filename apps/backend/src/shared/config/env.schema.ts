@@ -5,7 +5,7 @@ export const envSchema = z.object({
   BACKEND_PORT: z.coerce.number().int().positive().default(4000),
   FRONTEND_ORIGIN: z.string().default("http://localhost:3000,http://127.0.0.1:3000"),
   DATABASE_URL: z.string().min(1),
-  REDIS_URL: z.string().min(1),
+  REDIS_URL: z.string().min(1).optional(),
   LOG_LEVEL: z.enum(["error", "warn", "log", "debug", "verbose"]).default("log"),
   SUPABASE_URL: z.string().url(),
   SUPABASE_ANON_KEY: z.string().min(1),

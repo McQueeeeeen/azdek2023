@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#91f78e",
+                      "on-tertiary-fixed": "#0f1d25",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed-dim": "#adc6ff",
+                      "on-tertiary-container": "#fbfcff",
+                      "inverse-primary": "#adc6ff",
+                      "on-background": "#191c1e",
+                      "surface-container": "#eceef0",
+                      "on-primary": "#ffffff",
+                      "primary": "#0058bc",
+                      "surface-tint": "#005bc1",
+                      "surface-container-low": "#f2f4f6",
+                      "on-surface": "#191c1e",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#3b4951",
+                      "on-secondary-fixed-variant": "#005313",
+                      "secondary": "#006e1c",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-container": "#0070eb",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-secondary-container": "#00731e",
+                      "primary-fixed": "#d8e2ff",
+                      "tertiary": "#505e67",
+                      "background": "#f7f9fb",
+                      "outline-variant": "#c1c6d7",
+                      "tertiary-fixed": "#d6e5ef",
+                      "surface-dim": "#d8dadc",
+                      "tertiary-fixed-dim": "#bac9d3",
+                      "surface-variant": "#e0e3e5",
+                      "outline": "#717786",
+                      "surface-container-high": "#e6e8ea",
+                      "on-primary-container": "#fefcff",
+                      "on-surface-variant": "#414755",
+                      "on-secondary-fixed": "#002204",
+                      "inverse-on-surface": "#eff1f3",
+                      "tertiary-container": "#687780",
+                      "secondary-fixed-dim": "#78dc77",
+                      "on-primary-fixed": "#001a41",
+                      "surface-bright": "#f7f9fb",
+                      "surface": "#f7f9fb",
+                      "secondary-fixed": "#94f990",
+                      "on-error": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed-variant": "#004493",
+                      "inverse-surface": "#2d3133"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          }
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+      </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<!-- Navigation Shell (TopNavBar) -->
+<nav class="fixed top-0 w-full z-50 bg-slate-50/70 backdrop-blur-xl transition-opacity duration-300">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-bold tracking-tighter text-blue-700 font-headline">PureLab</div>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-8 font-headline tracking-tight font-semibold">
+<a class="text-slate-600 hover:text-blue-500 transition-opacity duration-300" href="#">Shop</a>
+<a class="text-slate-600 hover:text-blue-500 transition-opacity duration-300" href="#">Ingredients</a>
+<a class="text-slate-600 hover:text-blue-500 transition-opacity duration-300" href="#">Sustainability</a>
+<a class="text-slate-600 hover:text-blue-500 transition-opacity duration-300" href="#">Laboratory</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity duration-300 text-blue-600">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="hover:opacity-80 transition-opacity duration-300 text-blue-600">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="min-h-screen pt-20 pb-16 px-6 flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background Accents (Subtle Tonal Shifts) -->
+<div class="absolute top-1/4 -left-20 w-96 h-96 bg-secondary-container/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-primary-fixed/30 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- 404 Watermark Badge -->
+<div class="mb-8 flex items-center justify-center">
+<span class="px-4 py-1 rounded-full bg-surface-container-low text-primary/40 font-headline font-bold text-sm tracking-[0.2em] uppercase">
+                Ошибка 404
+            </span>
+</div>
+<!-- Artistic Visual (The Evaporating Drop) -->
+<div class="relative w-full max-w-2xl aspect-[16/9] mb-12 flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface to-surface z-10"></div>
+<img class="w-full h-full object-cover rounded-xl grayscale-[20%] opacity-80" data-alt="Abstract high-quality macro shot of a single, perfect water ripple on a crystal clear surface, echoing the theme of purity and the 'evaporated' nature of the page, with soft lighting and a clean laboratory aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAI2K3_INqQwQF438Aq-A0ScJ8xPQFtkhToAb6bZn66DTVZJ8ZuAcZZejYLKGOnQjHNKnoQQDvJghakad22GT2_s7MYIkvGiuDeqlBjpXoQNmcezYzLJSj_T2Tn76nxmJX9DEGmzvlbxlE2I9itvlXizfmverh4zQ_HGTGG6jTLT8lp0mOQ4tfMC-vczMSFCldgESVBYWO_xl_n07WfZQyu_mnpbNn8dBNReby_Yji0-hiUOUvUJQxaeyWIL19O7cL_o7gTTRa-BAo"/>
+<!-- High-End Glassmorphic Label Overlapping -->
+<div class="absolute -bottom-4 right-4 md:right-12 z-20 bg-surface-container-lowest/70 backdrop-blur-md p-6 rounded-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)] max-w-[280px]">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-secondary" data-icon="eco">eco</span>
+<span class="text-xs font-bold tracking-widest text-on-surface-variant uppercase font-label">Эко-составы</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">Наши формулы биоразлагаемы и безопасны для водных ресурсов.</p>
+</div>
+</div>
+<!-- Content Section -->
+<div class="text-center max-w-2xl mx-auto px-4 relative z-20">
+<h1 class="text-5xl md:text-7xl font-extrabold text-on-surface tracking-tighter mb-6 leading-none font-headline">
+                Страница испарилась
+            </h1>
+<p class="text-lg md:text-xl text-on-surface-variant font-body font-light leading-relaxed mb-10 opacity-80">
+                Похоже, эта капля знаний высохла или никогда не существовала. <br class="hidden md:block"/> Давайте вернемся к истокам нашего чистого выбора.
+            </p>
+<!-- Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="group relative px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-white rounded-lg font-headline font-bold text-lg shadow-[0px_10px_20px_rgba(0,88,188,0.2)] hover:scale-105 active:scale-95 transition-all duration-300" href="#">
+                    На главную
+                </a>
+<a class="px-10 py-4 bg-secondary-fixed text-on-secondary-fixed rounded-lg font-headline font-bold text-lg hover:opacity-80 active:scale-95 transition-all duration-300" href="#">
+                    В каталог
+                </a>
+</div>
+<!-- Accent Badges -->
+<div class="mt-20 flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="biotech">biotech</span>
+<span class="text-xs font-bold font-label tracking-wide uppercase">Pure-Лаборатория</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="verified_user">verified_user</span>
+<span class="text-xs font-bold font-label tracking-wide uppercase">Безопасно</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="water_drop">water_drop</span>
+<span class="text-xs font-bold font-label tracking-wide uppercase">Чистота</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full border-t border-slate-200/10 tonal-shift bg-slate-100">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-12 py-10 gap-6 max-w-screen-2xl mx-auto">
+<div class="text-lg font-bold text-blue-700 font-headline">PureLab</div>
+<div class="flex gap-8 font-inter text-sm tracking-wide">
+<a class="text-slate-500 hover:text-blue-500 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors" href="#">Contact Us</a>
+<a class="text-slate-500 hover:text-blue-500 transition-colors" href="#">Wholesale</a>
+</div>
+<p class="text-slate-500 font-inter text-sm">
+                © 2024 PureLab. Purity in every drop.
+            </p>
+</div>
+</footer>
+</body></html>

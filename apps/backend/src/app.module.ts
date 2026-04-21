@@ -1,4 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { CatalogModule } from "./modules/catalog/catalog.module";
 import { CartModule } from "./modules/cart/cart.module";
 import { OrdersModule } from "./modules/orders/orders.module";
@@ -21,7 +22,12 @@ import { AnalyticsModule } from "./modules/analytics/analytics.module";
   imports: [
     AppConfigModule,
     SharedModule,
-    QueueModule,
+    {
+      module: QueueModule,
+      imports: [],
+      providers: [],
+      exports: [],
+    },
     AuthModule,
     NotificationsModule,
     AnalyticsModule,
@@ -38,6 +44,13 @@ import { AnalyticsModule } from "./modules/analytics/analytics.module";
   ],
 })
 export class AppModule implements NestModule {
+  constructor(config: ConfigService) {
+    const hasRedis = config.get<string>("REDIS_URL");
+    if (!hasRedis) {
+      console.log("⚠️  Redis not configured. Queue processing disabled. Using synchronous processing.");
+    }
+  }
+
   configure(consumer: MiddlewareConsumer): void {
     consumer.apply(RequestLoggerMiddleware).forRoutes("*");
   }

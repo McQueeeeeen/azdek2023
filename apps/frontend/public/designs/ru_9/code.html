@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Заказ подтвержден — PureLab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#3b4951",
+                "on-tertiary-fixed": "#0f1d25",
+                "surface-container-highest": "#e0e3e5",
+                "surface-container-low": "#f2f4f6",
+                "on-error-container": "#93000a",
+                "on-primary-container": "#fefcff",
+                "primary-container": "#0070eb",
+                "on-surface": "#191c1e",
+                "surface-dim": "#d8dadc",
+                "on-background": "#191c1e",
+                "surface-tint": "#005bc1",
+                "primary-fixed-dim": "#adc6ff",
+                "on-primary-fixed-variant": "#004493",
+                "outline": "#717786",
+                "on-secondary-container": "#00731e",
+                "tertiary-fixed-dim": "#bac9d3",
+                "error": "#ba1a1a",
+                "surface-container-lowest": "#ffffff",
+                "on-surface-variant": "#414755",
+                "secondary-container": "#91f78e",
+                "surface": "#f7f9fb",
+                "inverse-surface": "#2d3133",
+                "on-primary": "#ffffff",
+                "tertiary-fixed": "#d6e5ef",
+                "on-error": "#ffffff",
+                "on-secondary-fixed": "#002204",
+                "inverse-primary": "#adc6ff",
+                "surface-variant": "#e0e3e5",
+                "tertiary": "#505e67",
+                "surface-bright": "#f7f9fb",
+                "on-tertiary-container": "#fbfcff",
+                "surface-container": "#eceef0",
+                "secondary": "#006e1c",
+                "outline-variant": "#c1c6d7",
+                "secondary-fixed-dim": "#78dc77",
+                "tertiary-container": "#687780",
+                "error-container": "#ffdad6",
+                "inverse-on-surface": "#eff1f3",
+                "primary": "#0058bc",
+                "primary-fixed": "#d8e2ff",
+                "secondary-fixed": "#94f990",
+                "background": "#f7f9fb",
+                "on-tertiary": "#ffffff",
+                "on-primary-fixed": "#001a41",
+                "on-secondary-fixed-variant": "#005313",
+                "surface-container-high": "#e6e8ea",
+                "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "1.5rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Header for Focused View -->
+<header class="sticky top-0 z-50 glass-nav px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<a class="flex items-center gap-2 text-primary" href="/">
+<span class="material-symbols-outlined">arrow_back</span>
+<span class="font-label font-medium text-on-surface-variant">Вернуться в магазин</span>
+</a>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-headline font-bold text-lg tracking-tight">PureLab</span>
+</div>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</header>
+<main class="max-w-4xl mx-auto px-4 py-12">
+<!-- Success Hero Section -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden mb-12 shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="p-8 md:p-12 flex flex-col justify-center gap-6">
+<div class="flex items-center gap-2 text-secondary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="uppercase tracking-wider text-xs">Эко-осознанность</span>
+</div>
+<h1 class="font-headline font-black text-4xl md:text-5xl leading-tight text-on-surface">
+                        Ваш вклад в чистоту планеты
+                    </h1>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                        Спасибо, что выбрали PureLab. Ваш заказ №4829 подтвержден и уже готовится к отправке в полностью перерабатываемой упаковке.
+                    </p>
+<div class="flex items-center gap-4 mt-4">
+<div class="bg-secondary-fixed text-on-secondary-fixed px-6 py-3 rounded-full flex items-center gap-2 font-bold shadow-sm">
+<span class="material-symbols-outlined">verified</span>
+                            Заказ подтвержден
+                        </div>
+</div>
+</div>
+<div class="h-64 md:h-auto relative">
+<div class="absolute inset-0 bg-secondary-container opacity-20"></div>
+<img alt="eco lifestyle" class="w-full h-full object-cover" data-alt="close-up of fresh green leaves with water droplets and eco-friendly household products in soft daylight morning aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC66OSCZr_nU8y_7AR_zyyeagPgcj-0pcJgyuiR7Q2sVC999sga5V2lVTwmAIxj-dopu-outYw3LR8OmPAbCCuDN7s4VtKjPptZZ1CVefyANG7KEXEhKf46tBtrQFfm43yN9OhBe-gCkxTISIUOv9kIdxiXZBFHSSRlvNaA0ZEBsvqOeX1V_JGhBGYuL3qYFMz07hCjA7V-ktdY3kvAGu7HMG7BPPXfv0FNlTlkwYZ4MN4h6st-oTGLPuAyIXlSUv7du-Oe8WLVY96L"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Order Details -->
+<div class="md:col-span-2 space-y-8">
+<section class="bg-surface-container-low p-8 rounded-xl border border-outline-variant/15">
+<h3 class="font-headline font-bold text-xl mb-6">Детали заказа</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10">
+<span class="text-on-surface-variant">Статус</span>
+<span class="font-medium text-secondary">Собирается</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10">
+<span class="text-on-surface-variant">Дата доставки</span>
+<span class="font-medium">14 Октября, 10:00 - 18:00</span>
+</div>
+<div class="flex justify-between items-center py-3">
+<span class="text-on-surface-variant">Адрес</span>
+<span class="font-medium text-right">ул. Зеленая, 15, кв. 42</span>
+</div>
+</div>
+</section>
+<section class="flex items-center gap-6 p-6 bg-secondary-container/10 rounded-xl border border-secondary-fixed-dim/20">
+<div class="size-16 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container shrink-0">
+<span class="material-symbols-outlined" style="font-size: 32px;">recycling</span>
+</div>
+<div>
+<h4 class="font-bold text-lg text-on-secondary-container">Эко-факт</h4>
+<p class="text-on-surface-variant text-sm">Этот заказ помог сэкономить 450г первичного пластика благодаря нашей системе рефил-пакетов.</p>
+</div>
+</section>
+</div>
+<!-- Promo & CTA -->
+<div class="space-y-8">
+<section class="bg-gradient-to-br from-primary to-primary-container p-8 rounded-xl text-on-primary shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline font-bold text-xl mb-2">Подарок для вас</h3>
+<p class="text-white/80 text-sm mb-6">Скидка на следующую покупку для тех, кто заботится о природе.</p>
+<div class="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20 text-center mb-6">
+<span class="text-xs uppercase tracking-widest text-white/60 block mb-1">Промокод</span>
+<span class="font-headline font-black text-2xl tracking-widest">PUREPLANET</span>
+</div>
+<p class="text-xs text-white/60 text-center italic">Действует до 31.12.2023</p>
+</div>
+<!-- Decorative water ripple effect -->
+<div class="absolute -bottom-10 -right-10 size-40 bg-white/10 rounded-full blur-3xl"></div>
+</section>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-secondary-fixed text-on-secondary-fixed font-bold py-4 rounded-xl hover:bg-secondary-fixed-dim transition-colors flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined">receipt_long</span>
+                        Скачать чек
+                    </button>
+<button class="w-full bg-surface-container-high text-on-surface font-bold py-4 rounded-xl hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">support_agent</span>
+                        Помощь по заказу
+                    </button>
+</div>
+</div>
+</div>
+<!-- Related/Eco Products Hint -->
+<section class="mt-20">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline font-black text-2xl">Дополните свой эко-быт</h3>
+<a class="text-primary font-medium flex items-center gap-1 hover:underline" href="#">
+                    Все новинки <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl transition-all hover:scale-[1.02] hover:shadow-[0px_10px_30px_rgba(0,88,188,0.04)]">
+<div class="aspect-square rounded-xl bg-secondary-container/10 mb-4 overflow-hidden">
+<img alt="eco product" class="w-full h-full object-cover" data-alt="sustainable bamboo dish brush and natural fiber sponges on a clean white surface with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR7Dj3G6PF60LIqn9-42OwOkxV2LXcRbc9bb7wIAVziud5s3vRKVCT5qkKKXcGAWRv6UxXow2uopka1qFbDhbPRCGEi5E5ySx9lcKerb99VhiacVbse_SvdZHRzBnNi-hoIsQ-iJvDRAurvPF42hcXt7pqFlU6pAZa3fsCt4o1-DLBbnPQEZC0BOhrcuaAbYmRiyzh8MCpvf1lLLHXUc5vp-c_XTf9A0tg5w8AjU4TupPqlAVmPYf6i6CkqqMgBQ4fiI4LfxFCavn2"/>
+</div>
+<span class="text-xs font-bold text-secondary uppercase mb-2 block">Рефил</span>
+<h4 class="font-bold text-on-surface mb-1">Гель для посуды «Мята»</h4>
+<p class="text-primary font-black">490 ₽</p>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl transition-all hover:scale-[1.02] hover:shadow-[0px_10px_30px_rgba(0,88,188,0.04)]">
+<div class="aspect-square rounded-xl bg-secondary-container/10 mb-4 overflow-hidden">
+<img alt="eco product" class="w-full h-full object-cover" data-alt="minimalist glass spray bottle with organic cleaning solution and a cotton cloth on a light marble table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsbLYKcGAmOQWhi1Im8u2s1MU_Fpm4-Nt-kxqP29f5EaYa2KRfJOM8RwSCMrAbCPblvTs90KL317hMxwN4bxJ_G7lp21dSwl-5eAnTlgNWdfBNs9be2m5Sz-xp3upx5uMMqFEZ22sPVYl06LPOhHrK4IFNbnHuMhOy_OVTh2r8MiUnStZ7aYuPvJwKdxVnuv_m-LoUd_IiRpug3XoPt8iadF-EJ2rgZ9eQ9V4jrXFNqtoU0JQRDJego1WcSaFhAJjjvC_-nYfPam5w"/>
+</div>
+<span class="text-xs font-bold text-secondary uppercase mb-2 block">Биоразлагаемо</span>
+<h4 class="font-bold text-on-surface mb-1">Спрей для стекол</h4>
+<p class="text-primary font-black">550 ₽</p>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl transition-all hover:scale-[1.02] hover:shadow-[0px_10px_30px_rgba(0,88,188,0.04)]">
+<div class="aspect-square rounded-xl bg-secondary-container/10 mb-4 overflow-hidden">
+<img alt="eco product" class="w-full h-full object-cover" data-alt="unscented organic laundry detergent pods in a simple cardboard box with eco-friendly certifications visible" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXetVCWkNAOpLjL_j_fAXWRev1-rGTVMY3v7Cisu245LRIbN3O1YjhbP8zmTQk_0QAmfZndjywyb4p2k-CWPKrTjssv1mc9445uGEARWkEcxWEKofLfKDZDpxxSPQSl2B8Np5TLppaHqqImeJbiroEWwCVLmke-3HEJVzrnFIKXbpGwEqJpdynD3Leyxk_VOslAeKziLgHjCUzq_ghuxvAkm0Mutv1yzL21xz7isxOq0liDVHdPeRVjN4XMqD2UpeqAINRVz0N3ahI"/>
+</div>
+<span class="text-xs font-bold text-secondary uppercase mb-2 block">Хит</span>
+<h4 class="font-bold text-on-surface mb-1">Капсулы для стирки 30 шт.</h4>
+<p class="text-primary font-black">1 200 ₽</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-surface-container-low mt-20 border-t border-outline-variant/10">
+<div class="max-w-4xl mx-auto px-4 py-12 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-6 text-on-surface/50">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-headline font-bold text-on-surface/50">PureLab</span>
+</div>
+<p class="text-on-surface-variant text-sm">© 2023 PureLab — чистота с уважением к природе.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">public</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">chat_bubble</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">share</span>
+</div>
+</div>
+</footer>
+</body></html>

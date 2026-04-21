@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#adc6ff",
+                    "on-primary-container": "#fefcff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "surface-tint": "#005bc1",
+                    "on-error": "#ffffff",
+                    "primary": "#0058bc",
+                    "on-surface-variant": "#414755",
+                    "on-secondary-container": "#00731e",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-fixed": "#002204",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-surface": "#2d3133",
+                    "tertiary-fixed": "#d6e5ef",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-container": "#0070eb",
+                    "outline": "#717786",
+                    "tertiary": "#505e67",
+                    "secondary-fixed": "#94f990",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-surface": "#191c1e",
+                    "on-primary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "secondary": "#006e1c",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary-fixed-variant": "#005313",
+                    "surface-container": "#eceef0",
+                    "tertiary-container": "#687780",
+                    "on-tertiary-container": "#fbfcff",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-high": "#e6e8ea",
+                    "surface": "#f7f9fb",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#78dc77",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#c1c6d7",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-container": "#91f78e",
+                    "on-primary-fixed": "#001a41",
+                    "background": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/20">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto font-headline tracking-tight font-semibold">
+<div class="text-2xl font-black text-[#191c1e] tracking-tighter">PureLab</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-[#007AFF] border-b-2 border-[#007AFF] pb-1 transition-all" href="#">Кухня</a>
+<a class="text-[#191c1e] opacity-70 hover:opacity-100 hover:text-[#007AFF] transition-all" href="#">Ванная</a>
+<a class="text-[#191c1e] opacity-70 hover:opacity-100 hover:text-[#007AFF] transition-all" href="#">Стирка</a>
+<a class="text-[#191c1e] opacity-70 hover:opacity-100 hover:text-[#007AFF] transition-all" href="#">Эко-товары</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-lowest rounded-full px-4 py-2 w-64 shadow-sm border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/50" placeholder="Поиск чистоты..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#191c1e]" data-icon="shopping_cart">shopping_cart</span>
+</button>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[#191c1e]" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-[#f2f4f6] h-[1px] w-full absolute bottom-0 opacity-15"></div>
+</nav>
+<main class="pt-24 pb-12 max-w-7xl mx-auto px-8">
+<!-- Page Header -->
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold mb-4">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    ЭКО-СЕРТИФИЦИРОВАНО
+                </div>
+<h1 class="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tight mb-4">Чистота без компромиссов</h1>
+<p class="text-on-surface-variant text-lg max-w-xl">Профессиональные средства для уборки кухни с нейтральным pH и натуральным составом. Безопасно для поверхностей и кожи рук.</p>
+</div>
+<div class="flex gap-2 p-1 bg-surface-container-low rounded-xl">
+<button class="px-4 py-2 bg-surface-container-lowest rounded-lg shadow-sm text-sm font-semibold text-primary">Сеткой</button>
+<button class="px-4 py-2 hover:bg-surface-container-high rounded-lg text-sm font-medium text-on-surface-variant transition-colors">Списком</button>
+</div>
+</header>
+<!-- Concise Product Grid (4-5 per row on desktop) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+<!-- Product Card 1 -->
+<div class="group bg-surface-container-lowest rounded-xl p-4 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 mb-4 overflow-hidden">
+<img alt="Средство для мытья" class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110" data-alt="Minimalist white bottle of dish soap on a clean light green background with soft studio lighting and water droplets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaLcYAnRSZWkqqciEwwvvcqhhjD7Bvrwg1BLle4ZV4QEToMdUOPqvsQIHkNi5FsD4ciZdKqqCvv7TjVJcT47Y4EvjS0Sf2zndzwHkWmuQV_a9GHTygMs8FD5LptFgEzqfEyob6XufqD53Hasx9RzghPU-9wk6uQudJP5B-pX_26KOZPDRxId-6T0cmqbGuqQh27FpPDTWIYBq293aHxlHkqfRpHl4o0F5hrX-UwC3HVxa-jgEMQ2yKNc1s6nlv8NbMP6S3Izt0IsWy"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Кухня</span>
+<span class="text-[10px] font-semibold text-on-surface-variant px-1.5 py-0.5 bg-surface-container rounded">pH 7.0</span>
+</div>
+<h3 class="font-headline font-bold text-on-surface text-base mb-1 leading-tight group-hover:text-primary transition-colors">Pure Kitchen Bio</h3>
+<p class="text-on-surface-variant text-xs mb-3 line-clamp-2">На основе кокосового масла и лимонной цедры.</p>
+<div class="flex flex-wrap gap-1 mb-4">
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">500 мл</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">Биоразлагаемо</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-headline font-extrabold text-lg text-on-surface">450 ₽</span>
+<button class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-all active:scale-90">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-surface-container-lowest rounded-xl p-4 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 mb-4 overflow-hidden">
+<img alt="Обезжириватель" class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110" data-alt="Sleek modern spray bottle for kitchen degreasing, eco-friendly branding, clean aesthetic, soft neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYXih8LbJ0vuZazIjgKSMkX-iTFTu4jGnlT9rJxEYCBqoJ6U5Zw9qB42U77LHBnzwKRpIa8477MEbU6pFhknzuRAiZZcIYoodmFE_zXUc5J7k1YGBB5qqL41O7kvxB8yrrwTGSKIxyZR59jhGfcBcO2wNtst7RYoL6bWMLsDXoGAxZS56LARFLJfNehD7JuaXx5idbcLtzlUjz9u6pAJZGh2TYl6w6jQR3yORjJ2YtsIujqPZJl7jQiSkF1Tp5QVIWL-DQHSFWv-Hh"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Антижир</span>
+<span class="text-[10px] font-semibold text-on-surface-variant px-1.5 py-0.5 bg-surface-container rounded">pH 8.5</span>
+</div>
+<h3 class="font-headline font-bold text-on-surface text-base mb-1 leading-tight group-hover:text-primary transition-colors">Power Scrub Citrus</h3>
+<p class="text-on-surface-variant text-xs mb-3 line-clamp-2">Экстракт грейпфрута и активная сода.</p>
+<div class="flex flex-wrap gap-1 mb-4">
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">750 мл</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">Без хлора</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-headline font-extrabold text-lg text-on-surface">590 ₽</span>
+<button class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-all active:scale-90">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group bg-surface-container-lowest rounded-xl p-4 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 mb-4 overflow-hidden">
+<img alt="Очиститель стекла" class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110" data-alt="Transparent glass cleaner bottle, blue liquid, minimalist design, bright clean studio setting, soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlwbVfITGy8UVQESrZO1KWNT65ixOKfd6Arojt0hOzTiXSd-Uo_ZiSTmmDqMP9Ku22WbPMHS5MwEx-PXMSH0fco2mw_Kgrqcsx8BWjX2U2mTJXIB9FibqgpymqDnWdGUcolQ3YfDse-DMxfMoHt7EWcWKgjQbRRB_E7esD_uM2b0z_yzU79u-j5xrMfirbwIo39hStcYgEbslmYYEC1y9DRkNSb0q_qbkUZun5GUXe1647QNFhHeeyZdBQbRUnKItP_v31EGzgo8AY"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Стекло</span>
+<span class="text-[10px] font-semibold text-on-surface-variant px-1.5 py-0.5 bg-surface-container rounded">pH 6.5</span>
+</div>
+<h3 class="font-headline font-bold text-on-surface text-base mb-1 leading-tight group-hover:text-primary transition-colors">Crystal Clear Mint</h3>
+<p class="text-on-surface-variant text-xs mb-3 line-clamp-2">Растительный спирт и экстракт мяты.</p>
+<div class="flex flex-wrap gap-1 mb-4">
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">500 мл</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">Без разводов</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-headline font-extrabold text-lg text-on-surface">380 ₽</span>
+<button class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-all active:scale-90">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group bg-surface-container-lowest rounded-xl p-4 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 mb-4 overflow-hidden">
+<img alt="Средство для посудомоечных машин" class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110" data-alt="Modern packaging of dishwasher tablets, eco-friendly cardboard, clean minimal design, bright kitchen background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpQl7H_1sK1kU-gDc7SwbK9djPq6Uf1ilFVLl7NdqRQb8WNlp4xt8B5LCY_-4eY2zHDLiIiDpyTu0Lzf9vK4fo_crvI358WMQoWshXlL0rSp9dKCZKhRByAa7NYz2v45frK_0i_kcUDZLKS3-Ti-0CNYMuU50H7ig1b5-VqTsiNDm85iC-bkHSkkPDtdNRnyv4iiIbvQBe4hxx-E2p8gkTinCojNAneKZrs9y2Ge6mQdzvTKiIjt161HZ_JoyB0qQn6qRP20YYrPYa"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Таблетки</span>
+<span class="text-[10px] font-semibold text-on-surface-variant px-1.5 py-0.5 bg-surface-container rounded">pH 10.0</span>
+</div>
+<h3 class="font-headline font-bold text-on-surface text-base mb-1 leading-tight group-hover:text-primary transition-colors">EcoTab All-in-1</h3>
+<p class="text-on-surface-variant text-xs mb-3 line-clamp-2">Минеральные соли и растительные энзимы.</p>
+<div class="flex flex-wrap gap-1 mb-4">
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">30 шт</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">Водорастворимо</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-headline font-extrabold text-lg text-on-surface">890 ₽</span>
+<button class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-all active:scale-90">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group bg-surface-container-lowest rounded-xl p-4 flex flex-col transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="relative aspect-square rounded-lg bg-secondary-container/30 mb-4 overflow-hidden">
+<img alt="Мыло для рук" class="w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-110" data-alt="Elegant amber glass soap dispenser with minimalist label, marble background, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx7m4YXGwYp_zck-FNpHWMZ8eaEih2Dxdtp2anlUzO4HjzPrtmPhJvMPpclYfrLFQDyEmvxlUvam_6-9mxA4Hw4NlS80mtKDz5dHM590k-3Sr5eb5qh1_7bGQ-6QuZLyIG6mgnaU0jReq_77Oe-alai7nc-OUURckofTtRyDDdvlaajxJVXAxVauj5oagYBsBX-yPf5VFYIo49WL2Y2dp2H-xIhv2nLya8Lxfl7vhFjaaYgURsPuBRvBsFLzVNmh73GFbAto9kKoMf"/>
+<div class="absolute top-2 right-2">
+<button class="w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-on-surface-variant hover:text-error transition-colors">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Уход</span>
+<span class="text-[10px] font-semibold text-on-surface-variant px-1.5 py-0.5 bg-surface-container rounded">pH 5.5</span>
+</div>
+<h3 class="font-headline font-bold text-on-surface text-base mb-1 leading-tight group-hover:text-primary transition-colors">Soft Care Aloe</h3>
+<p class="text-on-surface-variant text-xs mb-3 line-clamp-2">Сок алоэ вера и оливковое масло.</p>
+<div class="flex flex-wrap gap-1 mb-4">
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">300 мл</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full border border-outline-variant/30 text-on-surface-variant">Гипоаллергенно</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/10">
+<span class="font-headline font-extrabold text-lg text-on-surface">320 ₽</span>
+<button class="w-10 h-10 rounded-lg bg-primary text-white flex items-center justify-center hover:bg-primary-container transition-all active:scale-90">
+<span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Informational Section (Bento Style) -->
+<section class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-low rounded-xl p-8 flex flex-col justify-between border border-outline-variant/10">
+<div>
+<h2 class="text-3xl font-headline font-extrabold mb-4">Лаборатория PureLab</h2>
+<p class="text-on-surface-variant max-w-lg mb-8">Мы разрабатываем формулы, которые объединяют мощь природных компонентов с научным подходом к гигиене. Наша цель — сделать ваш дом безопасным местом.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-primary mb-2 text-3xl">biotech</span>
+<span class="text-xs font-bold uppercase tracking-tight">Биотех</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-secondary mb-2 text-3xl">nature</span>
+<span class="text-xs font-bold uppercase tracking-tight">Organic</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-tertiary mb-2 text-3xl">recycling</span>
+<span class="text-xs font-bold uppercase tracking-tight">Рециклинг</span>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-error mb-2 text-3xl">water_drop</span>
+<span class="text-xs font-bold uppercase tracking-tight">Чистая вода</span>
+</div>
+</div>
+</div>
+<div class="bg-primary rounded-xl p-8 text-white relative overflow-hidden group">
+<div class="relative z-10">
+<h3 class="text-2xl font-headline font-bold mb-4">Подписка на чистоту</h3>
+<p class="text-white/80 text-sm mb-6">Получайте набор любимых средств каждые 30 дней со скидкой 15%.</p>
+<button class="bg-white text-primary px-6 py-3 rounded-lg font-bold text-sm hover:bg-secondary-fixed transition-colors">Оформить</button>
+</div>
+<div class="absolute bottom-[-20px] right-[-20px] opacity-10 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[160px]" style="font-variation-settings: 'FILL' 1;">cleaning_services</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f2f4f6] w-full py-12">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6 max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-manrope font-bold text-[#191c1e] text-xl">PureLab</span>
+<p class="font-inter text-sm text-[#191c1e] text-center md:text-left opacity-70">© 2024 PureLab. Эко-чистота в каждом доме.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-inter text-sm text-slate-500 hover:text-[#007AFF] hover:translate-x-1 transition-transform" href="#">Политика конфиденциальности</a>
+<a class="font-inter text-sm text-slate-500 hover:text-[#007AFF] hover:translate-x-1 transition-transform" href="#">Условия возврата</a>
+<a class="font-inter text-sm text-slate-500 hover:text-[#007AFF] hover:translate-x-1 transition-transform" href="#">Контакты</a>
+</div>
+</div>
+</footer>
+</body></html>

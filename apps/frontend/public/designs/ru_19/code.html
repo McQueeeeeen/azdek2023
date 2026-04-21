@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed": "#d8e2ff",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#687780",
+                        "error": "#ba1a1a",
+                        "outline": "#717786",
+                        "on-primary-container": "#fefcff",
+                        "surface-bright": "#f7f9fb",
+                        "background": "#f7f9fb",
+                        "secondary-container": "#91f78e",
+                        "inverse-surface": "#2d3133",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary-container": "#0070eb",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-tertiary-fixed-variant": "#3b4951",
+                        "tertiary-fixed-dim": "#bac9d3",
+                        "on-primary": "#ffffff",
+                        "primary": "#0058bc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#fbfcff",
+                        "on-secondary-fixed-variant": "#005313",
+                        "on-surface-variant": "#414755",
+                        "surface-container-low": "#f2f4f6",
+                        "on-background": "#191c1e",
+                        "inverse-primary": "#adc6ff",
+                        "surface-variant": "#e0e3e5",
+                        "on-secondary-fixed": "#002204",
+                        "secondary-fixed-dim": "#78dc77",
+                        "surface-container": "#eceef0",
+                        "secondary": "#006e1c",
+                        "on-secondary-container": "#00731e",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e0e3e5",
+                        "outline-variant": "#c1c6d7",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#505e67",
+                        "surface-tint": "#005bc1",
+                        "on-tertiary-fixed": "#0f1d25",
+                        "tertiary-fixed": "#d6e5ef",
+                        "surface": "#f7f9fb",
+                        "secondary-fixed": "#94f990",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-fixed": "#001a41",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow {
+            box-shadow: 0px 20px 40px rgba(0, 88, 188, 0.06);
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%);
+        }
+        .ghost-border {
+            border: 1px solid rgba(193, 198, 215, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased min-h-screen">
+<main class="flex min-h-screen">
+<!-- Left Side: Lifestyle Image Section -->
+<section class="hidden lg:flex lg:w-1/2 relative overflow-hidden bg-secondary-container">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Minimalist modern laundry room with white marble surfaces, soft natural sunlight, and a small glass vase with green eucalyptus leaves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfEJ9NQQrM7IGY542jOF2I-jswlL9sMZ8kfPP3veFw40VZ4Q2YxdqdM_tHoFaQknKt0IvXg2vKHalAnircszGLLASI3WMmlsx2_ksHNifWa7bIjGvPWaBOWVxS6n0q1pgA_5l-L5kzoQkc8fqdtFnD1Rk6iu2QFX_dOBjBcot1IOqATO4clVg-9E7VPm1GNA1kE6GhXyEut5gZImw3b35jpzNrNZxXxMEBs3v461ujVoxLbSsKSI95tKzsVVYlBrA5g5jQ3mSbGYo9"/>
+<div class="relative z-10 p-16 flex flex-col justify-between h-full w-full bg-black/5 backdrop-blur-[2px]">
+<div>
+<div class="text-2xl font-extrabold tracking-tighter text-on-surface headline">Pristine</div>
+</div>
+<div class="max-w-md">
+<h2 class="text-5xl font-extrabold text-on-surface tracking-tight leading-tight mb-6">Чистота как искусство.</h2>
+<p class="text-lg text-on-surface-variant font-light leading-relaxed">
+                        Мы верим, что бытовая химия должна быть такой же чистой и безопасной, как премиальная косметика. Добро пожаловать в PureLab.
+                    </p>
+</div>
+<div class="flex gap-4">
+<div class="px-4 py-2 bg-white/40 backdrop-blur-xl rounded-full text-sm font-medium text-on-surface">Эко-стандарт</div>
+<div class="px-4 py-2 bg-white/40 backdrop-blur-xl rounded-full text-sm font-medium text-on-surface">Лабораторное качество</div>
+</div>
+</div>
+</section>
+<!-- Right Side: Registration Form Section -->
+<section class="w-full lg:w-1/2 flex items-center justify-center p-8 bg-surface">
+<div class="w-full max-w-md">
+<!-- Mobile Header -->
+<div class="lg:hidden mb-12 flex justify-center">
+<span class="text-3xl font-black text-primary tracking-tighter headline">Pristine</span>
+</div>
+<div class="mb-10 text-center lg:text-left">
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-3">Регистрация</h1>
+<p class="text-on-surface-variant font-medium">Создайте аккаунт, чтобы начать путь к безупречному дому.</p>
+</div>
+<form class="space-y-6">
+<!-- Name Field -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant ml-1" for="name">Имя</label>
+<div class="relative">
+<input class="w-full px-5 py-4 bg-surface-container-lowest rounded-xl ghost-border focus:ring-4 focus:ring-surface-tint/20 focus:outline-none transition-all placeholder:text-outline/50" id="name" placeholder="Ваше имя" type="text"/>
+</div>
+</div>
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant ml-1" for="email">Электронная почта</label>
+<div class="relative">
+<input class="w-full px-5 py-4 bg-surface-container-lowest rounded-xl ghost-border focus:ring-4 focus:ring-surface-tint/20 focus:outline-none transition-all placeholder:text-outline/50" id="email" placeholder="example@purelab.ru" type="email"/>
+</div>
+</div>
+<!-- Password Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant ml-1" for="password">Пароль</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest rounded-xl ghost-border focus:ring-4 focus:ring-surface-tint/20 focus:outline-none transition-all placeholder:text-outline/50" id="password" placeholder="••••••••" type="password"/>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-semibold text-on-surface-variant ml-1" for="confirm_password">Подтвердите пароль</label>
+<input class="w-full px-5 py-4 bg-surface-container-lowest rounded-xl ghost-border focus:ring-4 focus:ring-surface-tint/20 focus:outline-none transition-all placeholder:text-outline/50" id="confirm_password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Privacy Checkbox -->
+<div class="flex items-start gap-3 py-2">
+<div class="flex items-center h-5">
+<input class="w-5 h-5 rounded-md border-outline-variant text-primary focus:ring-primary" id="terms" type="checkbox"/>
+</div>
+<label class="text-sm text-on-surface-variant leading-tight" for="terms">
+                            Я согласен с <a class="text-primary font-semibold hover:underline" href="#">Условиями использования</a> и <a class="text-primary font-semibold hover:underline" href="#">Политикой конфиденциальности</a>.
+                        </label>
+</div>
+<!-- Primary Action -->
+<button class="w-full py-4 bg-gradient-primary text-on-primary font-bold rounded-xl custom-shadow hover:opacity-90 active:scale-95 transition-all text-lg tracking-tight" type="submit">
+                        Зарегистрироваться
+                    </button>
+</form>
+<div class="mt-10 text-center">
+<p class="text-on-surface-variant">
+                        Уже есть аккаунт? 
+                        <a class="text-primary font-bold hover:underline ml-1" href="#">Войти</a>
+</p>
+</div>
+<!-- Decorative Safety Badge -->
+<div class="mt-12 flex items-center justify-center gap-6 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="verified_user">verified_user</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Secure Data</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl" data-icon="eco">eco</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">100% Eco</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from JSON (Contextually Suppressed if page is focused journey, but implemented here for branding consistency as requested) -->
+<footer class="w-full border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 flex flex-col md:flex-row justify-between items-center px-12 py-8 w-full font-inter text-sm antialiased">
+<div class="font-manrope font-bold text-slate-900 dark:text-slate-100 mb-4 md:mb-0">
+            © 2024 Pristine Laboratory. All rights reserved.
+        </div>
+<div class="flex gap-8">
+<a class="text-slate-400 hover:text-blue-500 dark:hover:text-blue-300 transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-blue-500 dark:hover:text-blue-300 transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-blue-500 dark:hover:text-blue-300 transition-opacity duration-200" href="#">Sustainability Report</a>
+</div>
+</footer>
+</body></html>

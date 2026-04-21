@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@100..900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-container": "#fefcff",
+                    "tertiary-container": "#687780",
+                    "on-background": "#191c1e",
+                    "outline": "#717786",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#78dc77",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#eff1f3",
+                    "secondary-container": "#91f78e",
+                    "on-surface": "#191c1e",
+                    "secondary": "#006e1c",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary-fixed-variant": "#004493",
+                    "primary-fixed-dim": "#adc6ff",
+                    "on-error": "#ffffff",
+                    "tertiary": "#505e67",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#002204",
+                    "on-surface-variant": "#414755",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "surface-tint": "#005bc1",
+                    "background": "#f7f9fb",
+                    "secondary-fixed": "#94f990",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary-container": "#00731e",
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary-fixed-variant": "#005313",
+                    "primary": "#0058bc",
+                    "outline-variant": "#c1c6d7",
+                    "on-primary-fixed": "#001a41",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "on-tertiary-container": "#fbfcff",
+                    "surface-bright": "#f7f9fb",
+                    "surface": "#f7f9fb",
+                    "primary-container": "#0070eb",
+                    "inverse-primary": "#adc6ff",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "tertiary-fixed": "#d6e5ef",
+                    "surface-container": "#eceef0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-gradient-primary {
+            background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Minimal Header for Focused View -->
+<header class="glass-header sticky top-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 border-b border-outline-variant/15">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="w-8 h-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-headline text-xl font-bold tracking-tight text-on-surface">PureLab</span>
+</div>
+<a class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors duration-200" href="/">
+<span class="material-symbols-outlined">arrow_back</span>
+<span class="text-sm font-medium">Вернуться на главную</span>
+</a>
+</header>
+<main class="flex flex-1 items-center justify-center p-6">
+<div class="max-w-[1000px] w-full grid md:grid-cols-2 gap-12 items-center bg-surface-container-low p-8 md:p-16 rounded-xl">
+<!-- Left: Content Section -->
+<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full w-fit">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="text-xs font-bold uppercase tracking-wider">Стерильная зона</span>
+</div>
+<h1 class="font-headline text-4xl md:text-5xl font-extrabold text-on-surface leading-tight tracking-[-0.02em]">
+                            Доступ только для лаборантов
+                        </h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-[420px]">
+                            Вы пытаетесь войти в закрытый сегмент системы. Для продолжения работы в PureLab необходимо подтвердить статус авторизованного специалиста.
+                        </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-gradient-primary text-on-primary px-8 py-4 rounded-xl font-bold tracking-wide flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined">login</span>
+                            Войти в систему
+                        </button>
+<button class="bg-surface-container-lowest text-on-surface border border-outline-variant/30 px-8 py-4 rounded-xl font-bold hover:bg-surface-container-high transition-colors">
+                            Запросить доступ
+                        </button>
+</div>
+<div class="flex flex-col gap-1 border-t border-outline-variant/20 pt-6">
+<span class="text-error font-bold font-headline text-sm uppercase tracking-widest">Ошибка 403 / Запрещено</span>
+<p class="text-on-surface-variant text-sm">
+                            Если вы считаете, что это ошибка, обратитесь к системному администратору PureLab для настройки прав доступа к вашему профилю.
+                        </p>
+</div>
+</div>
+<!-- Right: Visual Asset Section -->
+<div class="relative group">
+<div class="absolute -inset-4 bg-primary/5 rounded-[2rem] blur-2xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="relative aspect-square overflow-hidden rounded-xl bg-secondary-container shadow-2xl">
+<img alt="Lab professional" class="w-full h-full object-cover mix-blend-overlay opacity-90" data-alt="Modern high-tech laboratory interior with frosted glass partitions, blue accent lighting, and sterile white surfaces in a soft focus professional setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwJkKkyidOfYSuiB82N68BfqmSD1f8s0kJQa1G4oCd18Fhh4L7uWSyb9JM3pFvI50r_BmZ8y-NUU0SGEksTHhVh32hGi6vzxwRDT-imvLeNNKeNNH3cu3hbj9CwLQmpoYt9iJQS-LzScLu7T6TdDvU5eaqAEEbEqUPfZEapAEUwmdc9Dz8JFVwWsg9XZuCQRD4ZiunBef80hfc7NVLrsnyEiGrQdkHrHNfOnHOQHGl_lsAb06xHCCcGVPZu1bLXdn691lpTC1Ofoj0"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-surface-container-lowest/80 backdrop-blur-md p-8 rounded-xl border border-white/40 shadow-xl flex flex-col items-center gap-4">
+<div class="w-16 h-16 bg-error-container text-error rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<span class="font-headline font-bold text-on-surface">Доступ ограничен</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Info -->
+<footer class="px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-on-surface-variant text-sm border-t border-outline-variant/10">
+<p>© 2024 PureLab Professional. Все права защищены.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Политика безопасности</a>
+<a class="hover:text-primary transition-colors" href="#">Техническая поддержка</a>
+</div>
+</footer>
+</div>
+</body></html>

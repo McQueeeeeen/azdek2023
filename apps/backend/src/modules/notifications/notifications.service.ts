@@ -1,5 +1,5 @@
 import { InjectQueue } from "@nestjs/bullmq";
-import { Injectable, Logger } from "@nestjs/common";
+import { Injectable, Logger, Optional } from "@nestjs/common";
 import { Queue } from "bullmq";
 
 export type NotificationEventType =
@@ -22,9 +22,14 @@ export interface NotificationJobPayload {
 export class NotificationsService {
   private readonly logger = new Logger(NotificationsService.name);
 
-  constructor(@InjectQueue("notifications") private readonly notificationsQueue: Queue) {}
+  constructor(@Optional() @InjectQueue("notifications") private readonly notificationsQueue?: Queue) {}
 
   async enqueueEmail(payload: NotificationJobPayload): Promise<void> {
+    if (!this.notificationsQueue) {
+      this.logger.warn(`Notifications queue disabled, skipping notification type=${payload.type}`);
+      return;
+    }
+
     try {
       await this.notificationsQueue.add("send-email", payload, {
         attempts: 5,

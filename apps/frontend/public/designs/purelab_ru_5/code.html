@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Адреса доставки — PureLab</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d8dadc",
+                    "on-secondary-fixed": "#002204",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-tertiary-container": "#fbfcff",
+                    "secondary-fixed-dim": "#78dc77",
+                    "primary": "#0058bc",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-surface-variant": "#414755",
+                    "on-surface": "#191c1e",
+                    "secondary-container": "#91f78e",
+                    "on-background": "#191c1e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container": "#eceef0",
+                    "surface": "#f7f9fb",
+                    "on-primary-container": "#fefcff",
+                    "surface-bright": "#f7f9fb",
+                    "surface-tint": "#005bc1",
+                    "secondary-fixed": "#94f990",
+                    "background": "#f7f9fb",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "inverse-on-surface": "#eff1f3",
+                    "error-container": "#ffdad6",
+                    "inverse-surface": "#2d3133",
+                    "inverse-primary": "#adc6ff",
+                    "outline-variant": "#c1c6d7",
+                    "tertiary": "#505e67",
+                    "on-secondary-fixed-variant": "#005313",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "outline": "#717786",
+                    "on-secondary": "#ffffff",
+                    "tertiary-container": "#687780",
+                    "surface-container-high": "#e6e8ea",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#e0e3e5",
+                    "primary-fixed-dim": "#adc6ff",
+                    "primary-container": "#0070eb",
+                    "on-primary-fixed-variant": "#004493",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#00731e",
+                    "on-primary-fixed": "#001a41",
+                    "secondary": "#006e1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .brand-font { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex h-screen w-72 border-r border-slate-200/15 bg-slate-50/70 backdrop-blur-xl flex-col p-6 space-y-8 sticky top-0 shadow-[0_20px_40px_rgba(0,88,188,0.06)] z-40">
+<div class="flex flex-col space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-white">
+<img alt="Аватар пользователя" class="w-full h-full object-cover rounded-xl" data-alt="professional clean studio portrait of a customer, soft lighting, minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRLjF9IsotGIa3BFmd4nmsl-uTBjO5K-B1Ly6gKrVQQRCunbnK2RZv8UVWPmLzxBwtEX_IVf5WjJu7Q8eBIEIjnhGt3JWKV6E87Rzr5lh8AO5W9mDj5twFiknhmv-6A893BQXTbk-oKT61kj5OIxIUpry8OZaPV0DPwyKhh1XCHeM-6c39UrWqzqvzMM9PkATzj6V4uVo3AZqx_VzvT0EPoArp8Vp7JZmc38wwfmLGCWlr3eZUGyW5wBiBNjPHpu-OdKXP60vc3xXK"/>
+</div>
+<div class="flex flex-col">
+<span class="text-2xl font-black tracking-tight text-blue-700">PureLab</span>
+<span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Чистота и Забота</span>
+</div>
+</div>
+<div class="pt-4">
+<h2 class="text-sm font-semibold text-on-surface-variant px-2">Личный кабинет</h2>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+                    Мои заказы
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                    Личные данные
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white text-blue-700 shadow-sm rounded-xl font-bold font-manrope text-sm scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                    Адреса доставки
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="card_membership">card_membership</span>
+                    Программа лояльности
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                    Уведомления
+                </a>
+</nav>
+<div class="pt-6 border-t border-slate-200/20">
+<button class="flex items-center gap-3 px-4 py-3 w-full text-slate-500 hover:text-error transition-colors font-manrope text-sm font-medium">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Выйти
+                </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 bg-surface min-h-screen">
+<!-- TopNavBar (Mobile only or Global controls) -->
+<header class="w-full h-16 sticky top-0 z-50 bg-white/70 backdrop-blur-xl flex items-center justify-between px-8 border-b border-slate-200/10">
+<div class="md:hidden flex items-center gap-2">
+<span class="text-xl font-bold text-blue-700">PureLab</span>
+</div>
+<div class="hidden md:block">
+<h1 class="text-xl font-bold text-on-surface">Адреса доставки</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<div class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</div>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest rounded-full border-none focus:ring-2 focus:ring-primary/20 w-64 text-sm font-body" placeholder="Поиск адреса..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-600 hover:text-blue-500 transition-colors relative">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="p-2 text-slate-600 hover:text-blue-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-8 max-w-6xl mx-auto space-y-12">
+<!-- Section: Header and CTA -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2">
+<nav class="text-xs font-medium text-slate-400 flex items-center gap-2">
+<span>Личный кабинет</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="chevron_right">chevron_right</span>
+<span class="text-primary">Адреса</span>
+</nav>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface">Ваши места доставки</h2>
+<p class="text-on-surface-variant max-w-md">Управляйте сохраненными адресами для быстрого оформления заказов экологичной химии PureLab.</p>
+</div>
+<button class="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-primary-container text-white rounded-xl font-bold shadow-lg shadow-blue-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="add_location">add_location</span>
+<span>Добавить новый адрес</span>
+</button>
+</section>
+<!-- Section: Address Grid (Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Primary/Default Address Card -->
+<div class="group relative bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(0,88,188,0.06)] border border-primary/10 flex flex-col justify-between h-full hover:scale-[1.02] transition-all duration-300">
+<div class="absolute top-6 right-6">
+<span class="inline-flex items-center px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded-full uppercase tracking-widest">Основной</span>
+</div>
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-bold text-lg text-on-surface">Дом (Москва)</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">ул. Тверская, д. 12, стр. 1, кв. 45<br/>125009, Москва, Россия</p>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-100 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="person">person</span>
+<span class="font-medium">Александр Константинопольский</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="call">call</span>
+<span>+7 (900) 123-45-67</span>
+</div>
+<div class="flex gap-4 mt-4">
+<button class="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Изменить</button>
+<button class="text-xs font-bold text-slate-400 hover:text-error transition-colors uppercase tracking-wider">Удалить</button>
+</div>
+</div>
+</div>
+<!-- Work Address Card -->
+<div class="group bg-surface-container-low p-8 rounded-xl flex flex-col justify-between h-full hover:bg-surface-container-lowest hover:shadow-[0_20px_40px_rgba(0,88,188,0.06)] transition-all duration-300">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-slate-200/50 flex items-center justify-center text-slate-500 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-bold text-lg text-on-surface">Офис PureLab</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Пресненская наб., 12, Башня Федерация<br/>123112, Москва, Россия</p>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-200/30 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-slate-400 text-[18px]" data-icon="person">person</span>
+<span class="font-medium text-on-surface">Александр К.</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-slate-400 text-[18px]" data-icon="call">call</span>
+<span>+7 (900) 123-45-67</span>
+</div>
+<div class="flex gap-4 mt-4">
+<button class="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Изменить</button>
+<button class="text-xs font-bold text-slate-400 hover:text-error transition-colors uppercase tracking-wider">Удалить</button>
+</div>
+</div>
+</div>
+<!-- Additional Address Card -->
+<div class="group bg-surface-container-low p-8 rounded-xl flex flex-col justify-between h-full hover:bg-surface-container-lowest hover:shadow-[0_20px_40px_rgba(0,88,188,0.06)] transition-all duration-300">
+<div class="space-y-4">
+<div class="w-12 h-12 rounded-full bg-slate-200/50 flex items-center justify-center text-slate-500 group-hover:bg-primary/5 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="apartment">apartment</span>
+</div>
+<div class="space-y-1">
+<h3 class="font-bold text-lg text-on-surface">Дача</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Московская обл., пос. Барвиха, ул. Лесная, д. 5<br/>143083, Россия</p>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-200/30 flex flex-col gap-2">
+<div class="flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-slate-400 text-[18px]" data-icon="person">person</span>
+<span class="font-medium text-on-surface">Екатерина Волкова</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-slate-400 text-[18px]" data-icon="call">call</span>
+<span>+7 (911) 987-65-43</span>
+</div>
+<div class="flex gap-4 mt-4">
+<button class="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Изменить</button>
+<button class="text-xs font-bold text-slate-400 hover:text-error transition-colors uppercase tracking-wider">Удалить</button>
+</div>
+</div>
+</div>
+<!-- Add New Card Placeholder -->
+<div class="group border-2 border-dashed border-slate-200 rounded-xl p-8 flex flex-col items-center justify-center gap-4 hover:border-primary/40 hover:bg-primary/5 transition-all cursor-pointer min-h-[320px]">
+<div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+<span class="material-symbols-outlined text-3xl" data-icon="add">add</span>
+</div>
+<div class="text-center">
+<p class="font-bold text-slate-600 group-hover:text-primary transition-colors">Добавить адрес</p>
+<p class="text-xs text-slate-400">Новый пункт доставки</p>
+</div>
+</div>
+</section>
+<!-- Section: Quick Map Visualization (Visual Flair) -->
+<section class="mt-16 bg-surface-container-low rounded-xl overflow-hidden h-96 relative shadow-sm border border-slate-200/20">
+<div class="absolute inset-0 grayscale opacity-40 hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover" data-alt="minimalist clean map of a city in soft blue and grey tones, high-end design aesthetic" data-location="Moscow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0qkSQCdz8VbTcc0IB-5irizbQdMjPfYE5E5VOpJVzz-JVZZUzhmaZwQvoi3ul7XaFcDHiqmCtANbycjnaq_HLvxKRn5_seaBCn0Y0q3hisAb_-cGjVE_XEXBpBdd-wu3PiLjm3Uo8Qr1f9vqHHDMUeMdHneAgPcVN0adYrZIMiux05hljVxHMBr9ckoMFrd0inVaxsiMK_CT4--EyDg2BRyURUWmyshdB2HsJCbnC_MpHxbTx4qPnK0nyGrBgurGQNRySlkdXiF1W"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md p-6 rounded-xl shadow-xl max-w-sm border border-white/50">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-3 h-3 bg-secondary-fixed rounded-full animate-pulse"></div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-secondary-fixed-variant">Зона быстрой доставки</span>
+</div>
+<h4 class="font-bold text-lg mb-1">Все ваши адреса находятся в зоне экспресс-доставки</h4>
+<p class="text-xs text-on-surface-variant">Чистящие средства PureLab будут у вас в течение 60-90 минут с момента заказа.</p>
+</div>
+<!-- Mock Map Pin for Active Address -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group cursor-pointer">
+<div class="relative">
+<span class="material-symbols-outlined text-primary text-5xl drop-shadow-lg" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] py-1 px-3 rounded-full font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Мой Дом</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer for Content Area -->
+<footer class="mt-12 p-8 border-t border-slate-200/10 flex flex-col sm:flex-row items-center justify-between gap-6 bg-surface-container-low/30">
+<div class="flex items-center gap-4">
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-white bg-secondary-container flex items-center justify-center text-[10px] font-bold">ECO</div>
+<div class="w-8 h-8 rounded-full border-2 border-white bg-primary-container flex items-center justify-center text-[10px] text-white">PL</div>
+</div>
+<p class="text-xs text-on-surface-variant font-medium">Безопасность ваших данных — наш главный приоритет. <br class="hidden sm:block"/> Мы используем шифрование AES-256.</p>
+</div>
+<div class="flex gap-8 text-xs font-bold text-slate-400">
+<a class="hover:text-primary transition-colors uppercase tracking-wider" href="#">Политика конфиденциальности</a>
+<a class="hover:text-primary transition-colors uppercase tracking-wider" href="#">Помощь</a>
+</div>
+</footer>
+</main>
+</div>
+<!-- Mobile Bottom Navigation (Only visible on small screens) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white/90 backdrop-blur-xl flex items-center justify-around px-4 z-50 border-t border-slate-200/30">
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="text-[10px] font-bold">Заказы</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-bold">Профиль</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-blue-700">
+<span class="material-symbols-outlined" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="text-[10px] font-bold">Адреса</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="text-[10px] font-bold">Инфо</span>
+</button>
+</nav>
+</body></html>

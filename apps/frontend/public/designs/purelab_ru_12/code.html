@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PureLab — Уведомления</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-fixed": "#002204",
+                        "tertiary-fixed": "#d6e5ef",
+                        "on-tertiary-container": "#fbfcff",
+                        "secondary-fixed-dim": "#78dc77",
+                        "primary": "#0058bc",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface-variant": "#414755",
+                        "on-surface": "#191c1e",
+                        "secondary-container": "#91f78e",
+                        "on-background": "#191c1e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d8e2ff",
+                        "surface-container": "#eceef0",
+                        "surface": "#f7f9fb",
+                        "on-primary-container": "#fefcff",
+                        "surface-bright": "#f7f9fb",
+                        "surface-tint": "#005bc1",
+                        "secondary-fixed": "#94f990",
+                        "background": "#f7f9fb",
+                        "tertiary-fixed-dim": "#bac9d3",
+                        "inverse-on-surface": "#eff1f3",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2d3133",
+                        "inverse-primary": "#adc6ff",
+                        "outline-variant": "#c1c6d7",
+                        "tertiary": "#505e67",
+                        "on-secondary-fixed-variant": "#005313",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed-variant": "#3b4951",
+                        "on-tertiary-fixed": "#0f1d25",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "outline": "#717786",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#687780",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "primary-fixed-dim": "#adc6ff",
+                        "primary-container": "#0070eb",
+                        "on-primary-fixed-variant": "#004493",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#00731e",
+                        "on-primary-fixed": "#001a41",
+                        "secondary": "#006e1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-glow {
+            box-shadow: 0 0 20px rgba(0, 88, 188, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<div class="flex min-h-screen">
+<!-- SideNavBar Component -->
+<aside class="h-screen w-72 sticky top-0 bg-slate-50/70 backdrop-blur-xl border-r border-slate-200/15 flex flex-col p-6 space-y-8 shadow-[0_20px_40px_rgba(0,88,188,0.06)] z-50">
+<div class="flex flex-col space-y-4">
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 rounded-2xl overflow-hidden bg-secondary-container flex items-center justify-center">
+<img alt="Аватар пользователя" class="w-full h-full object-cover" data-alt="Stylized modern character avatar with a minimalist aesthetic on a soft green background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw61pDBEcD-f9feDeC3Oxx5KSkMc3pZNmlQqSFvITtheA5IDZOxgYSNOgRtnzppAFdk2WspVRH069df8yho594Jmz1dlMW6yoZN8SDTV_4wYb2Yp85dPqAMkJrRwdnMdIVKMNp1bh4c3UHQAGzVqrIz1mU5BFFT1tiWHu-acHrqT1DYHQzYSmF9hd1EUtViuUGInf27RVkdGys3jNDfxHbelh7Qd-BXuFVudzWwojyqP9Rlh-jF9dVGTTpl_GoGJ2RQIk9deBZkOnS"/>
+</div>
+<div>
+<h1 class="text-2xl font-black tracking-tight text-blue-700 font-headline leading-none">PureLab</h1>
+<p class="text-xs font-manrope font-medium text-slate-500 mt-1">Чистота и Забота</p>
+</div>
+</div>
+<div class="pt-4 pb-2 border-b border-slate-200/10">
+<p class="font-manrope text-sm font-bold text-on-surface">Личный кабинет</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Navigation Items -->
+<a class="flex items-center px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="shopping_bag">shopping_bag</span>
+                    Мои заказы
+                </a>
+<a class="flex items-center px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="person">person</span>
+                    Личные данные
+                </a>
+<a class="flex items-center px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="location_on">location_on</span>
+                    Адреса доставки
+                </a>
+<a class="flex items-center px-4 py-3 text-slate-500 hover:text-blue-600 hover:bg-white/50 transition-all duration-300 rounded-xl font-manrope text-sm font-medium scale-[1.02] active:scale-[0.98]" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="card_membership">card_membership</span>
+                    Программа лояльности
+                </a>
+<!-- Active Tab: Уведомления -->
+<a class="flex items-center px-4 py-3 bg-white text-blue-700 shadow-sm rounded-xl font-headline text-sm font-bold scale-[1.02] active:scale-[0.98] active-nav-glow" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="notifications" style="font-variation-settings: 'FILL' 1;">notifications</span>
+                    Уведомления
+                </a>
+</nav>
+<div class="pt-6 mt-auto">
+<button class="w-full flex items-center justify-center px-4 py-3 text-error bg-error-container/20 hover:bg-error-container/40 transition-colors rounded-xl font-headline text-sm font-bold">
+<span class="material-symbols-outlined mr-2" data-icon="logout">logout</span>
+                    Выйти
+                </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 overflow-y-auto bg-surface p-8 lg:p-12">
+<!-- Top Header (Contextual) -->
+<div class="max-w-5xl mx-auto mb-12 flex justify-between items-end">
+<div>
+<nav class="flex mb-4 text-xs font-medium text-slate-400 uppercase tracking-widest">
+<span>Кабинет</span>
+<span class="mx-2">/</span>
+<span class="text-primary">Уведомления</span>
+</nav>
+<h2 class="text-4xl font-headline font-extrabold text-on-surface tracking-tight">Центр уведомлений</h2>
+<p class="text-on-surface-variant mt-2 max-w-md font-body">Настройте способы получения информации о ваших покупках и специальных предложениях PureLab.</p>
+</div>
+<div class="hidden md:block">
+<div class="p-4 bg-surface-container-low rounded-3xl flex items-center space-x-4">
+<div class="p-2 bg-secondary-container rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="verified_user">verified_user</span>
+</div>
+<div class="pr-2">
+<p class="text-xs text-on-surface-variant font-medium">Безопасность</p>
+<p class="text-sm font-bold">Настройки активны</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Grid Settings Layout -->
+<div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Notifications Channel Selection (Large Glass Card) -->
+<section class="md:col-span-8 space-y-6">
+<!-- Order Status Block -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-[0_20px_40px_rgba(0,88,188,0.06)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-9xl" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex items-center space-x-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="package_2">package_2</span>
+</div>
+<h3 class="text-xl font-headline font-bold">Статус заказа</h3>
+</div>
+<div class="space-y-6">
+<!-- Preference Item -->
+<div class="flex items-center justify-between p-4 bg-surface rounded-2xl transition-all hover:bg-surface-container-low">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="mail">mail</span>
+<div>
+<p class="font-bold text-sm">Email-уведомления</p>
+<p class="text-xs text-on-surface-variant">Информация о чеках и отправке</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Preference Item -->
+<div class="flex items-center justify-between p-4 bg-surface rounded-2xl transition-all hover:bg-surface-container-low">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="sms">sms</span>
+<div>
+<p class="font-bold text-sm">SMS-сообщения</p>
+<p class="text-xs text-on-surface-variant">Краткие сводки о доставке курьером</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Preference Item -->
+<div class="flex items-center justify-between p-4 bg-surface rounded-2xl transition-all hover:bg-surface-container-low">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications_active">notifications_active</span>
+<div>
+<p class="font-bold text-sm">Push-уведомления</p>
+<p class="text-xs text-on-surface-variant">Мгновенные оповещения в браузере</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Marketing & News Block -->
+<div class="bg-surface-container-lowest p-8 rounded-3xl shadow-[0_20px_40px_rgba(0,88,188,0.06)]">
+<div class="flex items-center space-x-3 mb-8">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<h3 class="text-xl font-headline font-bold">Акции и новости</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-6 bg-surface-container-low rounded-2xl border-l-4 border-secondary-fixed">
+<p class="font-headline font-bold text-sm mb-1">Спецпредложения</p>
+<p class="text-xs text-on-surface-variant mb-4">Персональные скидки на любимые средства</p>
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold uppercase tracking-wider text-secondary">Включено</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<div class="p-6 bg-surface-container-low rounded-2xl border-l-4 border-slate-300">
+<p class="font-headline font-bold text-sm mb-1">Новости PureLab</p>
+<p class="text-xs text-on-surface-variant mb-4">Статьи об экологичной уборке и новинках</p>
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Отключено</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Sidebar Info & Preview (Asymmetric Accent) -->
+<aside class="md:col-span-4 space-y-6">
+<div class="bg-primary p-8 rounded-3xl text-on-primary relative overflow-hidden">
+<!-- Decorative liquid-like gradient -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary to-primary-container opacity-100"></div>
+<div class="relative z-10">
+<h4 class="font-headline font-bold text-lg mb-4">Ваша приватность — наш приоритет</h4>
+<p class="text-sm text-blue-100/90 leading-relaxed mb-6">
+                                Мы не передаем ваши данные третьим лицам и отправляем только важную информацию о ваших покупках.
+                            </p>
+<div class="flex items-center space-x-2 text-xs font-bold bg-white/10 w-fit px-3 py-1 rounded-full backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+<span>SSL шифрование</span>
+</div>
+</div>
+<img alt="Декоративный фон" class="absolute -bottom-10 -right-10 w-48 h-48 opacity-20 rotate-12" data-alt="Vibrant blue and turquoise fluid abstract background with smooth gradients and glass-like lighting effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXkKXxyeoQkiTJjB5pntuW-AW6V1nu3W6lxImJCTqgjkGrUmKO5vffM_T2rMLMmxNsQh-UOZbibW1KeeSfXauBxgtj6hYkdlg6eDbtbl7J94NqqiEp1lSux_X4GTTyK5CjboNc6lMJL30XDf35r2f8_zcIPChS2Qne2OFlM7GmstN_0AmtPKWxR4ROkJAU9h4A1LklppLmvtorcTa1opT0lhwhTGytrzSlsBOrB4BPaHYz9HWK_Z-IcD27u3NMAkqaR2y7j0rursD3"/>
+</div>
+<div class="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/15">
+<h4 class="font-headline font-bold text-sm text-on-surface-variant mb-4 uppercase tracking-widest">История активности</h4>
+<div class="space-y-4">
+<div class="flex space-x-3">
+<div class="w-1 bg-primary rounded-full"></div>
+<div>
+<p class="text-xs font-bold">Email изменен</p>
+<p class="text-[10px] text-on-surface-variant">2 часа назад</p>
+</div>
+</div>
+<div class="flex space-x-3">
+<div class="w-1 bg-secondary rounded-full"></div>
+<div>
+<p class="text-xs font-bold">SMS подписка активна</p>
+<p class="text-[10px] text-on-surface-variant">Вчера, 14:20</p>
+</div>
+</div>
+</div>
+</div>
+<!-- App Promotion Card -->
+<div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
+<div class="w-20 h-20 bg-slate-50 rounded-2xl mb-4 flex items-center justify-center p-2">
+<img alt="QR Code" class="w-full h-full grayscale opacity-60" data-alt="High quality QR code on a clean white background with subtle shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlJJTXu3wAXtsihFUGBTavv2Nn-mfheXBh4E_tuC7pLKsao3uOxi4jsCzjYktMB8R0nkdoao-sg3zzbQ9TJE4UwiUW2zsuQRTwW3V_I2oJ1lXkfIR_u2P5qFB1b-TXI6W8r0c6gboGCyNbOlU7IWh7IXBjdjG_99STrCNPgxJrLSlhcfRsFkuKsEousQxrYT-vTyp78XCM71sLDj3JoE7XSO_5LCW_jG15HupPZYlTVqZmL0r7baKMifXKj8Sv81YlHMwstYWfFBln"/>
+</div>
+<p class="text-xs font-bold mb-1">PureLab Mobile</p>
+<p class="text-[10px] text-on-surface-variant mb-4">Управляйте уведомлениями в приложении</p>
+<button class="text-xs font-bold text-primary hover:underline">Скачать App Store</button>
+</div>
+</aside>
+</div>
+<!-- Global Actions Section -->
+<div class="max-w-5xl mx-auto mt-12 pt-8 flex items-center justify-between border-t border-slate-200/10">
+<p class="text-xs text-on-surface-variant italic">Последнее изменение было 15 мая 2024</p>
+<div class="flex space-x-4">
+<button class="px-6 py-3 rounded-2xl font-headline font-bold text-sm text-on-surface-variant hover:bg-surface-container-high transition-colors">Отменить</button>
+<button class="px-8 py-3 bg-gradient-to-br from-primary to-primary-container text-white rounded-2xl font-headline font-bold text-sm shadow-lg shadow-primary/20 scale-[1.02] active:scale-[0.98] transition-transform">Сохранить изменения</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

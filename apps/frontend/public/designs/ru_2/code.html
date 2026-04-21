@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#d6e5ef",
+                        "on-background": "#191c1e",
+                        "tertiary-fixed-dim": "#bac9d3",
+                        "secondary-container": "#91f78e",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "tertiary": "#505e67",
+                        "inverse-primary": "#adc6ff",
+                        "secondary-fixed-dim": "#78dc77",
+                        "secondary-fixed": "#94f990",
+                        "on-secondary-fixed-variant": "#005313",
+                        "surface-container-low": "#f2f4f6",
+                        "on-tertiary-fixed": "#0f1d25",
+                        "on-tertiary-fixed-variant": "#3b4951",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#005bc1",
+                        "on-tertiary-container": "#fbfcff",
+                        "surface": "#f7f9fb",
+                        "surface-container": "#eceef0",
+                        "tertiary-container": "#687780",
+                        "primary-fixed-dim": "#adc6ff",
+                        "outline-variant": "#c1c6d7",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-primary-container": "#fefcff",
+                        "on-secondary-container": "#00731e",
+                        "outline": "#717786",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed-variant": "#004493",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-fixed": "#001a41",
+                        "primary-container": "#0070eb",
+                        "secondary": "#006e1c",
+                        "primary": "#0058bc",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-fixed": "#002204",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-dim": "#d8dadc",
+                        "surface-container-highest": "#e0e3e5",
+                        "on-surface-variant": "#414755",
+                        "primary-fixed": "#d8e2ff",
+                        "inverse-surface": "#2d3133"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%);
+        }
+        .eco-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-secondary-container">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<nav class="flex items-center px-6 py-6 md:px-12">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="font-headline text-2xl font-bold tracking-tight text-on-background">PureLab</h2>
+</div>
+</nav>
+<main class="flex flex-1 flex-col items-center justify-center px-4 py-12 md:py-24">
+<div class="relative w-full max-w-4xl space-y-12">
+<div class="relative flex flex-col items-center justify-center overflow-hidden rounded-xl bg-surface-container-low p-8 md:p-16 text-center">
+<div class="absolute inset-0 pointer-events-none opacity-40">
+<div class="absolute top-10 left-10 w-24 h-24 bg-secondary-container rounded-full blur-3xl"></div>
+<div class="absolute bottom-20 right-10 w-32 h-32 bg-primary-fixed rounded-full blur-3xl"></div>
+</div>
+<div class="relative z-10 mb-8 h-64 w-full md:h-80">
+<div class="h-full w-full rounded-xl bg-cover bg-center shadow-sm" data-alt="Dreamy composition of floating green leaves and crystal clear water droplets in bright morning sunlight, soft bokeh background, eco-friendly aesthetic." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDunKb4BqBDqY9rdTSZX-eZkwrN4ElaqHK0lOWZxupadHL7KtUv9HlDX7AClCsUChoiR5Q0zMf12gSMj2MljWuz-oDvqBRlxeWKjrF8bKNZM5uNh65d9ILkLa5UksVMEk4l1CxUtGzTirZp0O-jvzsCl15LFT29xFaiBylKwLSg5pSOpQrtS6EVJPqODMjvwEvA205Kd1Z5djURe3GKeMk-M7lvWZZG9w23awH9ipLUs97QCOTeSnNMomFDx2km4Tg61FGT8cGFngsS");'>
+</div>
+<div class="absolute -bottom-6 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full bg-secondary-fixed p-4 text-on-secondary-fixed shadow-lg">
+<span class="material-symbols-outlined text-4xl" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</div>
+<div class="relative z-10 max-w-2xl space-y-4">
+<h1 class="font-headline text-4xl font-black leading-tight tracking-[-0.033em] text-on-background md:text-5xl">
+                            Заказ успешно оформлен!
+                        </h1>
+<p class="text-lg font-medium text-tertiary">
+                            Спасибо, что выбираете PureLab. Ваш вклад в экологию бесценен. Каждая покупка делает планету чище.
+                        </p>
+</div>
+<div class="mt-12 inline-flex flex-col items-center rounded-xl bg-surface-container-lowest px-8 py-6 shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<span class="text-sm font-bold uppercase tracking-widest text-outline">Номер вашего заказа</span>
+<span class="font-headline text-3xl font-bold text-primary">#12345</span>
+</div>
+</div>
+<div class="grid gap-6 md:grid-cols-2">
+<div class="flex items-start gap-4 rounded-xl bg-surface-container-low p-6">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface-container-lowest text-primary">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface">Быстрая доставка</h3>
+<p class="text-sm text-on-surface-variant">Мы уже начали собирать вашу посылку. Экологичная упаковка сохранит свежесть продуктов.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 rounded-xl bg-surface-container-low p-6">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-surface-container-lowest text-secondary">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-on-surface">Уведомления</h3>
+<p class="text-sm text-on-surface-variant">Статус доставки будет приходить на вашу почту. Вы сможете отследить каждый шаг пути.</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center gap-6">
+<a class="btn-gradient flex h-14 items-center justify-center gap-3 rounded-xl px-10 text-lg font-bold text-on-primary transition-transform hover:scale-[1.02] active:scale-[0.98]" href="/">
+<span>Вернуться за покупками</span>
+<span class="material-symbols-outlined" data-icon="shopping_basket">shopping_basket</span>
+</a>
+<button class="font-label text-sm font-semibold text-outline transition-colors hover:text-primary">
+                        Нужна помощь с заказом? Свяжитесь с нами
+                    </button>
+</div>
+</div>
+</main>
+<footer class="mt-auto px-6 py-12 md:px-12">
+<div class="mx-auto flex max-w-4xl flex-col items-center justify-between gap-6 md:flex-row">
+<div class="flex items-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-sm" data-icon="eco">eco</span>
+<span class="text-xs font-medium">PureLab © 2024 — Забота о будущем</span>
+</div>
+<div class="flex gap-8">
+<a class="text-xs font-medium text-outline hover:text-primary" href="#">Политика конфиденциальности</a>
+<a class="text-xs font-medium text-outline hover:text-primary" href="#">Условия возврата</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PureLab — Эко-чистота в каждом доме</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d8dadc",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#adc6ff",
+                    "on-primary-container": "#fefcff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "surface-tint": "#005bc1",
+                    "on-error": "#ffffff",
+                    "primary": "#0058bc",
+                    "on-surface-variant": "#414755",
+                    "on-secondary-container": "#00731e",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-secondary-fixed": "#002204",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-surface": "#2d3133",
+                    "tertiary-fixed": "#d6e5ef",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-container": "#0070eb",
+                    "outline": "#717786",
+                    "tertiary": "#505e67",
+                    "secondary-fixed": "#94f990",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-surface": "#191c1e",
+                    "on-primary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "secondary": "#006e1c",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary-fixed-variant": "#005313",
+                    "surface-container": "#eceef0",
+                    "tertiary-container": "#687780",
+                    "on-tertiary-container": "#fbfcff",
+                    "surface-bright": "#f7f9fb",
+                    "surface-container-high": "#e6e8ea",
+                    "surface": "#f7f9fb",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#78dc77",
+                    "primary-fixed-dim": "#adc6ff",
+                    "outline-variant": "#c1c6d7",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#004493",
+                    "secondary-container": "#91f78e",
+                    "on-primary-fixed": "#001a41",
+                    "background": "#f7f9fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "1rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glass {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .text-authoritative {
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f7f9fb]/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-[0px_20px_40px_rgba(0,88,188,0.06)]">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-[#191c1e] dark:text-white tracking-tighter font-headline">PureLab</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="font-manrope tracking-tight font-semibold text-[#007AFF] border-b-2 border-[#007AFF] pb-1 transition-all" href="#">Кухня</a>
+<a class="font-manrope tracking-tight font-semibold text-[#191c1e] dark:text-slate-300 opacity-70 hover:opacity-100 hover:text-[#007AFF] transition-all" href="#">Ванная</a>
+<a class="font-manrope tracking-tight font-semibold text-[#191c1e] dark:text-slate-300 opacity-70 hover:opacity-100 hover:text-[#007AFF] transition-all" href="#">Стирка</a>
+<a class="font-manrope tracking-tight font-semibold text-[#191c1e] dark:text-slate-300 opacity-70 hover:opacity-100 hover:text-[#007AFF] transition-all" href="#">Эко-товары</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-surface-container-lowest rounded-full px-4 py-2 border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Поиск чистоты..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative hover:opacity-100 hover:text-[#007AFF] transition-all text-[#191c1e] dark:text-white">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+<button class="hover:opacity-100 hover:text-[#007AFF] transition-all text-[#191c1e] dark:text-white">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-[#f2f4f6] dark:bg-slate-800 h-[1px] w-full absolute bottom-0 opacity-15"></div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Hero Section -->
+<header class="px-8 max-w-7xl mx-auto mb-20">
+<div class="grid lg:grid-cols-2 gap-12 items-center bg-surface-container-low rounded-xl overflow-hidden p-8 md:p-16">
+<div>
+<span class="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-wider">PURE ETHOS</span>
+<h1 class="font-headline text-5xl md:text-7xl font-black text-on-surface text-authoritative leading-tight mb-8">
+                        Эстетика <br/><span class="text-primary">чистой</span> среды
+                    </h1>
+<p class="text-on-surface-variant text-lg max-w-md mb-10 leading-relaxed">
+                        Мы создаем средства, которые работают как профессиональные лабораторные формулы, оставаясь полностью безопасными для природы.
+                    </p>
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-10 py-4 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform">
+                        Смотреть каталог
+                    </button>
+</div>
+<div class="relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden bg-secondary-container/30">
+<img alt="Product" class="w-full h-full object-cover mix-blend-multiply" data-alt="Minimalist white cleaning product bottle standing on a polished stone surface with soft morning light and palm leaf shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmrveIJx5Yz0htxW20jOksQFm7pK4LtDtaFB74CN5t-t6n579T49tSQjGnGFrQkbIWcsmTyd4c63iyagfSe1MsO4JPZ7AlgebgYCUusFaXgeJvt76w6B0agqNWYjMDvtnjDJMJvs5FCeE6DT3zsbwUnGGdKjJ_SgwhWeIoQhcjciijA6sIvWsbrZ5ofRr2DXpunVuv2VLsbDX6eD9qR2nsK5IRdNUtiXbBhvuy4nK1456tqeD06aMMbs-QCx5cfV5ywoXCjDIDZloD"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Product Row 1 -->
+<section class="px-8 max-w-7xl mx-auto mb-16">
+<div class="flex justify-between items-end mb-10">
+<h2 class="font-headline text-3xl font-extrabold text-authoritative">Средства для кухни</h2>
+<a class="text-primary font-semibold flex items-center gap-2 hover:underline" href="#">Все товары <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.1)] group">
+<div class="aspect-square bg-secondary-container rounded-xl mb-6 overflow-hidden">
+<img alt="Dish Soap" class="w-full h-full object-cover" data-alt="High-end organic dish soap bottle in a minimalist setting with fresh mint leaves next to it" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTjY8wS3hCya3EC4v7PEY1ORdupHjr0-jz_bhduuXcdEZQo1d-q_eXk9YhMpuTFj2UG2Xdh_f5mua1id68CUzfOdyuRSAF89slMXoK65AXMEJeDEC-OQrjwkxrcTKx6pkVLlu-yb3uqNVo00gN95c0dCyXEV6twOsHsWuvhCLn5nOYCa3K3gtd2sgrfFFusc1Qv4gaf4oOoCcZnrcspA1hIFA15MvjRwWpbW87mcBxi-VNb2bi48hJis2IQSSBERyuLTpbRzFuqDJm"/>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg">Гель для посуды «Мята»</h3>
+<p class="text-on-surface-variant text-sm">99.8% натуральных компонентов</p>
+<div class="flex justify-between items-center pt-4">
+<span class="text-xl font-black text-on-surface">590 ₽</span>
+<button class="bg-surface-container-high p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.1)] group">
+<div class="aspect-square bg-secondary-container rounded-xl mb-6 overflow-hidden">
+<img alt="Degreaser" class="w-full h-full object-cover" data-alt="Clean kitchen surface with a professional eco-friendly degreaser spray bottle and soft backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEs7al3xa-MU8ObJfiyQKlGz5vyz4A0wuWod-VErwsGcp-MYgvKe7N8sMzMXfcS5xBKeRY20DrhdrBVB17TppudQrQJ5Fkf8q_Cq73uI6nU6KjfpbxpfpkoKJyQjpvbPZXGm8R-ZEhyDVrlvvAzWHOAB1J0ejymHOFMQutlZ34UQcJAvXFcvC8TJg73z2ep8pS8niMrRKJ-2yYM_dowcz8r_P7UrYkS--NVNYdP9FV1YGyebVJlFzZty4u0d6E2w5vyQixI-0sGmP7"/>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg">Антижир Bio-Force</h3>
+<p class="text-on-surface-variant text-sm">Без агрессивных ПАВ и хлора</p>
+<div class="flex justify-between items-center pt-4">
+<span class="text-xl font-black text-on-surface">750 ₽</span>
+<button class="bg-surface-container-high p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.1)] group">
+<div class="aspect-square bg-secondary-container rounded-xl mb-6 overflow-hidden">
+<img alt="Sponges" class="w-full h-full object-cover" data-alt="Set of biodegradable cellulose kitchen sponges in earthy tones on a clean wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9es75yFtdrCT2I_Ng9igTy2GwDfbL1cQIWX8B-ovmR3Tt0uyZglWzFlYko0AGGk8JuNXV0AbnVirztktq1kZt8i9DVXCuwqy4JRfZhnc911J0UoS7bhvjG3u5I_U4sRozNAbYieOip5TjX_pPgKyIqGxyTgqaUk8OWw27h3Oarhb0sc9E_Paxh2aCEXNiB53qu24F5el-YO84tWdVn5a_L4sRFJuLUf1OQtB7PBpJ6R35cPBM49_g8P4v7V6zSq70tQZuctNaIdeH"/>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg">Набор Эко-губок</h3>
+<p class="text-on-surface-variant text-sm">100% биоразлагаемая целлюлоза</p>
+<div class="flex justify-between items-center pt-4">
+<span class="text-xl font-black text-on-surface">320 ₽</span>
+<button class="bg-surface-container-high p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.1)] group">
+<div class="aspect-square bg-secondary-container rounded-xl mb-6 overflow-hidden">
+<img alt="Fruit Wash" class="w-full h-full object-cover" data-alt="Clear water droplets on fresh organic apples with an eco-friendly fruit wash bottle in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1ae9K-43xtBeDYaqI5hHfuNaw8c0vUSM2fa761eXGO_-3H9PdwNmNVrYqjfzEEO2VuwZ-w3qJnRSAk3rHCRVZBHngEeTxSvyuRiTXwCqGwK7pC_q9h5_pTjlukssiUNno5C8p7aN8fFZAuqMHP8OpcIsTjaAWjucQZFGxBBl6j9lkrqEJLSJnbeMjebQE9gLyuz5-5Yo6_1Qhx4nFtubfDenLq17CrqO41CNvKJebe_0eZNjCXtwmZII8Z86GwKH4TDRSOOILk3L-"/>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg">Средство для овощей</h3>
+<p class="text-on-surface-variant text-sm">Безопасно для всей семьи</p>
+<div class="flex justify-between items-center pt-4">
+<span class="text-xl font-black text-on-surface">480 ₽</span>
+<button class="bg-surface-container-high p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Full-width Storytelling Banner 1 -->
+<section class="w-full h-[600px] relative overflow-hidden mb-20">
+<div class="absolute inset-0 z-0">
+<img alt="Nature Forest" class="w-full h-full object-cover" data-alt="Wide cinematic shot of a misty sunlight-dappled pine forest with tall trees reaching for the sky and rich green mossy floor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsUt75E5YyKbhLX0jnsev_kcH4-l5BHk0KyDRXdKXJIS05yYWD4ZrEJIpbg0vboa88A9NQH2dKbyZsLV4YMqo1F0OFBrDK_dzgBGkdzDLMFTZJYEihBQioWUyL2BdK7DqXNWA9R4RshZg2-pVdKCPranCrHubBjwFJimIQwACCwqB7KqhpZ9daYCzGPzamfW5nC4vATRY7RnvKnCC0Leli1zdHJddR_v5RI_bVzfluxvy87-gOLDcvdKxoLlxbYgxGAiCIO1shAAxy"/>
+</div>
+<div class="absolute inset-0 bg-black/30 z-10"></div>
+<div class="relative z-20 h-full flex items-center justify-center text-center px-8">
+<div class="max-w-4xl">
+<h2 class="font-headline text-5xl md:text-7xl font-black text-white text-authoritative leading-tight mb-8">
+                        Мы перерабатываем <br/>100% пластика
+                    </h2>
+<p class="text-white/90 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
+                        PureLab берет на себя ответственность за каждую выпущенную упаковку. Мы создали замкнутый цикл производства, чтобы ваши дома становились чище, а леса — зеленее.
+                    </p>
+<div class="mt-12 flex justify-center gap-12">
+<div class="text-white">
+<div class="text-4xl font-black mb-1">15т</div>
+<div class="text-xs uppercase tracking-widest opacity-80 font-bold">Собрано за год</div>
+</div>
+<div class="text-white">
+<div class="text-4xl font-black mb-1">0%</div>
+<div class="text-xs uppercase tracking-widest opacity-80 font-bold">Отходов в океан</div>
+</div>
+<div class="text-white">
+<div class="text-4xl font-black mb-1">100%</div>
+<div class="text-xs uppercase tracking-widest opacity-80 font-bold">Recyclable</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Row 2 -->
+<section class="px-8 max-w-7xl mx-auto mb-16">
+<div class="flex justify-between items-end mb-10">
+<h2 class="font-headline text-3xl font-extrabold text-authoritative">Уход за бельем</h2>
+<a class="text-primary font-semibold flex items-center gap-2 hover:underline" href="#">Все товары <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.1)] group">
+<div class="aspect-square bg-secondary-container rounded-xl mb-6 overflow-hidden">
+<img alt="Laundry Detergent" class="w-full h-full object-cover" data-alt="Minimalist liquid laundry detergent bottle on a stack of fresh white cotton towels in a bright airy room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCIKwJGlvyorB0ncbxgsyRppb1hQSmpl3ZUGN5POua1ICnQ_gu8BoWHx9WMQdvDyzzGbKAmBUHE5-XC2KT3QAARy3VZDWF1Z61Ln7w5gxLlsrVU9YfLo7yRgVE8KgFqii9zFe4QWYOvGvKs3JQ0dhuF47Qu1dx3WTS5UPEPNoKbtQtT-yfv8RyWb-05pjjS53v1z6UyEvFm1x0TaWWve8MTuYg7DiZvAIiedo12qx5w41RwzKFbnm6Y1CaePelyZcCC3eMHZd1BPt7"/>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg">Гель для стирки White</h3>
+<p class="text-on-surface-variant text-sm">Гипоаллергенно. Без запаха.</p>
+<div class="flex justify-between items-center pt-4">
+<span class="text-xl font-black text-on-surface">890 ₽</span>
+<button class="bg-surface-container-high p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.1)] group">
+<div class="aspect-square bg-secondary-container rounded-xl mb-6 overflow-hidden">
+<img alt="Conditioner" class="w-full h-full object-cover" data-alt="Soft lavender flowers next to a bottle of eco-friendly fabric softener on a rustic wooden surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEnX7o_nqOORK3q_pGMYB9YyuaEk24ortoIOFlT2Qc_XjFiTCcGVrQhaJPBWr6xBHKxoBrXWx00UJ8w4vyF6TJr5EtrMiliqJ9gVPVOGGuGfN3p8oCN_L3cfoHE59rPO10I1kCZECyIsR4ovIp_KqXqwqWBAXk0x6Yvu2WfWsAecDQIzD40IjRjC7VqoHRUmjYuGaGM5Y8CRmt3_H8bqoM-znJkyqkO5YbTu0H4ZQQjm_Uq1q_bU7nnyOVjTaTxypjDywq7fNkOPoJ"/>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg">Кондиционер Лаванда</h3>
+<p class="text-on-surface-variant text-sm">Мягкость и натуральный аромат</p>
+<div class="flex justify-between items-center pt-4">
+<span class="text-xl font-black text-on-surface">620 ₽</span>
+<button class="bg-surface-container-high p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.1)] group">
+<div class="aspect-square bg-secondary-container rounded-xl mb-6 overflow-hidden">
+<img alt="Stain Remover" class="w-full h-full object-cover" data-alt="Close up of a eco-friendly stain remover spray and clean white linen fabric texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjdjhxT6o-HUtKDCKzUF20JWr1XV5ZFZJ3aSP_jJt64K07QIXUEmlWaQGzhGOiQlCt1McsdBMxq9YQfoLs4cXHl1JVryPuQv0L3PrQkPGsHzw43YkMU9hQKbd7m63gp-5VDmfLRdL87zmAKlyfTdSryN-M_QoYpwUSf6e_jXXTAGICcOegys8jA0dHI096l0JvGkqJAgtAQbmNwOrnDhhXtt1L6mT8QxddEwWGoMn6bg-MlbXL1V6KpLsZVYuUGQOm4Nz3oopntQdI"/>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg">Пятновыводитель Oxi</h3>
+<p class="text-on-surface-variant text-sm">Активный кислород против пятен</p>
+<div class="flex justify-between items-center pt-4">
+<span class="text-xl font-black text-on-surface">540 ₽</span>
+<button class="bg-surface-container-high p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-[0px_20px_40px_rgba(0,88,188,0.1)] group">
+<div class="aspect-square bg-secondary-container rounded-xl mb-6 overflow-hidden">
+<img alt="Delicate" class="w-full h-full object-cover" data-alt="Silk scarf draped over a chair with a gentle eco-laundry liquid for delicate fabrics in the foreground" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzyzYmDltbKLhRCJBiQnasgKwv6aFygUDlYUuqYcSyVkI91N_5T6kMw9hVE1cFxvbd1aRRjhHD1m3Hgco4LbRT7mzh-LIZu5ddoqXQtcj644VRPjZP3AHQhyDM7OBIrCYQ6rwrhPgFG34dXY0nSW_WUIINOPHKaMk9tK8y3KVlFdI9sfCw6G7dao4E3f3E_QXbn3K5Ion7A-iWpJOQP6vj-QV8Uy3MTV3TFrDITW2BToVXpmB3Ho1ZWS6x_oOio6q557uiit5qwF04"/>
+</div>
+<div class="space-y-2">
+<h3 class="font-headline font-bold text-lg">Шелк и Кашемир</h3>
+<p class="text-on-surface-variant text-sm">Деликатный уход за тканями</p>
+<div class="flex justify-between items-center pt-4">
+<span class="text-xl font-black text-on-surface">950 ₽</span>
+<button class="bg-surface-container-high p-2 rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Full-width Storytelling Banner 2 (Asymmetric Editorial Style) -->
+<section class="bg-surface-container-low py-24">
+<div class="px-8 max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7">
+<div class="aspect-[16/9] rounded-xl overflow-hidden shadow-2xl">
+<img alt="Mountain Stream" class="w-full h-full object-cover" data-alt="Pristine mountain stream with crystal clear water flowing over smooth stones in a lush valley at dawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1BvlrrNuJR885EwUs73rnLiHSn_bN6falDsYHMDOZ3tayrUnBNACKyvatqgHr4kbpEP6c3KpdzQvu4A5UamU3N36sBokFyD_pr-WNi9n2PYWHuO3BGWjGhuON4OvsTwa6YILGYDnyo4KWDhgVNC3FgHkpfDHMIdksfMnUCB1vhPURJFEi_t0NsEHgqylmieI7kF2Wp3atxsRQKqnf-Gn5Kmw0u_r-Hk83x-pAxZQ7k5lNq7vDhFHr8xPPI1WbmZCihaZTDc8Kg6NO"/>
+</div>
+</div>
+<div class="lg:col-span-5 space-y-8">
+<span class="font-headline font-bold text-primary tracking-widest text-sm uppercase">Наша миссия</span>
+<h2 class="font-headline text-4xl font-black text-on-surface leading-tight">Вода — это <br/>начало всего.</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                        Все компоненты PureLab полностью биоразлагаемы. Попадая в сточные воды, они распадаются на простые минеральные вещества в течение 28 дней, не нанося вреда водным экосистемам.
+                    </p>
+<div class="flex items-start gap-4">
+<div class="bg-secondary-container p-3 rounded-lg text-on-secondary-container">
+<span class="material-symbols-outlined">eco</span>
+</div>
+<div>
+<h4 class="font-bold text-on-surface">Сертификат Eco-Cert</h4>
+<p class="text-sm text-on-surface-variant">Международное признание чистоты состава</p>
+</div>
+</div>
+<button class="text-on-surface font-black border-b-4 border-secondary pb-1 hover:border-primary transition-colors">
+                        Читать наш отчет об экологии
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bento Grid Insights -->
+<section class="px-8 max-w-7xl mx-auto my-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
+<div class="md:col-span-2 bg-surface-container-lowest rounded-xl p-10 flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="font-headline text-3xl font-black mb-4">Лаборатория PureLab</h3>
+<p class="text-on-surface-variant max-w-md">Каждый продукт проходит 12 этапов тестирования перед тем, как попасть к вам на полку.</p>
+</div>
+<div class="mt-auto relative z-10">
+<button class="bg-on-surface text-surface px-6 py-3 rounded-lg font-bold">Смотреть процесс</button>
+</div>
+<div class="absolute right-0 bottom-0 w-1/2 h-full opacity-10">
+<span class="material-symbols-outlined text-[300px]" style="font-variation-settings: 'FILL' 1;">science</span>
+</div>
+</div>
+<div class="bg-primary text-white rounded-xl p-10 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-6xl mb-6">local_shipping</span>
+<h3 class="font-headline text-2xl font-bold mb-2">Эко-доставка</h3>
+<p class="opacity-80 text-sm">Курьерами на электросамокатах и велосипедах по всему городу.</p>
+</div>
+<div class="bg-secondary text-white rounded-xl p-10 flex flex-col justify-between md:col-start-3 md:row-start-2">
+<h3 class="font-headline text-xl font-bold italic">«Лучший эко-бренд года 2023»</h3>
+<p class="text-xs opacity-70">По версии Global Green Awards</p>
+</div>
+<div class="bg-surface-container-high rounded-xl p-10 md:col-start-1 md:row-start-2 flex items-center gap-6">
+<div class="w-20 h-20 rounded-full bg-white flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<div>
+<h4 class="font-bold">Умные подписки</h4>
+<p class="text-sm text-on-surface-variant">Средства приедут сами, когда закончатся.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f2f4f6] dark:bg-slate-950 w-full py-12">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 gap-6 max-w-7xl mx-auto">
+<div class="space-y-4 text-center md:text-left">
+<div class="font-manrope font-bold text-[#191c1e] dark:text-white text-2xl">PureLab</div>
+<p class="font-inter text-sm text-[#191c1e] dark:text-slate-400 max-w-xs">© 2024 PureLab. Эко-чистота в каждом доме.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-inter text-sm text-slate-500 hover:text-[#007AFF] hover:translate-x-1 transition-all duration-300" href="#">Политика конфиденциальности</a>
+<a class="font-inter text-sm text-slate-500 hover:text-[#007AFF] hover:translate-x-1 transition-all duration-300" href="#">Условия возврата</a>
+<a class="font-inter text-sm text-slate-500 hover:text-[#007AFF] hover:translate-x-1 transition-all duration-300" href="#">Контакты</a>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface hover:bg-primary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">language</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface hover:bg-primary hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">mail</span>
+</a>
+</div>
+</div>
+</footer>
+<!-- FAB for Support (Contextual) -->
+<button class="fixed bottom-8 right-8 bg-primary text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</body></html>

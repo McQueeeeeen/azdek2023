@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PureLab | Установка нового пароля</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#006e1c",
+                        "on-surface": "#191c1e",
+                        "surface-container-high": "#e6e8ea",
+                        "primary-fixed-dim": "#adc6ff",
+                        "on-primary-fixed-variant": "#004493",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-container": "#91f78e",
+                        "on-secondary-fixed": "#002204",
+                        "on-surface-variant": "#414755",
+                        "on-tertiary-fixed-variant": "#3b4951",
+                        "surface-tint": "#005bc1",
+                        "tertiary": "#505e67",
+                        "surface-container-low": "#f2f4f6",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#fefcff",
+                        "tertiary-container": "#687780",
+                        "on-background": "#191c1e",
+                        "outline": "#717786",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#78dc77",
+                        "surface-container-highest": "#e0e3e5",
+                        "primary-fixed": "#d8e2ff",
+                        "tertiary-fixed-dim": "#bac9d3",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-container": "#fbfcff",
+                        "inverse-primary": "#adc6ff",
+                        "surface-container": "#eceef0",
+                        "on-tertiary-fixed": "#0f1d25",
+                        "tertiary-fixed": "#d6e5ef",
+                        "surface": "#f7f9fb",
+                        "primary-container": "#0070eb",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed": "#94f990",
+                        "background": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "surface-dim": "#d8dadc",
+                        "on-secondary-container": "#00731e",
+                        "outline-variant": "#c1c6d7",
+                        "on-primary-fixed": "#001a41",
+                        "on-secondary-fixed-variant": "#005313",
+                        "primary": "#0058bc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fb;
+        }
+        .headline-font {
+            font-family: 'Manrope', sans-serif;
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Minimal Header for Focused View -->
+<header class="glass-header sticky top-0 z-50 flex items-center justify-between px-6 py-4 md:px-12">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white">
+<svg class="h-6 w-6" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="headline-font text-xl font-extrabold tracking-tight text-on-surface">PureLab</span>
+</div>
+<a class="flex items-center gap-2 text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                Назад
+            </a>
+</header>
+<main class="flex flex-1 items-center justify-center p-6 md:p-12">
+<div class="w-full max-w-[1100px] grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<!-- Content Section -->
+<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-4">
+<h1 class="headline-font text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em] text-on-surface">
+                            Новый пароль
+                        </h1>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-md">
+                            Пожалуйста, придумайте сложный пароль для защиты вашего аккаунта. Безопасность ваших данных — наш приоритет.
+                        </p>
+</div>
+<div class="hidden md:block">
+<div class="flex items-center gap-4 p-4 rounded-xl bg-surface-container-low">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-secondary-container text-on-secondary-container">
+<span class="material-symbols-outlined" data-weight="fill">shield_lock</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Сквозное шифрование</p>
+<p class="text-sm text-on-surface-variant">Все пароли передаются в зашифрованном виде</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Section -->
+<div class="bg-surface-container-lowest p-8 md:p-10 rounded-[2rem] shadow-[0px_20px_40px_rgba(0,88,188,0.06)] border border-outline-variant/15">
+<form class="flex flex-col gap-6">
+<div class="flex flex-col gap-2">
+<label class="label-md font-semibold text-on-surface-variant px-1">Новый пароль</label>
+<div class="group relative">
+<input class="w-full h-14 px-4 bg-surface-container-low border-0 rounded-xl focus:ring-2 focus:ring-surface-tint/20 text-on-surface placeholder:text-outline transition-all" placeholder="Введите не менее 8 символов" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="label-md font-semibold text-on-surface-variant px-1">Подтвердите пароль</label>
+<div class="group relative">
+<input class="w-full h-14 px-4 bg-surface-container-low border-0 rounded-xl focus:ring-2 focus:ring-surface-tint/20 text-on-surface placeholder:text-outline transition-all" placeholder="Повторите ввод пароля" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="mt-4 flex flex-col gap-4">
+<button class="btn-gradient w-full h-14 rounded-xl text-white font-bold text-lg shadow-lg hover:opacity-90 transition-all active:scale-[0.98]" type="submit">
+                                Установить новый пароль
+                            </button>
+<div class="flex flex-col gap-2">
+<p class="text-xs text-on-surface-variant text-center px-4 leading-normal">
+                                    Пароль должен содержать латинские буквы, цифры и спецсимволы
+                                </p>
+</div>
+</div>
+</form>
+</div>
+</div>
+</main>
+<!-- Footer / Illustration Area -->
+<footer class="mt-auto px-6 py-8">
+<div class="mx-auto flex w-full max-w-[1100px] flex-col md:flex-row items-center justify-between gap-6 border-t border-outline-variant/15 pt-8">
+<div class="flex gap-8">
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Помощь</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Приватность</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Условия</a>
+</div>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+<p class="text-sm font-medium text-on-surface-variant">Все системы работают в штатном режиме</p>
+</div>
+</div>
+</footer>
+<!-- Decorative background elements -->
+<div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/5 blur-[100px] -z-10"></div>
+<div class="absolute bottom-0 left-0 h-[512px] w-full bg-gradient-to-t from-surface-container-low to-transparent -z-20"></div>
+</div>
+</body></html>

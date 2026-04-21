@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger, NotFoundException } from "@nestjs/common";
+import { Inject, Injectable, Logger, NotFoundException, Optional } from "@nestjs/common";
 import { genId } from "../../shared/infrastructure/id.util";
 import { MockKzPaymentProvider } from "./providers/mock-kz.provider";
 import { OrdersService } from "../orders/orders.service";
@@ -25,7 +25,7 @@ export class PaymentsService {
     private readonly configService: ConfigService,
     private readonly notificationsService: NotificationsService,
     private readonly analyticsService: AnalyticsService,
-    @InjectQueue("payments-events") private readonly paymentsEventsQueue: Queue,
+    @Optional() @InjectQueue("payments-events") private readonly paymentsEventsQueue?: Queue,
   ) {
     this.providers.set(
       this.defaultProvider,
@@ -207,24 +207,26 @@ export class PaymentsService {
       });
     }
 
-    try {
-      await this.paymentsEventsQueue.add(
-        "payment.status.changed",
-        {
-          paymentId: payment.id,
-          orderId: payment.orderId,
-          status: mappedStatus,
-        },
-        {
-          attempts: 5,
-          backoff: {
-            type: "exponential",
-            delay: 2000,
+    if (this.paymentsEventsQueue) {
+      try {
+        await this.paymentsEventsQueue.add(
+          "payment.status.changed",
+          {
+            paymentId: payment.id,
+            orderId: payment.orderId,
+            status: mappedStatus,
           },
-        },
-      );
-    } catch (error) {
-      this.logger.error("Failed to enqueue payment.status.changed job", error as Error);
+          {
+            attempts: 5,
+            backoff: {
+              type: "exponential",
+              delay: 2000,
+            },
+          },
+        );
+      } catch (error) {
+        this.logger.error("Failed to enqueue payment.status.changed job", error as Error);
+      }
     }
 
     return { ok: true, idempotent: false, paymentId: payment.id };

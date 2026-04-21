@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PureLab — Искусство Чистоты</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#94f990",
+                    "primary-fixed-dim": "#adc6ff",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#d8e2ff",
+                    "primary": "#0058bc",
+                    "surface-tint": "#005bc1",
+                    "inverse-primary": "#adc6ff",
+                    "primary-container": "#0070eb",
+                    "on-secondary-container": "#00731e",
+                    "on-surface-variant": "#414755",
+                    "outline": "#717786",
+                    "tertiary-fixed-dim": "#bac9d3",
+                    "surface": "#f7f9fb",
+                    "on-primary-fixed-variant": "#004493",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f7f9fb",
+                    "on-secondary-fixed-variant": "#005313",
+                    "outline-variant": "#c1c6d7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#687780",
+                    "surface-variant": "#e0e3e5",
+                    "tertiary": "#505e67",
+                    "secondary-container": "#91f78e",
+                    "surface-container": "#eceef0",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed": "#0f1d25",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed-dim": "#78dc77",
+                    "on-background": "#191c1e",
+                    "on-tertiary-fixed-variant": "#3b4951",
+                    "on-secondary-fixed": "#002204",
+                    "secondary": "#006e1c",
+                    "tertiary-fixed": "#d6e5ef",
+                    "on-tertiary-container": "#fbfcff",
+                    "on-primary-container": "#fefcff",
+                    "on-primary-fixed": "#001a41",
+                    "on-surface": "#191c1e",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2d3133",
+                    "background": "#f7f9fb",
+                    "inverse-on-surface": "#eff1f3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .liquid-gradient {
+            background: linear-gradient(135deg, #0058bc 0%, #0070eb 100%);
+        }
+        .text-shadow-sm {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-container">
+<!-- Header / Navigation -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-nav px-6 md:px-12 py-4 flex items-center justify-between border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-headline font-extrabold text-xl tracking-tight uppercase">PureLab</span>
+</div>
+<nav class="hidden md:flex gap-8 text-sm font-medium tracking-wide uppercase">
+<a class="hover:text-primary transition-colors" href="#">Философия</a>
+<a class="hover:text-primary transition-colors" href="#">Эко-стандарт</a>
+<a class="hover:text-primary transition-colors" href="#">Команда</a>
+</nav>
+<button class="liquid-gradient text-white px-6 py-2.5 rounded-full font-headline font-bold text-sm shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+            Записаться
+        </button>
+</header>
+<main class="pt-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="min-h-[819px] flex flex-col md:flex-row items-stretch gap-0 px-0">
+<div class="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-24 py-16 bg-surface">
+<span class="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-6">Manifesto 01</span>
+<h1 class="font-headline text-5xl md:text-7xl font-extrabold text-on-surface leading-[1.1] mb-8 tracking-tighter">
+                    Новый стандарт <br/><span class="text-primary">чистоты</span>
+</h1>
+<p class="text-on-surface-variant text-lg md:text-xl leading-relaxed max-w-md mb-12">
+                    Мы переосмыслили понятие гигиены, превратив уборку в искусство лабораторной точности и эстетики спа.
+                </p>
+<div class="flex items-center gap-4">
+<span class="size-12 rounded-full border border-outline-variant flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">expand_more</span>
+</span>
+<span class="text-sm font-semibold uppercase tracking-widest">Листайте вниз</span>
+</div>
+</div>
+<div class="w-full md:w-1/2 min-h-[500px] relative">
+<div class="absolute inset-0 bg-surface-container-low overflow-hidden">
+<img alt="Pure white minimalist bathroom with marble details and glass bottles in soft daylight" class="w-full h-full object-cover" data-alt="Minimalist luxury bathroom interior, white marble surfaces, soft morning sunlight, transparent glass soap dispensers, pristine and airy atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQd6LuG8hf5-nJ4nSbydiKkUT-YZ965g-93kIj8aVOQ_1Pg0idmxKTgED_HOESHQQqpHjWho9PD9Ta94roZuOWrqjltOuaW-WT3csayj-iZNFCA0VNp7Y0EXTGlpeo_8s1K0YZXkF16r52-JCBgvfPW17BC6rxP4Q9_6P87n_U31g36EHJh2E0FPN3fWgJh8gpc-kdlbOtB4uxWwSECypW2vJAMlDFsuLpXlx3NDfwjKOCOHAcq-q2Vdztma92KGG0piy0GfsnYhPG"/>
+</div>
+</div>
+</section>
+<!-- Section 1: A New Standard of Cleaning -->
+<section class="py-24 md:py-32 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row-reverse items-center gap-16 md:gap-32">
+<div class="w-full md:w-1/2">
+<div class="relative rounded-xl overflow-hidden shadow-2xl">
+<img alt="Macro shot of clear water droplets on a sterilized surface with blue tint" class="w-full aspect-[4/5] object-cover" data-alt="Ultra close-up of crystal clear water droplets on a polished surgical steel surface, cool blue lighting, high-end laboratory aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8ldBSj3_7Ec28H8C5XwHIQnDQqBwSlJOUBJZKCfMX3MFcA_kMmPUGoiVKBJ0AndUskTEu3cjV7a1o-xg08MftVfX9OBhXvV4xJ3BOq4RdomrIIDztbesfrzwJHLWLxCK3ogGOvMDFILb4LO6l84skpI777hTbNputGDHhcfMAyiupBV9DIyzB0tXpMvzn_pLB_7dZfb92vT-U6O9G7S0CBqWgR3GVAiwV08uX0yFYXeznnzsU1pkD9jIhfpN1izPckRFr5s9TWm0U"/>
+<div class="absolute bottom-8 left-8 bg-surface-container-lowest/80 backdrop-blur-md p-6 rounded-xl max-w-xs">
+<p class="text-xs font-bold uppercase tracking-widest text-primary mb-2">Технология</p>
+<p class="text-sm italic font-medium">"Чистота — это не только отсутствие грязи, но и баланс микрофлоры."</p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 space-y-8">
+<h2 class="font-headline text-4xl md:text-5xl font-bold leading-tight">Безупречная санитария</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                        Наш подход базируется на принципах микробиологической безопасности. Мы используем пробиотические составы, которые не просто удаляют видимые загрязнения, но и создают здоровую среду в вашем доме на 72 часа после визита специалиста.
+                    </p>
+<div class="grid grid-cols-2 gap-8 pt-4">
+<div class="space-y-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="biotech">biotech</span>
+<h4 class="font-bold">Лабораторный тест</h4>
+<p class="text-sm text-on-surface-variant">Проверка качества воздуха и поверхностей после уборки.</p>
+</div>
+<div class="space-y-3">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="sanitizer">sanitizer</span>
+<h4 class="font-bold">UV-C Стерилизация</h4>
+<p class="text-sm text-on-surface-variant">Дополнительная обработка критических зон ультрафиолетом.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Respect for the Planet (Liquid Layout) -->
+<section class="relative py-24 md:py-40 bg-surface">
+<div class="absolute top-0 left-0 w-1/3 h-full bg-secondary-container/10 -z-10"></div>
+<div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center gap-16 md:gap-24">
+<div class="w-full md:w-5/12 space-y-8">
+<span class="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold uppercase tracking-widest">Eco-Pure™</span>
+<h2 class="font-headline text-4xl md:text-6xl font-bold tracking-tight">Забота о планете</h2>
+<p class="text-on-surface-variant text-lg">
+                        Мы исключили агрессивную химию. Все средства PureLab биоразлагаемы и безопасны для детей, домашних животных и водных ресурсов Земли. Наша упаковка подлежит бесконечной переработке.
+                    </p>
+<div class="pt-6">
+<a class="group flex items-center gap-4 font-headline font-bold text-primary" href="#">
+                            Подробнее о составах
+                            <span class="size-10 rounded-full border border-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</a>
+</div>
+</div>
+<div class="w-full md:w-7/12 grid grid-cols-2 gap-4">
+<div class="pt-12">
+<img alt="Eco friendly cleaning supplies and eucalyptus branch" class="w-full aspect-[3/4] object-cover rounded-xl shadow-lg" data-alt="Natural cleaning supplies, amber glass bottles, wooden brushes, and fresh green eucalyptus leaves on a white linen surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx0Mux-e-Q7Sg_7nF5LykiJVa3LTmrJq3ievjWeyJlB5_5ZBErNDevTX47Kn7-7TCT73YQV48FZoxJfwcC_uqzbYZYjHNbpQUFIPOKWP4V3OPtlc1HEYn7vC9oeLzr80K_0SYZwBG-9AYcmgvMXV77YCP0LKshpSpbymRHHRKiupMN7muM8iQAzRMaDkWKrWo2wKxurt-CzCQxDU6a6C-ULnJtfjPhhP2lsgf_FiMRhGEdVeRN1QRYm8HeHv2H1YapX53zu8fhoO5a"/>
+</div>
+<div>
+<img alt="Person holding a green leaf in a sterile environment" class="w-full aspect-[3/4] object-cover rounded-xl shadow-lg" data-alt="Minimalist close up of a hand holding a fresh green leaf against a soft, clean white background, symbolizing nature and purity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_ORoXqHYY4X6WcO2_mV345UrUSgWn8ubplF2S3R5AeTRF-9iX55B8M5aVfpe7osRiwM9Acc4tfa7fDl20z4mo4nye788U3rcoUJZEHxAUcp8f2UltDXOHRhYq7qSdh7C1Hgq3q1d9e1rMSpZZJrMVsr3MM3fbVSKbtPmw3DJ4IifY2mURzo8GeWPyg7OVTrEiuPN46m2LY6OvceRNzFs9R77ml5M1kRYxhuzw_2i1J7b04vMU8XR6hdoJ3wjPfOnI0I26aL5et8zz"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: The Team Behind PureLab -->
+<section class="py-24 md:py-32 bg-surface-container-high relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 md:px-12">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-xl">
+<h2 class="font-headline text-4xl md:text-5xl font-bold mb-6">Мастера PureLab</h2>
+<p class="text-on-surface-variant text-lg">
+                            Наши специалисты — это эксперты в области санитарии. Каждый прошел 200-часовой курс обучения PureAcademy, владея техниками бережного ухода за деликатными поверхностями.
+                        </p>
+</div>
+<div class="flex gap-4">
+<button class="size-12 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-md hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="size-12 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-md hover:bg-primary hover:text-white transition-all">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Team Member 1 -->
+<div class="group bg-surface-container-lowest p-4 rounded-xl shadow-sm hover:shadow-xl transition-all">
+<div class="aspect-square overflow-hidden rounded-lg mb-6">
+<img alt="Professional team member portrait" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Professional woman in a clean white uniform, minimalist portrait, soft neutral background, looking confident and approachable" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMUYzQe4qOf5qiPSOcUG-39ALwvZK0KKkp3fWtM3_QpL-4d0ReziKEUbf2L7pKvZ0_C5gwX3kXYiDQ0H1zmAmF2YnFd2sqgk2KUGdGULcKpr2rJG1gLdKK0FfwZ_RnvwVylMrXkwlkJO56dbdhxE61ot3v8X-p3S6_1DkZDOFMda_Q6uYVkcVMpZPmcbJTniG7FCJKqEHJkvo2YxQP3K8ES9FBSPk6bYbpfFlGgiD364Z_jcYr00AW8V_S6qqCdWX7JVVIIqjBOU67"/>
+</div>
+<h3 class="font-headline font-bold text-xl mb-1">Елена Волкова</h3>
+<p class="text-primary text-sm font-bold uppercase tracking-widest mb-4">Старший эксперт</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Специализируется на антикварных поверхностях и деликатном камне. Стаж 8 лет.
+                        </p>
+</div>
+<!-- Team Member 2 -->
+<div class="group bg-surface-container-lowest p-4 rounded-xl shadow-sm hover:shadow-xl transition-all">
+<div class="aspect-square overflow-hidden rounded-lg mb-6">
+<img alt="Professional male specialist portrait" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Professional man in a clean white uniform, minimalist architectural setting, focused and professional expression, soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAAYB4pdCWxerr3bvCs2YVUfb2c-Jx83WC3JsYyr9okbO3__x0DA1TT7AY6wfHWaaCdF1t8puLVE2hGUpp-tXhGwYa_FP2stGFwdcMKTfV1OPOpaTDgpXOnO7NjH4SQdATK-5oro4iaU027CkwmQmAU2j6jcquZYPpsRbPn22zhzNpXLHJyFBAJUYx8HNdvXy4tyVbCAjwspYF_P3arpz5cs8aSeyOibE3BF94fwCJVrkmIibsxU8mpKhvQ_GugAxk1Wj82VN5ihxm"/>
+</div>
+<h3 class="font-headline font-bold text-xl mb-1">Марк Антонов</h3>
+<p class="text-primary text-sm font-bold uppercase tracking-widest mb-4">Технолог</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Отвечает за протоколы UV-стерилизации и гипоаллергенность среды.
+                        </p>
+</div>
+<!-- Team Member 3 -->
+<div class="group bg-surface-container-lowest p-4 rounded-xl shadow-sm hover:shadow-xl transition-all">
+<div class="aspect-square overflow-hidden rounded-lg mb-6">
+<img alt="Female specialist portrait" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Professional woman with a calm expression, clean white attire, soft natural lighting, high-end lifestyle photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjDxetA8CRT80y-99NlZqex4ADViBL8PN8xMN9pPq8BpICMNHO89eCw7jSKkZrE_z6jsgzznU1W0zT0LrD-klF8AxGPDEv2RUpLvpHty3W1WtN9ZC4tIL4c73pzLjVx8EhYJdR55eHBynWsgSxEIB6IIFzt5n0so5ORp2-EsVF86u4Vx7qtMdwm8Vyb3jeWx3h3HX1boMEF0oOmRMmOMSop-hmdBSj437eAKPtmnADgm7y6OaqGShahm1tSYYvHdkCHi6c0bQjiMVN"/>
+</div>
+<h3 class="font-headline font-bold text-xl mb-1">Анна Ким</h3>
+<p class="text-primary text-sm font-bold uppercase tracking-widest mb-4">Wellness-консультант</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Создает атмосферу через ароматерапию и органическую ароматизацию помещений.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 bg-surface flex flex-col items-center text-center px-6">
+<div class="max-w-2xl space-y-8">
+<h2 class="font-headline text-4xl md:text-5xl font-extrabold leading-tight">Готовы к чистоте <br/>нового уровня?</h2>
+<p class="text-on-surface-variant text-lg">Забронируйте первый визит и ощутите разницу между просто уборкой и искусством PureLab.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
+<button class="liquid-gradient text-white px-10 py-4 rounded-full font-headline font-bold text-lg shadow-xl shadow-primary/25 hover:scale-105 transition-transform w-full sm:w-auto">
+                        Начать преображение
+                    </button>
+<button class="px-10 py-4 rounded-full font-headline font-bold text-lg border-2 border-outline-variant hover:bg-surface-container-low transition-colors w-full sm:w-auto">
+                        Прайс-лист
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest pt-24 pb-12 px-6 md:px-12 border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-1 space-y-6">
+<div class="flex items-center gap-3">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-headline font-extrabold text-lg tracking-tight uppercase">PureLab</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                        Лабораторный подход к вашему дому. Создаем пространство для жизни, свободное от токсинов и суеты.
+                    </p>
+</div>
+<div class="space-y-4">
+<h5 class="font-bold uppercase text-xs tracking-[0.2em] mb-6">Навигация</h5>
+<ul class="space-y-3 text-on-surface-variant text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Сервисы</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Эко-стандарты</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Подписка</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h5 class="font-bold uppercase text-xs tracking-[0.2em] mb-6">Компания</h5>
+<ul class="space-y-3 text-on-surface-variant text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">О нас</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Карьера</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Блог</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Контакты</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h5 class="font-bold uppercase text-xs tracking-[0.2em] mb-6">Связь</h5>
+<p class="text-on-surface-variant text-sm">Москва, ул. Садовая, 12<br/>+7 495 000 00 00</p>
+<div class="flex gap-4">
+<a class="size-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+</a>
+<a class="size-10 rounded-full bg-surface-container-low flex items-center justify-center hover:bg-primary-fixed transition-colors" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="mail">mail</span>
+</a>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-on-surface-variant tracking-wider uppercase">
+<p>© 2024 PureLab. Все права защищены.</p>
+<div class="flex gap-8">
+<a class="hover:text-on-surface transition-colors" href="#">Политика конфиденциальности</a>
+<a class="hover:text-on-surface transition-colors" href="#">Условия сервиса</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
