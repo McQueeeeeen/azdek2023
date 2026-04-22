@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const KZ_CITIES = [
   'Алматы',
-  'Нур-Султан',
+  'Астана',
   'Караганда',
   'Актау',
   'Атырау',
@@ -12,12 +12,12 @@ const KZ_CITIES = [
   'Кокшетау',
   'Костанай',
   'Павлодар',
-  'Петропавловск',
-  'Таразе',
+  'Петропавл',
+  'Тараз',
   'Туркестан',
-  'Уральск',
+  'Орал',
   'Щучинск',
-  'Жанаозен',
+  'Жаңаөзен',
   'Кызылорда',
   'Семей',
 ];
@@ -51,8 +51,8 @@ export default function SignupPage() {
     // Phone validation
     if (!formData.phone) {
       newErrors.phone = 'Номер телефона обязателен';
-    } else if (!/^\+7\s?\(\d{3}\)\s?\d{3}-?\d{2}-?\d{2}$/.test(formData.phone.replace(/\s/g, ''))) {
-      newErrors.phone = 'Формат: +7 (XXX) XXX-XX-XX';
+    } else if (!/^77\d{9}$/.test(formData.phone.replace(/\D/g, ''))) {
+      newErrors.phone = 'Формат: +7 (7XX) XXX-XX-XX';
     }
 
     // Name validation

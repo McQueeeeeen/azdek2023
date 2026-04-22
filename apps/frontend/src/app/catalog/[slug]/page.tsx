@@ -190,7 +190,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <span className="icon" style={{ color: 'var(--clay)', fontSize: 24, flexShrink: 0 }}>local_shipping</span>
               <div>
                 <p style={{ fontWeight: 700, fontSize: 14, color: 'var(--ink)', marginBottom: 2 }}>Доставка по Казахстану</p>
-                <p style={{ fontSize: 13, color: 'var(--ink-2)' }}>Алматы и Нур-Султан — 1-2 дня · Остальные города — 3-5 дней</p>
+                <p style={{ fontSize: 13, color: 'var(--ink-2)' }}>Алматы и Астана — 1-2 дня · Остальные города — 3-5 дней</p>
               </div>
             </div>
           </div>

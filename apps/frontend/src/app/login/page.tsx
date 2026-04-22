@@ -19,9 +19,9 @@ export default function LoginPage() {
       newErrors.emailOrPhone = 'Email или телефон обязателен';
     } else if (
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailOrPhone) &&
-      !/^\+?7\d{10}$/.test(formData.emailOrPhone.replace(/\D/g, ''))
+      !/^77\d{9}$/.test(formData.emailOrPhone.replace(/\D/g, ''))
     ) {
-      newErrors.emailOrPhone = 'Введите корректный email или номер телефона';
+      newErrors.emailOrPhone = 'Введите корректный email или номер телефона +7 7XX';
     }
 
     if (!formData.password) {
@@ -132,7 +132,7 @@ export default function LoginPage() {
                 id="emailOrPhone"
                 name="emailOrPhone"
                 className={`input ${errors.emailOrPhone ? 'input-error' : ''}`}
-                placeholder="you@example.com или +7 (XXX) XXX-XX-XX"
+                placeholder="you@example.com или +7 (7XX) XXX-XX-XX"
                 value={formData.emailOrPhone}
                 onChange={handleChange}
                 disabled={isLoading}

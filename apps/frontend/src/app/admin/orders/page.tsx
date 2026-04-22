@@ -108,7 +108,7 @@ export default function AdminOrdersPage() {
       total: 2100,
       status: 'delivered',
       items: 3,
-      address: 'ул. Красная 8, Усть-Каменогорск',
+      address: 'ул. Красная 8, Өскемен',
     },
   ];
 
