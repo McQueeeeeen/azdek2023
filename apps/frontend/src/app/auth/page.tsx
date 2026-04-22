@@ -37,22 +37,15 @@ export default function AuthPage() {
 
       <main className="pt-20 pb-24">
         <div className="max-w-md mx-auto px-8">
-          {/* Logo */}
           <div className="text-center mb-12">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <span className="text-white font-bold text-2xl">P</span>
+              <span className="text-white font-bold text-2xl">A</span>
             </div>
-            <h1 className="font-headline font-bold text-3xl text-on-surface">
-              PureLab
-            </h1>
-            <p className="text-on-surface-variant mt-2">
-              Чистота от природы
-            </p>
+            <h1 className="font-headline font-bold text-3xl text-on-surface">Adzek</h1>
+            <p className="text-on-surface-variant mt-2">Чистота без лишнего</p>
           </div>
 
-          {/* Auth Card */}
           <div className="bg-white rounded-3xl p-8 space-y-6">
-            {/* Tabs */}
             <div className="flex gap-4 border-b border-outline-variant">
               <button
                 onClick={() => setMode('login')}
@@ -76,7 +69,6 @@ export default function AuthPage() {
               </button>
             </div>
 
-            {/* Login Form */}
             {mode === 'login' && (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <h2 className="font-headline font-bold text-2xl text-on-surface mb-6">
@@ -132,18 +124,22 @@ export default function AuthPage() {
                     <div className="w-full border-t border-outline-variant" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-on-surface-variant">
-                      или войдите через
-                    </span>
+                    <span className="px-2 bg-white text-on-surface-variant">или войдите через</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <button type="button" className="border-2 border-outline-variant py-3 rounded-lg font-semibold hover:border-primary transition-colors flex items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    className="border-2 border-outline-variant py-3 rounded-lg font-semibold hover:border-primary transition-colors flex items-center justify-center gap-2"
+                  >
                     <span className="material-symbols-outlined">account_box</span>
                     Google
                   </button>
-                  <button type="button" className="border-2 border-outline-variant py-3 rounded-lg font-semibold hover:border-primary transition-colors flex items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    className="border-2 border-outline-variant py-3 rounded-lg font-semibold hover:border-primary transition-colors flex items-center justify-center gap-2"
+                  >
                     <span className="material-symbols-outlined">account_balance_wallet</span>
                     Яндекс
                   </button>
@@ -151,7 +147,6 @@ export default function AuthPage() {
               </form>
             )}
 
-            {/* Register Form */}
             {mode === 'register' && (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <h2 className="font-headline font-bold text-2xl text-on-surface mb-6">
@@ -169,7 +164,7 @@ export default function AuthPage() {
                       value={formData.firstName}
                       onChange={handleChange}
                       className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                      placeholder="Иван"
+                      placeholder="Алибек"
                       required
                     />
                   </div>
@@ -183,7 +178,7 @@ export default function AuthPage() {
                       value={formData.lastName}
                       onChange={handleChange}
                       className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                      placeholder="Иванов"
+                      placeholder="Жаксыбеков"
                       required
                     />
                   </div>
@@ -219,84 +214,23 @@ export default function AuthPage() {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-semibold text-on-surface mb-2">
-                    Подтвердить пароль
-                  </label>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                    placeholder="••••••••"
-                    required
-                  />
-                </div>
-
-                <label className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    name="agreeTerms"
-                    checked={formData.agreeTerms}
-                    onChange={handleChange}
-                    className="w-5 h-5 mt-1 rounded border-outline-variant"
-                    required
-                  />
-                  <span className="text-sm text-on-surface-variant">
-                    Я согласен с{' '}
-                    <button type="button" className="text-primary font-semibold hover:underline">
-                      условиями использования
-                    </button>{' '}
-                    и{' '}
-                    <button type="button" className="text-primary font-semibold hover:underline">
-                      политикой конфиденциальности
-                    </button>
-                  </span>
-                </label>
-
                 <button
                   type="submit"
                   className="w-full bg-primary text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
                 >
                   <span className="material-symbols-outlined">person_add</span>
-                  Создать аккаунт
+                  Зарегистрироваться
                 </button>
               </form>
             )}
 
-            {/* Footer */}
-            <div className="text-center text-sm text-on-surface-variant">
-              {mode === 'login' ? (
-                <>
-                  Нет аккаунта?{' '}
-                  <button
-                    onClick={() => setMode('register')}
-                    className="text-primary font-semibold hover:underline"
-                  >
-                    Зарегистрируйтесь
-                  </button>
-                </>
-              ) : (
-                <>
-                  Уже есть аккаунт?{' '}
-                  <button
-                    onClick={() => setMode('login')}
-                    className="text-primary font-semibold hover:underline"
-                  >
-                    Войдите
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
-
-          {/* Back to Home */}
-          <div className="text-center mt-8">
-            <Link href="/" className="text-primary font-semibold hover:underline inline-flex items-center gap-2">
-              <span className="material-symbols-outlined text-5 w-5 h-5">arrow_back</span>
-              Вернуться на главную
-            </Link>
+            <p className="text-center text-sm text-on-surface-variant">
+              Используя Adzek, вы соглашаетесь с нашими{' '}
+              <Link href="#" className="text-primary font-semibold hover:underline">
+                условиями использования
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </main>

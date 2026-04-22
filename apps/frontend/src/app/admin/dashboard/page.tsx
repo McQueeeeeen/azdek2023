@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
 import SiteHeader from '@/components/layout/site-header';
 import SiteFooter from '@/components/layout/site-footer';
 
@@ -33,7 +32,7 @@ export default function AdminDashboardPage() {
     },
     {
       title: 'Доход',
-      value: '₽285,400',
+      value: '285 400 ₸',
       change: '+8% от прошлого месяца',
       icon: 'trending_up',
       color: 'bg-green-100 text-green-600',
@@ -47,7 +46,7 @@ export default function AdminDashboardPage() {
     },
     {
       title: 'Средний чек',
-      value: '₽231',
+      value: '231 ₸',
       change: '-3% от прошлого месяца',
       icon: 'monetization_on',
       color: 'bg-orange-100 text-orange-600',
@@ -57,7 +56,7 @@ export default function AdminDashboardPage() {
   const recentOrders: RecentOrder[] = [
     {
       id: '#ORD-001234',
-      customer: 'Иван Иванов',
+      customer: 'Алибек Жаксыбеков',
       date: '2026-04-22',
       total: 1781,
       status: 'delivered',
@@ -65,7 +64,7 @@ export default function AdminDashboardPage() {
     },
     {
       id: '#ORD-001233',
-      customer: 'Мария Петрова',
+      customer: 'Айдана Сатыбалдина',
       date: '2026-04-21',
       total: 2450,
       status: 'shipped',
@@ -73,7 +72,7 @@ export default function AdminDashboardPage() {
     },
     {
       id: '#ORD-001232',
-      customer: 'Петр Сидоров',
+      customer: 'Данияр Сейдахмет',
       date: '2026-04-20',
       total: 890,
       status: 'processing',
@@ -81,7 +80,7 @@ export default function AdminDashboardPage() {
     },
     {
       id: '#ORD-001231',
-      customer: 'Анна Смирнова',
+      customer: 'Мадина Касымова',
       date: '2026-04-19',
       total: 1200,
       status: 'delivered',
@@ -89,7 +88,7 @@ export default function AdminDashboardPage() {
     },
     {
       id: '#ORD-001230',
-      customer: 'Dmitri Volkov',
+      customer: 'Дмитрий Волков',
       date: '2026-04-18',
       total: 3450,
       status: 'processing',
@@ -122,7 +121,6 @@ export default function AdminDashboardPage() {
             </p>
           </div>
 
-          {/* Stats Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {stats.map((stat, idx) => (
               <div key={idx} className="bg-white rounded-2xl p-6">
@@ -142,7 +140,6 @@ export default function AdminDashboardPage() {
             ))}
           </div>
 
-          {/* Recent Orders Section */}
           <div className="bg-white rounded-2xl p-8">
             <div className="flex justify-between items-center mb-8">
               <h2 className="font-headline font-bold text-2xl text-on-surface">
@@ -184,7 +181,7 @@ export default function AdminDashboardPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {recentOrders.map((order) => {
+                  {recentOrders.map(order => {
                     const status = getStatusBadge(order.status);
                     return (
                       <tr key={order.id} className="border-b border-outline-variant hover:bg-surface transition-colors">
@@ -208,7 +205,7 @@ export default function AdminDashboardPage() {
                           </span>
                         </td>
                         <td className="py-4 px-4 text-right">
-                          <p className="font-semibold text-on-surface">{order.total} ₽</p>
+                          <p className="font-semibold text-on-surface">{order.total.toLocaleString('ru-KZ')} ₸</p>
                         </td>
                         <td className="py-4 px-4 text-center">
                           <button className="text-primary hover:text-primary/80 transition-colors">
@@ -223,7 +220,6 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          {/* Back Link */}
           <div className="mt-12">
             <Link href="/profile">
               <button className="text-primary font-semibold hover:underline inline-flex items-center gap-2">

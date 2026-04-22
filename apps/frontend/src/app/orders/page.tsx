@@ -23,9 +23,8 @@ export default function OrdersPage() {
     { id: '#ORD-001231', date: '2026-03-20', total: 1200, status: 'delivered', itemCount: 2 },
   ];
 
-  const filteredOrders = filterStatus === 'all'
-    ? orders
-    : orders.filter(order => order.status === filterStatus);
+  const filteredOrders =
+    filterStatus === 'all' ? orders : orders.filter(order => order.status === filterStatus);
 
   const getStatusBadge = (status: string) => {
     const statusMap: Record<string, { label: string; color: string }> = {
@@ -53,10 +52,9 @@ export default function OrdersPage() {
             </p>
           </div>
 
-          {/* Filters */}
           <div className="bg-white rounded-2xl p-6 mb-8">
             <div className="flex flex-wrap gap-3">
-              {['all', 'processing', 'shipped', 'delivered', 'cancelled'].map((status) => (
+              {['all', 'processing', 'shipped', 'delivered', 'cancelled'].map(status => (
                 <button
                   key={status}
                   onClick={() => setFilterStatus(status)}
@@ -66,13 +64,20 @@ export default function OrdersPage() {
                       : 'bg-surface-container text-on-surface hover:bg-surface-container-high'
                   }`}
                 >
-                  {status === 'all' ? 'Все заказы' : status === 'processing' ? 'Обработка' : status === 'shipped' ? 'Отправлено' : status === 'delivered' ? 'Доставлено' : 'Отменено'}
+                  {status === 'all'
+                    ? 'Все заказы'
+                    : status === 'processing'
+                    ? 'Обработка'
+                    : status === 'shipped'
+                    ? 'Отправлено'
+                    : status === 'delivered'
+                    ? 'Доставлено'
+                    : 'Отменено'}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Orders List */}
           {filteredOrders.length === 0 ? (
             <div className="bg-white rounded-2xl p-12 text-center">
               <span className="material-symbols-outlined text-8xl text-surface-variant mb-4 block">
@@ -102,21 +107,23 @@ export default function OrdersPage() {
 
                       <div>
                         <p className="text-sm text-on-surface-variant mb-1">Товары</p>
-                        <p className="font-bold text-on-surface text-lg">
-                          {order.itemCount}
-                        </p>
+                        <p className="font-bold text-on-surface text-lg">{order.itemCount}</p>
                       </div>
 
                       <div>
                         <p className="text-sm text-on-surface-variant mb-1">Статус</p>
-                        <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${status.color}`}>
+                        <span
+                          className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${status.color}`}
+                        >
                           {status.label}
                         </span>
                       </div>
 
                       <div>
                         <p className="text-sm text-on-surface-variant mb-1">Сумма</p>
-                        <p className="font-bold text-on-surface text-lg">{order.total} ₽</p>
+                        <p className="font-bold text-on-surface text-lg">
+                          {order.total.toLocaleString('ru-KZ')} ₸
+                        </p>
                       </div>
 
                       <div className="flex gap-2">

@@ -24,97 +24,98 @@ export default function AdminOrdersPage() {
   const orders: Order[] = [
     {
       id: '#ORD-001234',
-      customer: 'Иван Иванов',
-      email: 'ivan@example.com',
-      phone: '+7 (999) 123-45-67',
+      customer: 'Алибек Жаксыбеков',
+      email: 'alibek@example.com',
+      phone: '+7 701 123 45 67',
       date: '2026-04-22',
       total: 1781,
       status: 'delivered',
       items: 2,
-      address: 'ул. Примерная, дом 1, Москва',
+      address: 'ул. Абая 150, Алматы',
     },
     {
       id: '#ORD-001233',
-      customer: 'Мария Петрова',
-      email: 'maria@example.com',
-      phone: '+7 (999) 234-56-78',
+      customer: 'Айдана Сатыбалдина',
+      email: 'aidana@example.com',
+      phone: '+7 702 234 56 78',
       date: '2026-04-21',
       total: 2450,
       status: 'shipped',
       items: 3,
-      address: 'ул. Деловая, дом 2, Санкт-Петербург',
+      address: 'пр. Назарбаева 77, Астана',
     },
     {
       id: '#ORD-001232',
-      customer: 'Петр Сидоров',
-      email: 'petr@example.com',
-      phone: '+7 (999) 345-67-89',
+      customer: 'Данияр Сейдахмет',
+      email: 'daniyar@example.com',
+      phone: '+7 703 345 67 89',
       date: '2026-04-20',
       total: 890,
       status: 'processing',
       items: 1,
-      address: 'ул. Центральная, дом 3, Казань',
+      address: 'ул. Достык 12, Шымкент',
     },
     {
       id: '#ORD-001231',
-      customer: 'Анна Смирнова',
-      email: 'anna@example.com',
-      phone: '+7 (999) 456-78-90',
+      customer: 'Мадина Касымова',
+      email: 'madina@example.com',
+      phone: '+7 704 456 78 90',
       date: '2026-04-19',
       total: 1200,
       status: 'delivered',
       items: 2,
-      address: 'ул. Восточная, дом 4, Новосибирск',
+      address: 'ул. Сатпаева 10, Караганда',
     },
     {
       id: '#ORD-001230',
-      customer: 'Dmitri Volkov',
+      customer: 'Дмитрий Волков',
       email: 'dmitri@example.com',
-      phone: '+7 (999) 567-89-01',
+      phone: '+7 705 567 89 01',
       date: '2026-04-18',
       total: 3450,
       status: 'processing',
       items: 5,
-      address: 'ул. Западная, дом 5, Екатеринбург',
+      address: 'пр. Жибек Жолы 55, Ақтау',
     },
     {
       id: '#ORD-001229',
       customer: 'Ольга Соколова',
       email: 'olga@example.com',
-      phone: '+7 (999) 678-90-12',
+      phone: '+7 706 678 90 12',
       date: '2026-04-17',
       total: 567,
       status: 'cancelled',
       items: 1,
-      address: 'ул. Северная, дом 6, Челябинск',
+      address: 'ул. Северная 6, Павлодар',
     },
     {
       id: '#ORD-001228',
       customer: 'Сергей Морозов',
       email: 'sergey@example.com',
-      phone: '+7 (999) 789-01-23',
+      phone: '+7 707 789 01 23',
       date: '2026-04-16',
       total: 4200,
       status: 'shipped',
       items: 4,
-      address: 'ул. Южная, дом 7, Нижний Новгород',
+      address: 'ул. Южная 7, Тараз',
     },
     {
       id: '#ORD-001227',
       customer: 'Виктория Романова',
       email: 'victoria@example.com',
-      phone: '+7 (999) 890-12-34',
+      phone: '+7 708 890 12 34',
       date: '2026-04-15',
       total: 2100,
       status: 'delivered',
       items: 3,
-      address: 'ул. Красная, дом 8, Казань',
+      address: 'ул. Красная 8, Усть-Каменогорск',
     },
   ];
 
   const filteredOrders = orders.filter(order => {
     const matchesStatus = filterStatus === 'all' || order.status === filterStatus;
-    const matchesSearch = searchTerm === '' ||
+    const matchesSearch =
+      searchTerm === '' ||
       order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.email.toLowerCase().includes(searchTerm.toLowerCase());
@@ -147,7 +148,6 @@ export default function AdminOrdersPage() {
             </p>
           </div>
 
-          {/* Search and Filters */}
           <div className="bg-white rounded-2xl p-6 mb-8 space-y-4">
             <div>
               <label className="block text-sm font-semibold text-on-surface mb-2">
@@ -156,7 +156,7 @@ export default function AdminOrdersPage() {
               <input
                 type="text"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={e => setSearchTerm(e.target.value)}
                 placeholder="Введите поисковый запрос..."
                 className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
               />
@@ -167,7 +167,7 @@ export default function AdminOrdersPage() {
                 Фильтр по статусу
               </label>
               <div className="flex flex-wrap gap-3">
-                {['all', 'processing', 'shipped', 'delivered', 'cancelled'].map((status) => (
+                {['all', 'processing', 'shipped', 'delivered', 'cancelled'].map(status => (
                   <button
                     key={status}
                     onClick={() => setFilterStatus(status)}
@@ -192,7 +192,6 @@ export default function AdminOrdersPage() {
             </div>
           </div>
 
-          {/* Orders Table */}
           <div className="bg-white rounded-2xl overflow-hidden">
             {filteredOrders.length === 0 ? (
               <div className="p-12 text-center">
@@ -241,7 +240,7 @@ export default function AdminOrdersPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredOrders.map((order) => {
+                    {filteredOrders.map(order => {
                       const status = getStatusBadge(order.status);
                       return (
                         <tr
@@ -281,7 +280,9 @@ export default function AdminOrdersPage() {
                             </span>
                           </td>
                           <td className="py-4 px-6 text-right">
-                            <p className="font-semibold text-on-surface">{order.total} ₽</p>
+                            <p className="font-semibold text-on-surface">
+                              {order.total.toLocaleString('ru-KZ')} ₸
+                            </p>
                           </td>
                           <td className="py-4 px-6 text-center">
                             <div className="flex gap-2 justify-center">
@@ -306,7 +307,6 @@ export default function AdminOrdersPage() {
             )}
           </div>
 
-          {/* Back Link */}
           <div className="mt-12">
             <Link href="/admin/dashboard">
               <button className="text-primary font-semibold hover:underline inline-flex items-center gap-2">

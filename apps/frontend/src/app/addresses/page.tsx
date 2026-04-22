@@ -22,23 +22,23 @@ export default function AddressesPage() {
     {
       id: '1',
       type: 'Домашний',
-      firstName: 'Иван',
-      lastName: 'Иванов',
-      address: 'ул. Примерная, дом 1, кв. 1',
-      city: 'Москва',
-      zip: '123456',
-      phone: '+7 (999) 123-45-67',
+      firstName: 'Алибек',
+      lastName: 'Жаксыбеков',
+      address: 'ул. Абая 150, кв. 45',
+      city: 'Алматы',
+      zip: '050000',
+      phone: '+7 701 123 45 67',
       isDefault: true,
     },
     {
       id: '2',
       type: 'Рабочий',
-      firstName: 'Иван',
-      lastName: 'Иванов',
-      address: 'ул. Деловая, дом 2, офис 301',
-      city: 'Москва',
-      zip: '654321',
-      phone: '+7 (999) 123-45-67',
+      firstName: 'Алибек',
+      lastName: 'Жаксыбеков',
+      address: 'пр. Назарбаева 77, офис 301',
+      city: 'Астана',
+      zip: '010000',
+      phone: '+7 702 234 56 78',
       isDefault: false,
     },
   ]);
@@ -48,10 +48,7 @@ export default function AddressesPage() {
   };
 
   const handleSetDefault = (id: string) => {
-    setAddresses(addresses.map(addr => ({
-      ...addr,
-      isDefault: addr.id === id,
-    })));
+    setAddresses(addresses.map(addr => ({ ...addr, isDefault: addr.id === id })));
   };
 
   return (
@@ -66,7 +63,7 @@ export default function AddressesPage() {
                 Управление адресами
               </h1>
               <p className="text-on-surface-variant">
-                Добавьте и управляйте адресами доставки
+                Добавьте и управляйте адресами доставки по Казахстану
               </p>
             </div>
             <button className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:shadow-lg transition-all">
@@ -75,7 +72,6 @@ export default function AddressesPage() {
             </button>
           </div>
 
-          {/* Addresses List */}
           <div className="space-y-4">
             {addresses.length === 0 ? (
               <div className="bg-white rounded-2xl p-12 text-center">
@@ -83,7 +79,7 @@ export default function AddressesPage() {
                   location_on
                 </span>
                 <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">
-                  Нет сохраненных адресов
+                  Нет сохранённых адресов
                 </h2>
               </div>
             ) : (
@@ -120,15 +116,17 @@ export default function AddressesPage() {
                   </div>
 
                   <div className="mt-4 pt-4 border-t border-outline-variant">
+                    <p className="text-on-surface">{addr.firstName} {addr.lastName}</p>
                     <p className="text-on-surface">{addr.address}</p>
-                    <p className="text-on-surface-variant">{addr.city}, {addr.zip}</p>
+                    <p className="text-on-surface-variant">
+                      {addr.city}, {addr.zip} · {addr.phone}
+                    </p>
                   </div>
                 </div>
               ))
             )}
           </div>
 
-          {/* Back Link */}
           <div className="mt-12">
             <Link href="/profile">
               <button className="text-primary font-semibold hover:underline inline-flex items-center gap-2">

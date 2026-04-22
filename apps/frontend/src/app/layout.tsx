@@ -4,14 +4,15 @@ import { ReactNode } from "react";
 import HeaderWrapper from "@/components/header-wrapper";
 
 export const metadata: Metadata = {
-  title: "Adzek — натуральная бытовая химия",
-  description: "Экологичные средства для дома: безопасно для семьи, бережно к природе.",
+  title: "Adzek — натуральная бытовая химия из Казахстана",
+  description:
+    "Экологичные средства для дома: безопасно для семьи, бережно к природе, с производством и доставкой по Казахстану.",
   icons: { icon: "/icon.svg" },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ru">
+    <html lang="ru-KZ">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
