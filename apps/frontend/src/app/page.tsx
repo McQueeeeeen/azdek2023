@@ -605,19 +605,6 @@ export default function HomePage() {
       </div>
 
       {/* ─── MOBILE NAV ────────────────────────────────────── */}
-      <nav className="mob-nav" aria-label="Мобильная навигация">
-        {[
-          { href: '/',        icon: 'home',         label: 'Главная' },
-          { href: '/catalog', icon: 'grid_view',    label: 'Каталог' },
-          { href: '/cart',    icon: 'shopping_bag', label: 'Корзина' },
-          { href: '/profile', icon: 'person',       label: 'Профиль' },
-        ].map((n) => (
-          <Link key={n.href} href={n.href} className={n.href === '/' ? 'active' : ''}>
-            <span className="icon" style={{ fontSize: 22 }}>{n.icon}</span>
-            {n.label}
-          </Link>
-        ))}
-      </nav>
-    </>
+          </>
   );
 }

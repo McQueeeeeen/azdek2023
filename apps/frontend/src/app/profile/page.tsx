@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { clearAuthSession } from '@/lib/api';
 
 const TABS = [
   { id: 'orders', label: 'Заказы', icon: 'receipt_long' },
@@ -31,10 +32,33 @@ const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
   cancelled: { bg: '#FEE2E2', color: '#991B1B' },
 };
 
+function formatKazakhstanPhone(value: string): string {
+  const digits = value.replace(/\D/g, '');
+  if (!digits) {
+    return '';
+  }
+
+  const normalized = digits.startsWith('8')
+    ? `7${digits.slice(1)}`
+    : digits.startsWith('7')
+      ? digits
+      : `7${digits}`;
+
+  const trimmed = normalized.slice(0, 11);
+  const national = trimmed.slice(1);
+
+  let formatted = '+7';
+  if (national.length > 0) formatted += ` ${national.slice(0, 3)}`;
+  if (national.length > 3) formatted += ` ${national.slice(3, 6)}`;
+  if (national.length > 6) formatted += ` ${national.slice(6, 8)}`;
+  if (national.length > 8) formatted += ` ${national.slice(8, 10)}`;
+  return formatted;
+}
+
 export default function ProfilePage() {
   const [tab, setTab] = useState('orders');
   const [editing, setEditing] = useState(false);
-  const [profile, setProfile] = useState({ firstName: 'Алибек', lastName: 'Жаксыбеков', email: 'alibek@example.com', phone: '+7 (701) 234-56-78', city: 'Алматы' });
+  const [profile, setProfile] = useState({ firstName: 'Алибек', lastName: 'Жаксыбеков', email: 'alibek@example.com', phone: formatKazakhstanPhone('+7 (701) 234-56-78'), city: 'Алматы' });
   const [saved, setSaved] = useState(false);
 
   const totalPoints = LOYALTY_HISTORY.reduce((s, h) => s + h.points, 0);
@@ -81,7 +105,13 @@ export default function ProfilePage() {
               </button>
             ))}
             <div style={{ height: 1, background: 'var(--line)', margin: '8px 0' }} />
-            <button onClick={() => {}} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 20px', background: 'transparent', border: 'none', borderLeft: '3px solid transparent', cursor: 'pointer' }}>
+            <button
+              onClick={() => {
+                clearAuthSession();
+                window.location.href = '/login';
+              }}
+              style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 20px', background: 'transparent', border: 'none', borderLeft: '3px solid transparent', cursor: 'pointer' }}
+            >
               <span className="icon" style={{ fontSize: 20, color: 'var(--ink-3)' }}>logout</span>
               <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink-3)' }}>Выйти</span>
             </button>
@@ -220,7 +250,7 @@ export default function ProfilePage() {
                     </div>
                     <div className="form-group">
                       <label className="form-label">Телефон</label>
-                      <input className="input" value={profile.phone} onChange={e => setProfile(p => ({ ...p, phone: e.target.value }))} disabled={!editing} style={{ opacity: editing ? 1 : 0.7 }} />
+                      <input className="input" value={profile.phone} onChange={e => setProfile(p => ({ ...p, phone: formatKazakhstanPhone(e.target.value) }))} disabled={!editing} style={{ opacity: editing ? 1 : 0.7 }} />
                     </div>
                     {editing && (
                       <div style={{ display: 'flex', gap: 12 }}>

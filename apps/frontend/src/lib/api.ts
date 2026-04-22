@@ -63,6 +63,16 @@ function clearAccessTokenCookie(): void {
   document.cookie = "azdek_access_token=; Path=/; Max-Age=0; SameSite=Lax";
 }
 
+export function clearAuthSession(): void {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("azdek_access_token");
+    localStorage.removeItem("azdek_refresh_token");
+    localStorage.removeItem("azdek_user_role");
+  }
+
+  clearAccessTokenCookie();
+}
+
 function getAuthHeaders(token?: string): HeadersInit | undefined {
   return token ? { Authorization: `Bearer ${token}` } : undefined;
 }
