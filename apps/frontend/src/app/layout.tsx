@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import HeaderWrapper from "@/components/header-wrapper";
 
 export const metadata: Metadata = {
   title: "Adzek — натуральная бытовая химия",
@@ -21,7 +22,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <HeaderWrapper />
+        {children}
+      </body>
     </html>
   );
 }

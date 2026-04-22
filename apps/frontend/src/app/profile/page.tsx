@@ -2,262 +2,256 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import SiteHeader from '@/components/layout/site-header';
-import SiteFooter from '@/components/layout/site-footer';
+
+const TABS = [
+  { id: 'orders', label: 'Заказы', icon: 'receipt_long' },
+  { id: 'loyalty', label: 'Бонусы', icon: 'stars' },
+  { id: 'addresses', label: 'Адреса', icon: 'location_on' },
+  { id: 'settings', label: 'Настройки', icon: 'settings' },
+];
+
+const ORDERS = [
+  { id: 'AZ-48291', date: '18 апр 2026', status: 'delivered', statusLabel: 'Доставлен', total: 5760, items: 3 },
+  { id: 'AZ-37104', date: '02 апр 2026', status: 'processing', statusLabel: 'В обработке', total: 2180, items: 2 },
+  { id: 'AZ-29553', date: '15 мар 2026', status: 'delivered', statusLabel: 'Доставлен', total: 3490, items: 4 },
+  { id: 'AZ-18802', date: '01 мар 2026', status: 'cancelled', statusLabel: 'Отменён', total: 1190, items: 1 },
+];
+
+const LOYALTY_HISTORY = [
+  { date: '18 апр 2026', desc: 'Заказ #AZ-48291', points: +286, type: 'earn' },
+  { date: '02 апр 2026', desc: 'Заказ #AZ-37104', points: +109, type: 'earn' },
+  { date: '01 апр 2026', desc: 'Скидка по бонусам', points: -200, type: 'spend' },
+  { date: '15 мар 2026', desc: 'Заказ #AZ-29553', points: +174, type: 'earn' },
+];
+
+const STATUS_COLORS: Record<string, { bg: string; color: string }> = {
+  delivered: { bg: '#DCFCE7', color: '#166534' },
+  processing: { bg: '#FEF9C3', color: '#854D0E' },
+  shipping: { bg: '#DBEAFE', color: '#1E40AF' },
+  cancelled: { bg: '#FEE2E2', color: '#991B1B' },
+};
 
 export default function ProfilePage() {
-  const [activeTab, setActiveTab] = useState<'account' | 'addresses' | 'preferences'>('account');
-  const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: 'Иван',
-    lastName: 'Иванов',
-    email: 'ivan@example.com',
-    phone: '+7 (999) 123-45-67',
-    birthDate: '1990-01-15',
-    gender: 'male',
-  });
+  const [tab, setTab] = useState('orders');
+  const [editing, setEditing] = useState(false);
+  const [profile, setProfile] = useState({ firstName: 'Алибек', lastName: 'Жаксыбеков', email: 'alibek@example.com', phone: '+7 (701) 234-56-78', city: 'Алматы' });
+  const [saved, setSaved] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  const totalPoints = LOYALTY_HISTORY.reduce((s, h) => s + h.points, 0);
 
   const handleSave = () => {
-    setIsEditing(false);
+    setSaved(true);
+    setEditing(false);
+    setTimeout(() => setSaved(false), 2500);
   };
 
   return (
-    <div className="min-h-screen bg-surface">
-      <SiteHeader />
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingTop: 'var(--header-h)' }}>
 
-      <main className="pt-20 pb-24">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="mb-12">
-            <h1 className="font-headline font-black text-4xl text-on-surface mb-2">
-              Мой профиль
-            </h1>
-            <p className="text-on-surface-variant">
-              Управление информацией о вашем аккаунте
-            </p>
+      {/* Profile header */}
+      <div style={{ background: 'var(--ink-bg)', padding: '32px var(--gutter)' }}>
+        <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', display: 'flex', alignItems: 'center', gap: 24 }}>
+          <div style={{ width: 64, height: 64, borderRadius: '50%', background: 'var(--clay)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <span style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 24, color: '#fff' }}>
+              {profile.firstName[0]}{profile.lastName[0]}
+            </span>
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-2xl p-6 space-y-2">
-                <button
-                  onClick={() => setActiveTab('account')}
-                  className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                    activeTab === 'account'
-                      ? 'bg-primary text-white'
-                      : 'text-on-surface hover:bg-surface-container'
-                  }`}
-                >
-                  <span className="material-symbols-outlined align-middle mr-2 text-5 w-5 h-5">person</span>
-                  Аккаунт
-                </button>
-                <Link href="/orders">
-                  <button className="w-full text-left px-4 py-3 rounded-lg font-semibold text-on-surface hover:bg-surface-container transition-all">
-                    <span className="material-symbols-outlined align-middle mr-2 text-5 w-5 h-5">shopping_bag</span>
-                    Заказы
-                  </button>
-                </Link>
-                <Link href="/addresses">
-                  <button className="w-full text-left px-4 py-3 rounded-lg font-semibold text-on-surface hover:bg-surface-container transition-all">
-                    <span className="material-symbols-outlined align-middle mr-2 text-5 w-5 h-5">location_on</span>
-                    Адреса
-                  </button>
-                </Link>
-                <button
-                  onClick={() => setActiveTab('preferences')}
-                  className={`w-full text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                    activeTab === 'preferences'
-                      ? 'bg-primary text-white'
-                      : 'text-on-surface hover:bg-surface-container'
-                  }`}
-                >
-                  <span className="material-symbols-outlined align-middle mr-2 text-5 w-5 h-5">settings</span>
-                  Предпочтения
-                </button>
-                <div className="border-t border-outline-variant pt-4 mt-4">
-                  <Link href="/">
-                    <button className="w-full text-left px-4 py-3 rounded-lg font-semibold text-red-600 hover:bg-red-50 transition-all">
-                      <span className="material-symbols-outlined align-middle mr-2 text-5 w-5 h-5">logout</span>
-                      Выход
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="lg:col-span-3">
-              {/* Account Tab */}
-              {activeTab === 'account' && (
-                <div className="bg-white rounded-2xl p-8 space-y-6">
-                  <div className="flex justify-between items-center mb-6">
-                    <h2 className="font-headline font-bold text-2xl text-on-surface">
-                      Информация об аккаунте
-                    </h2>
-                    <button
-                      onClick={() => setIsEditing(!isEditing)}
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-primary text-primary font-semibold hover:bg-blue-50 transition-all"
-                    >
-                      <span className="material-symbols-outlined text-5 w-5 h-5">
-                        {isEditing ? 'close' : 'edit'}
-                      </span>
-                      {isEditing ? 'Отменить' : 'Редактировать'}
-                    </button>
-                  </div>
-
-                  {isEditing ? (
-                    <form className="space-y-4">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-semibold text-on-surface mb-2">Имя</label>
-                          <input
-                            type="text"
-                            name="firstName"
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-semibold text-on-surface mb-2">Фамилия</label>
-                          <input
-                            type="text"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-on-surface mb-2">Email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-semibold text-on-surface mb-2">Телефон</label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
-                        />
-                      </div>
-
-                      <div className="border-t border-outline-variant pt-6 flex gap-4">
-                        <button
-                          type="button"
-                          onClick={() => setIsEditing(false)}
-                          className="flex-1 border-2 border-primary text-primary py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-                        >
-                          Отменить
-                        </button>
-                        <button
-                          type="button"
-                          onClick={handleSave}
-                          className="flex-1 bg-primary text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
-                        >
-                          Сохранить изменения
-                        </button>
-                      </div>
-                    </form>
-                  ) : (
-                    <div className="space-y-6">
-                      <div className="grid grid-cols-2 gap-6">
-                        <div>
-                          <p className="text-sm text-on-surface-variant mb-1">Имя</p>
-                          <p className="text-lg font-semibold text-on-surface">{formData.firstName}</p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-on-surface-variant mb-1">Фамилия</p>
-                          <p className="text-lg font-semibold text-on-surface">{formData.lastName}</p>
-                        </div>
-                      </div>
-
-                      <div>
-                        <p className="text-sm text-on-surface-variant mb-1">Email</p>
-                        <p className="text-lg font-semibold text-on-surface">{formData.email}</p>
-                      </div>
-
-                      <div>
-                        <p className="text-sm text-on-surface-variant mb-1">Телефон</p>
-                        <p className="text-lg font-semibold text-on-surface">{formData.phone}</p>
-                      </div>
-
-                      <div className="border-t border-outline-variant pt-6">
-                        <button className="w-full border-2 border-orange-300 text-orange-600 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors flex items-center justify-center gap-2">
-                          <span className="material-symbols-outlined">lock</span>
-                          Изменить пароль
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {/* Preferences Tab */}
-              {activeTab === 'preferences' && (
-                <div className="bg-white rounded-2xl p-8 space-y-6">
-                  <h2 className="font-headline font-bold text-2xl text-on-surface mb-6">
-                    Предпочтения
-                  </h2>
-
-                  <div className="space-y-6">
-                    <div className="border border-outline-variant rounded-lg p-4">
-                      <label className="flex items-start gap-3 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          defaultChecked
-                          className="w-5 h-5 mt-1 rounded border-outline-variant"
-                        />
-                        <div>
-                          <p className="font-semibold text-on-surface">Уведомления по email</p>
-                          <p className="text-sm text-on-surface-variant">Получайте обновления о новых товарах и специальных предложениях</p>
-                        </div>
-                      </label>
-                    </div>
-
-                    <div className="border border-outline-variant rounded-lg p-4">
-                      <label className="flex items-start gap-3 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          defaultChecked
-                          className="w-5 h-5 mt-1 rounded border-outline-variant"
-                        />
-                        <div>
-                          <p className="font-semibold text-on-surface">SMS-уведомления</p>
-                          <p className="text-sm text-on-surface-variant">Статус заказа и важные информационные сообщения</p>
-                        </div>
-                      </label>
-                    </div>
-
-                    <div className="border-t border-outline-variant pt-6 mt-6">
-                      <button className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
-                        Сохранить предпочтения
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
+          <div>
+            <h1 style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 22, color: 'var(--ink-inv)', marginBottom: 4 }}>
+              {profile.firstName} {profile.lastName}
+            </h1>
+            <p style={{ fontSize: 13, color: 'rgba(250,250,248,.5)' }}>{profile.email} · {profile.city}</p>
+          </div>
+          <div style={{ marginLeft: 'auto', textAlign: 'right' }}>
+            <p style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 28, color: 'var(--clay)', letterSpacing: '-0.03em' }}>{totalPoints}</p>
+            <p style={{ fontSize: 12, color: 'rgba(250,250,248,.4)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>бонусных баллов</p>
           </div>
         </div>
-      </main>
+      </div>
 
-      <SiteFooter />
+      <div style={{ maxWidth: 'var(--max-w)', margin: '0 auto', padding: '32px var(--gutter) 64px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 32, alignItems: 'start' }}>
+
+          {/* Sidebar tabs */}
+          <div style={{ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--r-lg)', overflow: 'hidden', position: 'sticky', top: 'calc(var(--header-h) + 24px)' }}>
+            {TABS.map(t => (
+              <button key={t.id} onClick={() => setTab(t.id)} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 20px', background: tab === t.id ? 'var(--clay-light)' : 'transparent', border: 'none', borderLeft: `3px solid ${tab === t.id ? 'var(--clay)' : 'transparent'}`, cursor: 'pointer', textAlign: 'left', transition: 'all 140ms' }}>
+                <span className="icon" style={{ fontSize: 20, color: tab === t.id ? 'var(--clay)' : 'var(--ink-3)' }}>{t.icon}</span>
+                <span style={{ fontSize: 14, fontWeight: 600, color: tab === t.id ? 'var(--clay)' : 'var(--ink-2)' }}>{t.label}</span>
+              </button>
+            ))}
+            <div style={{ height: 1, background: 'var(--line)', margin: '8px 0' }} />
+            <button onClick={() => {}} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 20px', background: 'transparent', border: 'none', borderLeft: '3px solid transparent', cursor: 'pointer' }}>
+              <span className="icon" style={{ fontSize: 20, color: 'var(--ink-3)' }}>logout</span>
+              <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink-3)' }}>Выйти</span>
+            </button>
+          </div>
+
+          {/* Content area */}
+          <div>
+
+            {/* ORDERS TAB */}
+            {tab === 'orders' && (
+              <div>
+                <h2 style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 20, marginBottom: 20 }}>История заказов</h2>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {ORDERS.map(order => (
+                    <div key={order.id} style={{ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--r-lg)', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 6 }}>
+                          <span style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 16, color: 'var(--ink)' }}>#{order.id}</span>
+                          <span style={{ padding: '3px 10px', borderRadius: 'var(--r-full)', fontSize: 11, fontWeight: 700, ...STATUS_COLORS[order.status] }}>
+                            {order.statusLabel}
+                          </span>
+                        </div>
+                        <p style={{ fontSize: 13, color: 'var(--ink-3)' }}>{order.date} · {order.items} {order.items === 1 ? 'товар' : order.items < 5 ? 'товара' : 'товаров'}</p>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+                        <span style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 18, color: 'var(--ink)' }}>{order.total.toLocaleString('ru-KZ')} ₸</span>
+                        <Link href={`/orders/${order.id}`} className="btn btn-outline" style={{ padding: '8px 16px', fontSize: 13 }}>Детали</Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* LOYALTY TAB */}
+            {tab === 'loyalty' && (
+              <div>
+                <h2 style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 20, marginBottom: 20 }}>Программа лояльности</h2>
+
+                {/* Balance card */}
+                <div style={{ background: 'var(--ink-bg)', borderRadius: 'var(--r-xl)', padding: '32px', marginBottom: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <p style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(250,250,248,.4)', marginBottom: 8 }}>Ваш баланс</p>
+                    <p style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 48, letterSpacing: '-0.04em', color: 'var(--clay)' }}>{totalPoints}</p>
+                    <p style={{ fontSize: 13, color: 'rgba(250,250,248,.5)' }}>баллов · ≈ {(totalPoints * 5).toLocaleString('ru-KZ')} ₸</p>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <p style={{ fontSize: 12, color: 'rgba(250,250,248,.4)', marginBottom: 4 }}>1 покупка = 5% баллов</p>
+                    <p style={{ fontSize: 12, color: 'rgba(250,250,248,.4)' }}>1 балл = 5 ₸ скидки</p>
+                  </div>
+                </div>
+
+                <h3 style={{ fontWeight: 700, fontSize: 15, marginBottom: 12, color: 'var(--ink-2)' }}>История операций</h3>
+                <div style={{ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--r-lg)', overflow: 'hidden' }}>
+                  {LOYALTY_HISTORY.map((row, i) => (
+                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 20px', borderBottom: i < LOYALTY_HISTORY.length - 1 ? '1px solid var(--line)' : 'none' }}>
+                      <div>
+                        <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink)' }}>{row.desc}</p>
+                        <p style={{ fontSize: 12, color: 'var(--ink-3)' }}>{row.date}</p>
+                      </div>
+                      <span style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 16, color: row.type === 'earn' ? '#166534' : 'var(--clay)' }}>
+                        {row.type === 'earn' ? '+' : ''}{row.points}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ADDRESSES TAB */}
+            {tab === 'addresses' && (
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+                  <h2 style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 20 }}>Адреса доставки</h2>
+                  <button className="btn btn-outline" style={{ padding: '8px 16px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span className="icon" style={{ fontSize: 18 }}>add</span>Добавить адрес
+                  </button>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  {[
+                    { label: 'Дом', address: 'г. Алматы, ул. Абая 150, кв. 45', default: true },
+                    { label: 'Работа', address: 'г. Алматы, пр. Аль-Фараби 77Б', default: false },
+                  ].map((addr, i) => (
+                    <div key={i} style={{ background: 'var(--surface)', border: `1.5px solid ${addr.default ? 'var(--clay)' : 'var(--line)'}`, borderRadius: 'var(--r-lg)', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14 }}>
+                        <span className="icon" style={{ fontSize: 24, color: addr.default ? 'var(--clay)' : 'var(--ink-3)', marginTop: 2 }}>location_on</span>
+                        <div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                            <span style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)' }}>{addr.label}</span>
+                            {addr.default && <span style={{ background: 'var(--clay-light)', color: 'var(--clay)', fontSize: 10, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', padding: '2px 8px', borderRadius: 'var(--r-full)' }}>По умолчанию</span>}
+                          </div>
+                          <p style={{ fontSize: 14, color: 'var(--ink-2)' }}>{addr.address}</p>
+                        </div>
+                      </div>
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-3)', padding: 6 }}><span className="icon" style={{ fontSize: 20 }}>edit</span></button>
+                        <button style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--ink-3)', padding: 6 }}><span className="icon" style={{ fontSize: 20 }}>delete</span></button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* SETTINGS TAB */}
+            {tab === 'settings' && (
+              <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+                  <h2 style={{ fontFamily: 'Manrope', fontWeight: 800, fontSize: 20 }}>Настройки профиля</h2>
+                  {!editing && (
+                    <button onClick={() => setEditing(true)} className="btn btn-outline" style={{ padding: '8px 16px', fontSize: 13, display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span className="icon" style={{ fontSize: 18 }}>edit</span>Редактировать
+                    </button>
+                  )}
+                </div>
+                {saved && (
+                  <div style={{ background: '#DCFCE7', border: '1px solid #BBF7D0', borderRadius: 'var(--r-sm)', padding: '12px 16px', fontSize: 14, fontWeight: 600, color: '#166534', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span className="icon" style={{ fontSize: 18 }}>check_circle</span>Данные сохранены
+                  </div>
+                )}
+                <div style={{ background: 'var(--surface)', border: '1px solid var(--line)', borderRadius: 'var(--r-lg)', padding: '28px' }}>
+                  <div className="signup-form">
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label className="form-label">Имя</label>
+                        <input className="input" value={profile.firstName} onChange={e => setProfile(p => ({ ...p, firstName: e.target.value }))} disabled={!editing} style={{ opacity: editing ? 1 : 0.7 }} />
+                      </div>
+                      <div className="form-group">
+                        <label className="form-label">Фамилия</label>
+                        <input className="input" value={profile.lastName} onChange={e => setProfile(p => ({ ...p, lastName: e.target.value }))} disabled={!editing} style={{ opacity: editing ? 1 : 0.7 }} />
+                      </div>
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Email</label>
+                      <input className="input" type="email" value={profile.email} onChange={e => setProfile(p => ({ ...p, email: e.target.value }))} disabled={!editing} style={{ opacity: editing ? 1 : 0.7 }} />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Телефон</label>
+                      <input className="input" value={profile.phone} onChange={e => setProfile(p => ({ ...p, phone: e.target.value }))} disabled={!editing} style={{ opacity: editing ? 1 : 0.7 }} />
+                    </div>
+                    {editing && (
+                      <div style={{ display: 'flex', gap: 12 }}>
+                        <button onClick={handleSave} className="btn btn-clay btn-lg" style={{ flex: 1 }}>Сохранить</button>
+                        <button onClick={() => setEditing(false)} className="btn btn-outline btn-lg">Отмена</button>
+                      </div>
+                    )}
+                  </div>
+
+                  <div style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid var(--line)' }}>
+                    <h3 style={{ fontWeight: 700, fontSize: 14, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--ink-2)', marginBottom: 16 }}>Уведомления</h3>
+                    {[
+                      { id: 'email_orders', label: 'Статус заказов по email' },
+                      { id: 'email_promo', label: 'Акции и скидки' },
+                      { id: 'sms_delivery', label: 'SMS при доставке' },
+                    ].map(n => (
+                      <div key={n.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--line)' }}>
+                        <span style={{ fontSize: 14, color: 'var(--ink)' }}>{n.label}</span>
+                        <label style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                          <input type="checkbox" defaultChecked style={{ accentColor: 'var(--clay)', width: 18, height: 18 }} />
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

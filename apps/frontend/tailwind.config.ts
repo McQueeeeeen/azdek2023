@@ -75,7 +75,7 @@ const config: Config = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    // require('@tailwindcss/forms'),  // Commented out - can interfere with custom styles
   ],
 };
 

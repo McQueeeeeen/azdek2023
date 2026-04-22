@@ -35,12 +35,32 @@ function useHeaderScroll() {
 }
 
 /* ── Data ──────────────────────────────────────────────── */
+const KZ_CITIES = [
+  'Алматы',
+  'Нур-Султан',
+  'Караганда',
+  'Актау',
+  'Атырау',
+  'Өскемен',
+  'Кокшетау',
+  'Костанай',
+  'Павлодар',
+  'Петропавловск',
+  'Таразе',
+  'Туркестан',
+  'Уральск',
+  'Щучинск',
+  'Жанаозен',
+  'Кызылорда',
+  'Семей',
+];
+
 const PRODUCTS = [
   {
     id: 1,
     name: 'Концентрат для посуды',
     sub: 'Мята · Лайм · 500 мл',
-    price: '380 ₽',
+    price: '3 800 ₸',
     tag: 'Ecolabel',
     img: 'https://images.unsplash.com/photo-1585441695325-21ea74b8e4ba?w=500&q=80',
   },
@@ -48,7 +68,7 @@ const PRODUCTS = [
     id: 2,
     name: 'Спрей для поверхностей',
     sub: 'Чайное дерево · 450 мл',
-    price: '450 ₽',
+    price: '4 500 ₸',
     tag: 'Organic',
     img: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=500&q=80',
   },
@@ -56,7 +76,7 @@ const PRODUCTS = [
     id: 3,
     name: 'Гель для стирки',
     sub: 'Лаванда · Хлопок · 1 л',
-    price: '820 ₽',
+    price: '8 200 ₸',
     tag: 'Zero Waste',
     img: 'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?w=500&q=80',
   },
@@ -64,7 +84,7 @@ const PRODUCTS = [
     id: 4,
     name: 'Мыло-концентрат',
     sub: 'Хвоя · Эвкалипт · 250 г',
-    price: '590 ₽',
+    price: '5 900 ₸',
     tag: '100% Bio',
     img: 'https://images.unsplash.com/photo-1556909172-8c2f041fca1e?w=500&q=80',
   },
@@ -78,7 +98,7 @@ const TICKER_ITEMS = [
   'Без хлора и агрессивных ПАВ',
   'Упаковка из переработанного пластика',
   'Веган-формула',
-  'Российское производство',
+  'Казахстанское производство',
 ];
 
 const VALUES = [
@@ -115,8 +135,8 @@ const VALUES = [
   {
     num: '06',
     icon: 'groups',
-    title: 'Создано в России',
-    desc: 'Производство и R&D — в Москве. Поддерживаем местные лаборатории и исследователей.',
+    title: 'Создано в Казахстане',
+    desc: 'Производство и R&D — в Алматы. Поддерживаем местные лаборатории и исследователей.',
   },
 ];
 
@@ -130,6 +150,12 @@ export default function HomePage() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [cartCount] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close menu when navigating
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -140,6 +166,18 @@ export default function HomePage() {
           <Link href="/" className="adzek-logo">
             Adzek<span>.</span>
           </Link>
+
+          {/* Hamburger Menu Button - Mobile Only */}
+          <button
+            className="hamburger-btn lg:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Меню"
+            aria-expanded={mobileMenuOpen}
+          >
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+          </button>
 
           {/* Nav */}
           <nav className="header-nav">
@@ -402,7 +440,7 @@ export default function HomePage() {
                 <div className="philosophy-points">
                   {[
                     'Полный состав на каждой этикетке',
-                    'R&D-лаборатория в Москве',
+                    'R&D-лаборатория в Алматы',
                     'Тестирование на добровольцах, не на животных',
                     'Сотрудничество с экологическими организациями',
                   ].map((p) => (
@@ -496,7 +534,7 @@ export default function HomePage() {
               },
               {
                 title: 'Контакты',
-                links: ['hello@adzek.ru', '8 800 555-35-35', 'Telegram', 'ВКонтакте'],
+                links: ['hello@adzek.kz', '+7 (701) 555-35-35', 'Telegram', 'WhatsApp'],
               },
             ].map((col) => (
               <div key={col.title}>
@@ -512,10 +550,59 @@ export default function HomePage() {
 
           <div className="footer-bottom">
             <span>© 2026 Adzek. Все права защищены.</span>
-            <span>Экологичная химия · Российское производство</span>
+            <span>Экологичная химия · Казахстанское производство</span>
           </div>
         </div>
       </footer>
+
+      {/* ─── MOBILE MENU OVERLAY ────────────────────────────── */}
+      {mobileMenuOpen && (
+        <div
+          className="mobile-menu-overlay"
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* ─── MOBILE MENU SIDEBAR ────────────────────────────── */}
+      <div className={`mobile-menu-sidebar ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-menu-header">
+          <button
+            className="mobile-menu-close"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Закрыть меню"
+          >
+            <span className="icon" style={{ fontSize: 24 }}>close</span>
+          </button>
+        </div>
+
+        <nav className="mobile-menu-nav">
+          {[
+            { label: 'Каталог',   href: '/catalog' },
+            { label: 'Состав',    href: '#values' },
+            { label: 'О бренде',  href: '#about' },
+            { label: 'Доставка',  href: '#' },
+          ].map((l) => (
+            <Link
+              key={l.label}
+              href={l.href}
+              className="mobile-menu-link"
+              onClick={handleNavClick}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="mobile-menu-footer">
+          <Link href="/login" className="btn btn-outline btn-block">
+            Вход
+          </Link>
+          <Link href="/signup" className="btn btn-clay btn-block">
+            Регистрация
+          </Link>
+        </div>
+      </div>
 
       {/* ─── MOBILE NAV ────────────────────────────────────── */}
       <nav className="mob-nav" aria-label="Мобильная навигация">
