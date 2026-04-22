@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { addProductToCart } from '@/lib/cart-store';
 import {
   CATALOG_CATEGORIES,
   CATALOG_PRODUCTS,
@@ -41,6 +42,12 @@ export default function CatalogPage() {
 
   const addToCart = (id: number, event: React.MouseEvent) => {
     event.preventDefault();
+    const product = CATALOG_PRODUCTS.find((item) => item.id === id);
+    if (!product) {
+      return;
+    }
+
+    addProductToCart(product);
     setCartItems((prev) => [...prev, id]);
   };
 

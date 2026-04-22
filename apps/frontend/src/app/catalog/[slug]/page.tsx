@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
+import { addProductToCart } from '@/lib/cart-store';
 import { getCatalogProductDetails, getCatalogRelatedProducts } from '@/lib/catalog-data';
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
@@ -26,6 +27,18 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   }
 
   const handleAddToCart = () => {
+    addProductToCart({
+      id: product.id,
+      slug: product.slug,
+      name: product.name,
+      category: product.category,
+      price: product.price,
+      badge: product.badge,
+      sub: product.sub,
+      rating: product.rating,
+      reviews: product.reviews,
+      description: product.description,
+    });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
