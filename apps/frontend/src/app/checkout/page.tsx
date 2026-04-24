@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { clearCartLines, getCartLineCount, getCartLineTotal, getInitialCartLines, type CartLine } from '@/lib/cart-store';
 import { CATALOG_PRODUCTS } from '@/lib/catalog-data';
 
-const KZ_CITIES = ['Алматы', 'Астана', 'Шымкент', 'Актобе', 'Актау', 'Атырау', 'Өскемен', 'Кокшетау', 'Костанай', 'Павлодар', 'Петропавл', 'Тараз', 'Туркестан', 'Орал', 'Жаңаөзен', 'Кызылорда', 'Семей'];
+const KZ_CITIES = ['Караганда', 'Астана'];
 
 const STEPS = ['Адрес', 'Доставка', 'Оплата', 'Подтверждение'];
 
@@ -59,6 +59,29 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     setItems(getInitialCartLines());
+
+    // Auto-detect city via IP geolocation
+    fetch('https://ipapi.co/json/')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.city) {
+          let detectedCity = data.city;
+          // Map standard english names to our russian options
+          if (detectedCity === 'Karaganda' || detectedCity === 'Qaraghandy') detectedCity = 'Караганда';
+          if (detectedCity === 'Astana' || detectedCity === 'Nur-Sultan') detectedCity = 'Астана';
+
+          if (['Караганда', 'Астана'].includes(detectedCity)) {
+            setForm((current) => {
+              // Only override if user hasn't manually set it yet
+              if (!current.city) {
+                return { ...current, city: detectedCity };
+              }
+              return current;
+            });
+          }
+        }
+      })
+      .catch((err) => console.log('Geolocation detection failed:', err));
   }, []);
 
   const subtotal = useMemo(() => getCartLineTotal(items), [items]);

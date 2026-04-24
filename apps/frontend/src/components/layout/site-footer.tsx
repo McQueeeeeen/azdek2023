@@ -111,7 +111,7 @@ export default function SiteFooter() {
         </div>
 
         <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
-          <p>© 2024 Adzek. Все права защищены.</p>
+          <p>© 2023 Adzek. Все права защищены.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <Link href="#" className="hover:text-white transition-colors">
               Лицензия

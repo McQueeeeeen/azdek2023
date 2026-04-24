@@ -373,7 +373,7 @@ export default function HomePage() {
             <div className="statement-inner">
               <div className="statement-meta">
                 <span className="statement-meta-num">Философия</span>
-                <span className="statement-meta-label">Adzek · с 2019</span>
+                <span className="statement-meta-label">Adzek · с 2023</span>
               </div>
               <blockquote className="statement-quote">
                 Мы убрали всё лишнее. Оставили только то,
@@ -435,7 +435,7 @@ export default function HomePage() {
                   Начали с простого вопроса: зачем в составе 40 ингредиентов?
                 </h2>
                 <p className="philosophy-body">
-                  В 2019 году мы разобрали состав популярных чистящих средств и ужаснулись. Агрессивная химия, накопительный эффект, вред для кожи детей. Мы решили создать альтернативу — с открытым составом и доказанной безопасностью.
+                  В 2023 году мы разобрали состав популярных чистящих средств и ужаснулись. Агрессивная химия, накопительный эффект, вред для кожи детей. Мы решили создать альтернативу — с открытым составом и доказанной безопасностью.
                 </p>
                 <div className="philosophy-points">
                   {[
@@ -549,7 +549,7 @@ export default function HomePage() {
           </div>
 
           <div className="footer-bottom">
-            <span>© 2026 Adzek. Все права защищены.</span>
+            <span>© 2023 Adzek. Все права защищены.</span>
             <span>Экологичная химия · Казахстанское производство</span>
           </div>
         </div>

@@ -1,37 +1,49 @@
+'use client';
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useCartStore } from "@/store/useCartStore";
 
 export default function SiteHeader() {
+  const [mounted, setMounted] = useState(false);
+  const cartCount = useCartStore((state) => state.getCount());
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20">
-      <div className="flex justify-between items-center px-8 h-full max-w-7xl mx-auto">
-        <Link href="/" className="text-2xl font-black text-blue-700 tracking-tighter">
+    <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-[0_20px_40px_rgba(0,88,188,0.06)] h-20 border-b border-line">
+      <div className="flex justify-between items-center px-8 h-full max-w-[1400px] mx-auto">
+        <Link href="/" className="font-headline text-2xl font-black text-ink tracking-tighter">
           Adzek
         </Link>
 
         <div className="hidden md:flex gap-8 items-center">
           <Link
-            className="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-500 hover:scale-105 transition-transform duration-200"
+            className="font-semibold text-ink-variant hover:text-clay hover:scale-105 transition-all duration-200"
             href="/catalog"
           >
             Каталог
           </Link>
           <Link
-            className="font-manrope tracking-tight font-semibold text-blue-700 border-b-2 border-blue-600 pb-1 hover:scale-105 transition-transform duration-200"
+            className="font-semibold text-clay border-b-2 border-clay pb-1 hover:scale-105 transition-all duration-200"
             href="/promotions"
           >
-            Казахстанская линейка
+            Новинки
           </Link>
           <Link
-            className="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-500 hover:scale-105 transition-transform duration-200"
-            href="/about"
+            className="font-semibold text-ink-variant hover:text-clay hover:scale-105 transition-all duration-200"
+            href="/#about"
           >
             О бренде
           </Link>
           <Link
-            className="font-manrope tracking-tight font-semibold text-slate-600 hover:text-blue-500 hover:scale-105 transition-transform duration-200"
-            href="/support"
+            className="font-semibold text-ink-variant hover:text-clay hover:scale-105 transition-all duration-200"
+            href="/#values"
           >
-            Доставка
+            Принципы
           </Link>
         </div>
 
@@ -41,25 +53,36 @@ export default function SiteHeader() {
               search
             </span>
             <input
-              className="bg-bg-alt-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm"
+              className="bg-surface border border-line rounded-full py-2 pl-10 pr-4 w-64 focus:ring-1 focus:ring-clay focus:border-clay outline-none text-sm text-ink"
               placeholder="Поиск средств..."
               type="text"
             />
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <Link
               href="/cart"
-              className="material-symbols-outlined text-blue-700 cursor-pointer hover:scale-110 transition-transform"
+              className="relative text-ink cursor-pointer hover:text-clay transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-clay-light"
               aria-label="Корзина"
             >
-              shopping_cart
+              <span className="material-symbols-outlined" style={{ fontSize: 24 }}>shopping_cart</span>
+              {mounted && cartCount > 0 && (
+                <motion.div
+                  key={cartCount}
+                  initial={{ scale: 0.5, y: 10 }}
+                  animate={{ scale: [1, 1.3, 1], y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute -top-1 -right-1 bg-clay text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full shadow-sm"
+                >
+                  {cartCount}
+                </motion.div>
+              )}
             </Link>
             <Link
               href="/profile"
-              className="material-symbols-outlined text-blue-700 cursor-pointer hover:scale-110 transition-transform"
+              className="text-ink cursor-pointer hover:text-clay transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-clay-light"
               aria-label="Профиль"
             >
-              person
+              <span className="material-symbols-outlined" style={{ fontSize: 26 }}>person</span>
             </Link>
           </div>
         </div>

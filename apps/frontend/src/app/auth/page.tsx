@@ -2,33 +2,75 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { toast } from 'sonner';
 import SiteHeader from '@/components/layout/site-header';
 import SiteFooter from '@/components/layout/site-footer';
+import { apiPost, AuthTokens } from '@/lib/api';
+import { useAuthStore } from '@/store/useAuthStore';
 
 type AuthMode = 'login' | 'register';
 
+const loginSchema = z.object({
+  email: z.string().email('Некорректный email адрес'),
+  password: z.string().min(6, 'Минимальная длина пароля 6 символов'),
+});
+
+const registerSchema = z.object({
+  email: z.string().email('Некорректный email адрес'),
+  password: z.string().min(6, 'Минимальная длина пароля 6 символов'),
+  firstName: z.string().min(2, 'Имя слишком короткое'),
+  lastName: z.string().min(2, 'Фамилия слишком короткая'),
+});
+
+type LoginForm = z.infer<typeof loginSchema>;
+type RegisterForm = z.infer<typeof registerSchema>;
+
 export default function AuthPage() {
   const [mode, setMode] = useState<AuthMode>('login');
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
-    firstName: '',
-    lastName: '',
-    agreeTerms: false,
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const setAuth = useAuthStore((state) => state.setAuth);
+
+  const loginForm = useForm<LoginForm>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: { email: '', password: '' },
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
+  const registerForm = useForm<RegisterForm>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: { email: '', password: '', firstName: '', lastName: '' },
+  });
+
+  const onLogin = async (data: LoginForm) => {
+    setIsLoading(true);
+    try {
+      const response = await apiPost<AuthTokens>('/auth/login', data);
+      setAuth(response.user, response.accessToken);
+      toast.success('Вы успешно вошли в систему!');
+      router.push('/');
+    } catch (err: any) {
+      toast.error('Ошибка входа', { description: 'Неверный email или пароль' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
+  const onRegister = async (data: RegisterForm) => {
+    setIsLoading(true);
+    try {
+      const response = await apiPost<AuthTokens>('/auth/register', data);
+      setAuth(response.user, response.accessToken);
+      toast.success('Аккаунт успешно создан!');
+      router.push('/');
+    } catch (err: any) {
+      toast.error('Ошибка регистрации', { description: 'Возможно, пользователь уже существует' });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -45,7 +87,7 @@ export default function AuthPage() {
             <p className="text-ink-variant mt-2">Чистота без лишнего</p>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 space-y-6">
+          <div className="bg-white rounded-3xl p-8 space-y-6 shadow-sm border border-line">
             <div className="flex gap-4 border-b border-line">
               <button
                 onClick={() => setMode('login')}
@@ -70,39 +112,35 @@ export default function AuthPage() {
             </div>
 
             {mode === 'login' && (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={loginForm.handleSubmit(onLogin)} className="space-y-4">
                 <h2 className="font-headline font-bold text-2xl text-ink mb-6">
                   Добро пожаловать!
                 </h2>
 
                 <div>
-                  <label className="block text-sm font-semibold text-ink mb-2">
-                    Email
-                  </label>
+                  <label className="block text-sm font-semibold text-ink mb-2">Email</label>
                   <input
                     type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
+                    {...loginForm.register('email')}
+                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 outline-none"
                     placeholder="example@mail.com"
-                    required
                   />
+                  {loginForm.formState.errors.email && (
+                    <p className="text-error text-xs mt-1">{loginForm.formState.errors.email.message}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-ink mb-2">
-                    Пароль
-                  </label>
+                  <label className="block text-sm font-semibold text-ink mb-2">Пароль</label>
                   <input
                     type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
+                    {...loginForm.register('password')}
+                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 outline-none"
                     placeholder="••••••••"
-                    required
                   />
+                  {loginForm.formState.errors.password && (
+                    <p className="text-error text-xs mt-1">{loginForm.formState.errors.password.message}</p>
+                  )}
                 </div>
 
                 <div className="text-right">
@@ -113,113 +151,89 @@ export default function AuthPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-clay text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  disabled={isLoading}
+                  className="w-full bg-clay text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  <span className="material-symbols-outlined">login</span>
-                  Войти
+                  {isLoading ? (
+                    <span className="material-symbols-outlined animate-spin">refresh</span>
+                  ) : (
+                    <span className="material-symbols-outlined">login</span>
+                  )}
+                  {isLoading ? 'Вход...' : 'Войти'}
                 </button>
-
-                <div className="relative my-6">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-line" />
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-ink-variant">или войдите через</span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <button
-                    type="button"
-                    className="border-2 border-line py-3 rounded-lg font-semibold hover:border-clay transition-colors flex items-center justify-center gap-2"
-                  >
-                    <span className="material-symbols-outlined">account_box</span>
-                    Google
-                  </button>
-                  <button
-                    type="button"
-                    className="border-2 border-line py-3 rounded-lg font-semibold hover:border-clay transition-colors flex items-center justify-center gap-2"
-                  >
-                    <span className="material-symbols-outlined">account_balance_wallet</span>
-                    Яндекс
-                  </button>
-                </div>
               </form>
             )}
 
             {mode === 'register' && (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={registerForm.handleSubmit(onRegister)} className="space-y-4">
                 <h2 className="font-headline font-bold text-2xl text-ink mb-6">
                   Создать аккаунт
                 </h2>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-ink mb-2">
-                      Имя
-                    </label>
+                    <label className="block text-sm font-semibold text-ink mb-2">Имя</label>
                     <input
                       type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
+                      {...registerForm.register('firstName')}
+                      className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 outline-none"
                       placeholder="Алибек"
-                      required
                     />
+                    {registerForm.formState.errors.firstName && (
+                      <p className="text-error text-xs mt-1">{registerForm.formState.errors.firstName.message}</p>
+                    )}
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-ink mb-2">
-                      Фамилия
-                    </label>
+                    <label className="block text-sm font-semibold text-ink mb-2">Фамилия</label>
                     <input
                       type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
+                      {...registerForm.register('lastName')}
+                      className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 outline-none"
                       placeholder="Жаксыбеков"
-                      required
                     />
+                    {registerForm.formState.errors.lastName && (
+                      <p className="text-error text-xs mt-1">{registerForm.formState.errors.lastName.message}</p>
+                    )}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-ink mb-2">
-                    Email
-                  </label>
+                  <label className="block text-sm font-semibold text-ink mb-2">Email</label>
                   <input
                     type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
+                    {...registerForm.register('email')}
+                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 outline-none"
                     placeholder="example@mail.com"
-                    required
                   />
+                  {registerForm.formState.errors.email && (
+                    <p className="text-error text-xs mt-1">{registerForm.formState.errors.email.message}</p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-ink mb-2">
-                    Пароль
-                  </label>
+                  <label className="block text-sm font-semibold text-ink mb-2">Пароль</label>
                   <input
                     type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
+                    {...registerForm.register('password')}
+                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 outline-none"
                     placeholder="••••••••"
-                    required
                   />
+                  {registerForm.formState.errors.password && (
+                    <p className="text-error text-xs mt-1">{registerForm.formState.errors.password.message}</p>
+                  )}
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-clay text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  disabled={isLoading}
+                  className="w-full bg-clay text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
-                  <span className="material-symbols-outlined">person_add</span>
-                  Зарегистрироваться
+                  {isLoading ? (
+                    <span className="material-symbols-outlined animate-spin">refresh</span>
+                  ) : (
+                    <span className="material-symbols-outlined">person_add</span>
+                  )}
+                  {isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
                 </button>
               </form>
             )}

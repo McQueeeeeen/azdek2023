@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
+import { Toaster } from "sonner";
 import HeaderWrapper from "@/components/header-wrapper";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <HeaderWrapper />
         {children}
+        <Toaster richColors position="bottom-right" />
       </body>
     </html>
   );
