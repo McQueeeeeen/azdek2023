@@ -113,10 +113,10 @@ export default function AdminDashboardPage() {
       <main className="pt-20 pb-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-12">
-            <h1 className="font-headline font-black text-4xl text-on-surface mb-2">
+            <h1 className="font-headline font-black text-4xl text-ink mb-2">
               Панель администратора
             </h1>
-            <p className="text-on-surface-variant">
+            <p className="text-ink-variant">
               Общая статистика и управление заказами
             </p>
           </div>
@@ -126,8 +126,8 @@ export default function AdminDashboardPage() {
               <div key={idx} className="bg-white rounded-2xl p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <p className="text-sm text-on-surface-variant mb-1">{stat.title}</p>
-                    <h3 className="text-3xl font-black text-on-surface">{stat.value}</h3>
+                    <p className="text-sm text-ink-variant mb-1">{stat.title}</p>
+                    <h3 className="text-3xl font-black text-ink">{stat.value}</h3>
                   </div>
                   <div className={`${stat.color} p-3 rounded-lg`}>
                     <span className="material-symbols-outlined text-5 w-6 h-6">
@@ -142,11 +142,11 @@ export default function AdminDashboardPage() {
 
           <div className="bg-white rounded-2xl p-8">
             <div className="flex justify-between items-center mb-8">
-              <h2 className="font-headline font-bold text-2xl text-on-surface">
+              <h2 className="font-headline font-bold text-2xl text-ink">
                 Последние заказы
               </h2>
               <Link href="/admin/orders">
-                <button className="text-primary font-semibold hover:underline flex items-center gap-2">
+                <button className="text-clay font-semibold hover:underline flex items-center gap-2">
                   Все заказы
                   <span className="material-symbols-outlined text-5 w-5 h-5">arrow_forward</span>
                 </button>
@@ -156,26 +156,26 @@ export default function AdminDashboardPage() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-outline-variant">
-                    <th className="text-left py-3 px-4 font-semibold text-on-surface text-sm">
+                  <tr className="border-b border-line">
+                    <th className="text-left py-3 px-4 font-semibold text-ink text-sm">
                       Номер заказа
                     </th>
-                    <th className="text-left py-3 px-4 font-semibold text-on-surface text-sm">
+                    <th className="text-left py-3 px-4 font-semibold text-ink text-sm">
                       Клиент
                     </th>
-                    <th className="text-left py-3 px-4 font-semibold text-on-surface text-sm">
+                    <th className="text-left py-3 px-4 font-semibold text-ink text-sm">
                       Дата
                     </th>
-                    <th className="text-left py-3 px-4 font-semibold text-on-surface text-sm">
+                    <th className="text-left py-3 px-4 font-semibold text-ink text-sm">
                       Товары
                     </th>
-                    <th className="text-left py-3 px-4 font-semibold text-on-surface text-sm">
+                    <th className="text-left py-3 px-4 font-semibold text-ink text-sm">
                       Статус
                     </th>
-                    <th className="text-right py-3 px-4 font-semibold text-on-surface text-sm">
+                    <th className="text-right py-3 px-4 font-semibold text-ink text-sm">
                       Сумма
                     </th>
-                    <th className="text-center py-3 px-4 font-semibold text-on-surface text-sm">
+                    <th className="text-center py-3 px-4 font-semibold text-ink text-sm">
                       Действия
                     </th>
                   </tr>
@@ -184,20 +184,20 @@ export default function AdminDashboardPage() {
                   {recentOrders.map(order => {
                     const status = getStatusBadge(order.status);
                     return (
-                      <tr key={order.id} className="border-b border-outline-variant hover:bg-surface transition-colors">
+                      <tr key={order.id} className="border-b border-line hover:bg-surface transition-colors">
                         <td className="py-4 px-4">
-                          <p className="font-semibold text-on-surface">{order.id}</p>
+                          <p className="font-semibold text-ink">{order.id}</p>
                         </td>
                         <td className="py-4 px-4">
-                          <p className="text-on-surface">{order.customer}</p>
+                          <p className="text-ink">{order.customer}</p>
                         </td>
                         <td className="py-4 px-4">
-                          <p className="text-on-surface-variant text-sm">
+                          <p className="text-ink-variant text-sm">
                             {new Date(order.date).toLocaleDateString('ru-RU')}
                           </p>
                         </td>
                         <td className="py-4 px-4">
-                          <p className="text-on-surface">{order.items}</p>
+                          <p className="text-ink">{order.items}</p>
                         </td>
                         <td className="py-4 px-4">
                           <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${status.color}`}>
@@ -205,10 +205,10 @@ export default function AdminDashboardPage() {
                           </span>
                         </td>
                         <td className="py-4 px-4 text-right">
-                          <p className="font-semibold text-on-surface">{order.total.toLocaleString('ru-KZ')} ₸</p>
+                          <p className="font-semibold text-ink">{order.total.toLocaleString('ru-KZ')} ₸</p>
                         </td>
                         <td className="py-4 px-4 text-center">
-                          <button className="text-primary hover:text-primary/80 transition-colors">
+                          <button className="text-clay hover:text-clay/80 transition-colors">
                             <span className="material-symbols-outlined text-5 w-5 h-5">edit</span>
                           </button>
                         </td>
@@ -222,7 +222,7 @@ export default function AdminDashboardPage() {
 
           <div className="mt-12">
             <Link href="/profile">
-              <button className="text-primary font-semibold hover:underline inline-flex items-center gap-2">
+              <button className="text-clay font-semibold hover:underline inline-flex items-center gap-2">
                 <span className="material-symbols-outlined">arrow_back</span>
                 Вернуться в профиль
               </button>

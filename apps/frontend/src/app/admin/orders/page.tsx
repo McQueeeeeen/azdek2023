@@ -140,17 +140,17 @@ export default function AdminOrdersPage() {
       <main className="pt-20 pb-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-12">
-            <h1 className="font-headline font-black text-4xl text-on-surface mb-2">
+            <h1 className="font-headline font-black text-4xl text-ink mb-2">
               Управление заказами
             </h1>
-            <p className="text-on-surface-variant">
+            <p className="text-ink-variant">
               Просмотр и управление всеми заказами
             </p>
           </div>
 
           <div className="bg-white rounded-2xl p-6 mb-8 space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-on-surface mb-2">
+              <label className="block text-sm font-semibold text-ink mb-2">
                 Поиск по номеру, имени или email
               </label>
               <input
@@ -158,12 +158,12 @@ export default function AdminOrdersPage() {
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder="Введите поисковый запрос..."
-                className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-on-surface mb-2">
+              <label className="block text-sm font-semibold text-ink mb-2">
                 Фильтр по статусу
               </label>
               <div className="flex flex-wrap gap-3">
@@ -173,8 +173,8 @@ export default function AdminOrdersPage() {
                     onClick={() => setFilterStatus(status)}
                     className={`px-6 py-2 rounded-lg font-semibold transition-all ${
                       filterStatus === status
-                        ? 'bg-primary text-white'
-                        : 'bg-surface-container text-on-surface hover:bg-surface-container-high'
+                        ? 'bg-clay text-white'
+                        : 'bg-bg-alt text-ink hover:bg-bg-alt-high'
                     }`}
                   >
                     {status === 'all'
@@ -198,10 +198,10 @@ export default function AdminOrdersPage() {
                 <span className="material-symbols-outlined text-8xl text-surface-variant mb-4 block">
                   shopping_bag
                 </span>
-                <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">
+                <h2 className="font-headline text-2xl font-bold text-ink mb-3">
                   Заказы не найдены
                 </h2>
-                <p className="text-on-surface-variant">
+                <p className="text-ink-variant">
                   Нет заказов, соответствующих вашему поиску и фильтрам
                 </p>
               </div>
@@ -209,32 +209,32 @@ export default function AdminOrdersPage() {
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-outline-variant bg-surface-container">
-                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                    <tr className="border-b border-line bg-bg-alt">
+                      <th className="text-left py-4 px-6 font-semibold text-ink text-sm">
                         № заказа
                       </th>
-                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                      <th className="text-left py-4 px-6 font-semibold text-ink text-sm">
                         Клиент
                       </th>
-                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                      <th className="text-left py-4 px-6 font-semibold text-ink text-sm">
                         Контакты
                       </th>
-                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                      <th className="text-left py-4 px-6 font-semibold text-ink text-sm">
                         Адрес
                       </th>
-                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                      <th className="text-left py-4 px-6 font-semibold text-ink text-sm">
                         Дата
                       </th>
-                      <th className="text-center py-4 px-6 font-semibold text-on-surface text-sm">
+                      <th className="text-center py-4 px-6 font-semibold text-ink text-sm">
                         Товаров
                       </th>
-                      <th className="text-left py-4 px-6 font-semibold text-on-surface text-sm">
+                      <th className="text-left py-4 px-6 font-semibold text-ink text-sm">
                         Статус
                       </th>
-                      <th className="text-right py-4 px-6 font-semibold text-on-surface text-sm">
+                      <th className="text-right py-4 px-6 font-semibold text-ink text-sm">
                         Сумма
                       </th>
-                      <th className="text-center py-4 px-6 font-semibold text-on-surface text-sm">
+                      <th className="text-center py-4 px-6 font-semibold text-ink text-sm">
                         Действия
                       </th>
                     </tr>
@@ -245,32 +245,32 @@ export default function AdminOrdersPage() {
                       return (
                         <tr
                           key={order.id}
-                          className="border-b border-outline-variant hover:bg-surface transition-colors"
+                          className="border-b border-line hover:bg-surface transition-colors"
                         >
                           <td className="py-4 px-6">
-                            <p className="font-semibold text-on-surface">{order.id}</p>
+                            <p className="font-semibold text-ink">{order.id}</p>
                           </td>
                           <td className="py-4 px-6">
-                            <p className="font-medium text-on-surface">{order.customer}</p>
+                            <p className="font-medium text-ink">{order.customer}</p>
                           </td>
                           <td className="py-4 px-6">
                             <div className="text-sm">
-                              <p className="text-on-surface-variant">{order.email}</p>
-                              <p className="text-on-surface-variant text-xs">{order.phone}</p>
+                              <p className="text-ink-variant">{order.email}</p>
+                              <p className="text-ink-variant text-xs">{order.phone}</p>
                             </div>
                           </td>
                           <td className="py-4 px-6">
-                            <p className="text-sm text-on-surface-variant max-w-xs truncate">
+                            <p className="text-sm text-ink-variant max-w-xs truncate">
                               {order.address}
                             </p>
                           </td>
                           <td className="py-4 px-6">
-                            <p className="text-sm text-on-surface-variant">
+                            <p className="text-sm text-ink-variant">
                               {new Date(order.date).toLocaleDateString('ru-RU')}
                             </p>
                           </td>
                           <td className="py-4 px-6 text-center">
-                            <p className="text-on-surface font-medium">{order.items}</p>
+                            <p className="text-ink font-medium">{order.items}</p>
                           </td>
                           <td className="py-4 px-6">
                             <span
@@ -280,13 +280,13 @@ export default function AdminOrdersPage() {
                             </span>
                           </td>
                           <td className="py-4 px-6 text-right">
-                            <p className="font-semibold text-on-surface">
+                            <p className="font-semibold text-ink">
                               {order.total.toLocaleString('ru-KZ')} ₸
                             </p>
                           </td>
                           <td className="py-4 px-6 text-center">
                             <div className="flex gap-2 justify-center">
-                              <button className="text-primary hover:text-primary/80 transition-colors p-1">
+                              <button className="text-clay hover:text-clay/80 transition-colors p-1">
                                 <span className="material-symbols-outlined text-5 w-5 h-5">
                                   edit
                                 </span>
@@ -309,7 +309,7 @@ export default function AdminOrdersPage() {
 
           <div className="mt-12">
             <Link href="/admin/dashboard">
-              <button className="text-primary font-semibold hover:underline inline-flex items-center gap-2">
+              <button className="text-clay font-semibold hover:underline inline-flex items-center gap-2">
                 <span className="material-symbols-outlined">arrow_back</span>
                 Вернуться на панель администратора
               </button>

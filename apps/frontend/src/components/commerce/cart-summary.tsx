@@ -19,17 +19,17 @@ export default function CartSummary({
       <h3 className="h3">Order summary</h3>
       <div className="grid" style={{ gap: 6 }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span className="text-secondary">Subtotal</span>
+          <span className="text-ink-2">Subtotal</span>
           <span>{formatMoney(subtotalAmount, currency)}</span>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <span className="text-secondary">Delivery</span>
+          <span className="text-ink-2">Delivery</span>
           <span>{formatMoney(deliveryAmount, currency)}</span>
         </div>
       </div>
       <hr className="ui-divider" />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <p className="text-secondary">Total</p>
+        <p className="text-ink-2">Total</p>
         <p className="h3">{formatMoney(totalAmount, currency)}</p>
       </div>
       <Link href="/checkout">

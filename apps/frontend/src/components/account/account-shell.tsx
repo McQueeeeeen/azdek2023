@@ -27,7 +27,7 @@ export default function AccountShell({
       <Container className="grid" style={{ gap: 14 }}>
         <div>
           <h1 className="h2">{title}</h1>
-          {subtitle ? <p className="text-secondary">{subtitle}</p> : null}
+          {subtitle ? <p className="text-ink-2">{subtitle}</p> : null}
         </div>
 
         <div className="account-grid">

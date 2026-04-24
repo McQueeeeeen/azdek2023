@@ -28,13 +28,13 @@ export default function HomePage() {
 
         <div className="relative z-10 max-w-7xl mx-auto px-8 w-full">
           <div className="max-w-2xl">
-            <span className="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-sm font-semibold mb-6">
+            <span className="inline-block bg-clay-light-container text-on-secondary-container px-4 py-1 rounded-full text-sm font-semibold mb-6">
               100% Биоразлагаемо
             </span>
-            <h1 className="text-6xl md:text-7xl font-extrabold text-on-surface tracking-tighter mb-6 leading-tight">
+            <h1 className="text-6xl md:text-7xl font-extrabold text-ink tracking-tighter mb-6 leading-tight">
               Чистота от природы
             </h1>
-            <p className="text-lg text-on-surface-variant mb-10 leading-relaxed max-w-xl">
+            <p className="text-lg text-ink-variant mb-10 leading-relaxed max-w-xl">
               Создаём безупречную чистоту в вашем доме, используя только силу растений и минералов. Безопасно для семьи, бережно к планете.
             </p>
             <div className="flex gap-4 flex-wrap">
@@ -47,7 +47,7 @@ export default function HomePage() {
               </Link>
               <button
                 onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center gap-2 bg-secondary-fixed text-on-surface px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform active:scale-95"
+                className="inline-flex items-center gap-2 bg-clay-light-fixed text-ink px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform active:scale-95"
               >
                 Узнать больше
                 <span className="material-symbols-outlined text-base">expand_more</span>
@@ -58,20 +58,20 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-surface-container-low">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-8">
-          <h2 className="text-4xl font-extrabold text-center mb-16 text-on-surface">Наши стандарты</h2>
+          <h2 className="text-4xl font-extrabold text-center mb-16 text-ink">Наши стандарты</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, idx) => (
               <div
                 key={idx}
                 className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-surface-variant"
               >
-                <div className="w-16 h-16 rounded-full bg-primary-container/20 flex items-center justify-center mb-6">
-                  <span className="material-symbols-outlined text-primary text-3xl">{feature.icon}</span>
+                <div className="w-16 h-16 rounded-full bg-clay-container/20 flex items-center justify-center mb-6">
+                  <span className="material-symbols-outlined text-clay text-3xl">{feature.icon}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-on-surface">{feature.title}</h3>
-                <p className="text-on-surface-variant leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-bold mb-3 text-ink">{feature.title}</h3>
+                <p className="text-ink-variant leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>
@@ -83,14 +83,14 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-extrabold mb-6 text-on-surface">Стандарт Adzek Green</h2>
-              <p className="text-lg text-on-surface-variant mb-6 leading-relaxed">
+              <h2 className="text-4xl font-extrabold mb-6 text-ink">Стандарт Adzek Green</h2>
+              <p className="text-lg text-ink-variant mb-6 leading-relaxed">
                 Каждый наш продукт проходит строгую сертификацию. Мы исключили фосфаты, слои и агрессивные ПАВ. Каждая формула разработана с экспертами в области зеленой химии.
               </p>
               <ul className="space-y-3">
                 {["Натуральные формулы", "Отсутствие микропластика", "Экологичная упаковка", "Эффективная формула"].map(
                   (item, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-on-surface">
+                    <li key={idx} className="flex items-center gap-3 text-ink">
                       <span className="material-symbols-outlined text-success text-green-600">check_circle</span>
                       {item}
                     </li>
@@ -98,7 +98,7 @@ export default function HomePage() {
                 )}
               </ul>
             </div>
-            <div className="relative h-96 rounded-xl overflow-hidden bg-surface-container-low">
+            <div className="relative h-96 rounded-xl overflow-hidden bg-surface">
               <img
                 alt="Наша продукция"
                 className="w-full h-full object-cover"
@@ -120,7 +120,7 @@ export default function HomePage() {
           </p>
           <Link
             href="/catalog"
-            className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all active:scale-95"
+            className="inline-flex items-center gap-2 bg-white text-clay px-8 py-4 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all active:scale-95"
           >
             Перейти в каталог
             <span className="material-symbols-outlined">arrow_forward</span>

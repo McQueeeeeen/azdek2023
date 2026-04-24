@@ -13,7 +13,8 @@ export class QueueModule {
           useFactory: (config: ConfigService) => {
             const redisUrl = config.get<string>("REDIS_URL");
             if (!redisUrl) {
-              return null;
+              // Cast to any to bypass strict BullMQ types since we handle missing Redis gracefully elsewhere.
+              return null as any;
             }
             const parsed = new URL(redisUrl);
             return {

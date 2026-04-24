@@ -41,18 +41,18 @@ export default function AuthPage() {
             <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center mx-auto mb-4">
               <span className="text-white font-bold text-2xl">A</span>
             </div>
-            <h1 className="font-headline font-bold text-3xl text-on-surface">Adzek</h1>
-            <p className="text-on-surface-variant mt-2">Чистота без лишнего</p>
+            <h1 className="font-headline font-bold text-3xl text-ink">Adzek</h1>
+            <p className="text-ink-variant mt-2">Чистота без лишнего</p>
           </div>
 
           <div className="bg-white rounded-3xl p-8 space-y-6">
-            <div className="flex gap-4 border-b border-outline-variant">
+            <div className="flex gap-4 border-b border-line">
               <button
                 onClick={() => setMode('login')}
                 className={`flex-1 py-4 font-semibold transition-colors text-center border-b-2 -mb-4 ${
                   mode === 'login'
-                    ? 'text-primary border-b-primary'
-                    : 'text-on-surface-variant border-b-transparent'
+                    ? 'text-clay border-b-primary'
+                    : 'text-ink-variant border-b-transparent'
                 }`}
               >
                 Вход
@@ -61,8 +61,8 @@ export default function AuthPage() {
                 onClick={() => setMode('register')}
                 className={`flex-1 py-4 font-semibold transition-colors text-center border-b-2 -mb-4 ${
                   mode === 'register'
-                    ? 'text-primary border-b-primary'
-                    : 'text-on-surface-variant border-b-transparent'
+                    ? 'text-clay border-b-primary'
+                    : 'text-ink-variant border-b-transparent'
                 }`}
               >
                 Регистрация
@@ -71,12 +71,12 @@ export default function AuthPage() {
 
             {mode === 'login' && (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <h2 className="font-headline font-bold text-2xl text-on-surface mb-6">
+                <h2 className="font-headline font-bold text-2xl text-ink mb-6">
                   Добро пожаловать!
                 </h2>
 
                 <div>
-                  <label className="block text-sm font-semibold text-on-surface mb-2">
+                  <label className="block text-sm font-semibold text-ink mb-2">
                     Email
                   </label>
                   <input
@@ -84,14 +84,14 @@ export default function AuthPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
                     placeholder="example@mail.com"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-on-surface mb-2">
+                  <label className="block text-sm font-semibold text-ink mb-2">
                     Пароль
                   </label>
                   <input
@@ -99,21 +99,21 @@ export default function AuthPage() {
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
                     placeholder="••••••••"
                     required
                   />
                 </div>
 
                 <div className="text-right">
-                  <button type="button" className="text-primary text-sm font-semibold hover:underline">
+                  <button type="button" className="text-clay text-sm font-semibold hover:underline">
                     Забыли пароль?
                   </button>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-primary text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-clay text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
                 >
                   <span className="material-symbols-outlined">login</span>
                   Войти
@@ -121,24 +121,24 @@ export default function AuthPage() {
 
                 <div className="relative my-6">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-outline-variant" />
+                    <div className="w-full border-t border-line" />
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-on-surface-variant">или войдите через</span>
+                    <span className="px-2 bg-white text-ink-variant">или войдите через</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <button
                     type="button"
-                    className="border-2 border-outline-variant py-3 rounded-lg font-semibold hover:border-primary transition-colors flex items-center justify-center gap-2"
+                    className="border-2 border-line py-3 rounded-lg font-semibold hover:border-clay transition-colors flex items-center justify-center gap-2"
                   >
                     <span className="material-symbols-outlined">account_box</span>
                     Google
                   </button>
                   <button
                     type="button"
-                    className="border-2 border-outline-variant py-3 rounded-lg font-semibold hover:border-primary transition-colors flex items-center justify-center gap-2"
+                    className="border-2 border-line py-3 rounded-lg font-semibold hover:border-clay transition-colors flex items-center justify-center gap-2"
                   >
                     <span className="material-symbols-outlined">account_balance_wallet</span>
                     Яндекс
@@ -149,13 +149,13 @@ export default function AuthPage() {
 
             {mode === 'register' && (
               <form onSubmit={handleSubmit} className="space-y-4">
-                <h2 className="font-headline font-bold text-2xl text-on-surface mb-6">
+                <h2 className="font-headline font-bold text-2xl text-ink mb-6">
                   Создать аккаунт
                 </h2>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-on-surface mb-2">
+                    <label className="block text-sm font-semibold text-ink mb-2">
                       Имя
                     </label>
                     <input
@@ -163,13 +163,13 @@ export default function AuthPage() {
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
-                      className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                      className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
                       placeholder="Алибек"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-on-surface mb-2">
+                    <label className="block text-sm font-semibold text-ink mb-2">
                       Фамилия
                     </label>
                     <input
@@ -177,7 +177,7 @@ export default function AuthPage() {
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleChange}
-                      className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                      className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
                       placeholder="Жаксыбеков"
                       required
                     />
@@ -185,7 +185,7 @@ export default function AuthPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-on-surface mb-2">
+                  <label className="block text-sm font-semibold text-ink mb-2">
                     Email
                   </label>
                   <input
@@ -193,14 +193,14 @@ export default function AuthPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
                     placeholder="example@mail.com"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-on-surface mb-2">
+                  <label className="block text-sm font-semibold text-ink mb-2">
                     Пароль
                   </label>
                   <input
@@ -208,7 +208,7 @@ export default function AuthPage() {
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full border border-outline-variant rounded-lg px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none"
+                    className="w-full border border-line rounded-lg px-4 py-3 focus:border-clay focus:ring-1 focus:ring-primary outline-none"
                     placeholder="••••••••"
                     required
                   />
@@ -216,7 +216,7 @@ export default function AuthPage() {
 
                 <button
                   type="submit"
-                  className="w-full bg-primary text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-clay text-white py-4 rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
                 >
                   <span className="material-symbols-outlined">person_add</span>
                   Зарегистрироваться
@@ -224,9 +224,9 @@ export default function AuthPage() {
               </form>
             )}
 
-            <p className="text-center text-sm text-on-surface-variant">
+            <p className="text-center text-sm text-ink-variant">
               Используя Adzek, вы соглашаетесь с нашими{' '}
-              <Link href="#" className="text-primary font-semibold hover:underline">
+              <Link href="#" className="text-clay font-semibold hover:underline">
                 условиями использования
               </Link>
               .

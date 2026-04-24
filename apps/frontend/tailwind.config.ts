@@ -1,5 +1,17 @@
 import type { Config } from 'tailwindcss';
 
+/**
+ * AZDEK DESIGN SYSTEM — Warm Terracotta / Editorial Laboratory
+ *
+ * Единая дизайн-система. Все цвета соответствуют CSS-переменным
+ * из globals.css (Editorial Laboratory стиль).
+ *
+ * Принцип: один источник правды. Tailwind-классы маппятся
+ * на CSS-переменные, а не дублируют значения.
+ *
+ * Удалены: Material Design 3 цвета (PureLab), которые
+ * конфликтовали с основным стилем.
+ */
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,74 +21,68 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Material Design 3 - Light mode
-        'surface-container-high': '#e6e8ea',
-        'surface': '#f7f9fb',
-        'primary-fixed-dim': '#adc6ff',
-        'on-tertiary': '#ffffff',
-        'on-surface-variant': '#414755',
-        'primary': '#0058bc',
-        'error-container': '#ffdad6',
-        'secondary-fixed': '#94f990',
-        'surface-variant': '#e0e3e5',
-        'on-tertiary-fixed-variant': '#3b4951',
-        'on-secondary-fixed': '#002204',
-        'on-surface': '#191c1e',
-        'primary-container': '#0070eb',
-        'on-secondary-fixed-variant': '#005313',
-        'inverse-primary': '#adc6ff',
-        'secondary-fixed-dim': '#78dc77',
-        'inverse-surface': '#2d3133',
-        'on-error-container': '#93000a',
-        'on-secondary-container': '#00731e',
-        'surface-container-lowest': '#ffffff',
-        'secondary-container': '#91f78e',
-        'on-tertiary-fixed': '#0f1d25',
-        'background': '#f7f9fb',
-        'outline': '#717786',
-        'primary-fixed': '#d8e2ff',
-        'on-primary': '#ffffff',
-        'surface-tint': '#005bc1',
-        'on-tertiary-container': '#fbfcff',
-        'on-primary-fixed-variant': '#004493',
-        'surface-container-low': '#f2f4f6',
-        'secondary': '#006e1c',
-        'outline-variant': '#c1c6d7',
-        'surface-dim': '#d8dadc',
-        'inverse-on-surface': '#eff1f3',
-        'surface-bright': '#f7f9fb',
-        'on-primary-fixed': '#001a41',
-        'tertiary-fixed-dim': '#bac9d3',
-        'surface-container-highest': '#e0e3e5',
-        'on-primary-container': '#fefcff',
-        'tertiary-container': '#687780',
-        'error': '#ba1a1a',
-        'on-background': '#191c1e',
-        'on-error': '#ffffff',
-        'tertiary': '#505e67',
-        'on-secondary': '#ffffff',
-        'tertiary-fixed': '#d6e5ef',
-        'surface-container': '#eceef0',
+        // ── Surfaces (из globals.css) ──
+        'bg':            'var(--bg)',            // #FAFAF8 — warm near-white
+        'bg-alt':        'var(--bg-alt)',        // #F3F1EC — section separation
+        'surface':       'var(--surface)',       // #FFFFFF — cards, panels
+        'ink-bg':        'var(--ink-bg)',        // #111118 — dark sections
+
+        // ── Typography ──
+        'ink':           'var(--ink)',           // #111118 — primary text
+        'ink-2':         'var(--ink-2)',         // #484850 — secondary text
+        'ink-3':         'var(--ink-3)',         // #9696A0 — tertiary text
+        'ink-inv':       'var(--ink-inv)',       // #FAFAF8 — text on dark bg
+
+        // ── Accent — Terracotta ──
+        'clay':          'var(--clay)',          // #C4583A — main accent
+        'clay-mid':      'var(--clay-mid)',      // #D96A4A — hover
+        'clay-light':    'var(--clay-light)',    // #FAEDE8 — tint background
+        'clay-dark':     'var(--clay-dark)',     // #9C3F26 — pressed
+
+        // ── Borders ──
+        'line':          'var(--line)',          // #E8E5DF — hairline
+        'line-2':        'var(--line-2)',        // #D4D0C8 — stronger
+
+        // ── Status colors (hardcoded, not from CSS vars) ──
+        'success':       '#27AE60',
+        'warning':       '#F39C12',
+        'error':         '#E74C3C',
+        'info':          '#3498DB',
       },
       borderRadius: {
-        'DEFAULT': '0.25rem',
-        'lg': '1rem',
-        'xl': '1.5rem',
-        'full': '9999px',
+        'xs':    'var(--r-xs)',   // 2px
+        'sm':    'var(--r-sm)',   // 6px
+        'md':    'var(--r-md)',   // 10px
+        'lg':    'var(--r-lg)',   // 16px
+        'xl':    'var(--r-xl)',   // 24px
+        'full':  'var(--r-full)', // 999px
       },
       fontFamily: {
         'headline': ['Manrope', 'sans-serif'],
-        'body': ['Inter', 'sans-serif'],
-        'label': ['Inter', 'sans-serif'],
+        'body':     ['Inter', 'sans-serif'],
+        'label':    ['Inter', 'sans-serif'],
       },
       letterSpacing: {
-        'authoritative': '-0.02em',
+        'editorial': '-0.03em',   // headlines tight
+        'authoritative': '-0.045em', // hero headlines
+        'label': '0.06em',        // label uppercase
+      },
+      boxShadow: {
+        'xs':  'var(--sh-xs)',   // 0 1px 2px rgba(17,17,24,.04)
+        'sm':  'var(--sh-sm)',   // 0 2px 8px rgba(17,17,24,.06)
+        'md':  'var(--sh-md)',   // 0 8px 24px rgba(17,17,24,.08)
+        'lg':  'var(--sh-lg)',   // 0 20px 56px rgba(17,17,24,.10)
+      },
+      maxWidth: {
+        'site': 'var(--max-w)',  // 1360px
+      },
+      spacing: {
+        'header': 'var(--header-h)', // 68px
+        'gutter': 'var(--gutter)',   // clamp(16px, 4vw, 72px)
       },
     },
   },
-  plugins: [
-    // require('@tailwindcss/forms'),  // Commented out - can interfere with custom styles
-  ],
+  plugins: [],
 };
 
 export default config;

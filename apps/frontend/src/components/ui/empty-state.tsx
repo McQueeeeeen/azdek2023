@@ -18,7 +18,7 @@ export default function EmptyState({
   return (
     <div className="ui-empty-state">
       <h3 className="h3">{title}</h3>
-      {description ? <p className="text-secondary">{description}</p> : null}
+      {description ? <p className="text-ink-2">{description}</p> : null}
       {action ? action : null}
       {actionHref && actionText ? (
         <Link href={actionHref}>

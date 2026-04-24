@@ -59,14 +59,14 @@ export default function AddressesPage() {
         <div className="max-w-4xl mx-auto px-8">
           <div className="mb-12 flex justify-between items-start">
             <div>
-              <h1 className="font-headline font-black text-4xl text-on-surface mb-2">
+              <h1 className="font-headline font-black text-4xl text-ink mb-2">
                 Управление адресами
               </h1>
-              <p className="text-on-surface-variant">
+              <p className="text-ink-variant">
                 Добавьте и управляйте адресами доставки по Казахстану
               </p>
             </div>
-            <button className="flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:shadow-lg transition-all">
+            <button className="flex items-center gap-2 px-6 py-3 rounded-lg bg-clay text-white font-semibold hover:shadow-lg transition-all">
               <span className="material-symbols-outlined">add</span>
               Новый адрес
             </button>
@@ -78,7 +78,7 @@ export default function AddressesPage() {
                 <span className="material-symbols-outlined text-8xl text-surface-variant mb-4 block">
                   location_on
                 </span>
-                <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">
+                <h2 className="font-headline text-2xl font-bold text-ink mb-3">
                   Нет сохранённых адресов
                 </h2>
               </div>
@@ -87,7 +87,7 @@ export default function AddressesPage() {
                 <div key={addr.id} className="bg-white rounded-2xl p-6 hover:shadow-lg transition-all">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
-                      <h3 className="font-bold text-lg text-on-surface">{addr.type}</h3>
+                      <h3 className="font-bold text-lg text-ink">{addr.type}</h3>
                       {addr.isDefault && (
                         <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold">
                           По умолчанию
@@ -98,12 +98,12 @@ export default function AddressesPage() {
                       {!addr.isDefault && (
                         <button
                           onClick={() => handleSetDefault(addr.id)}
-                          className="px-4 py-2 rounded-lg border-2 border-outline-variant text-on-surface font-semibold hover:border-primary hover:text-primary transition-all text-sm"
+                          className="px-4 py-2 rounded-lg border-2 border-line text-ink font-semibold hover:border-clay hover:text-clay transition-all text-sm"
                         >
                           Установить по умолчанию
                         </button>
                       )}
-                      <button className="p-2 hover:bg-blue-50 rounded-lg text-primary transition-colors">
+                      <button className="p-2 hover:bg-blue-50 rounded-lg text-clay transition-colors">
                         <span className="material-symbols-outlined">edit</span>
                       </button>
                       <button
@@ -115,10 +115,10 @@ export default function AddressesPage() {
                     </div>
                   </div>
 
-                  <div className="mt-4 pt-4 border-t border-outline-variant">
-                    <p className="text-on-surface">{addr.firstName} {addr.lastName}</p>
-                    <p className="text-on-surface">{addr.address}</p>
-                    <p className="text-on-surface-variant">
+                  <div className="mt-4 pt-4 border-t border-line">
+                    <p className="text-ink">{addr.firstName} {addr.lastName}</p>
+                    <p className="text-ink">{addr.address}</p>
+                    <p className="text-ink-variant">
                       {addr.city}, {addr.zip} · {addr.phone}
                     </p>
                   </div>
@@ -129,7 +129,7 @@ export default function AddressesPage() {
 
           <div className="mt-12">
             <Link href="/profile">
-              <button className="text-primary font-semibold hover:underline inline-flex items-center gap-2">
+              <button className="text-clay font-semibold hover:underline inline-flex items-center gap-2">
                 <span className="material-symbols-outlined">arrow_back</span>
                 Вернуться в профиль
               </button>

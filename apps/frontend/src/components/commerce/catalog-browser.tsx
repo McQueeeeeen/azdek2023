@@ -223,7 +223,7 @@ export default function CatalogBrowser({
         <div className="catalog-toolbar">
           <div>
             <h1 className="h2">Catalog</h1>
-            <p className="text-secondary">{filtered.length} products found</p>
+            <p className="text-ink-2">{filtered.length} products found</p>
           </div>
 
           <select

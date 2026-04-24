@@ -37,11 +37,11 @@ export default function SiteHeader() {
 
         <div className="flex items-center gap-6">
           <div className="relative hidden lg:block">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">
+            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-clay">
               search
             </span>
             <input
-              className="bg-surface-container-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm"
+              className="bg-bg-alt-lowest border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-surface-tint/20 text-sm"
               placeholder="Поиск средств..."
               type="text"
             />

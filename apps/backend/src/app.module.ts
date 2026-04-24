@@ -1,5 +1,7 @@
-import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import { Logger, MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import { APP_GUARD } from "@nestjs/core";
+import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { CatalogModule } from "./modules/catalog/catalog.module";
 import { CartModule } from "./modules/cart/cart.module";
 import { OrdersModule } from "./modules/orders/orders.module";
@@ -17,11 +19,18 @@ import { AuthModule } from "./modules/auth/auth.module";
 import { NotificationsModule } from "./modules/notifications/notifications.module";
 import { B2BModule } from "./modules/b2b/b2b.module";
 import { AnalyticsModule } from "./modules/analytics/analytics.module";
+import { DoctorModule } from "./modules/doctor/doctor.module";
+
 
 @Module({
   imports: [
     AppConfigModule,
     SharedModule,
+    // ── Rate limiting: 100 requests per 60 seconds per IP ──
+    ThrottlerModule.forRoot([{
+      ttl: 60000,
+      limit: 100,
+    }]),
     {
       module: QueueModule,
       imports: [],
@@ -33,6 +42,7 @@ import { AnalyticsModule } from "./modules/analytics/analytics.module";
     AnalyticsModule,
     B2BModule,
     HealthModule,
+    DoctorModule,
     CatalogModule,
     CartModule,
     CustomersModule,
@@ -42,12 +52,21 @@ import { AnalyticsModule } from "./modules/analytics/analytics.module";
     AdminModule,
     CheckoutModule,
   ],
+  providers: [
+    // ── Global rate limit guard: applies to ALL endpoints ──
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule implements NestModule {
+  private readonly logger = new Logger(AppModule.name);
+
   constructor(config: ConfigService) {
     const hasRedis = config.get<string>("REDIS_URL");
     if (!hasRedis) {
-      console.log("⚠️  Redis not configured. Queue processing disabled. Using synchronous processing.");
+      this.logger.warn("Redis not configured. Queue processing disabled. Using synchronous processing.");
     }
   }
 

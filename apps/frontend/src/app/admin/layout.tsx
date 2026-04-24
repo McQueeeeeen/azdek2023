@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { ReactNode, useEffect, useMemo, useState } from "react";
@@ -7,6 +7,7 @@ import Section from "@/components/ui/section";
 import Card from "@/components/ui/card";
 import Button from "@/components/ui/button";
 import { canAccessAdmin, getClientRole } from "@/lib/roles";
+import ApiHealthIndicator from "@/components/admin/api-health-indicator";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<string | null>(null);
@@ -32,7 +33,7 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         <Container className="grid">
           <Card className="grid">
             <h1 className="h2">No access to admin panel</h1>
-            <p className="text-secondary">Sign in with admin role to continue.</p>
+            <p className="text-ink-2">Sign in with admin role to continue.</p>
             <Link href="/login">
               <Button>Sign in</Button>
             </Link>
@@ -42,5 +43,12 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     );
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      <div className="fixed bottom-4 right-4 z-50 bg-surface shadow-sm border border-line rounded-full px-4 py-2">
+        <ApiHealthIndicator />
+      </div>
+    </>
+  );
 }

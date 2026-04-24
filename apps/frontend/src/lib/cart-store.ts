@@ -31,16 +31,40 @@ function readStoredCart(): CartLine[] {
       return [];
     }
 
-    return parsed.filter(
-      (line): line is CartLine =>
-        typeof line?.id === "string" &&
-        typeof line?.slug === "string" &&
-        typeof line?.name === "string" &&
-        typeof line?.sub === "string" &&
-        typeof line?.price === "number" &&
-        typeof line?.quantity === "number" &&
-        line.quantity > 0
-    );
+    // ── Cart Consistency Check (Task 5.2) ──
+    // Validate that items exist in the catalog and have the correct up-to-date price.
+    const validLines = parsed
+      .map((line) => {
+        if (
+          typeof line?.id !== "string" ||
+          typeof line?.slug !== "string" ||
+          typeof line?.quantity !== "number" ||
+          line.quantity <= 0
+        ) {
+          return null; // Invalid shape
+        }
+
+        const actualProduct = findProductForLine(line.slug);
+        if (!actualProduct) {
+          return null; // Product no longer exists in catalog
+        }
+
+        // Return updated line with actual catalog price and name to prevent tampering
+        return {
+          ...line,
+          price: actualProduct.price,
+          name: actualProduct.name,
+          sub: actualProduct.sub,
+        };
+      })
+      .filter((line): line is CartLine => line !== null);
+
+    // If the cart was modified by the consistency check, update storage
+    if (validLines.length !== parsed.length) {
+      setTimeout(() => writeStoredCart(validLines), 0);
+    }
+
+    return validLines;
   } catch {
     return [];
   }

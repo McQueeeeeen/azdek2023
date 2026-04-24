@@ -38,7 +38,7 @@ export default function CartItem({
 
         <div className="cart-item-main">
           <p className="h4">{item.productVariant.product.name}</p>
-          <p className="text-secondary">{item.productVariant.title}</p>
+          <p className="text-ink-2">{item.productVariant.title}</p>
           <p className="small">Unit price: {formatMoney(item.unitPrice, "KZT")}</p>
         </div>
       </div>
