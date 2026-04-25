@@ -1,4 +1,4 @@
-﻿const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:4000/v1";
 
 function buildNetworkErrorMessage(path: string, reason: string): string {
   if (process.env.NODE_ENV !== "production") {
@@ -27,6 +27,8 @@ export interface CatalogProduct {
   slug: string;
   name: string;
   description: string;
+  badge?: string | null;
+  sub?: string;
   category: {
     id: string;
     slug: string;

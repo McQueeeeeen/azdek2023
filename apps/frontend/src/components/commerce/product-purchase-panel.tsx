@@ -3,9 +3,11 @@
 import { useState } from "react";
 import AddToCartButton from "@/components/add-to-cart-button";
 import WishlistToggle from "./wishlist-toggle";
+import { StorefrontProduct } from "@/lib/storefront";
 
-export default function ProductPurchasePanel({ variantId, stock, slug }: { variantId: string; stock: number; slug: string }) {
+export default function ProductPurchasePanel({ product }: { product: StorefrontProduct }) {
   const [quantity, setQuantity] = useState(1);
+  const stock = product.variants[0]?.stock ?? 0;
 
   const decrease = () => setQuantity((value) => Math.max(1, value - 1));
   const increase = () => setQuantity((value) => Math.min(Math.max(1, stock), value + 1));
@@ -34,7 +36,7 @@ export default function ProductPurchasePanel({ variantId, stock, slug }: { varia
       <div className="product-cta-row">
         <AddToCartButton
           className="full-width"
-          variantId={variantId}
+          product={product}
           quantity={quantity}
           label="Add to cart"
           redirectToCart={false}
@@ -42,7 +44,7 @@ export default function ProductPurchasePanel({ variantId, stock, slug }: { varia
           doneLabel="Added"
           failedLabel="Retry"
         />
-        <WishlistToggle slug={slug} />
+        <WishlistToggle slug={product.slug} />
       </div>
     </div>
   );
