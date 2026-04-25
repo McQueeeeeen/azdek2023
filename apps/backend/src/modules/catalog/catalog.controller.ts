@@ -17,6 +17,7 @@ interface CatalogProductResponse {
   slug: string;
   name: string;
   description: string;
+  badge: string | null;
   category: {
     id: string;
     slug: string;
@@ -37,6 +38,7 @@ export class CatalogController {
       slug: product.slug,
       name: product.name,
       description: product.description,
+      badge: product.badge,
       category: {
         id: product.category.id,
         slug: product.category.slug,
@@ -63,6 +65,7 @@ export class CatalogController {
       slug: product.slug,
       name: product.name,
       description: product.description,
+      badge: product.badge,
       category: {
         id: product.category.id,
         slug: product.category.slug,
@@ -92,6 +95,7 @@ export class CatalogController {
       slug: product.slug,
       name: product.name,
       description: product.description,
+      badge: product.badge,
       category: {
         id: product.category.id,
         slug: product.category.slug,

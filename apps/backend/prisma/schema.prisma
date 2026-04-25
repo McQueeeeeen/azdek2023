@@ -137,6 +137,7 @@ model Product {
   slug        String           @unique
   name        String
   description String
+  badge       String?
   isActive    Boolean          @default(true)
   categoryId  String
   category    Category         @relation(fields: [categoryId], references: [id], onDelete: Restrict)

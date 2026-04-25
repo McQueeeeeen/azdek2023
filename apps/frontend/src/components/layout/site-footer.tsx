@@ -16,7 +16,7 @@ export default function SiteFooter() {
               Чистота без лишнего: экологичные средства для дома, произведённые в Казахстане.
             </p>
             <p className="text-gray-400 text-sm mb-4">
-              Алматы, Казахстан · +7 701 123 45 67 · info@adzek.kz
+              Казахстан, город Караганда, улица Балкантау 68/2 · +7 701 123 45 67 · info@adzek.kz
             </p>
             <div className="flex gap-3">
               <a href="#" className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors">

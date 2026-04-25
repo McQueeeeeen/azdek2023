@@ -1,0 +1,613 @@
+﻿'use client';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { useCartStore } from "@/store/useCartStore";
+import { toast } from "sonner";
+
+/* в”Ђв”Ђ Scroll Reveal в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
+function useScrollReveal() {
+  useEffect(() => {
+    const els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).classList.add('revealed');
+            io.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+}
+
+/* в”Ђв”Ђ Sticky header shadow on scroll в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
+function useHeaderScroll() {
+  useEffect(() => {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+    const handler = () =>
+      header.classList.toggle('scrolled', window.scrollY > 12);
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+}
+
+/* в”Ђв”Ђ Data в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */
+const KZ_CITIES = [
+  'РђР»РјР°С‚С‹',
+  'РђСЃС‚Р°РЅР°',
+  'РљР°СЂР°РіР°РЅРґР°',
+  'РђРєС‚Р°Сѓ',
+  'РђС‚С‹СЂР°Сѓ',
+  'УЁСЃРєРµРјРµРЅ',
+  'РљРѕРєС€РµС‚Р°Сѓ',
+  'РљРѕСЃС‚Р°РЅР°Р№',
+  'РџР°РІР»РѕРґР°СЂ',
+  'РџРµС‚СЂРѕРїР°РІР»',
+  'РўР°СЂР°Р·',
+  'РўСѓСЂРєРµСЃС‚Р°РЅ',
+  'РћСЂР°Р»',
+  'Р©СѓС‡РёРЅСЃРє',
+  'Р–Р°ТЈР°У©Р·РµРЅ',
+  'РљС‹Р·С‹Р»РѕСЂРґР°',
+  'РЎРµРјРµР№',
+];
+
+const PRODUCTS = [
+  {
+    id: 1,
+    name: 'РљРѕРЅС†РµРЅС‚СЂР°С‚ РґР»СЏ РїРѕСЃСѓРґС‹',
+    sub: 'РњСЏС‚Р° В· Р›Р°Р№Рј В· 500 РјР»',
+    price: '3 800 в‚ё',
+    tag: 'Ecolabel',
+    img: 'https://images.unsplash.com/photo-1585441695325-21ea74b8e4ba?w=500&q=80',
+  },
+  {
+    id: 2,
+    name: 'РЎРїСЂРµР№ РґР»СЏ РїРѕРІРµСЂС…РЅРѕСЃС‚РµР№',
+    sub: 'Р§Р°Р№РЅРѕРµ РґРµСЂРµРІРѕ В· 450 РјР»',
+    price: '4 500 в‚ё',
+    tag: 'Organic',
+    img: 'https://images.unsplash.com/photo-1563453392212-326f5e854473?w=500&q=80',
+  },
+  {
+    id: 3,
+    name: 'Р“РµР»СЊ РґР»СЏ СЃС‚РёСЂРєРё',
+    sub: 'Р›Р°РІР°РЅРґР° В· РҐР»РѕРїРѕРє В· 1 Р»',
+    price: '8 200 в‚ё',
+    tag: 'Zero Waste',
+    img: 'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?w=500&q=80',
+  },
+  {
+    id: 4,
+    name: 'РњС‹Р»Рѕ-РєРѕРЅС†РµРЅС‚СЂР°С‚',
+    sub: 'РҐРІРѕСЏ В· Р­РІРєР°Р»РёРїС‚ В· 250 Рі',
+    price: '5 900 в‚ё',
+    tag: '100% Bio',
+    img: 'https://images.unsplash.com/photo-1556909172-8c2f041fca1e?w=500&q=80',
+  },
+];
+
+const TICKER_ITEMS = [
+  'РЎРµСЂС‚РёС„РёС†РёСЂРѕРІР°РЅРѕ Ecolabel',
+  'Р‘РµР· С„РѕСЃС„Р°С‚РѕРІ',
+  'РџСЂРѕС‚РµСЃС‚РёСЂРѕРІР°РЅРѕ РґРµСЂРјР°С‚РѕР»РѕРіР°РјРё',
+  'Р‘РёРѕСЂР°Р·Р»Р°РіР°РµРјРѕ РЅР° 100%',
+  'Р‘РµР· С…Р»РѕСЂР° Рё Р°РіСЂРµСЃСЃРёРІРЅС‹С… РџРђР’',
+  'РЈРїР°РєРѕРІРєР° РёР· РїРµСЂРµСЂР°Р±РѕС‚Р°РЅРЅРѕРіРѕ РїР»Р°СЃС‚РёРєР°',
+  'Р’РµРіР°РЅ-С„РѕСЂРјСѓР»Р°',
+  'РљР°Р·Р°С…СЃС‚Р°РЅСЃРєРѕРµ РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ',
+];
+
+const VALUES = [
+  {
+    num: '01',
+    icon: 'science',
+    title: 'Р¤РѕСЂРјСѓР»Р° Р±РµР· РєРѕРјРїСЂРѕРјРёСЃСЃРѕРІ',
+    desc: 'РљР°Р¶РґС‹Р№ РёРЅРіСЂРµРґРёРµРЅС‚ вЂ” СЃ РЅР°СѓС‡РЅС‹Рј РѕР±РѕСЃРЅРѕРІР°РЅРёРµРј. РњС‹ РїСѓР±Р»РёРєСѓРµРј РїРѕР»РЅС‹Р№ СЃРѕСЃС‚Р°РІ Рё РѕР±СЉСЏСЃРЅСЏРµРј СЂРѕР»СЊ РєР°Р¶РґРѕРіРѕ РєРѕРјРїРѕРЅРµРЅС‚Р°.',
+  },
+  {
+    num: '02',
+    icon: 'eco',
+    title: 'Р‘РёРѕСЂР°Р·Р»РѕР¶РµРЅРёРµ Р·Р° 28 РґРЅРµР№',
+    desc: 'Р’СЃРµ Р°РєС‚РёРІРЅС‹Рµ РІРµС‰РµСЃС‚РІР° РїРѕР»РЅРѕСЃС‚СЊСЋ СЂР°Р·Р»Р°РіР°СЋС‚СЃСЏ РІ РїСЂРёСЂРѕРґРЅРѕР№ СЃСЂРµРґРµ. РќРёРєР°РєРѕРіРѕ РЅР°РєРѕРїР»РµРЅРёСЏ РІ РіСЂСѓРЅС‚РѕРІС‹С… РІРѕРґР°С….',
+  },
+  {
+    num: '03',
+    icon: 'recycling',
+    title: 'Р—Р°РјРєРЅСѓС‚Р°СЏ СѓРїР°РєРѕРІРєР°',
+    desc: 'Р¤Р»Р°РєРѕРЅС‹ вЂ” РёР· РїРµСЂРµСЂР°Р±РѕС‚Р°РЅРЅРѕРіРѕ РїР»Р°СЃС‚РёРєР°. РЎРґР°Р№С‚Рµ РїСѓСЃС‚СѓСЋ С‚Р°СЂСѓ РІ РЅР°С€ РїСѓРЅРєС‚ РїСЂРёС‘РјР° Рё РїРѕР»СѓС‡РёС‚Рµ СЃРєРёРґРєСѓ 15%.',
+  },
+  {
+    num: '04',
+    icon: 'verified_user',
+    title: 'Р”РµСЂРјР°С‚РѕР»РѕРіРёС‡РµСЃРєРёР№ РєРѕРЅС‚СЂРѕР»СЊ',
+    desc: 'РЎСЂРµРґСЃС‚РІР° С‚РµСЃС‚РёСЂСѓСЋС‚СЃСЏ РІ РЅРµР·Р°РІРёСЃРёРјРѕР№ Р»Р°Р±РѕСЂР°С‚РѕСЂРёРё Рё РїРѕРґС…РѕРґСЏС‚ Р»СЋРґСЏРј СЃ С‡СѓРІСЃС‚РІРёС‚РµР»СЊРЅРѕР№ РєРѕР¶РµР№ Рё Р°Р»Р»РµСЂРіРёРµР№.',
+  },
+  {
+    num: '05',
+    icon: 'local_shipping',
+    title: 'Р”РѕСЃС‚Р°РІРєР° Р±РµР· РїР»Р°СЃС‚РёРєР°',
+    desc: 'РћС‚РїСЂР°РІР»СЏРµРј РІ РєР°СЂС‚РѕРЅРЅРѕР№ СѓРїР°РєРѕРІРєРµ Р±РµР· РїР»Р°СЃС‚РёРєРѕРІС‹С… РЅР°РїРѕР»РЅРёС‚РµР»РµР№. РљРѕСЂРѕР±РєР° РёРґС‘С‚ РЅР° РїРµСЂРµСЂР°Р±РѕС‚РєСѓ.',
+  },
+  {
+    num: '06',
+    icon: 'groups',
+    title: 'РЎРѕР·РґР°РЅРѕ РІ РљР°Р·Р°С…СЃС‚Р°РЅРµ',
+    desc: 'РџСЂРѕРёР·РІРѕРґСЃС‚РІРѕ Рё R&D вЂ” РІ РђР»РјР°С‚С‹. РџРѕРґРґРµСЂР¶РёРІР°РµРј РјРµСЃС‚РЅС‹Рµ Р»Р°Р±РѕСЂР°С‚РѕСЂРёРё Рё РёСЃСЃР»РµРґРѕРІР°С‚РµР»РµР№.',
+  },
+];
+
+/* в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+   PAGE
+в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ */
+export default function HomePage() {
+  useScrollReveal();
+  useHeaderScroll();
+
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+  const [cartCount] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Close menu when navigating
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+
+  return (
+    <>
+      {/* в”Ђв”Ђв”Ђ HEADER в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+      <header className="site-header" id="site-header">
+        <div className="wrap header-inner">
+          {/* Logo */}
+          <Link href="/" className="adzek-logo">
+            Adzek<span>.</span>
+          </Link>
+
+          {/* Hamburger Menu Button - Mobile Only */}
+          <button
+            className="hamburger-btn lg:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="РњРµРЅСЋ"
+            aria-expanded={mobileMenuOpen}
+          >
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+          </button>
+
+          {/* Nav */}
+          <nav className="header-nav">
+            {[
+              { label: 'РљР°С‚Р°Р»РѕРі',   href: '/catalog' },
+              { label: 'РЎРѕСЃС‚Р°РІ',    href: '#values' },
+              { label: 'Рћ Р±СЂРµРЅРґРµ',  href: '#about' },
+              { label: 'Р”РѕСЃС‚Р°РІРєР°',  href: '#' },
+            ].map((l) => (
+              <Link key={l.label} href={l.href} className="hn-link">
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Right */}
+          <div className="header-end">
+            <div className="h-search-wrap hidden lg:block">
+              <span className="icon h-search-icon">search</span>
+              <input
+                className="input"
+                placeholder="РќР°Р№С‚Рё СЃСЂРµРґСЃС‚РІРѕвЂ¦"
+                type="search"
+                aria-label="РџРѕРёСЃРє"
+              />
+            </div>
+
+            <Link href="/profile" className="btn btn-ghost btn-icon hidden md:flex">
+              <span className="icon" style={{ fontSize: 22 }}>person</span>
+            </Link>
+
+            <Link href="/cart" className="h-cart">
+              <span className="icon" style={{ fontSize: 20 }}>shopping_bag</span>
+              РљРѕСЂР·РёРЅР°
+              {cartCount > 0 && <span className="h-cart-badge">{cartCount}</span>}
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        {/* в”Ђв”Ђв”Ђ HERO в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+        <section className="hero">
+          <div className="wrap">
+            <div className="hero-grid">
+
+              {/* Left вЂ” copy */}
+              <div>
+                <div className="hero-label" data-reveal>
+                  <span className="hero-label-line" />
+                  РќР°С‚СѓСЂР°Р»СЊРЅР°СЏ Р±С‹С‚РѕРІР°СЏ С…РёРјРёСЏ
+                </div>
+
+                <h1 className="hero-headline" data-reveal style={{ transitionDelay: '80ms' }}>
+                  Р§РёСЃС‚РѕС‚Р°.<br />
+                  Р‘РµР· <em>Р»РёС€РЅРµРіРѕ.</em>
+                </h1>
+
+                <p className="hero-desc" data-reveal style={{ transitionDelay: '160ms' }}>
+                  РЎСЂРµРґСЃС‚РІР° РґР»СЏ СѓР±РѕСЂРєРё РЅРѕРІРѕРіРѕ РїРѕРєРѕР»РµРЅРёСЏ вЂ” РїСЂРѕР·СЂР°С‡РЅС‹Р№ СЃРѕСЃС‚Р°РІ, РґРѕРєР°Р·Р°РЅРЅР°СЏ СЌС„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ Рё РїРѕР»РЅР°СЏ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ РґР»СЏ РІР°С€РµР№ СЃРµРјСЊРё Рё РїСЂРёСЂРѕРґС‹.
+                </p>
+
+                <div className="hero-actions" data-reveal style={{ transitionDelay: '220ms' }}>
+                  <Link href="/catalog" className="btn btn-clay btn-lg">
+                    РЎРјРѕС‚СЂРµС‚СЊ РєР°С‚Р°Р»РѕРі
+                    <span className="icon" style={{ fontSize: 18 }}>arrow_forward</span>
+                  </Link>
+                  <Link href="#about" className="btn btn-outline btn-lg">
+                    Рћ Р±СЂРµРЅРґРµ
+                  </Link>
+                </div>
+
+                {/* Stats */}
+                <div className="hero-stats-row" data-reveal style={{ transitionDelay: '300ms' }}>
+                  {[
+                    { n: '3', suf: ' РіРѕРґР°', l: 'РќР° СЂС‹РЅРєРµ' },
+                    { n: '12', suf: '+', l: 'РЎРµСЂС‚РёС„РёРєР°С‚РѕРІ' },
+                    { n: '50Рљ', suf: '+', l: 'РљР»РёРµРЅС‚РѕРІ' },
+                    { n: '98', suf: '%', l: 'Р”РѕРІРѕР»СЊРЅС‹' },
+                  ].map((s) => (
+                    <div key={s.l} className="hero-stat">
+                      <div className="hero-stat-n">
+                        {s.n}<span>{s.suf}</span>
+                      </div>
+                      <div className="hero-stat-l">{s.l}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right вЂ” visual */}
+              <div className="hero-visual" data-reveal="right" style={{ transitionDelay: '120ms' }}>
+                <div className="hero-img-frame">
+                  <img
+                    src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=85"
+                    alt="РЎСЂРµРґСЃС‚РІР° Adzek"
+                  />
+                </div>
+                {/* Floating badge */}
+                <div className="hero-cert-badge">
+                  <div className="hero-cert-icon">
+                    <span className="icon icon-fill" style={{ fontSize: 20 }}>verified</span>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--ink)' }}>Ecolabel</div>
+                    <div style={{ fontSize: 11, color: 'var(--ink-3)' }}>РЎРµСЂС‚РёС„РёС†РёСЂРѕРІР°РЅРѕ</div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* в”Ђв”Ђв”Ђ TICKER в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+        <div className="ticker" aria-hidden="true">
+          <div className="ticker-track">
+            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+              <span key={i} className="ticker-item">
+                <span className="ticker-dot" />
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* в”Ђв”Ђв”Ђ PRODUCTS в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+        <section className="products-section" id="catalog">
+          <div className="wrap">
+            <div className="section-header-row" data-reveal>
+              <div>
+                <div className="section-label">Р‘РµСЃС‚СЃРµР»Р»РµСЂС‹</div>
+                <h2 className="section-title">РџСЂРѕРІРµСЂРµРЅРЅС‹Рµ С„РѕСЂРјСѓР»С‹</h2>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+                <div className="section-num" aria-hidden="true">01</div>
+                <Link
+                  href="/catalog"
+                  className="btn btn-outline"
+                  style={{ flexShrink: 0 }}
+                >
+                  Р’РµСЃСЊ РєР°С‚Р°Р»РѕРі
+                  <span className="icon" style={{ fontSize: 16 }}>east</span>
+                </Link>
+              </div>
+            </div>
+
+            <div className="product-grid">
+              {PRODUCTS.map((p, i) => (
+                <div
+                  key={p.id}
+                  data-reveal
+                  style={{ transitionDelay: `${i * 90}ms` }}
+                >
+                  <Link href={`/catalog/${p.id}`} style={{ display: 'contents' }}>
+                    <article className="product-card">
+                      <div className="product-img-area">
+                        <span className="product-tag-pill">{p.tag}</span>
+                        <button
+                          className="product-fav"
+                          aria-label="Р’ РёР·Р±СЂР°РЅРЅРѕРµ"
+                          onClick={(e) => { e.preventDefault(); useCartStore.getState().addItem({ slug: `product-${p.id}`, name: p.name, sub: p.sub, price: parseInt(p.price.replace(/\D/g, '')) }); toast.success('РўРѕРІР°СЂ РґРѕР±Р°РІР»РµРЅ РІ РєРѕСЂР·РёРЅСѓ!', { description: p.name }); }}
+                        >
+                          <span className="icon" style={{ fontSize: 16 }}>favorite_border</span>
+                        </button>
+                        <img src={p.img} alt={p.name} loading="lazy" />
+                      </div>
+                      <div className="product-info">
+                        <div className="product-name">{p.name}</div>
+                        <div className="product-sub">{p.sub}</div>
+                      </div>
+                      <div className="product-bottom">
+                        <span className="product-price">{p.price}</span>
+                        <button
+                          className="add-to-cart-btn"
+                          aria-label="Р’ РєРѕСЂР·РёРЅСѓ"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          <span className="icon" style={{ fontSize: 18 }}>add</span>
+                        </button>
+                      </div>
+                    </article>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* в”Ђв”Ђв”Ђ STATEMENT BAND в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+        <section className="statement-band" data-reveal>
+          <div className="wrap">
+            <div className="statement-inner">
+              <div className="statement-meta">
+                <span className="statement-meta-num">Р¤РёР»РѕСЃРѕС„РёСЏ</span>
+                <span className="statement-meta-label">Adzek В· СЃ 2023</span>
+              </div>
+              <blockquote className="statement-quote">
+                РњС‹ СѓР±СЂР°Р»Рё РІСЃС‘ Р»РёС€РЅРµРµ. РћСЃС‚Р°РІРёР»Рё С‚РѕР»СЊРєРѕ С‚Рѕ,
+                С‡С‚Рѕ <em>РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ СЂР°Р±РѕС‚Р°РµС‚</em> вЂ”
+                Рё РЅРµ РІСЂРµРґРёС‚ РїСЂРёСЂРѕРґРµ.
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
+        {/* в”Ђв”Ђв”Ђ VALUES в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+        <section className="values-section" id="values">
+          <div className="wrap">
+            <div
+              style={{ textAlign: 'center', marginBottom: 56 }}
+              data-reveal
+            >
+              <div className="section-label" style={{ justifyContent: 'center', display: 'flex' }}>
+                РќР°С€Рё РїСЂРёРЅС†РёРїС‹
+              </div>
+              <h2
+                className="section-title"
+                style={{ maxWidth: 480, margin: '0 auto' }}
+              >
+                РџСЂРѕР·СЂР°С‡РЅРѕСЃС‚СЊ РЅР° РєР°Р¶РґРѕРј СЌС‚Р°РїРµ
+              </h2>
+            </div>
+
+            <div className="values-grid">
+              {VALUES.map((v, i) => (
+                <div key={v.num} className="value-item" data-reveal style={{ transitionDelay: `${(i % 3) * 80}ms` }}>
+                  <div className="value-num">{v.num}</div>
+                  <div className="value-title">{v.title}</div>
+                  <div className="value-desc">{v.desc}</div>
+                  <div className="value-icon">
+                    <span className="icon icon-fill" style={{ fontSize: 22 }}>{v.icon}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* в”Ђв”Ђв”Ђ PHILOSOPHY SPLIT в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+        <section className="philosophy-section" id="about">
+          <div className="wrap">
+            <div className="philosophy-grid">
+
+              <div className="philosophy-img" data-reveal="left">
+                <img
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80"
+                  alt="РџСЂРѕРёР·РІРѕРґСЃС‚РІРѕ Adzek"
+                />
+              </div>
+
+              <div data-reveal="right">
+                <div className="philosophy-label">Рћ Р±СЂРµРЅРґРµ</div>
+                <h2 className="philosophy-title">
+                  РќР°С‡Р°Р»Рё СЃ РїСЂРѕСЃС‚РѕРіРѕ РІРѕРїСЂРѕСЃР°: Р·Р°С‡РµРј РІ СЃРѕСЃС‚Р°РІРµ 40 РёРЅРіСЂРµРґРёРµРЅС‚РѕРІ?
+                </h2>
+                <p className="philosophy-body">
+                  Р’ 2023 РіРѕРґСѓ РјС‹ СЂР°Р·РѕР±СЂР°Р»Рё СЃРѕСЃС‚Р°РІ РїРѕРїСѓР»СЏСЂРЅС‹С… С‡РёСЃС‚СЏС‰РёС… СЃСЂРµРґСЃС‚РІ Рё СѓР¶Р°СЃРЅСѓР»РёСЃСЊ. РђРіСЂРµСЃСЃРёРІРЅР°СЏ С…РёРјРёСЏ, РЅР°РєРѕРїРёС‚РµР»СЊРЅС‹Р№ СЌС„С„РµРєС‚, РІСЂРµРґ РґР»СЏ РєРѕР¶Рё РґРµС‚РµР№. РњС‹ СЂРµС€РёР»Рё СЃРѕР·РґР°С‚СЊ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІСѓ вЂ” СЃ РѕС‚РєСЂС‹С‚С‹Рј СЃРѕСЃС‚Р°РІРѕРј Рё РґРѕРєР°Р·Р°РЅРЅРѕР№ Р±РµР·РѕРїР°СЃРЅРѕСЃС‚СЊСЋ.
+                </p>
+                <div className="philosophy-points">
+                  {[
+                    'РџРѕР»РЅС‹Р№ СЃРѕСЃС‚Р°РІ РЅР° РєР°Р¶РґРѕР№ СЌС‚РёРєРµС‚РєРµ',
+                    'R&D-Р»Р°Р±РѕСЂР°С‚РѕСЂРёСЏ РІ РђР»РјР°С‚С‹',
+                    'РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ РЅР° РґРѕР±СЂРѕРІРѕР»СЊС†Р°С…, РЅРµ РЅР° Р¶РёРІРѕС‚РЅС‹С…',
+                    'РЎРѕС‚СЂСѓРґРЅРёС‡РµСЃС‚РІРѕ СЃ СЌРєРѕР»РѕРіРёС‡РµСЃРєРёРјРё РѕСЂРіР°РЅРёР·Р°С†РёСЏРјРё',
+                  ].map((p) => (
+                    <div key={p} className="philosophy-point">{p}</div>
+                  ))}
+                </div>
+                <Link href="/catalog" className="btn btn-ink btn-lg">
+                  РР·СѓС‡РёС‚СЊ РїСЂРѕРґСѓРєС‚С‹
+                  <span className="icon" style={{ fontSize: 18 }}>arrow_forward</span>
+                </Link>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* в”Ђв”Ђв”Ђ NEWSLETTER в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+        <section className="newsletter-section">
+          <div className="wrap">
+            <div className="newsletter-wrap" data-reveal>
+              <div className="newsletter-eyebrow">РџРѕРґРїРёСЃРєР°</div>
+              <h2 className="newsletter-title">
+                РЎРѕРІРµС‚С‹ РїРѕ СЌРєРѕСѓР±РѕСЂРєРµ вЂ” СЂР°Р· РІ РЅРµРґРµР»СЋ
+              </h2>
+              <p className="newsletter-sub">
+                РќРёРєР°РєРѕРіРѕ СЃРїР°РјР°. РўРѕР»СЊРєРѕ РїРѕР»РµР·РЅС‹Рµ РјР°С‚РµСЂРёР°Р»С‹ Рё РїРµСЂРІС‹Р№ РґРѕСЃС‚СѓРї Рє РЅРѕРІРёРЅРєР°Рј.
+              </p>
+
+              {subscribed ? (
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 10,
+                    background: 'var(--clay-light)',
+                    color: 'var(--clay-dark)',
+                    padding: '14px 28px',
+                    borderRadius: 'var(--r-full)',
+                    fontWeight: 700,
+                    fontSize: 15,
+                  }}
+                >
+                  <span className="icon icon-fill" style={{ fontSize: 20 }}>check_circle</span>
+                  РџРѕРґРїРёСЃРєР° РѕС„РѕСЂРјР»РµРЅР°, СЃРїР°СЃРёР±Рѕ!
+                </div>
+              ) : (
+                <form
+                  className="newsletter-form"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    if (email) setSubscribed(true);
+                  }}
+                >
+                  <input
+                    className="input"
+                    type="email"
+                    placeholder="Р’Р°С€ e-mail"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                  <button type="submit" className="btn btn-clay" style={{ borderRadius: 'var(--r-full)', flexShrink: 0 }}>
+                    РџРѕРґРїРёСЃР°С‚СЊСЃСЏ
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      {/* в”Ђв”Ђв”Ђ FOOTER в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+      <footer className="site-footer">
+        <div className="wrap">
+          <div className="footer-grid">
+            <div>
+              <div className="footer-brand">Adzek<span>.</span></div>
+              <p className="footer-tagline">
+                РќР°С‚СѓСЂР°Р»СЊРЅР°СЏ Р±С‹С‚РѕРІР°СЏ С…РёРјРёСЏ РЅРѕРІРѕРіРѕ РїРѕРєРѕР»РµРЅРёСЏ. РџСЂРѕР·СЂР°С‡РЅС‹Р№ СЃРѕСЃС‚Р°РІ, РґРѕРєР°Р·Р°РЅРЅР°СЏ СЌС„С„РµРєС‚РёРІРЅРѕСЃС‚СЊ.
+              </p>
+            </div>
+            {[
+              {
+                title: 'РџРѕРєСѓРїР°С‚РµР»СЏРј',
+                links: ['РљР°С‚Р°Р»РѕРі', 'Р”РѕСЃС‚Р°РІРєР° Рё РѕРїР»Р°С‚Р°', 'Р’РѕР·РІСЂР°С‚', 'РЎРµСЂС‚РёС„РёРєР°С‚С‹'],
+              },
+              {
+                title: 'Рћ РєРѕРјРїР°РЅРёРё',
+                links: ['Рћ Р±СЂРµРЅРґРµ', 'Р‘Р»РѕРі', 'Р’Р°РєР°РЅСЃРёРё', 'РџСЂРµСЃСЃ-РєРёС‚'],
+              },
+              {
+                title: 'РљРѕРЅС‚Р°РєС‚С‹',
+                links: ['hello@adzek.kz', '+7 (701) 555-35-35', 'Telegram', 'WhatsApp'],
+              },
+            ].map((col) => (
+              <div key={col.title}>
+                <div className="footer-col-title">{col.title}</div>
+                <div className="footer-links">
+                  {col.links.map((l) => (
+                    <a key={l} href="#">{l}</a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="footer-bottom">
+            <span>В© 2023 Adzek. Р’СЃРµ РїСЂР°РІР° Р·Р°С‰РёС‰РµРЅС‹.</span>
+            <span>Р­РєРѕР»РѕРіРёС‡РЅР°СЏ С…РёРјРёСЏ В· РљР°Р·Р°С…СЃС‚Р°РЅСЃРєРѕРµ РїСЂРѕРёР·РІРѕРґСЃС‚РІРѕ</span>
+          </div>
+        </div>
+      </footer>
+
+      {/* в”Ђв”Ђв”Ђ MOBILE MENU OVERLAY в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+      {mobileMenuOpen && (
+        <div
+          className="mobile-menu-overlay"
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* в”Ђв”Ђв”Ђ MOBILE MENU SIDEBAR в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+      <div className={`mobile-menu-sidebar ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-menu-header">
+          <button
+            className="mobile-menu-close"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Р—Р°РєСЂС‹С‚СЊ РјРµРЅСЋ"
+          >
+            <span className="icon" style={{ fontSize: 24 }}>close</span>
+          </button>
+        </div>
+
+        <nav className="mobile-menu-nav">
+          {[
+            { label: 'РљР°С‚Р°Р»РѕРі',   href: '/catalog' },
+            { label: 'РЎРѕСЃС‚Р°РІ',    href: '#values' },
+            { label: 'Рћ Р±СЂРµРЅРґРµ',  href: '#about' },
+            { label: 'Р”РѕСЃС‚Р°РІРєР°',  href: '#' },
+          ].map((l) => (
+            <Link
+              key={l.label}
+              href={l.href}
+              className="mobile-menu-link"
+              onClick={handleNavClick}
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="mobile-menu-footer">
+          <Link href="/login" className="btn btn-outline btn-block">
+            Р’С…РѕРґ
+          </Link>
+          <Link href="/signup" className="btn btn-clay btn-block">
+            Р РµРіРёСЃС‚СЂР°С†РёСЏ
+          </Link>
+        </div>
+      </div>
+
+      {/* в”Ђв”Ђв”Ђ MOBILE NAV в”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђв”Ђ */}
+          </>
+  );
+}
+

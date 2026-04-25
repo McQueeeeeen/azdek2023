@@ -4,6 +4,7 @@ import { hashSync } from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main(): Promise<void> {
+  // Cleanup
   await prisma.weeklyReview.deleteMany();
   await prisma.growthExperiment.deleteMany();
   await prisma.orderCost.deleteMany();
@@ -27,23 +28,29 @@ async function main(): Promise<void> {
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
 
+  // Categories
   const laundry = await prisma.category.create({
-    data: { slug: "laundry", name: "Laundry" },
+    data: { slug: "laundry", name: "Стирка" },
   });
   const kitchen = await prisma.category.create({
-    data: { slug: "kitchen", name: "Kitchen" },
+    data: { slug: "kitchen", name: "Кухня" },
+  });
+  const home = await prisma.category.create({
+    data: { slug: "home", name: "Для дома" },
   });
 
-  const p1 = await prisma.product.create({
+  // Products - Laundry
+  await prisma.product.create({
     data: {
-      slug: "azdek-laundry-gel",
-      name: "Azdek Laundry Gel",
-      description: "Гель для стирки цветного и белого белья.",
+      slug: "azdek-universal-gel",
+      name: "Гель для стирки Azdek Universal",
+      description: "Универсальный гель для стирки всех видов тканей. Эффективен даже при низких температурах.",
+      badge: "Новинка",
       categoryId: laundry.id,
       variants: {
         create: [
-          { sku: "AZD-LG-2L", title: "2L", volumeLabel: "2L", packagingType: "bottle", price: 3990, stock: 180 },
-          { sku: "AZD-LG-5L", title: "5L", volumeLabel: "5L", packagingType: "canister", price: 8990, stock: 90 },
+          { sku: "AZD-UG-1L", title: "1л", volumeLabel: "1л", packagingType: "bottle", price: 2490, stock: 150 },
+          { sku: "AZD-UG-3L", title: "3л", volumeLabel: "3л", packagingType: "canister", price: 5990, stock: 80 },
         ],
       },
     },
@@ -51,145 +58,116 @@ async function main(): Promise<void> {
 
   await prisma.product.create({
     data: {
-      slug: "azdek-softener-fresh",
-      name: "Azdek Softener Fresh",
-      description: "Кондиционер для белья, свежий аромат.",
+      slug: "azdek-black-gel",
+      name: "Гель для черного белья Azdek Black",
+      description: "Сохраняет насыщенность темных цветов и защищает структуру волокон.",
       categoryId: laundry.id,
       variants: {
-        create: [{ sku: "AZD-SF-1L", title: "1L", volumeLabel: "1L", packagingType: "bottle", price: 2290, stock: 120 }],
+        create: [
+          { sku: "AZD-BG-1L", title: "1л", volumeLabel: "1л", packagingType: "bottle", price: 2690, stock: 100 },
+        ],
       },
     },
   });
 
   await prisma.product.create({
     data: {
-      slug: "azdek-dish-liquid-citrus",
-      name: "Azdek Dish Liquid Citrus",
-      description: "Средство для мытья посуды, цитрус.",
+      slug: "azdek-baby-gel",
+      name: "Детский гель для стирки Azdek Baby",
+      description: "Гипоаллергенный состав, идеально подходит для чувствительной кожи малышей.",
+      badge: "Новинка",
+      categoryId: laundry.id,
+      variants: {
+        create: [
+          { sku: "AZD-BABY-1L", title: "1л", volumeLabel: "1л", packagingType: "bottle", price: 2890, stock: 120 },
+        ],
+      },
+    },
+  });
+
+  // Products - Kitchen
+  await prisma.product.create({
+    data: {
+      slug: "azdek-dish-lemon",
+      name: "Средство для посуды Azdek Лимон",
+      description: "Концентрированное средство, легко удаляет жир даже в холодной воде.",
+      badge: "Хит",
       categoryId: kitchen.id,
       variants: {
         create: [
-          { sku: "AZD-DL-750", title: "750ml", volumeLabel: "750ml", packagingType: "bottle", price: 1490, stock: 300 },
+          { sku: "AZD-DL-500", title: "500мл", volumeLabel: "500мл", packagingType: "bottle", price: 1290, stock: 300 },
+          { sku: "AZD-DL-1L", title: "1л", volumeLabel: "1л", packagingType: "bottle", price: 1990, stock: 200 },
         ],
       },
     },
   });
 
+  // Products - Home
+  await prisma.product.create({
+    data: {
+      slug: "azdek-glass-cleaner",
+      name: "Спрей для стекол Azdek Glass",
+      description: "Очищает без разводов, придает блеск зеркалам и стеклянным поверхностям.",
+      categoryId: home.id,
+      variants: {
+        create: [
+          { sku: "AZD-GC-500", title: "500мл", volumeLabel: "500мл", packagingType: "spray", price: 1590, stock: 150 },
+        ],
+      },
+    },
+  });
+
+  await prisma.product.create({
+    data: {
+      slug: "azdek-floor-cleaner",
+      name: "Средство для мытья полов Azdek Floor",
+      description: "Подходит для ламината, плитки и линолеума. Оставляет приятный аромат свежести.",
+      badge: "Новинка",
+      categoryId: home.id,
+      variants: {
+        create: [
+          { sku: "AZD-FC-1L", title: "1л", volumeLabel: "1л", packagingType: "bottle", price: 2190, stock: 100 },
+        ],
+      },
+    },
+  });
+
+  // Users & Customers
   await prisma.appUser.create({
     data: {
-      email: "owner@azdek.local",
-      passwordHash: hashSync("Owner123!"),
+      email: "owner@azdek.kz",
+      passwordHash: hashSync("Azdek2023!"),
       role: "owner",
       isActive: true,
     },
   });
 
-  const retailCustomer = await prisma.customer.create({
+  const demoCustomer = await prisma.customer.create({
     data: {
-      email: "customer@azdek.local",
-      firstName: "Retail",
-      lastName: "Customer",
-      phone: "+77011111111",
+      email: "demo@azdek.kz",
+      firstName: "Дархан",
+      lastName: "Алиев",
+      phone: "+77071234567",
       type: "b2c",
-      isWholesaler: false,
     },
   });
 
   await prisma.appUser.create({
     data: {
-      email: retailCustomer.email,
-      passwordHash: hashSync("Customer123!"),
+      email: demoCustomer.email,
+      passwordHash: hashSync("Demo1234!"),
       role: "customer",
-      customerId: retailCustomer.id,
+      customerId: demoCustomer.id,
       isActive: true,
     },
   });
 
-  const b2bCustomer = await prisma.customer.create({
-    data: {
-      email: "b2b@azdek.local",
-      firstName: "B2B",
-      lastName: "Customer",
-      phone: "+77012222222",
-      type: "b2b",
-      isWholesaler: true,
-    },
-  });
-
-  await prisma.appUser.create({
-    data: {
-      email: b2bCustomer.email,
-      passwordHash: hashSync("B2B12345!"),
-      role: "b2b_customer",
-      customerId: b2bCustomer.id,
-      isActive: true,
-    },
-  });
-
-  await prisma.promoCode.create({
-    data: {
-      code: "WELCOME10",
-      discountType: "percentage",
-      amount: 10,
-      isActive: true,
-      usageLimit: 1000,
-    },
-  });
-
-  const weekStart = new Date();
-  weekStart.setUTCHours(0, 0, 0, 0);
-  weekStart.setUTCDate(weekStart.getUTCDate() - ((weekStart.getUTCDay() + 6) % 7));
-
-  await prisma.weeklyReview.upsert({
-    where: { weekStart },
-    update: {},
-    create: {
-      weekStart,
-      facts: {
-        revenue: 420000,
-        orders: 48,
-        aov: 8750,
-        roas: 2.4,
-      },
-      wins: "Checkout conversion improved after payment flow stabilization.",
-      losses: "Return rate increased on one SKU family.",
-      decisions: "scale paid_search, fix SKU messaging, stop low-ROAS retargeting set.",
-      nextActions: "Launch 3 experiments and tighten fulfillment SLA controls.",
-      owner: "growth_owner",
-      deadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-      expectedImpact: "Increase purchase_success by +12% and AOV by +8%.",
-    },
-  });
-
-  await prisma.growthExperiment.createMany({
-    data: [
-      {
-        hypothesis: "Bundle offer on laundry variants will increase AOV.",
-        changeDescription: "Show 2+1 bundle block on product and cart.",
-        targetMetric: "AOV",
-        owner: "growth_owner",
-      },
-      {
-        hypothesis: "Payment reassurance copy will reduce payment drop-off.",
-        changeDescription: "Add trust/secure-payment block on checkout.",
-        targetMetric: "payment_initiated_to_purchase_success",
-        owner: "growth_owner",
-      },
-      {
-        hypothesis: "B2B reorder shortcut will increase repeat bulk orders.",
-        changeDescription: "Expose one-click reorder in B2B account.",
-        targetMetric: "b2b_repeat_bulk_orders",
-        owner: "growth_owner",
-      },
-    ],
-  });
-
-  console.log("Seed completed. Featured product:", p1.slug);
+  console.log("Seed completed successfully!");
 }
 
 main()
-  .catch((err) => {
-    console.error(err);
+  .catch((e) => {
+    console.error(e);
     process.exit(1);
   })
   .finally(async () => {

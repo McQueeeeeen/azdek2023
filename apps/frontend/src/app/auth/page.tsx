@@ -7,10 +7,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'sonner';
-import SiteHeader from '@/components/layout/site-header';
 import SiteFooter from '@/components/layout/site-footer';
 import { apiPost, AuthTokens } from '@/lib/api';
 import { useAuthStore } from '@/store/useAuthStore';
+import { useCartStore } from '@/store/useCartStore';
 
 type AuthMode = 'login' | 'register';
 
@@ -50,6 +50,7 @@ export default function AuthPage() {
     try {
       const response = await apiPost<AuthTokens>('/auth/login', data);
       setAuth(response.user, response.accessToken);
+      await useCartStore.getState().syncCart();
       toast.success('Вы успешно вошли в систему!');
       router.push('/');
     } catch (err: any) {
@@ -75,7 +76,7 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen bg-surface">
-      <SiteHeader />
+      {/* Global header is rendered by layout */}
 
       <main className="pt-20 pb-24">
         <div className="max-w-md mx-auto px-8">

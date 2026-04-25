@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import SiteHeader from '@/components/layout/site-header';
 import SiteFooter from '@/components/layout/site-footer';
 
 interface Order {
@@ -39,8 +38,7 @@ export default function OrdersPage() {
 
   return (
     <div className="min-h-screen bg-surface">
-      <SiteHeader />
-
+      
       <main className="pt-20 pb-24">
         <div className="max-w-6xl mx-auto px-8">
           <div className="mb-12">

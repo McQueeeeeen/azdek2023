@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import { clearCartLines, getCartLineCount, getCartLineTotal, getInitialCartLines, type CartLine } from '@/lib/cart-store';
+import { useCartStore, type CartLine } from '@/store/useCartStore';
 import { CATALOG_PRODUCTS } from '@/lib/catalog-data';
 
-const KZ_CITIES = ['Караганда', 'Астана'];
+const KZ_CITIES = ['Астана', 'Алматы', 'Шымкент', 'Караганда', 'Актобе', 'Тараз', 'Павлодар', 'Усть-Каменогорск', 'Семей', 'Атырау', 'Костанай', 'Кызылорда', 'Уральск', 'Петропавловск', 'Актау', 'Темиртау', 'Туркестан'];
 
 const STEPS = ['Адрес', 'Доставка', 'Оплата', 'Подтверждение'];
 
@@ -38,7 +38,11 @@ function formatCartItems(lines: CartLine[]) {
 
 export default function CheckoutPage() {
   const [step, setStep] = useState<CheckoutStep>(1);
-  const [items, setItems] = useState<CartLine[]>([]);
+  const items = useCartStore((state) => state.items);
+  const subtotal = useCartStore((state) => state.getTotal());
+  const lineCount = useCartStore((state) => state.getCount());
+  const clearCart = useCartStore((state) => state.clearCart);
+  
   const [form, setForm] = useState({
     firstName: '',
     lastName: '',
@@ -56,38 +60,16 @@ export default function CheckoutPage() {
     newsletter: false,
   });
   const [placed, setPlaced] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setItems(getInitialCartLines());
-
-    // Auto-detect city via IP geolocation
-    fetch('https://ipapi.co/json/')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data && data.city) {
-          let detectedCity = data.city;
-          // Map standard english names to our russian options
-          if (detectedCity === 'Karaganda' || detectedCity === 'Qaraghandy') detectedCity = 'Караганда';
-          if (detectedCity === 'Astana' || detectedCity === 'Nur-Sultan') detectedCity = 'Астана';
-
-          if (['Караганда', 'Астана'].includes(detectedCity)) {
-            setForm((current) => {
-              // Only override if user hasn't manually set it yet
-              if (!current.city) {
-                return { ...current, city: detectedCity };
-              }
-              return current;
-            });
-          }
-        }
-      })
-      .catch((err) => console.log('Geolocation detection failed:', err));
+    setMounted(true);
   }, []);
 
-  const subtotal = useMemo(() => getCartLineTotal(items), [items]);
+  
   const deliveryCost = form.delivery === 'courier' ? 1500 : form.delivery === 'kazpost' ? 900 : 0;
   const total = subtotal + deliveryCost;
-  const lineCount = getCartLineCount(items);
+  
   const displayItems = useMemo(() => formatCartItems(items), [items]);
 
   const set = (field: string, value: string | boolean) => {
@@ -102,9 +84,11 @@ export default function CheckoutPage() {
   };
 
   const handleConfirm = () => {
-    clearCartLines();
+    clearCart();
     setPlaced(true);
   };
+
+  if (!mounted) return null;
 
   if (items.length === 0 && !placed) {
     return (

@@ -18,7 +18,7 @@ interface CartState {
   removeItem: (id: string) => Promise<void>;
   updateQuantity: (id: string, quantity: number) => Promise<void>;
   clearCart: () => void;
-  syncWithServer: () => Promise<void>;
+  syncCart: () => Promise<void>;
   getTotal: () => number;
   getCount: () => number;
 }
@@ -67,8 +67,18 @@ export const useCartStore = create<CartState>()(
 
       clearCart: () => set({ items: [] }),
 
-      syncWithServer: async () => {
-        // TODO: Sync local cart with backend when user logs in.
+      syncCart: async () => {
+        try {
+          const items = get().items;
+          const payload = {
+            items: items.map(item => ({ slug: item.slug, quantity: item.quantity }))
+          };
+          
+          const response = await apiPost('/cart/sync', payload);
+          // Optional: update local cart with server response if needed
+        } catch (error) {
+          console.warn('Failed to sync cart with server', error);
+        }
       },
 
       getTotal: () => get().items.reduce((total, item) => total + item.price * item.quantity, 0),

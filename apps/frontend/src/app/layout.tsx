@@ -1,8 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import { Toaster } from "sonner";
-import HeaderWrapper from "@/components/header-wrapper";
+import SiteHeader from "@/components/layout/site-header";
+import Providers from "@/components/providers";
 
 export const metadata: Metadata = {
   title: "Adzek — натуральная бытовая химия из Казахстана",
@@ -25,9 +25,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
       </head>
       <body>
-        <HeaderWrapper />
-        {children}
-        <Toaster richColors position="bottom-right" />
+        <Providers>
+          <SiteHeader />
+          <main className="pt-20">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
-import { getCartLineCount, getCartLineTotal, getInitialCartLines, removeCartLine, updateCartLine, type CartLine } from '@/lib/cart-store';
+import { useCartStore, type CartLine } from '@/store/useCartStore';
 
 const DELIVERY_OPTIONS = [
   { id: 'courier', label: 'Курьер по городу', sub: '1–2 дня', price: 1500 },
@@ -90,31 +90,31 @@ function CartLineRow({
 }
 
 export default function CartPage() {
-  const [items, setItems] = useState<CartLine[]>([]);
+  const items = useCartStore((state) => state.items);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const subtotal = useCartStore((state) => state.getTotal());
+  const lineCount = useCartStore((state) => state.getCount());
+
   const [delivery, setDelivery] = useState<(typeof DELIVERY_OPTIONS)[number]['id']>('courier');
   const [promoCode, setPromoCode] = useState('');
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoError, setPromoError] = useState('');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setItems(getInitialCartLines());
+    setMounted(true);
   }, []);
 
-  const subtotal = useMemo(() => getCartLineTotal(items), [items]);
+  
   const deliveryPrice = DELIVERY_OPTIONS.find((option) => option.id === delivery)?.price ?? 0;
   const discount = promoApplied ? Math.round(subtotal * 0.1) : 0;
   const total = subtotal + deliveryPrice - discount;
-  const lineCount = getCartLineCount(items);
+  
 
-  const syncUpdate = (lineId: string, nextQuantity: number) => {
-    const next = updateCartLine(lineId, nextQuantity);
-    setItems(next);
-  };
+  const syncUpdate = (lineId: string, nextQuantity: number) => { updateQuantity(lineId, nextQuantity); };
 
-  const syncRemove = (lineId: string) => {
-    const next = removeCartLine(lineId);
-    setItems(next);
-  };
+  const syncRemove = (lineId: string) => { removeItem(lineId); };
 
   const handleApplyPromo = () => {
     if (promoCode.trim().toUpperCase() === 'ADZEK10') {
@@ -126,6 +126,8 @@ export default function CartPage() {
     setPromoApplied(false);
     setPromoError('Промокод не найден');
   };
+
+  if (!mounted) return null;
 
   if (items.length === 0) {
     return (

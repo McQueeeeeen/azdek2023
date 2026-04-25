@@ -110,10 +110,10 @@ export default function ProfilePage() {
                 clearAuthSession();
                 window.location.href = '/login';
               }}
-              style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 20px', background: 'transparent', border: 'none', borderLeft: '3px solid transparent', cursor: 'pointer' }}
+              className="btn-logout"
             >
-              <span className="icon" style={{ fontSize: 20, color: 'var(--ink-3)' }}>logout</span>
-              <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--ink-3)' }}>Выйти</span>
+              <span className="icon" style={{ fontSize: 20 }}>logout</span>
+              <span style={{ fontSize: 14, fontWeight: 600 }}>Выйти</span>
             </button>
           </div>
 

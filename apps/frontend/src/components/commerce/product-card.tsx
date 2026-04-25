@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Card from "../ui/card";
 import Button from "../ui/button";
 import PriceBlock from "./price-block";
@@ -46,7 +46,7 @@ export default function ProductCard({ product }: { product: StorefrontProduct })
         {firstVariant ? (
           <AddToCartButton
             className="full-width"
-            variantId={firstVariant.id}
+            product={product}
             label="Add to cart"
             redirectToCart={false}
             pendingLabel="Adding..."

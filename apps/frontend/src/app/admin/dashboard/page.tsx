@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import SiteHeader from '@/components/layout/site-header';
 import SiteFooter from '@/components/layout/site-footer';
 
 interface StatCard {
@@ -108,8 +107,7 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen bg-surface">
-      <SiteHeader />
-
+      
       <main className="pt-20 pb-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-12">

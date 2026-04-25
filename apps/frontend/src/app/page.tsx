@@ -1,6 +1,8 @@
 'use client';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useCartStore } from '@/store/useCartStore';
+import { toast } from 'sonner';
 
 /* ── Scroll Reveal ─────────────────────────────────────── */
 function useScrollReveal() {
@@ -149,7 +151,10 @@ export default function HomePage() {
 
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
-  const [cartCount] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const cartCount = useCartStore((state) => state.getCount());
+  const addItem = useCartStore((state) => state.addItem);
+  useEffect(() => { setMounted(true); }, []);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Close menu when navigating
@@ -160,63 +165,7 @@ export default function HomePage() {
   return (
     <>
       {/* ─── HEADER ──────────────────────────────────────────── */}
-      <header className="site-header" id="site-header">
-        <div className="wrap header-inner">
-          {/* Logo */}
-          <Link href="/" className="adzek-logo">
-            Adzek<span>.</span>
-          </Link>
-
-          {/* Hamburger Menu Button - Mobile Only */}
-          <button
-            className="hamburger-btn lg:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Меню"
-            aria-expanded={mobileMenuOpen}
-          >
-            <span className="hamburger-line" />
-            <span className="hamburger-line" />
-            <span className="hamburger-line" />
-          </button>
-
-          {/* Nav */}
-          <nav className="header-nav">
-            {[
-              { label: 'Каталог',   href: '/catalog' },
-              { label: 'Состав',    href: '#values' },
-              { label: 'О бренде',  href: '#about' },
-              { label: 'Доставка',  href: '#' },
-            ].map((l) => (
-              <Link key={l.label} href={l.href} className="hn-link">
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Right */}
-          <div className="header-end">
-            <div className="h-search-wrap hidden lg:block">
-              <span className="icon h-search-icon">search</span>
-              <input
-                className="input"
-                placeholder="Найти средство…"
-                type="search"
-                aria-label="Поиск"
-              />
-            </div>
-
-            <Link href="/profile" className="btn btn-ghost btn-icon hidden md:flex">
-              <span className="icon" style={{ fontSize: 22 }}>person</span>
-            </Link>
-
-            <Link href="/cart" className="h-cart">
-              <span className="icon" style={{ fontSize: 20 }}>shopping_bag</span>
-              Корзина
-              {cartCount > 0 && <span className="h-cart-badge">{cartCount}</span>}
-            </Link>
-          </div>
-        </div>
-      </header>
+      {/* Header removed, now using global AdzekHeader */}
 
       <main>
         {/* ─── HERO ──────────────────────────────────────────── */}
@@ -343,7 +292,21 @@ export default function HomePage() {
                         >
                           <span className="icon" style={{ fontSize: 16 }}>favorite_border</span>
                         </button>
-                        <img src={p.img} alt={p.name} loading="lazy" />
+                        <div
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            background: 'linear-gradient(135deg, var(--clay-light) 0%, var(--bg-alt) 100%)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            borderRadius: 'inherit'
+                          }}
+                        >
+                          <span className="icon" style={{ fontSize: 48, color: 'var(--clay)', opacity: 0.3 }}>
+                            water_drop
+                          </span>
+                        </div>
                       </div>
                       <div className="product-info">
                         <div className="product-name">{p.name}</div>
@@ -354,7 +317,17 @@ export default function HomePage() {
                         <button
                           className="add-to-cart-btn"
                           aria-label="В корзину"
-                          onClick={(e) => e.preventDefault()}
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            await addItem({
+                              slug: `product-${p.id}`,
+                              name: p.name,
+                              sub: p.sub,
+                              price: parseInt(p.price.replace(/\D/g, ''))
+                            });
+                            toast.success('Товар добавлен в корзину', { description: p.name });
+                          }}
                         >
                           <span className="icon" style={{ fontSize: 18 }}>add</span>
                         </button>
@@ -595,10 +568,10 @@ export default function HomePage() {
         </nav>
 
         <div className="mobile-menu-footer">
-          <Link href="/login" className="btn btn-outline btn-block">
+          <Link href="/auth" className="btn btn-outline btn-block">
             Вход
           </Link>
-          <Link href="/signup" className="btn btn-clay btn-block">
+          <Link href="/auth" className="btn btn-clay btn-block">
             Регистрация
           </Link>
         </div>
